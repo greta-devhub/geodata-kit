@@ -147,7 +147,7 @@ feature branch ──PR──▶ dev ──PR "Release x.y.z"──▶ main ─�
 
 | When | Workflow | What runs |
 |---|---|---|
-| push to `dev`, PR into `dev` | `ci.yml` | types, 830 TS tests, version sync, build, npm publish dry run; 779 Python tests, wheel build, `twine check`; for PRs into `dev`: **changeset present** |
+| push to `dev`, PR into `dev` | `ci.yml`, `changeset.yml` | types, 830 TS tests, version sync, build, npm publish dry run; 779 Python tests, wheel build, `twine check`; for PRs into `dev`: **changeset present** |
 | PR `dev` → `main` | `ci.yml` | the same, plus **ready to release**: no unapplied changesets, version newer than npm, changelog entry |
 | merge into `main` | `release.yml` | all checks again, then publish every package whose version isn't on npm yet (with provenance), git tag `vX.Y.Z`, GitHub release with the changelog. A merge without a new version publishes nothing. Python packages are not published yet. |
 | 3rd of every month, or by hand | `refresh-data.yml` | download and regenerate all data, run all tests, open a PR into `dev` with a patch changeset if anything changed |
