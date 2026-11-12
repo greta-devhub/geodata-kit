@@ -51,7 +51,7 @@ function main(): void {
   }
 
   if (problems.length) fail(`Not ready to release ${version}:\n  ${problems.join('\n  ')}`);
-  const state = latest && compareVersions(version, latest) === 0 ? 'already on npm; PyPI, tag and GitHub release still to do' : 'new version';
+  const state = latest && compareVersions(version, latest) === 0 ? 'already on npm; tag and GitHub release still to do' : 'new version';
   console.log(`✔ Ready to release ${version} (${state}${firstRelease ? ', first release' : ''})`);
 }
 

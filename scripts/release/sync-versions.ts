@@ -1,6 +1,6 @@
 /**
  * Copies the npm release version (set by `changeset version`) into the Python
- * packages, so PyPI and npm always publish the same version.
+ * packages, so npm and (once it is published) PyPI carry the same version.
  *
  *   tsx scripts/release/sync-versions.ts           # write
  *   tsx scripts/release/sync-versions.ts --check   # CI: fail when anything differs
