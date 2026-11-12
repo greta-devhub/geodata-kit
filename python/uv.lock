@@ -12,7 +12,17 @@ wheels = [
 ]
 
 [[package]]
-name = "geodata-kit"
+name = "geodata-kit-localities"
+version = "0.1.0"
+source = { directory = "extras/geodata_kit_localities" }
+
+[[package]]
+name = "geodata-kit-postal"
+version = "0.1.0"
+source = { directory = "extras/geodata_kit_postal" }
+
+[[package]]
+name = "geodata-kit-py"
 version = "0.1.0"
 source = { editable = "." }
 
@@ -34,16 +44,6 @@ requires-dist = [
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.3" },
 ]
 provides-extras = ["localities", "postal", "dev"]
-
-[[package]]
-name = "geodata-kit-localities"
-version = "0.1.0"
-source = { directory = "extras/geodata_kit_localities" }
-
-[[package]]
-name = "geodata-kit-postal"
-version = "0.1.0"
-source = { directory = "extras/geodata_kit_postal" }
 
 [[package]]
 name = "iniconfig"

@@ -61,24 +61,6 @@ jobs:
           (cd extras/geodata_kit_postal && uv build --out-dir ../../dist)
           uvx twine check dist/*
 
-  changeset:
-    name: Changeset present
-    if: github.event_name == 'pull_request' && github.base_ref == 'dev'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run changeset:require
-        env:
-          BASE_REF: ${{ github.base_ref }}
-          SKIP_CHANGESET: ${{ contains(github.event.pull_request.labels.*.name, 'no-changeset') }}
-
   release-ready:
     name: Ready to release
     if: github.event_name == 'pull_request' && github.base_ref == 'main'

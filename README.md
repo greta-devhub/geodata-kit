@@ -10,7 +10,7 @@ data and shipped for TypeScript/JavaScript and Python.
 | `geodata-kit-localities` | npm | 4.9M villages and districts, gzip per country | 83 MB / 83 MB |
 | `geodata-kit-postal` | npm | 1.8M postal codes, 124 countries | 19 MB / 19 MB |
 | `geodata-kit-tz` | npm | timezone polygons, point → zone (ODbL data) | 5 MB / 7 MB |
-| `geodata-kit` (+ `[localities]`, `[postal]` extras) | PyPI | same API in snake_case, same data | 19 MB wheel |
+| `geodata-kit-py` (+ `[localities]`, `[postal]` extras; import `geodata_kit`) | PyPI — **not published yet** (built and tested in CI) | same API in snake_case, same data | 19 MB wheel |
 
 ## Layout
 
@@ -36,7 +36,7 @@ data/               generated, committed: the reviewable output of a refresh
   meta.json         every source with URL, licence, size, SHA-256, download date
   reports/          build notes (ISO match rate, language gaps, …)
 packages/           npm packages (sources in src/, data copied in by emit)
-python/             PyPI package and its two data extras
+python/             Python package and its two data extras (not published yet)
 tests/golden/       language-neutral test cases run by Vitest and pytest
 ```
 
@@ -141,15 +141,15 @@ The generator fails instead of guessing when:
 ## Branches, CI and releases
 
 ```
-feature branch ──PR──▶ dev ──PR "Release x.y.z"──▶ main ──▶ npm + PyPI + GitHub release
+feature branch ──PR──▶ dev ──PR "Release x.y.z"──▶ main ──▶ npm + GitHub release
                   CI + changeset check     CI + release check     CI again, then publish
 ```
 
 | When | Workflow | What runs |
 |---|---|---|
-| push to `dev`, PR into `dev` | `ci.yml` | types, 830 TS tests, version sync, build, npm publish dry run; 779 Python tests, wheel build, `twine check`; for PRs into `dev`: **changeset present** |
+| push to `dev`, PR into `dev` | `ci.yml`, `changeset.yml` | types, 830 TS tests, version sync, build, npm publish dry run; 779 Python tests, wheel build, `twine check`; for PRs into `dev`: **changeset present** |
 | PR `dev` → `main` | `ci.yml` | the same, plus **ready to release**: no unapplied changesets, version newer than npm, changelog entry |
-| merge into `main` | `release.yml` | all checks again, then publish every package whose version isn't on npm yet: npm (with provenance), PyPI, git tag `vX.Y.Z`, GitHub release with the changelog. A merge without a new version publishes nothing. |
+| merge into `main` | `release.yml` | all checks again, then publish every package whose version isn't on npm yet (with provenance), git tag `vX.Y.Z`, GitHub release with the changelog. A merge without a new version publishes nothing. Python packages are not published yet. |
 | 3rd of every month, or by hand | `refresh-data.yml` | download and regenerate all data, run all tests, open a PR into `dev` with a patch changeset if anything changed |
 
 ### Day to day
@@ -199,9 +199,12 @@ Do these once, in this order, when the repository moves to GitHub:
 2. **Label.** Create a label named `no-changeset`.
 3. **Environment.** Create an environment named `release`. Optionally add
    required reviewers, so every publish needs one click of approval.
-4. **PyPI.** On pypi.org, add a *pending publisher* for each of
-   `geodata-kit`, `geodata-kit-localities` and `geodata-kit-postal`:
-   this repository, workflow `release.yml`, environment `release`.
+4. **PyPI: not set up yet** (separate ticket). Two findings for it:
+   - `geodata-kit` is blocked on PyPI as too similar to the existing
+     `geodatakit`, so the package is named `geodata-kit-py`.
+   - PyPI accepts a pending trusted publisher configuration (owner, repo,
+     workflow, environment) for one new project only. The three projects need
+     different environments or workflows, or two of them a first manual upload.
 5. **npm.**
    1. Turn on 2FA with an authenticator app (npmjs.com → Account → Two-Factor
       Authentication).
@@ -225,7 +228,7 @@ Do these once, in this order, when the repository moves to GitHub:
    data-refresh PRs (the refresh job runs all tests itself, so they are
    still checked).
 
-The four npm names and the PyPI name were free on 2026-11-12.
+The four npm packages were first published as 0.1.0 on 2026-11-12.
 
 ## Known limits
 

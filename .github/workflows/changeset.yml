@@ -1,0 +1,34 @@
+# Pull requests into dev that change published files need a changeset, or the
+# "no-changeset" label. Separate from ci.yml so that adding or removing the
+# label reruns only this quick check.
+name: Changeset
+
+on:
+  pull_request:
+    branches: [dev]
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+concurrency:
+  group: changeset-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  changeset:
+    name: Changeset present
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run changeset:require
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          SKIP_CHANGESET: ${{ contains(github.event.pull_request.labels.*.name, 'no-changeset') }}
