@@ -1,0 +1,136 @@
+{
+  "name": "geodata-kit",
+  "version": "0.1.0",
+  "description": "Countries, subdivisions, cities, languages, timezones, address and phone data for TypeScript and JavaScript. Offline, typed, no runtime dependencies. Built from GeoNames, Unicode CLDR, IANA tzdata, Wikidata, Natural Earth and libphonenumber.",
+  "keywords": [
+    "countries",
+    "country",
+    "iso-3166",
+    "iso-3166-2",
+    "subdivisions",
+    "cities",
+    "geonames",
+    "timezone",
+    "city-timezone",
+    "languages",
+    "cldr",
+    "address",
+    "postal-code",
+    "phone-number",
+    "geo"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./subdivisions": {
+      "import": {
+        "types": "./dist/subdivisions.d.ts",
+        "default": "./dist/subdivisions.js"
+      },
+      "require": {
+        "types": "./dist/subdivisions.d.cts",
+        "default": "./dist/subdivisions.cjs"
+      }
+    },
+    "./cities": {
+      "import": {
+        "types": "./dist/cities.d.ts",
+        "default": "./dist/cities.js"
+      },
+      "require": {
+        "types": "./dist/cities.d.cts",
+        "default": "./dist/cities.cjs"
+      }
+    },
+    "./airports": {
+      "import": {
+        "types": "./dist/airports.d.ts",
+        "default": "./dist/airports.js"
+      },
+      "require": {
+        "types": "./dist/airports.d.cts",
+        "default": "./dist/airports.cjs"
+      }
+    },
+    "./shapes": {
+      "import": {
+        "types": "./dist/shapes.d.ts",
+        "default": "./dist/shapes.js"
+      },
+      "require": {
+        "types": "./dist/shapes.d.cts",
+        "default": "./dist/shapes.cjs"
+      }
+    },
+    "./address": {
+      "import": {
+        "types": "./dist/address.d.ts",
+        "default": "./dist/address.js"
+      },
+      "require": {
+        "types": "./dist/address.d.cts",
+        "default": "./dist/address.cjs"
+      }
+    },
+    "./phone": {
+      "import": {
+        "types": "./dist/phone.d.ts",
+        "default": "./dist/phone.js"
+      },
+      "require": {
+        "types": "./dist/phone.d.cts",
+        "default": "./dist/phone.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "typesVersions": {
+    "*": {
+      "subdivisions": [
+        "./dist/subdivisions.d.ts"
+      ],
+      "cities": [
+        "./dist/cities.d.ts"
+      ],
+      "airports": [
+        "./dist/airports.d.ts"
+      ],
+      "shapes": [
+        "./dist/shapes.d.ts"
+      ],
+      "address": [
+        "./dist/address.d.ts"
+      ],
+      "phone": [
+        "./dist/phone.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "data",
+    "NOTICE",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup"
+  }
+}

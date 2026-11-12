@@ -1,0 +1,82 @@
+# Monthly data refresh: download the latest GeoNames dump and the pinned
+# sources, regenerate data/, run all tests and open a pull request into dev
+# with a patch changeset when anything changed.
+#
+# Pull requests opened with the default GITHUB_TOKEN don't trigger other
+# workflows, so CI would not run on them. Add a fine-grained token with
+# contents + pull-requests write as the REFRESH_PR_TOKEN secret to fix that;
+# without it the tests below are the only check.
+name: Refresh data
+
+on:
+  schedule:
+    - cron: '0 4 3 * *'   # 04:00 UTC on the 3rd of every month
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: astral-sh/setup-uv@v6
+
+      - name: Download sources (~800 MB)
+        run: npm run download -- --refresh
+      - run: npm run extract -- --force
+      - name: Refresh the Wikidata snapshot
+        run: npm run wikidata
+        continue-on-error: true   # the query service is sometimes down; the committed snapshot is used then
+      - run: npm run generate
+      - run: npm run emit
+      - run: npm test
+      - working-directory: python
+        run: uv run --extra dev pytest -q
+
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet -- data overlays/wikidata; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+          echo "date=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+      - name: Add a patch changeset
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          cat > ".changeset/data-refresh-${{ steps.diff.outputs.date }}.md" <<EOF
+          ---
+          "geodata-kit": patch
+          ---
+
+          Data refresh: GeoNames snapshot ${{ steps.diff.outputs.date }}.
+          EOF
+      - name: Open pull request into dev
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.REFRESH_PR_TOKEN || github.token }}
+          base: dev
+          branch: data-refresh/${{ steps.diff.outputs.date }}
+          title: 'Data refresh ${{ steps.diff.outputs.date }}'
+          commit-message: 'chore(data): refresh data (GeoNames ${{ steps.diff.outputs.date }})'
+          body: |
+            Regenerated `data/` from the sources downloaded on ${{ steps.diff.outputs.date }}.
+            All TypeScript and Python tests passed in the refresh job.
+            Review `git diff --stat data/` and the reports in `data/reports/`.
+          add-paths: |
+            data/**
+            overlays/wikidata/**
+            .changeset/**

@@ -1,0 +1,16 @@
+{
+  "_comment": "Fixes applied on top of GeoNames countryInfo. Every entry gives its source.",
+  "dropCountries": {
+    "CS": "Serbia and Montenegro — dissolved 2006; CLDR territoryAlias replaces it with RS ME",
+    "AN": "Netherlands Antilles — dissolved 2010; CLDR territoryAlias replaces it with CW SX BQ"
+  },
+  "countryTimezones": {
+    "XK": {
+      "timezones": ["Europe/Belgrade"],
+      "source": "Kosovo is in neither tzdata zone.tab nor CLDR; GeoNames gives every Kosovo city Europe/Belgrade (cities500)"
+    }
+  },
+  "currencies": {
+    "_comment": "Currencies come from CLDR currencyData (with dates), which already fixes GeoNames' stale BG → BGN; no manual entries needed."
+  }
+}

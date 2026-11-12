@@ -1,0 +1,241 @@
+{
+  "_comment": "Country aliases added on top of CLDR names and GeoNames alternate names, and decisions for ambiguous names. 'kind: subdivision' marks names of a part of the country that people write instead of the country (England → GB).",
+  "aliases": {
+    "GB": [
+      "UK",
+      "U.K.",
+      "Great Britain",
+      "Britain",
+      "United Kingdom (UK)",
+      "UK of Great Britain and Northern Ireland"
+    ],
+    "US": [
+      "USA",
+      "U.S.A.",
+      "U.S.",
+      "United States of America",
+      "United States (USA)",
+      "America",
+      "Vereinigte Staaten von Amerika"
+    ],
+    "AE": [
+      "UAE",
+      "U.A.E.",
+      "Emirates"
+    ],
+    "SA": [
+      "KSA",
+      "Kingdom of Saudi Arabia"
+    ],
+    "NL": [
+      "Holland",
+      "The Netherlands",
+      "Nederland"
+    ],
+    "CZ": [
+      "Czech Republic",
+      "Czech Rep."
+    ],
+    "CI": [
+      "Ivory Coast",
+      "Côte d'Ivoire (Ivory Coast)",
+      "Cote d'Ivoire"
+    ],
+    "VN": [
+      "Viet Nam"
+    ],
+    "MM": [
+      "Burma"
+    ],
+    "SZ": [
+      "Swaziland"
+    ],
+    "MK": [
+      "Macedonia",
+      "Republic of North Macedonia",
+      "FYROM"
+    ],
+    "KR": [
+      "Korea",
+      "Republic of Korea",
+      "Korea, Republic of",
+      "Korea (South)"
+    ],
+    "KP": [
+      "DPRK",
+      "Korea, Democratic People's Republic of",
+      "Korea (North)"
+    ],
+    "RU": [
+      "Russian Federation"
+    ],
+    "VA": [
+      "Vatican",
+      "Holy See"
+    ],
+    "MO": [
+      "Macau",
+      "Macao SAR",
+      "Macau SAR",
+      "Macau S.A.R.",
+      "Macao, China"
+    ],
+    "HK": [
+      "Hong Kong SAR",
+      "Hong Kong S.A.R",
+      "Hong Kong S.A.R.",
+      "Hong Kong, China"
+    ],
+    "TW": [
+      "Taiwan, Province of China",
+      "Republic of China",
+      "Chinese Taipei"
+    ],
+    "LI": [
+      "Lichtenstein"
+    ],
+    "MD": [
+      "Moldova",
+      "Moldova, Republic of",
+      "Republic of Moldova"
+    ],
+    "BN": [
+      "Brunei",
+      "Brunei Darussalam"
+    ],
+    "BS": [
+      "Bahamas",
+      "The Bahamas"
+    ],
+    "GM": [
+      "The Gambia"
+    ],
+    "VG": [
+      "British Virgin Islands",
+      "Virgin Islands (British)",
+      "BVI"
+    ],
+    "VI": [
+      "US Virgin Islands",
+      "U.S. Virgin Islands",
+      "Virgin Islands (U.S.)",
+      "USVI"
+    ],
+    "BO": [
+      "Bolivia, Plurinational State of"
+    ],
+    "VE": [
+      "Venezuela, Bolivarian Republic of"
+    ],
+    "IR": [
+      "Iran, Islamic Republic of",
+      "Persia"
+    ],
+    "SY": [
+      "Syrian Arab Republic"
+    ],
+    "LA": [
+      "Lao PDR",
+      "Lao People's Democratic Republic"
+    ],
+    "TZ": [
+      "Tanzania, United Republic of"
+    ],
+    "PS": [
+      "Palestine, State of",
+      "State of Palestine",
+      "Palestinian Territory"
+    ],
+    "CD": [
+      "DR Congo",
+      "DRC",
+      "Congo-Kinshasa",
+      "Congo, Democratic Republic of the",
+      "Zaire"
+    ],
+    "CG": [
+      "Congo-Brazzaville",
+      "Congo, Republic of the",
+      "Republic of Congo"
+    ],
+    "TL": [
+      "East Timor"
+    ],
+    "CV": [
+      "Cape Verde",
+      "Cabo Verde"
+    ],
+    "TR": [
+      "Turkey",
+      "Türkiye",
+      "Turkiye"
+    ],
+    "DE": [
+      "BRD",
+      "Bundesrepublik Deutschland",
+      "Federal Republic of Germany"
+    ],
+    "CH": [
+      "Swiss Confederation"
+    ],
+    "FM": [
+      "Micronesia",
+      "Micronesia, Federated States of"
+    ],
+    "SX": [
+      "Sint Maarten (Dutch part)"
+    ],
+    "MF": [
+      "Saint Martin (French part)"
+    ],
+    "FK": [
+      "Falkland Islands (Malvinas)"
+    ],
+    "BQ": [
+      "Bonaire, Sint Eustatius and Saba"
+    ],
+    "SH": [
+      "Saint Helena, Ascension and Tristan da Cunha"
+    ],
+    "KN": [
+      "St Kitts and Nevis",
+      "St. Kitts and Nevis"
+    ],
+    "LC": [
+      "St Lucia",
+      "St. Lucia"
+    ],
+    "VC": [
+      "St Vincent and the Grenadines",
+      "St. Vincent and the Grenadines"
+    ]
+  },
+  "subdivisions": {
+    "GB": [
+      "England",
+      "Scotland",
+      "Wales",
+      "Northern Ireland"
+    ]
+  },
+  "assign": {
+    "_comment": "Folded alias → country, where several countries claim the same name.",
+    "korea": "KR",
+    "guyane": "GF",
+    "nga": "NG"
+  },
+  "ban": {
+    "_comment": "Folded names that stay unresolved because they are genuinely ambiguous; suggestCountries returns the candidates.",
+    "congo": "CG or CD",
+    "kongo cumhuriyeti": "CG or CD (Turkish)",
+    "kongoan": "CG or CD (Volapük)",
+    "isla de san martin": "MF or SX (Spanish)",
+    "sveti martin": "MF or SX",
+    "islas virgenes": "VG or VI (Spanish)",
+    "lusia": "LC or RU in minor languages",
+    "nigeri": "NE or NG (Albanian)",
+    "nigerie": "NE or NG",
+    "nijeri": "NE or NG",
+    "toga": "TG or TO in minor languages"
+  }
+}

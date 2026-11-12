@@ -1,0 +1,93 @@
+# Checks for every push to dev and every pull request into dev or main.
+# The release workflow runs the same checks again after a merge into main.
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+    branches: [dev, main]
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  typescript:
+    name: TypeScript — types, tests, build, pack
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Package data (data modules, Python copies) is generated from the committed data/ folder.
+      - run: npm run emit
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run versions:check
+      - run: npm run build --workspaces
+      - name: npm publish dry run
+        run: npm run release:publish-npm -- --dry-run
+
+  python:
+    name: Python — golden tests, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run emit
+      - uses: astral-sh/setup-uv@v6
+      - name: pytest (same golden files as TypeScript)
+        working-directory: python
+        run: uv run --extra dev pytest -q
+      - name: Build and check distributions
+        working-directory: python
+        run: |
+          uv build --out-dir dist
+          (cd extras/geodata_kit_localities && uv build --out-dir ../../dist)
+          (cd extras/geodata_kit_postal && uv build --out-dir ../../dist)
+          uvx twine check dist/*
+
+  changeset:
+    name: Changeset present
+    if: github.event_name == 'pull_request' && github.base_ref == 'dev'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run changeset:require
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          SKIP_CHANGESET: ${{ contains(github.event.pull_request.labels.*.name, 'no-changeset') }}
+
+  release-ready:
+    name: Ready to release
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run release:check

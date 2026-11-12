@@ -1,0 +1,11 @@
+{
+  "_comment": "English display names that replace the CLDR default where the default reads oddly in lists. The CLDR default stays an alias, so resolveCountry still accepts it.",
+  "en": {
+    "CD": { "name": "Democratic Republic of the Congo", "cldr": "Congo - Kinshasa" },
+    "CG": { "name": "Republic of the Congo", "cldr": "Congo - Brazzaville" },
+    "HK": { "name": "Hong Kong", "cldr": "Hong Kong SAR China (alt-short: Hong Kong)" },
+    "MO": { "name": "Macao", "cldr": "Macao SAR China (alt-short: Macao)" },
+    "MM": { "name": "Myanmar", "cldr": "Myanmar (Burma) (alt-short: Myanmar)" },
+    "PS": { "name": "Palestine", "cldr": "Palestinian Territories (alt-short: Palestine)" }
+  }
+}

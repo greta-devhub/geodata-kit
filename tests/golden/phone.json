@@ -1,0 +1,288 @@
+{
+ "description": "Phone numbers (libphonenumber metadata).",
+ "cases": [
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "089 1234567",
+    "DE"
+   ],
+   "path": "e164",
+   "expect": "+49891234567"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+49 (0)89 1234567"
+   ],
+   "path": "e164",
+   "expect": "+49891234567",
+   "note": "German '(0)' style"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "0049 89 1234567",
+    "AT"
+   ],
+   "path": "e164",
+   "expect": "+49891234567",
+   "note": "international prefix from Austria"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+49 1512 3456789"
+   ],
+   "path": "type",
+   "expect": "mobile"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+49 89 1234567"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "06 1234 5678",
+    "IT"
+   ],
+   "path": "e164",
+   "expect": "+390612345678",
+   "note": "Italian leading zero is kept"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "011 15-2345-6789",
+    "AR"
+   ],
+   "path": "e164",
+   "expect": "+5491123456789",
+   "note": "Argentine mobile: 15 → 9"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+1 416 555 0123"
+   ],
+   "path": "country",
+   "expect": "CA",
+   "note": "shared +1"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+1 212 555 0123"
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+1 268 464 1234"
+   ],
+   "path": "country",
+   "expect": "AG"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+7 701 123 4567"
+   ],
+   "path": "country",
+   "expect": "KZ",
+   "note": "shared +7"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+7 912 345 6789"
+   ],
+   "path": "country",
+   "expect": "RU"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+44 20 7946 0958"
+   ],
+   "path": "type",
+   "expect": "fixed_line"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+41 44 668 18 00 ext. 12"
+   ],
+   "path": "extension",
+   "expect": "12"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+383 44 123 456"
+   ],
+   "path": "country",
+   "expect": "XK"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+800 1234 5678"
+   ],
+   "path": "isValid",
+   "expect": true,
+   "note": "non-geographic"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "1234567"
+   ],
+   "expect": null,
+   "note": "no country, no +"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "call me"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "isValidPhoneNumber",
+   "args": [
+    "+49 89 1234567"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPhoneNumber",
+   "args": [
+    "+49 12"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "isPossiblePhoneNumber",
+   "args": [
+    "+1 212 555 0123"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+49891234567",
+    "INTERNATIONAL"
+   ],
+   "expect": "+49 89 1234567"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+49891234567",
+    "NATIONAL"
+   ],
+   "expect": "089 1234567"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+49891234567",
+    "RFC3966"
+   ],
+   "expect": "tel:+49-89-1234567"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+12125550123",
+    "NATIONAL"
+   ],
+   "expect": "(212) 555-0123"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+12125550123",
+    "INTERNATIONAL"
+   ],
+   "expect": "+1 212 555 0123",
+   "note": "international style uses spaces"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+442079460958",
+    "NATIONAL"
+   ],
+   "expect": "020 7946 0958"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+41446681800",
+    "INTERNATIONAL"
+   ],
+   "expect": "+41 44 668 18 00"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "044 668 18 00",
+    "E164",
+    "CH"
+   ],
+   "expect": "+41446681800"
+  },
+  {
+   "fn": "parsePhoneNumbers",
+   "args": [
+    "+49 89 1234567, 030 987654321",
+    "DE"
+   ],
+   "path": "[].e164",
+   "expect": [
+    "+49891234567",
+    "+4930987654321"
+   ]
+  },
+  {
+   "fn": "parsePhoneNumbers",
+   "args": [
+    "[\"+49 89 1234567\", \"+41 44 668 18 00\"]"
+   ],
+   "path": "[].country",
+   "expect": [
+    "DE",
+    "CH"
+   ],
+   "note": "JSON array as stored in project data"
+  },
+  {
+   "fn": "getExamplePhoneNumber",
+   "args": [
+    "DE",
+    "mobile"
+   ],
+   "path": "type",
+   "expect": "mobile"
+  },
+  {
+   "fn": "formatPhoneNumber",
+   "args": [
+    "+5491123404291",
+    "NATIONAL"
+   ],
+   "expect": "011 15-2340-4291",
+   "note": "Argentine mobile national format"
+  }
+ ]
+}

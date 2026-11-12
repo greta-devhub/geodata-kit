@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "geodata-kit"
+version = "0.1.0"
+description = "Countries, subdivisions, cities, languages, timezones, address and phone data for Python. Offline, no runtime dependencies. Built from GeoNames, Unicode CLDR, IANA tzdata, Wikidata, Natural Earth and libphonenumber."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE"]
+requires-python = ">=3.12"
+keywords = ["countries", "iso-3166", "subdivisions", "cities", "geonames", "timezone", "languages", "cldr", "address", "postal-code", "phone-number"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Operating System :: OS Independent",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+localities = ["geodata-kit-localities==0.1.0"]
+postal = ["geodata-kit-postal==0.1.0"]
+dev = ["pytest>=8.3"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/geodata_kit"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/geodata_kit", "tests", "README.md", "LICENSE", "NOTICE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "extras/geodata_kit_localities/src", "extras/geodata_kit_postal/src"]
+
+[tool.uv.sources]
+# Until the extras are published, resolve them from this repository.
+geodata-kit-localities = { path = "extras/geodata_kit_localities" }
+geodata-kit-postal = { path = "extras/geodata_kit_postal" }

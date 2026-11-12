@@ -1,0 +1,3455 @@
+{
+ "source": "Wikidata (wikidata.org), CC0 1.0",
+ "query": "scripts/sparql/countryLanguages.rq",
+ "retrieved": "2026-11-12",
+ "rows": [
+  {
+   "country": "AC",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "AD",
+   "lang": "Q7026",
+   "iso1": "ca",
+   "iso3": "cat",
+   "wikimedia": "ca"
+  },
+  {
+   "country": "AE",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "AF",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "AF",
+   "lang": "Q161804"
+  },
+  {
+   "country": "AF",
+   "lang": "Q1772864"
+  },
+  {
+   "country": "AF",
+   "lang": "Q178440",
+   "iso3": "prs",
+   "wikimedia": "fa-af"
+  },
+  {
+   "country": "AF",
+   "lang": "Q33049",
+   "iso3": "bal",
+   "wikimedia": "bal"
+  },
+  {
+   "country": "AF",
+   "lang": "Q36670"
+  },
+  {
+   "country": "AF",
+   "lang": "Q58680",
+   "iso1": "ps",
+   "iso3": "pus",
+   "wikimedia": "ps"
+  },
+  {
+   "country": "AF",
+   "lang": "Q9264",
+   "iso1": "uz",
+   "iso3": "uzb",
+   "wikimedia": "uz"
+  },
+  {
+   "country": "AF",
+   "lang": "Q9267",
+   "iso1": "tk",
+   "iso3": "tuk",
+   "wikimedia": "tk"
+  },
+  {
+   "country": "AG",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "AG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "AI",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "AL",
+   "lang": "Q8748",
+   "iso1": "sq",
+   "iso3": "sqi",
+   "wikimedia": "sq"
+  },
+  {
+   "country": "AM",
+   "lang": "Q8785",
+   "iso1": "hy",
+   "iso3": "hye",
+   "wikimedia": "hy"
+  },
+  {
+   "country": "AO",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "AR",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "AS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "AS",
+   "lang": "Q34011",
+   "iso1": "sm",
+   "iso3": "smo",
+   "wikimedia": "sm"
+  },
+  {
+   "country": "AT",
+   "lang": "Q188",
+   "iso1": "de",
+   "iso3": "deu",
+   "wikimedia": "de"
+  },
+  {
+   "country": "AT",
+   "lang": "Q36668",
+   "iso3": "asq"
+  },
+  {
+   "country": "AU",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "AU",
+   "lang": "Q29525",
+   "iso3": "asf"
+  },
+  {
+   "country": "AU",
+   "lang": "Q44679",
+   "wikimedia": "en-au"
+  },
+  {
+   "country": "AW",
+   "lang": "Q33856",
+   "iso3": "pap",
+   "wikimedia": "pap"
+  },
+  {
+   "country": "AW",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "AX",
+   "lang": "Q9027",
+   "iso1": "sv",
+   "iso3": "swe",
+   "wikimedia": "sv"
+  },
+  {
+   "country": "AZ",
+   "lang": "Q55698568"
+  },
+  {
+   "country": "AZ",
+   "lang": "Q9292",
+   "iso1": "az",
+   "iso3": "aze",
+   "wikimedia": "az"
+  },
+  {
+   "country": "BA",
+   "lang": "Q6654",
+   "iso1": "hr",
+   "iso3": "hrv",
+   "wikimedia": "hr"
+  },
+  {
+   "country": "BA",
+   "lang": "Q9299",
+   "iso1": "sr",
+   "iso3": "srp",
+   "wikimedia": "sr"
+  },
+  {
+   "country": "BA",
+   "lang": "Q9303",
+   "iso1": "bs",
+   "iso3": "bos",
+   "wikimedia": "bs"
+  },
+  {
+   "country": "BB",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "BB",
+   "lang": "Q2524014",
+   "iso3": "bjs"
+  },
+  {
+   "country": "BD",
+   "lang": "Q9610",
+   "iso1": "bn",
+   "iso3": "ben",
+   "wikimedia": "bn"
+  },
+  {
+   "country": "BE",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "BE",
+   "lang": "Q188",
+   "iso1": "de",
+   "iso3": "deu",
+   "wikimedia": "de"
+  },
+  {
+   "country": "BE",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "BF",
+   "lang": "Q32706",
+   "iso3": "dyu"
+  },
+  {
+   "country": "BF",
+   "lang": "Q32934",
+   "iso3": "bib"
+  },
+  {
+   "country": "BF",
+   "lang": "Q36096",
+   "iso3": "mos",
+   "wikimedia": "mos"
+  },
+  {
+   "country": "BG",
+   "lang": "Q7918",
+   "iso1": "bg",
+   "iso3": "bul",
+   "wikimedia": "bg"
+  },
+  {
+   "country": "BH",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "BI",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "BI",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "BI",
+   "lang": "Q33583",
+   "iso1": "rn",
+   "iso3": "run",
+   "wikimedia": "rn"
+  },
+  {
+   "country": "BJ",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "BL",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "BM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "BN",
+   "lang": "Q7979",
+   "wikimedia": "en-gb"
+  },
+  {
+   "country": "BN",
+   "lang": "Q9237",
+   "iso1": "ms",
+   "iso3": "msa",
+   "wikimedia": "ms"
+  },
+  {
+   "country": "BO",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "BO",
+   "lang": "Q35876",
+   "iso1": "gn",
+   "iso3": "grn",
+   "wikimedia": "gn"
+  },
+  {
+   "country": "BO",
+   "lang": "Q4627",
+   "iso1": "ay",
+   "iso3": "aym",
+   "wikimedia": "ay"
+  },
+  {
+   "country": "BO",
+   "lang": "Q5218",
+   "iso1": "qu",
+   "iso3": "que",
+   "wikimedia": "qu"
+  },
+  {
+   "country": "BQ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "BQ",
+   "lang": "Q33856",
+   "iso3": "pap",
+   "wikimedia": "pap"
+  },
+  {
+   "country": "BQ",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "BR",
+   "lang": "Q3436689",
+   "iso3": "bzs",
+   "wikimedia": "bzs"
+  },
+  {
+   "country": "BR",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "BS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "BT",
+   "lang": "Q33081",
+   "iso1": "dz",
+   "iso3": "dzo",
+   "wikimedia": "dz"
+  },
+  {
+   "country": "BW",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "BY",
+   "lang": "Q7737",
+   "iso1": "ru",
+   "iso3": "rus",
+   "wikimedia": "ru"
+  },
+  {
+   "country": "BY",
+   "lang": "Q9091",
+   "iso1": "be",
+   "iso3": "bel",
+   "wikimedia": "be"
+  },
+  {
+   "country": "BZ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CA",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CA",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CC",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CD",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CF",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CF",
+   "lang": "Q33954",
+   "iso1": "sg",
+   "iso3": "sag",
+   "wikimedia": "sg"
+  },
+  {
+   "country": "CG",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CH",
+   "lang": "Q13199",
+   "iso1": "rm",
+   "iso3": "roh",
+   "wikimedia": "rm"
+  },
+  {
+   "country": "CH",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CH",
+   "lang": "Q188",
+   "iso1": "de",
+   "iso3": "deu",
+   "wikimedia": "de"
+  },
+  {
+   "country": "CH",
+   "lang": "Q652",
+   "iso1": "it",
+   "iso3": "ita",
+   "wikimedia": "it"
+  },
+  {
+   "country": "CI",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CK",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CK",
+   "lang": "Q36745",
+   "iso3": "rar",
+   "wikimedia": "rar"
+  },
+  {
+   "country": "CL",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "CM",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CN",
+   "lang": "Q24841726",
+   "iso3": "cmn",
+   "wikimedia": "zh-cn"
+  },
+  {
+   "country": "CN",
+   "lang": "Q727694",
+   "iso3": "cmn"
+  },
+  {
+   "country": "CN",
+   "lang": "Q7850",
+   "iso1": "zh",
+   "iso3": "zho",
+   "wikimedia": "zh"
+  },
+  {
+   "country": "CO",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "CQ",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "CQ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CR",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "CU",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "CV",
+   "lang": "Q35963",
+   "iso3": "kea",
+   "wikimedia": "kea"
+  },
+  {
+   "country": "CV",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "CW",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CW",
+   "lang": "Q33856",
+   "iso3": "pap",
+   "wikimedia": "pap"
+  },
+  {
+   "country": "CW",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "CX",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "CY",
+   "lang": "Q256",
+   "iso1": "tr",
+   "iso3": "tur",
+   "wikimedia": "tr"
+  },
+  {
+   "country": "CY",
+   "lang": "Q256",
+   "iso1": "tr",
+   "iso3": "tur",
+   "wikimedia": "tr"
+  },
+  {
+   "country": "CY",
+   "lang": "Q36510",
+   "iso1": "el",
+   "iso3": "ell",
+   "wikimedia": "el"
+  },
+  {
+   "country": "CY",
+   "lang": "Q9129",
+   "wikimedia": "el"
+  },
+  {
+   "country": "CZ",
+   "lang": "Q9056",
+   "iso1": "cs",
+   "iso3": "ces",
+   "wikimedia": "cs"
+  },
+  {
+   "country": "DE",
+   "lang": "Q188",
+   "iso1": "de",
+   "iso3": "deu",
+   "wikimedia": "de"
+  },
+  {
+   "country": "DJ",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "DJ",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "DK",
+   "lang": "Q9035",
+   "iso1": "da",
+   "iso3": "dan",
+   "wikimedia": "da"
+  },
+  {
+   "country": "DM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "DO",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "DZ",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "DZ",
+   "lang": "Q61053330"
+  },
+  {
+   "country": "EC",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "EC",
+   "lang": "Q1740805",
+   "wikimedia": "qug"
+  },
+  {
+   "country": "EC",
+   "lang": "Q617291",
+   "iso3": "jiv"
+  },
+  {
+   "country": "EE",
+   "lang": "Q9072",
+   "iso1": "et",
+   "iso3": "est",
+   "wikimedia": "et"
+  },
+  {
+   "country": "EG",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "EH",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "ER",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "ER",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "ER",
+   "lang": "Q34124",
+   "iso1": "ti",
+   "iso3": "tir",
+   "wikimedia": "ti"
+  },
+  {
+   "country": "ES",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "ES",
+   "lang": "Q14185",
+   "iso1": "oc",
+   "iso3": "oci",
+   "wikimedia": "oc"
+  },
+  {
+   "country": "ES",
+   "lang": "Q7026",
+   "iso1": "ca",
+   "iso3": "cat",
+   "wikimedia": "ca"
+  },
+  {
+   "country": "ES",
+   "lang": "Q8752",
+   "iso1": "eu",
+   "iso3": "eus",
+   "wikimedia": "eu"
+  },
+  {
+   "country": "ES",
+   "lang": "Q9307",
+   "iso1": "gl",
+   "iso3": "glg",
+   "wikimedia": "gl"
+  },
+  {
+   "country": "ET",
+   "lang": "Q28244",
+   "iso1": "am",
+   "iso3": "amh",
+   "wikimedia": "am"
+  },
+  {
+   "country": "FI",
+   "lang": "Q1412",
+   "iso1": "fi",
+   "iso3": "fin",
+   "wikimedia": "fi"
+  },
+  {
+   "country": "FI",
+   "lang": "Q9027",
+   "iso1": "sv",
+   "iso3": "swe",
+   "wikimedia": "sv"
+  },
+  {
+   "country": "FJ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "FJ",
+   "lang": "Q33295",
+   "iso1": "fj",
+   "iso3": "fij",
+   "wikimedia": "fj"
+  },
+  {
+   "country": "FJ",
+   "lang": "Q46728",
+   "iso3": "hif",
+   "wikimedia": "hif"
+  },
+  {
+   "country": "FK",
+   "lang": "Q7979",
+   "wikimedia": "en-gb"
+  },
+  {
+   "country": "FM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "FO",
+   "lang": "Q25258",
+   "iso1": "fo",
+   "iso3": "fao",
+   "wikimedia": "fo"
+  },
+  {
+   "country": "FO",
+   "lang": "Q9035",
+   "iso1": "da",
+   "iso3": "dan",
+   "wikimedia": "da"
+  },
+  {
+   "country": "FR",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "GA",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "GB",
+   "lang": "Q14549",
+   "iso3": "sco",
+   "wikimedia": "sco"
+  },
+  {
+   "country": "GB",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GB",
+   "lang": "Q201966"
+  },
+  {
+   "country": "GB",
+   "lang": "Q25289",
+   "iso1": "kw",
+   "iso3": "cor",
+   "wikimedia": "kw"
+  },
+  {
+   "country": "GB",
+   "lang": "Q33000",
+   "iso3": "bfi",
+   "wikimedia": "bfi"
+  },
+  {
+   "country": "GB",
+   "lang": "Q9142",
+   "iso1": "ga",
+   "iso3": "gle",
+   "wikimedia": "ga"
+  },
+  {
+   "country": "GB",
+   "lang": "Q9309",
+   "iso1": "cy",
+   "iso3": "cym",
+   "wikimedia": "cy"
+  },
+  {
+   "country": "GB",
+   "lang": "Q9314",
+   "iso1": "gd",
+   "iso3": "gla",
+   "wikimedia": "gd"
+  },
+  {
+   "country": "GD",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GD",
+   "lang": "Q4252500",
+   "iso3": "gcl"
+  },
+  {
+   "country": "GE",
+   "lang": "Q8108",
+   "iso1": "ka",
+   "iso3": "kat",
+   "wikimedia": "ka"
+  },
+  {
+   "country": "GF",
+   "lang": "Q1363072",
+   "iso3": "gcr",
+   "wikimedia": "gcr"
+  },
+  {
+   "country": "GF",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "GG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GH",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GI",
+   "lang": "Q7979",
+   "wikimedia": "en-gb"
+  },
+  {
+   "country": "GL",
+   "lang": "Q25355",
+   "iso1": "kl",
+   "iso3": "kal",
+   "wikimedia": "kl"
+  },
+  {
+   "country": "GM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GN",
+   "lang": "Q1339026"
+  },
+  {
+   "country": "GN",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "GQ",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "GQ",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "GQ",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "GR",
+   "lang": "Q9129",
+   "wikimedia": "el"
+  },
+  {
+   "country": "GS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GT",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "GU",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "GU",
+   "lang": "Q33262",
+   "iso1": "ch",
+   "iso3": "cha",
+   "wikimedia": "ch"
+  },
+  {
+   "country": "GW",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "GY",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "HK",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "HK",
+   "lang": "Q727694",
+   "iso3": "cmn"
+  },
+  {
+   "country": "HK",
+   "lang": "Q7850",
+   "iso1": "zh",
+   "iso3": "zho",
+   "wikimedia": "zh"
+  },
+  {
+   "country": "HK",
+   "lang": "Q9186",
+   "wikimedia": "yue"
+  },
+  {
+   "country": "HK",
+   "lang": "Q9186",
+   "wikimedia": "zh-yue"
+  },
+  {
+   "country": "HM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "HN",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "HR",
+   "lang": "Q6654",
+   "iso1": "hr",
+   "iso3": "hrv",
+   "wikimedia": "hr"
+  },
+  {
+   "country": "HT",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "HT",
+   "lang": "Q33491",
+   "iso1": "ht",
+   "iso3": "hat",
+   "wikimedia": "ht"
+  },
+  {
+   "country": "HU",
+   "lang": "Q9067",
+   "iso1": "hu",
+   "iso3": "hun",
+   "wikimedia": "hu"
+  },
+  {
+   "country": "ID",
+   "lang": "Q9240",
+   "iso1": "id",
+   "iso3": "ind",
+   "wikimedia": "id"
+  },
+  {
+   "country": "IE",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "IE",
+   "lang": "Q9142",
+   "iso1": "ga",
+   "iso3": "gle",
+   "wikimedia": "ga"
+  },
+  {
+   "country": "IL",
+   "lang": "Q9288",
+   "iso1": "he",
+   "iso3": "heb",
+   "wikimedia": "he"
+  },
+  {
+   "country": "IM",
+   "lang": "Q12175",
+   "iso1": "gv",
+   "iso3": "glv",
+   "wikimedia": "gv"
+  },
+  {
+   "country": "IM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "IN",
+   "lang": "Q1568",
+   "iso1": "hi",
+   "iso3": "hin",
+   "wikimedia": "hi"
+  },
+  {
+   "country": "IN",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "IO",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "IQ",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "IQ",
+   "lang": "Q36368",
+   "iso1": "ku",
+   "iso3": "kur",
+   "wikimedia": "ku"
+  },
+  {
+   "country": "IR",
+   "lang": "Q9168",
+   "iso1": "fa",
+   "iso3": "fas",
+   "wikimedia": "fa"
+  },
+  {
+   "country": "IS",
+   "lang": "Q294",
+   "iso1": "is",
+   "iso3": "isl",
+   "wikimedia": "is"
+  },
+  {
+   "country": "IT",
+   "lang": "Q652",
+   "iso1": "it",
+   "iso3": "ita",
+   "wikimedia": "it"
+  },
+  {
+   "country": "JE",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "JE",
+   "lang": "Q2047043"
+  },
+  {
+   "country": "JE",
+   "lang": "Q56430",
+   "wikimedia": "nrf-je"
+  },
+  {
+   "country": "JM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "JM",
+   "lang": "Q35939",
+   "iso3": "jam",
+   "wikimedia": "jam"
+  },
+  {
+   "country": "JO",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "JP",
+   "lang": "Q5287",
+   "iso1": "ja",
+   "iso3": "jpn",
+   "wikimedia": "ja"
+  },
+  {
+   "country": "KE",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "KE",
+   "lang": "Q7838",
+   "iso1": "sw",
+   "iso3": "swa",
+   "wikimedia": "sw"
+  },
+  {
+   "country": "KG",
+   "lang": "Q7737",
+   "iso1": "ru",
+   "iso3": "rus",
+   "wikimedia": "ru"
+  },
+  {
+   "country": "KG",
+   "lang": "Q9255",
+   "iso1": "ky",
+   "iso3": "kir",
+   "wikimedia": "ky"
+  },
+  {
+   "country": "KH",
+   "lang": "Q9205",
+   "iso1": "km",
+   "iso3": "khm",
+   "wikimedia": "km"
+  },
+  {
+   "country": "KI",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "KI",
+   "lang": "Q30898",
+   "iso3": "gil",
+   "wikimedia": "gil"
+  },
+  {
+   "country": "KM",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "KM",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "KM",
+   "lang": "Q33077"
+  },
+  {
+   "country": "KN",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "KP",
+   "lang": "Q18784",
+   "wikimedia": "ko-kp"
+  },
+  {
+   "country": "KP",
+   "lang": "Q9176",
+   "iso1": "ko",
+   "iso3": "kor",
+   "wikimedia": "ko"
+  },
+  {
+   "country": "KR",
+   "lang": "Q3073428",
+   "iso3": "kvk"
+  },
+  {
+   "country": "KR",
+   "lang": "Q9176",
+   "iso1": "ko",
+   "iso3": "kor",
+   "wikimedia": "ko"
+  },
+  {
+   "country": "KW",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "KY",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "KZ",
+   "lang": "Q7737",
+   "iso1": "ru",
+   "iso3": "rus",
+   "wikimedia": "ru"
+  },
+  {
+   "country": "KZ",
+   "lang": "Q9252",
+   "iso1": "kk",
+   "iso3": "kaz",
+   "wikimedia": "kk"
+  },
+  {
+   "country": "LA",
+   "lang": "Q9211",
+   "iso1": "lo",
+   "iso3": "lao",
+   "wikimedia": "lo"
+  },
+  {
+   "country": "LB",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "LC",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "LI",
+   "lang": "Q188",
+   "iso1": "de",
+   "iso3": "deu",
+   "wikimedia": "de"
+  },
+  {
+   "country": "LK",
+   "lang": "Q13267",
+   "iso1": "si",
+   "iso3": "sin",
+   "wikimedia": "si"
+  },
+  {
+   "country": "LK",
+   "lang": "Q5885",
+   "iso1": "ta",
+   "iso3": "tam",
+   "wikimedia": "ta"
+  },
+  {
+   "country": "LR",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "LS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "LS",
+   "lang": "Q34340",
+   "iso1": "st",
+   "iso3": "sot",
+   "wikimedia": "st"
+  },
+  {
+   "country": "LT",
+   "lang": "Q9083",
+   "iso1": "lt",
+   "iso3": "lit",
+   "wikimedia": "lt"
+  },
+  {
+   "country": "LU",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "LU",
+   "lang": "Q188",
+   "iso1": "de",
+   "iso3": "deu",
+   "wikimedia": "de"
+  },
+  {
+   "country": "LU",
+   "lang": "Q9051",
+   "iso1": "lb",
+   "iso3": "ltz",
+   "wikimedia": "lb"
+  },
+  {
+   "country": "LV",
+   "lang": "Q9078",
+   "iso1": "lv",
+   "iso3": "lav",
+   "wikimedia": "lv"
+  },
+  {
+   "country": "LY",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "LY",
+   "lang": "Q56467"
+  },
+  {
+   "country": "MA",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "MA",
+   "lang": "Q7598268",
+   "iso3": "zgh",
+   "wikimedia": "zgh"
+  },
+  {
+   "country": "MC",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "MD",
+   "lang": "Q7913",
+   "iso1": "ro",
+   "iso3": "ron",
+   "wikimedia": "ro"
+  },
+  {
+   "country": "ME",
+   "lang": "Q6654",
+   "iso1": "hr",
+   "iso3": "hrv",
+   "wikimedia": "hr"
+  },
+  {
+   "country": "ME",
+   "lang": "Q8748",
+   "iso1": "sq",
+   "iso3": "sqi",
+   "wikimedia": "sq"
+  },
+  {
+   "country": "ME",
+   "lang": "Q8821",
+   "iso3": "cnr",
+   "wikimedia": "cnr"
+  },
+  {
+   "country": "ME",
+   "lang": "Q9299",
+   "iso1": "sr",
+   "iso3": "srp",
+   "wikimedia": "sr"
+  },
+  {
+   "country": "ME",
+   "lang": "Q9303",
+   "iso1": "bs",
+   "iso3": "bos",
+   "wikimedia": "bs"
+  },
+  {
+   "country": "MF",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "MG",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "MG",
+   "lang": "Q7930",
+   "iso1": "mg",
+   "iso3": "mlg",
+   "wikimedia": "mg"
+  },
+  {
+   "country": "MH",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "MH",
+   "lang": "Q36280",
+   "iso1": "mh",
+   "iso3": "mah",
+   "wikimedia": "mh"
+  },
+  {
+   "country": "MK",
+   "lang": "Q8748",
+   "iso1": "sq",
+   "iso3": "sqi",
+   "wikimedia": "sq"
+  },
+  {
+   "country": "MK",
+   "lang": "Q9296",
+   "iso1": "mk",
+   "iso3": "mkd",
+   "wikimedia": "mk"
+  },
+  {
+   "country": "ML",
+   "lang": "Q1234776"
+  },
+  {
+   "country": "ML",
+   "lang": "Q12628055"
+  },
+  {
+   "country": "ML",
+   "lang": "Q33243",
+   "iso1": "bm",
+   "iso3": "bam",
+   "wikimedia": "bm"
+  },
+  {
+   "country": "ML",
+   "lang": "Q33454",
+   "iso1": "ff",
+   "iso3": "ful",
+   "wikimedia": "ff"
+  },
+  {
+   "country": "ML",
+   "lang": "Q33795"
+  },
+  {
+   "country": "ML",
+   "lang": "Q35021"
+  },
+  {
+   "country": "ML",
+   "lang": "Q36186",
+   "iso3": "myq"
+  },
+  {
+   "country": "ML",
+   "lang": "Q36187",
+   "iso3": "myk"
+  },
+  {
+   "country": "ML",
+   "lang": "Q36660",
+   "iso3": "snk"
+  },
+  {
+   "country": "ML",
+   "lang": "Q36905",
+   "iso3": "kao"
+  },
+  {
+   "country": "ML",
+   "lang": "Q4670066",
+   "iso3": "taq"
+  },
+  {
+   "country": "ML",
+   "lang": "Q505198"
+  },
+  {
+   "country": "ML",
+   "lang": "Q56231",
+   "iso3": "mey"
+  },
+  {
+   "country": "MM",
+   "lang": "Q9228",
+   "iso1": "my",
+   "iso3": "mya",
+   "wikimedia": "my"
+  },
+  {
+   "country": "MN",
+   "lang": "Q9246",
+   "iso1": "mn",
+   "iso3": "mon",
+   "wikimedia": "mn"
+  },
+  {
+   "country": "MO",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "MO",
+   "lang": "Q727694",
+   "iso3": "cmn"
+  },
+  {
+   "country": "MO",
+   "lang": "Q9186",
+   "wikimedia": "yue"
+  },
+  {
+   "country": "MO",
+   "lang": "Q9186",
+   "wikimedia": "zh-yue"
+  },
+  {
+   "country": "MP",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "MP",
+   "lang": "Q28427",
+   "iso3": "cal",
+   "wikimedia": "cal"
+  },
+  {
+   "country": "MP",
+   "lang": "Q33262",
+   "iso1": "ch",
+   "iso3": "cha",
+   "wikimedia": "ch"
+  },
+  {
+   "country": "MR",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "MR",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "MS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "MT",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "MT",
+   "lang": "Q9166",
+   "iso1": "mt",
+   "iso3": "mlt",
+   "wikimedia": "mt"
+  },
+  {
+   "country": "MU",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "MU",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "MV",
+   "lang": "Q32656",
+   "iso1": "dv",
+   "iso3": "div",
+   "wikimedia": "dv"
+  },
+  {
+   "country": "MW",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "MW",
+   "lang": "Q33273",
+   "iso1": "ny",
+   "iso3": "nya",
+   "wikimedia": "ny"
+  },
+  {
+   "country": "MW",
+   "lang": "Q34138",
+   "iso3": "tum",
+   "wikimedia": "tum"
+  },
+  {
+   "country": "MX",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "MX",
+   "lang": "Q13300",
+   "wikimedia": "nah"
+  },
+  {
+   "country": "MX",
+   "lang": "Q13354",
+   "iso3": "yua",
+   "wikimedia": "yua"
+  },
+  {
+   "country": "MY",
+   "lang": "Q9237",
+   "iso1": "ms",
+   "iso3": "msa",
+   "wikimedia": "ms"
+  },
+  {
+   "country": "MZ",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "NA",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "NC",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "NE",
+   "lang": "Q56475",
+   "iso1": "ha",
+   "iso3": "hau",
+   "wikimedia": "ha"
+  },
+  {
+   "country": "NF",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "NF",
+   "lang": "Q33797"
+  },
+  {
+   "country": "NG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "NI",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "NL",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "NO",
+   "lang": "Q25164",
+   "iso1": "nn",
+   "iso3": "nno",
+   "wikimedia": "nn"
+  },
+  {
+   "country": "NO",
+   "lang": "Q25167",
+   "iso1": "nb",
+   "iso3": "nob",
+   "wikimedia": "nb"
+  },
+  {
+   "country": "NO",
+   "lang": "Q56463"
+  },
+  {
+   "country": "NO",
+   "lang": "Q9043",
+   "iso1": "no",
+   "iso3": "nor",
+   "wikimedia": "no"
+  },
+  {
+   "country": "NP",
+   "lang": "Q33823",
+   "iso1": "ne",
+   "iso3": "nep",
+   "wikimedia": "ne"
+  },
+  {
+   "country": "NR",
+   "lang": "Q13307",
+   "iso1": "na",
+   "iso3": "nau",
+   "wikimedia": "na"
+  },
+  {
+   "country": "NR",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "NU",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "NU",
+   "lang": "Q33790",
+   "iso3": "niu",
+   "wikimedia": "niu"
+  },
+  {
+   "country": "NZ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "NZ",
+   "lang": "Q36239",
+   "iso3": "nzs"
+  },
+  {
+   "country": "NZ",
+   "lang": "Q36451",
+   "iso1": "mi",
+   "iso3": "mri",
+   "wikimedia": "mi"
+  },
+  {
+   "country": "OM",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "PA",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "PE",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "PE",
+   "lang": "Q4627",
+   "iso1": "ay",
+   "iso3": "aym",
+   "wikimedia": "ay"
+  },
+  {
+   "country": "PE",
+   "lang": "Q5218",
+   "iso1": "qu",
+   "iso3": "que",
+   "wikimedia": "qu"
+  },
+  {
+   "country": "PF",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "PG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "PG",
+   "lang": "Q25044405",
+   "iso3": "pgz"
+  },
+  {
+   "country": "PG",
+   "lang": "Q33617",
+   "iso1": "ho",
+   "iso3": "hmo",
+   "wikimedia": "ho"
+  },
+  {
+   "country": "PG",
+   "lang": "Q34159",
+   "iso3": "tpi",
+   "wikimedia": "tpi"
+  },
+  {
+   "country": "PH",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "PH",
+   "lang": "Q2530387"
+  },
+  {
+   "country": "PH",
+   "lang": "Q33298",
+   "iso3": "fil"
+  },
+  {
+   "country": "PK",
+   "lang": "Q1617",
+   "iso1": "ur",
+   "iso3": "urd",
+   "wikimedia": "ur"
+  },
+  {
+   "country": "PK",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "PL",
+   "lang": "Q30319",
+   "iso3": "szl",
+   "wikimedia": "szl"
+  },
+  {
+   "country": "PL",
+   "lang": "Q33690",
+   "iso3": "csb",
+   "wikimedia": "csb"
+  },
+  {
+   "country": "PL",
+   "lang": "Q809",
+   "iso1": "pl",
+   "iso3": "pol",
+   "wikimedia": "pl"
+  },
+  {
+   "country": "PL",
+   "lang": "Q9091",
+   "iso1": "be",
+   "iso3": "bel",
+   "wikimedia": "be"
+  },
+  {
+   "country": "PM",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "PN",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "PN",
+   "lang": "Q36554",
+   "iso3": "pih",
+   "wikimedia": "pih"
+  },
+  {
+   "country": "PR",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "PR",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "PS",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "PT",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "PW",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "PW",
+   "lang": "Q33776",
+   "iso3": "pau"
+  },
+  {
+   "country": "PW",
+   "lang": "Q5287",
+   "iso1": "ja",
+   "iso3": "jpn",
+   "wikimedia": "ja"
+  },
+  {
+   "country": "PY",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "PY",
+   "lang": "Q35876",
+   "iso1": "gn",
+   "iso3": "grn",
+   "wikimedia": "gn"
+  },
+  {
+   "country": "QA",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "RE",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "RO",
+   "lang": "Q7913",
+   "iso1": "ro",
+   "iso3": "ron",
+   "wikimedia": "ro"
+  },
+  {
+   "country": "RS",
+   "lang": "Q9299",
+   "iso1": "sr",
+   "iso3": "srp",
+   "wikimedia": "sr"
+  },
+  {
+   "country": "RU",
+   "lang": "Q13238",
+   "iso3": "udm",
+   "wikimedia": "udm"
+  },
+  {
+   "country": "RU",
+   "lang": "Q13343",
+   "iso3": "mdf",
+   "wikimedia": "mdf"
+  },
+  {
+   "country": "RU",
+   "lang": "Q13389",
+   "iso1": "ba",
+   "iso3": "bak",
+   "wikimedia": "ba"
+  },
+  {
+   "country": "RU",
+   "lang": "Q1991779",
+   "iso3": "alt",
+   "wikimedia": "alt"
+  },
+  {
+   "country": "RU",
+   "lang": "Q25285",
+   "iso1": "tt",
+   "iso3": "tat",
+   "wikimedia": "tt"
+  },
+  {
+   "country": "RU",
+   "lang": "Q27567",
+   "iso3": "abq",
+   "wikimedia": "abq"
+  },
+  {
+   "country": "RU",
+   "lang": "Q27776",
+   "iso3": "ady",
+   "wikimedia": "ady"
+  },
+  {
+   "country": "RU",
+   "lang": "Q29561",
+   "iso1": "av",
+   "iso3": "ava",
+   "wikimedia": "av"
+  },
+  {
+   "country": "RU",
+   "lang": "Q29952",
+   "iso3": "myv",
+   "wikimedia": "myv"
+  },
+  {
+   "country": "RU",
+   "lang": "Q31746",
+   "iso3": "lez",
+   "wikimedia": "lez"
+  },
+  {
+   "country": "RU",
+   "lang": "Q32332",
+   "iso3": "dar",
+   "wikimedia": "dar"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33120",
+   "iso3": "bua",
+   "wikimedia": "bxr"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33348",
+   "iso1": "cv",
+   "iso3": "chv",
+   "wikimedia": "cv"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33350",
+   "iso1": "ce",
+   "iso3": "che",
+   "wikimedia": "ce"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33357",
+   "iso3": "crh",
+   "wikimedia": "crh"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33509",
+   "iso3": "inh",
+   "wikimedia": "inh"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33522",
+   "iso3": "kbd",
+   "wikimedia": "kbd"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33575",
+   "iso3": "kjh",
+   "wikimedia": "kjh"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33634",
+   "iso3": "xal",
+   "wikimedia": "xal"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33714",
+   "iso3": "krc",
+   "wikimedia": "krc"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33871",
+   "iso3": "nog",
+   "wikimedia": "nog"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33871",
+   "iso3": "nog",
+   "wikimedia": "nog"
+  },
+  {
+   "country": "RU",
+   "lang": "Q33968",
+   "wikimedia": "os"
+  },
+  {
+   "country": "RU",
+   "lang": "Q34079",
+   "iso3": "tab"
+  },
+  {
+   "country": "RU",
+   "lang": "Q34119",
+   "iso3": "tyv",
+   "wikimedia": "tyv"
+  },
+  {
+   "country": "RU",
+   "lang": "Q34299",
+   "iso3": "sah",
+   "wikimedia": "sah"
+  },
+  {
+   "country": "RU",
+   "lang": "Q36126",
+   "iso1": "kv",
+   "iso3": "kom",
+   "wikimedia": "kv"
+  },
+  {
+   "country": "RU",
+   "lang": "Q36206",
+   "iso3": "lbe",
+   "wikimedia": "lbe"
+  },
+  {
+   "country": "RU",
+   "lang": "Q36209",
+   "iso3": "kum",
+   "wikimedia": "kum"
+  },
+  {
+   "country": "RU",
+   "lang": "Q36498",
+   "iso3": "agx"
+  },
+  {
+   "country": "RU",
+   "lang": "Q36757",
+   "iso3": "rut"
+  },
+  {
+   "country": "RU",
+   "lang": "Q36853",
+   "iso3": "tkr"
+  },
+  {
+   "country": "RU",
+   "lang": "Q56489",
+   "iso3": "ttt"
+  },
+  {
+   "country": "RU",
+   "lang": "Q7737",
+   "iso1": "ru",
+   "iso3": "rus",
+   "wikimedia": "ru"
+  },
+  {
+   "country": "RU",
+   "lang": "Q8798",
+   "iso1": "uk",
+   "iso3": "ukr",
+   "wikimedia": "uk"
+  },
+  {
+   "country": "RU",
+   "lang": "Q9292",
+   "iso1": "az",
+   "iso3": "aze",
+   "wikimedia": "az"
+  },
+  {
+   "country": "RU",
+   "lang": "Q973685",
+   "iso3": "chm"
+  },
+  {
+   "country": "RW",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "RW",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "RW",
+   "lang": "Q33573",
+   "iso1": "rw",
+   "iso3": "kin",
+   "wikimedia": "rw"
+  },
+  {
+   "country": "RW",
+   "lang": "Q7838",
+   "iso1": "sw",
+   "iso3": "swa",
+   "wikimedia": "sw"
+  },
+  {
+   "country": "SA",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "SB",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SC",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "SC",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SC",
+   "lang": "Q34015",
+   "iso3": "crs",
+   "wikimedia": "crs"
+  },
+  {
+   "country": "SD",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "SD",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SE",
+   "lang": "Q13201",
+   "iso3": "rom",
+   "wikimedia": "rmy"
+  },
+  {
+   "country": "SE",
+   "lang": "Q13357",
+   "iso3": "fit",
+   "wikimedia": "fit"
+  },
+  {
+   "country": "SE",
+   "lang": "Q1412",
+   "iso1": "fi",
+   "iso3": "fin",
+   "wikimedia": "fi"
+  },
+  {
+   "country": "SE",
+   "lang": "Q56463"
+  },
+  {
+   "country": "SE",
+   "lang": "Q8641",
+   "iso1": "yi",
+   "iso3": "yid",
+   "wikimedia": "yi"
+  },
+  {
+   "country": "SE",
+   "lang": "Q9027",
+   "iso1": "sv",
+   "iso3": "swe",
+   "wikimedia": "sv"
+  },
+  {
+   "country": "SG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SG",
+   "lang": "Q5885",
+   "iso1": "ta",
+   "iso3": "tam",
+   "wikimedia": "ta"
+  },
+  {
+   "country": "SG",
+   "lang": "Q727694",
+   "iso3": "cmn"
+  },
+  {
+   "country": "SG",
+   "lang": "Q9237",
+   "iso1": "ms",
+   "iso3": "msa",
+   "wikimedia": "ms"
+  },
+  {
+   "country": "SH",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SI",
+   "lang": "Q652",
+   "iso1": "it",
+   "iso3": "ita",
+   "wikimedia": "it"
+  },
+  {
+   "country": "SI",
+   "lang": "Q9063",
+   "iso1": "sl",
+   "iso3": "slv",
+   "wikimedia": "sl"
+  },
+  {
+   "country": "SI",
+   "lang": "Q9067",
+   "iso1": "hu",
+   "iso3": "hun",
+   "wikimedia": "hu"
+  },
+  {
+   "country": "SJ",
+   "lang": "Q9043",
+   "iso1": "no",
+   "iso3": "nor",
+   "wikimedia": "no"
+  },
+  {
+   "country": "SK",
+   "lang": "Q9058",
+   "iso1": "sk",
+   "iso3": "slk",
+   "wikimedia": "sk"
+  },
+  {
+   "country": "SL",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SL",
+   "lang": "Q35744",
+   "iso3": "kri",
+   "wikimedia": "kri"
+  },
+  {
+   "country": "SM",
+   "lang": "Q652",
+   "iso1": "it",
+   "iso3": "ita",
+   "wikimedia": "it"
+  },
+  {
+   "country": "SN",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "SN",
+   "lang": "Q34257",
+   "iso1": "wo",
+   "iso3": "wol",
+   "wikimedia": "wo"
+  },
+  {
+   "country": "SN",
+   "lang": "Q35006"
+  },
+  {
+   "country": "SN",
+   "lang": "Q35095",
+   "iso3": "pbp"
+  },
+  {
+   "country": "SO",
+   "lang": "Q13275",
+   "iso1": "so",
+   "iso3": "som",
+   "wikimedia": "so"
+  },
+  {
+   "country": "SO",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "SR",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "SS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "ST",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "SV",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "SX",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SX",
+   "lang": "Q7411",
+   "iso1": "nl",
+   "iso3": "nld",
+   "wikimedia": "nl"
+  },
+  {
+   "country": "SY",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "SZ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "SZ",
+   "lang": "Q34014",
+   "iso1": "ss",
+   "iso3": "ssw",
+   "wikimedia": "ss"
+  },
+  {
+   "country": "TC",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "TD",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "TD",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "TF",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "TG",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "TH",
+   "lang": "Q9217",
+   "iso1": "th",
+   "iso3": "tha",
+   "wikimedia": "th"
+  },
+  {
+   "country": "TJ",
+   "lang": "Q7737",
+   "iso1": "ru",
+   "iso3": "rus",
+   "wikimedia": "ru"
+  },
+  {
+   "country": "TJ",
+   "lang": "Q9260",
+   "iso1": "tg",
+   "iso3": "tgk",
+   "wikimedia": "tg"
+  },
+  {
+   "country": "TK",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "TK",
+   "lang": "Q34097",
+   "iso3": "tkl"
+  },
+  {
+   "country": "TL",
+   "lang": "Q34125",
+   "iso3": "tet",
+   "wikimedia": "tet"
+  },
+  {
+   "country": "TL",
+   "lang": "Q5146",
+   "iso1": "pt",
+   "iso3": "por",
+   "wikimedia": "pt"
+  },
+  {
+   "country": "TM",
+   "lang": "Q9267",
+   "iso1": "tk",
+   "iso3": "tuk",
+   "wikimedia": "tk"
+  },
+  {
+   "country": "TN",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "TO",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "TO",
+   "lang": "Q34094",
+   "iso1": "to",
+   "iso3": "ton",
+   "wikimedia": "to"
+  },
+  {
+   "country": "TR",
+   "lang": "Q256",
+   "iso1": "tr",
+   "iso3": "tur",
+   "wikimedia": "tr"
+  },
+  {
+   "country": "TT",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "TV",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "TV",
+   "lang": "Q34055",
+   "iso3": "tvl",
+   "wikimedia": "tvl"
+  },
+  {
+   "country": "TW",
+   "lang": "Q11071864"
+  },
+  {
+   "country": "TW",
+   "lang": "Q172244",
+   "iso3": "xnb",
+   "wikimedia": "xnb"
+  },
+  {
+   "country": "TW",
+   "lang": "Q19599280"
+  },
+  {
+   "country": "TW",
+   "lang": "Q2391532"
+  },
+  {
+   "country": "TW",
+   "lang": "Q262828",
+   "wikimedia": "zh-tw"
+  },
+  {
+   "country": "TW",
+   "lang": "Q34019",
+   "iso3": "tss"
+  },
+  {
+   "country": "TW",
+   "lang": "Q35132",
+   "iso3": "ami",
+   "wikimedia": "ami"
+  },
+  {
+   "country": "TW",
+   "lang": "Q36778"
+  },
+  {
+   "country": "TW",
+   "lang": "Q49232",
+   "iso3": "dru",
+   "wikimedia": "dru"
+  },
+  {
+   "country": "TW",
+   "lang": "Q56278342"
+  },
+  {
+   "country": "TW",
+   "lang": "Q56505",
+   "iso3": "bnn",
+   "wikimedia": "bnn"
+  },
+  {
+   "country": "TW",
+   "lang": "Q61055662"
+  },
+  {
+   "country": "TW",
+   "lang": "Q715755",
+   "iso3": "pwn",
+   "wikimedia": "pwn"
+  },
+  {
+   "country": "TW",
+   "lang": "Q715760",
+   "iso3": "tao",
+   "wikimedia": "tao"
+  },
+  {
+   "country": "TW",
+   "lang": "Q715766",
+   "iso3": "tay",
+   "wikimedia": "tay"
+  },
+  {
+   "country": "TW",
+   "lang": "Q716599",
+   "iso3": "sxr",
+   "wikimedia": "sxr"
+  },
+  {
+   "country": "TW",
+   "lang": "Q716627",
+   "iso3": "ckv",
+   "wikimedia": "ckv"
+  },
+  {
+   "country": "TW",
+   "lang": "Q716681",
+   "iso3": "tsu",
+   "wikimedia": "tsu"
+  },
+  {
+   "country": "TW",
+   "lang": "Q716686",
+   "iso3": "trv",
+   "wikimedia": "trv"
+  },
+  {
+   "country": "TW",
+   "lang": "Q716690",
+   "iso3": "pyu",
+   "wikimedia": "pyu"
+  },
+  {
+   "country": "TW",
+   "lang": "Q716695",
+   "iso3": "xsy",
+   "wikimedia": "xsy"
+  },
+  {
+   "country": "TW",
+   "lang": "Q718269",
+   "iso3": "szy",
+   "wikimedia": "szy"
+  },
+  {
+   "country": "TZ",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "TZ",
+   "lang": "Q7838",
+   "iso1": "sw",
+   "iso3": "swa",
+   "wikimedia": "sw"
+  },
+  {
+   "country": "UA",
+   "lang": "Q8798",
+   "iso1": "uk",
+   "iso3": "ukr",
+   "wikimedia": "uk"
+  },
+  {
+   "country": "UG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "UG",
+   "lang": "Q7838",
+   "iso1": "sw",
+   "iso3": "swa",
+   "wikimedia": "sw"
+  },
+  {
+   "country": "UM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "US",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "US",
+   "lang": "Q28427",
+   "iso3": "cal",
+   "wikimedia": "cal"
+  },
+  {
+   "country": "US",
+   "lang": "Q33262",
+   "iso1": "ch",
+   "iso3": "cha",
+   "wikimedia": "ch"
+  },
+  {
+   "country": "US",
+   "lang": "Q33569",
+   "iso3": "haw",
+   "wikimedia": "haw"
+  },
+  {
+   "country": "US",
+   "lang": "Q34011",
+   "iso1": "sm",
+   "iso3": "smo",
+   "wikimedia": "sm"
+  },
+  {
+   "country": "UZ",
+   "lang": "Q9264",
+   "iso1": "uz",
+   "iso3": "uzb",
+   "wikimedia": "uz"
+  },
+  {
+   "country": "VA",
+   "lang": "Q397",
+   "iso1": "la",
+   "iso3": "lat",
+   "wikimedia": "la"
+  },
+  {
+   "country": "VA",
+   "lang": "Q652",
+   "iso1": "it",
+   "iso3": "ita",
+   "wikimedia": "it"
+  },
+  {
+   "country": "VC",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "VE",
+   "lang": "Q1321",
+   "iso1": "es",
+   "iso3": "spa",
+   "wikimedia": "es"
+  },
+  {
+   "country": "VE",
+   "lang": "Q3322064",
+   "iso3": "vsl"
+  },
+  {
+   "country": "VG",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "VI",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "VN",
+   "lang": "Q9199",
+   "iso1": "vi",
+   "iso3": "vie",
+   "wikimedia": "vi"
+  },
+  {
+   "country": "VU",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "VU",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "VU",
+   "lang": "Q35452",
+   "iso1": "bi",
+   "iso3": "bis",
+   "wikimedia": "bi"
+  },
+  {
+   "country": "WF",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "WF",
+   "lang": "Q35334",
+   "iso3": "fud"
+  },
+  {
+   "country": "WF",
+   "lang": "Q36979",
+   "iso3": "wls",
+   "wikimedia": "wls"
+  },
+  {
+   "country": "WS",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "WS",
+   "lang": "Q34011",
+   "iso1": "sm",
+   "iso3": "smo",
+   "wikimedia": "sm"
+  },
+  {
+   "country": "XK",
+   "lang": "Q8748",
+   "iso1": "sq",
+   "iso3": "sqi",
+   "wikimedia": "sq"
+  },
+  {
+   "country": "XK",
+   "lang": "Q9299",
+   "iso1": "sr",
+   "iso3": "srp",
+   "wikimedia": "sr"
+  },
+  {
+   "country": "YE",
+   "lang": "Q13955",
+   "iso1": "ar",
+   "iso3": "ara",
+   "wikimedia": "ar"
+  },
+  {
+   "country": "YT",
+   "lang": "Q150",
+   "iso1": "fr",
+   "iso3": "fra",
+   "wikimedia": "fr"
+  },
+  {
+   "country": "YT",
+   "lang": "Q34075",
+   "iso3": "swb"
+  },
+  {
+   "country": "YT",
+   "lang": "Q5150795",
+   "iso3": "buc"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q10179",
+   "iso1": "zu",
+   "iso3": "zul",
+   "wikimedia": "zu"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q13218",
+   "iso1": "xh",
+   "iso3": "xho",
+   "wikimedia": "xh"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q14196",
+   "iso1": "af",
+   "iso3": "afr",
+   "wikimedia": "af"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q32704",
+   "iso1": "ve",
+   "iso3": "ven",
+   "wikimedia": "ve"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q3322093",
+   "iso3": "sfs"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q33890",
+   "iso3": "nso",
+   "wikimedia": "nso"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q34014",
+   "iso1": "ss",
+   "iso3": "ssw",
+   "wikimedia": "ss"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q34137",
+   "iso1": "tn",
+   "iso3": "tsn",
+   "wikimedia": "tn"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q34327",
+   "iso1": "ts",
+   "iso3": "tso",
+   "wikimedia": "ts"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q34340",
+   "iso1": "st",
+   "iso3": "sot",
+   "wikimedia": "st"
+  },
+  {
+   "country": "ZA",
+   "lang": "Q36785",
+   "iso1": "nr",
+   "iso3": "nbl",
+   "wikimedia": "nr"
+  },
+  {
+   "country": "ZM",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q13218",
+   "iso1": "xh",
+   "iso3": "xho",
+   "wikimedia": "xh"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q13311",
+   "iso3": "ndc"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q1860",
+   "iso1": "en",
+   "iso3": "eng",
+   "wikimedia": "en"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q32704",
+   "iso1": "ve",
+   "iso3": "ven",
+   "wikimedia": "ve"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q33273",
+   "iso1": "ny",
+   "iso3": "nya",
+   "wikimedia": "ny"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q33614"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q33672",
+   "iso3": "kck"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q34004",
+   "iso1": "sn",
+   "iso3": "sna",
+   "wikimedia": "sn"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q34101",
+   "iso3": "toi"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q34137",
+   "iso1": "tn",
+   "iso3": "tsn",
+   "wikimedia": "tn"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q34327",
+   "iso1": "ts",
+   "iso3": "tso",
+   "wikimedia": "ts"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q34340",
+   "iso1": "st",
+   "iso3": "sot",
+   "wikimedia": "st"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q3553981",
+   "iso3": "nmq"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q35613",
+   "iso1": "nd",
+   "iso3": "nde"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q8072097",
+   "iso3": "zib"
+  },
+  {
+   "country": "ZW",
+   "lang": "Q8826802",
+   "iso3": "bwg"
+  }
+ ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "geodata-kit-tz",
+  "version": "0.1.0",
+  "description": "Optional companion to geodata-kit: exact IANA timezone for any coordinate from timezone polygons (timezone-boundary-builder). Code MIT, data ODbL 1.0.",
+  "keywords": [
+    "timezone",
+    "tz",
+    "iana",
+    "coordinates",
+    "point-in-polygon",
+    "geodata-kit"
+  ],
+  "license": "MIT AND ODbL-1.0",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "NOTICE",
+    "LICENSE",
+    "LICENSE-DATA",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup"
+  }
+}

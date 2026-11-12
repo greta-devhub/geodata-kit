@@ -1,0 +1,598 @@
+{
+ "description": "Address formats, postal codes, formatting and parsing.",
+ "cases": [
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "D-80331",
+    "DE"
+   ],
+   "expect": "80331"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "80331",
+    "DE"
+   ],
+   "expect": "80331"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "DE-80331",
+    "DE"
+   ],
+   "expect": "80331"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "A-1010",
+    "AT"
+   ],
+   "expect": "1010"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "CH-8001",
+    "CH"
+   ],
+   "expect": "8001"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "sw1a1aa",
+    "GB"
+   ],
+   "expect": "SW1A 1AA"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "SW1A 1AA",
+    "GB"
+   ],
+   "expect": "SW1A 1AA"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "m25bq",
+    "GB"
+   ],
+   "expect": "M2 5BQ"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "1234ab",
+    "NL"
+   ],
+   "expect": "1234 AB"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "k1a0b1",
+    "CA"
+   ],
+   "expect": "K1A 0B1"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "11455",
+    "SE"
+   ],
+   "expect": "114 55"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "00950",
+    "PL"
+   ],
+   "expect": "00-950"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "1540023",
+    "JP"
+   ],
+   "expect": "154-0023"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "941031234",
+    "US"
+   ],
+   "expect": "94103-1234"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "94103",
+    "US"
+   ],
+   "expect": "94103"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "1000-001",
+    "PT"
+   ],
+   "expect": "1000-001"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "a65f4e2",
+    "IE"
+   ],
+   "expect": "A65 F4E2"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "1234",
+    "DE"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "ABCDE",
+    "US"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "12345",
+    "AE"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "D-80331",
+    "DE"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "8033",
+    "DE"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "getRequiredAddressFields",
+   "args": [
+    "US"
+   ],
+   "op": "sameMembers",
+   "expect": [
+    "addressLines",
+    "city",
+    "region",
+    "postalCode"
+   ],
+   "note": "US needs the region (state)"
+  },
+  {
+   "fn": "getRequiredAddressFields",
+   "args": [
+    "DE"
+   ],
+   "op": "sameMembers",
+   "expect": [
+    "addressLines",
+    "city",
+    "postalCode"
+   ]
+  },
+  {
+   "fn": "getAddressFormat",
+   "args": [
+    "DE"
+   ],
+   "path": "lines",
+   "expect": [
+    [
+     "name"
+    ],
+    [
+     "organization"
+    ],
+    [
+     "addressLines"
+    ],
+    [
+     "postalCode",
+     "city"
+    ]
+   ]
+  },
+  {
+   "fn": "getAddressFormat",
+   "args": [
+    "US"
+   ],
+   "path": "regionLabel",
+   "expect": "state"
+  },
+  {
+   "fn": "getAddressFormat",
+   "args": [
+    "CH"
+   ],
+   "path": "pattern",
+   "op": "startsWith",
+   "expect": "%O%n%N"
+  },
+  {
+   "fn": "getPostalCodeRules",
+   "args": [
+    "CH"
+   ],
+   "path": "prefixes",
+   "op": "includesAll",
+   "expect": [
+    "CH-"
+   ]
+  },
+  {
+   "fn": "getPostalCodeRules",
+   "args": [
+    "AE"
+   ],
+   "expect": null,
+   "note": "no postal codes"
+  },
+  {
+   "fn": "listRegions",
+   "args": [
+    "US"
+   ],
+   "path": "length",
+   "op": "gte",
+   "expect": 51
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "California",
+    "US"
+   ],
+   "path": "key",
+   "expect": "CA"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "US-TX",
+    "US"
+   ],
+   "path": "key",
+   "expect": "TX"
+  },
+  {
+   "fn": "isValidRegion",
+   "args": [
+    "Ontario",
+    "CA"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidRegion",
+   "args": [
+    "Bavaria",
+    "US"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "formatAddress",
+   "args": [
+    {
+     "name": "Max Mustermann",
+     "line1": "Hauptstr. 1",
+     "postalCode": "80331",
+     "city": "München",
+     "country": "DE"
+    },
+    {
+     "from": "DE"
+    }
+   ],
+   "expect": [
+    "Max Mustermann",
+    "Hauptstr. 1",
+    "80331 München"
+   ]
+  },
+  {
+   "fn": "formatAddress",
+   "args": [
+    {
+     "name": "Max Mustermann",
+     "line1": "Hauptstr. 1",
+     "postalCode": "D-80331",
+     "city": "München",
+     "country": "DE"
+    },
+    {
+     "from": "CH"
+    }
+   ],
+   "expect": [
+    "Max Mustermann",
+    "Hauptstr. 1",
+    "80331 München",
+    "GERMANY"
+   ],
+   "note": "cross-border: country line in capitals"
+  },
+  {
+   "fn": "formatAddress",
+   "args": [
+    {
+     "organization": "Acme Inc.",
+     "line1": "1 Market St",
+     "city": "San Francisco",
+     "region": "California",
+     "postalCode": "94103",
+     "country": "US"
+    }
+   ],
+   "expect": [
+    "Acme Inc.",
+    "1 Market St",
+    "SAN FRANCISCO, CA 94103"
+   ]
+  },
+  {
+   "fn": "formatAddress",
+   "args": [
+    {
+     "name": "Anna Muster",
+     "line1": "Bahnhofstrasse 1",
+     "postalCode": "8001",
+     "city": "Zürich",
+     "country": "CH"
+    }
+   ],
+   "expect": [
+    "Anna Muster",
+    "Bahnhofstrasse 1",
+    "CH-8001 Zürich"
+   ]
+  },
+  {
+   "fn": "formatAddress",
+   "args": [
+    {
+     "name": "Jane Doe",
+     "line1": "10 Downing Street",
+     "city": "London",
+     "postalCode": "sw1a2aa",
+     "country": "GB"
+    }
+   ],
+   "expect": [
+    "Jane Doe",
+    "10 Downing Street",
+    "LONDON",
+    "SW1A 2AA"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München, Deutschland"
+   ],
+   "path": "postalCode",
+   "expect": "80331"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München, Deutschland"
+   ],
+   "path": "city",
+   "expect": "München"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München, Deutschland"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München, Deutschland"
+   ],
+   "path": "lines",
+   "expect": [
+    "Hauptstr. 1"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München, Deutschland"
+   ],
+   "path": "postalCheck",
+   "expect": "confirmed"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Ringstrasse 5\nA-1010 Wien\nÖsterreich"
+   ],
+   "path": "city",
+   "expect": "Wien"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Ringstrasse 5\nA-1010 Wien\nÖsterreich"
+   ],
+   "path": "country",
+   "expect": "AT"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, CH-8001 Zürich, Schweiz"
+   ],
+   "path": "postalCode",
+   "expect": "8001"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, CH-8001 Zürich, Schweiz"
+   ],
+   "path": "country",
+   "expect": "CH"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco CA 94103\nUSA"
+   ],
+   "path": "region",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco CA 94103\nUSA"
+   ],
+   "path": "city",
+   "expect": "San Francisco"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "postalCode",
+   "expect": "94103"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10 Downing Street\nLondon\nSW1A 2AA\nUnited Kingdom"
+   ],
+   "path": "city",
+   "expect": "London"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10 Downing Street\nLondon\nSW1A 2AA\nUnited Kingdom"
+   ],
+   "path": "postalCode",
+   "expect": "SW1A 2AA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, 80331 Muenchn",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "city",
+   "expect": "München",
+   "note": "postal code corrects a misspelled city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, 80331 Muenchn",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "postalCheck",
+   "expect": "corrected"
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "80331",
+    "DE"
+   ],
+   "path": "[].name",
+   "op": "includesAll",
+   "expect": [
+    "München"
+   ]
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "D-80331",
+    "DE"
+   ],
+   "path": "[].name",
+   "op": "includesAll",
+   "expect": [
+    "München"
+   ]
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "SW1A 1AA",
+    "GB"
+   ],
+   "path": "length",
+   "op": "gte",
+   "expect": 1,
+   "note": "GB matched by the outward code"
+  },
+  {
+   "fn": "findPostalCodes",
+   "args": [
+    {
+     "city": "Unterhaching",
+     "country": "DE"
+    }
+   ],
+   "expect": [
+    "82008"
+   ]
+  },
+  {
+   "fn": "isKnownPostalCode",
+   "args": [
+    "99999",
+    "DE"
+   ],
+   "expect": false
+  }
+ ]
+}

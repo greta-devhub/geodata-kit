@@ -1,0 +1,368 @@
+{
+ "description": "Languages per country and language resolution.",
+ "cases": [
+  {
+   "fn": "getNationalLanguages",
+   "args": [
+    "CH"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "de",
+    "fr",
+    "it"
+   ]
+  },
+  {
+   "fn": "getRegionalLanguages",
+   "args": [
+    "CH"
+   ],
+   "path": "[].code",
+   "expect": [
+    "rm"
+   ]
+  },
+  {
+   "fn": "getNationalLanguages",
+   "args": [
+    "BE"
+   ],
+   "path": "[].code",
+   "expect": [
+    "nl",
+    "fr",
+    "de"
+   ]
+  },
+  {
+   "fn": "getPrimaryLanguage",
+   "args": [
+    "BE"
+   ],
+   "expect": "nl"
+  },
+  {
+   "fn": "getPrimaryLanguage",
+   "args": [
+    "CH"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "getPrimaryLanguage",
+   "args": [
+    "AT"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "getPrimaryLanguage",
+   "args": [
+    "US"
+   ],
+   "expect": "en"
+  },
+  {
+   "fn": "getPrimaryLanguage",
+   "args": [
+    "LU"
+   ],
+   "expect": "fr"
+  },
+  {
+   "fn": "getLanguagesOfSubdivision",
+   "args": [
+    "ES-CT"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "ca",
+    "es"
+   ]
+  },
+  {
+   "fn": "getLanguagesOfSubdivision",
+   "args": [
+    "CA-QC"
+   ],
+   "path": "[].code",
+   "expect": [
+    "fr"
+   ]
+  },
+  {
+   "fn": "getLanguagesOfSubdivision",
+   "args": [
+    "IT-32"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "de",
+    "it"
+   ]
+  },
+  {
+   "fn": "getNationalLanguages",
+   "args": [
+    "US"
+   ],
+   "path": "[].code",
+   "expect": [
+    "en"
+   ]
+  },
+  {
+   "fn": "getNationalLanguages",
+   "args": [
+    "IN"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "hi",
+    "en"
+   ]
+  },
+  {
+   "fn": "getRegionalLanguages",
+   "args": [
+    "IN"
+   ],
+   "path": "length",
+   "op": "gte",
+   "expect": 20
+  },
+  {
+   "fn": "getCountriesByLanguage",
+   "args": [
+    "de",
+    {
+     "status": "official"
+    }
+   ],
+   "path": "[].country",
+   "op": "sameMembers",
+   "expect": [
+    "AT",
+    "BE",
+    "CH",
+    "DE",
+    "LI",
+    "LU"
+   ]
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Deutsch"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "ger"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "deu"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "German"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "allemand"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "de-CH"
+   ],
+   "expect": "de"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "pt_BR"
+   ],
+   "expect": "pt"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Swiss German"
+   ],
+   "expect": "gsw"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "zh-Hant-TW"
+   ],
+   "expect": "zh-Hant"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Klingon-ish"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "getLanguageName",
+   "args": [
+    "de",
+    "fr"
+   ],
+   "expect": "allemand"
+  },
+  {
+   "fn": "getLanguageName",
+   "args": [
+    "fr",
+    "endonym"
+   ],
+   "expect": "français"
+  },
+  {
+   "fn": "getDefaultLocale",
+   "args": [
+    "CH"
+   ],
+   "expect": "de-CH"
+  },
+  {
+   "fn": "getDefaultLocale",
+   "args": [
+    "RS"
+   ],
+   "expect": "sr-Cyrl-RS"
+  },
+  {
+   "fn": "getDefaultLocale",
+   "args": [
+    "US"
+   ],
+   "expect": "en-US"
+  },
+  {
+   "fn": "isOfficialLanguage",
+   "args": [
+    "de",
+    "IT",
+    {
+     "subdivision": "IT-32"
+    }
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isOfficialLanguage",
+   "args": [
+    "de",
+    "IT"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "getLanguageScripts",
+   "args": [
+    "sr"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "Cyrl",
+    "Latn"
+   ]
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "English"
+   ],
+   "expect": "en",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "German"
+   ],
+   "expect": "de",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "French"
+   ],
+   "expect": "fr",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Spanish"
+   ],
+   "expect": "es",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Portuguese"
+   ],
+   "expect": "pt",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Dutch"
+   ],
+   "expect": "nl",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Turkish"
+   ],
+   "expect": "tr",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Italian"
+   ],
+   "expect": "it",
+   "note": "project outreach language name"
+  },
+  {
+   "fn": "resolveLanguage",
+   "args": [
+    "Polish"
+   ],
+   "expect": "pl",
+   "note": "project outreach language name"
+  }
+ ]
+}

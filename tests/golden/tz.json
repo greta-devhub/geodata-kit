@@ -1,0 +1,126 @@
+{
+ "description": "Polygon timezone lookups (geodata-kit-tz, ODbL data).",
+ "cases": [
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    39.77,
+    -86.16
+   ],
+   "expect": "America/Indiana/Indianapolis"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    48.137,
+    11.575
+   ],
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    47.3769,
+    8.5417
+   ],
+   "expect": "Europe/Zurich",
+   "note": "full zone names, not merged ones"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    47.6964,
+    8.6908
+   ],
+   "expect": "Europe/Busingen"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    33.4484,
+    -112.074
+   ],
+   "expect": "America/Phoenix",
+   "note": "Arizona: no DST"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    36.15,
+    -109.55
+   ],
+   "expect": "America/Denver",
+   "note": "Navajo Nation in Arizona observes DST"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    41.6,
+    -87.2
+   ],
+   "expect": "America/Chicago",
+   "note": "Indiana: north-west counties on Central time"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    42.88,
+    -8.55
+   ],
+   "expect": "Europe/Madrid",
+   "note": "Galicia, Spain"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    41.15,
+    -8.61
+   ],
+   "expect": "Europe/Lisbon",
+   "note": "Porto, Portugal"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    42.6629,
+    21.1655
+   ],
+   "expect": "Europe/Belgrade",
+   "note": "Pristina"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    43.82,
+    87.6
+   ],
+   "expect": "Asia/Urumqi",
+   "note": "Urumqi"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    43.25,
+    76.93
+   ],
+   "expect": "Asia/Almaty"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    0,
+    -30
+   ],
+   "expect": "Etc/GMT+2",
+   "note": "open Atlantic"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    -33.87,
+    151.21
+   ],
+   "expect": "Australia/Sydney"
+  }
+ ]
+}

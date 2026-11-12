@@ -1,0 +1,27 @@
+Data licence for geodata-kit-tz
+===============================
+
+The file data/timezones.bin is a derived database made from the timezone
+boundaries of timezone-boundary-builder
+(https://github.com/evansiroky/timezone-boundary-builder, release 2026f),
+which are based on OpenStreetMap data.
+
+  © OpenStreetMap contributors (https://www.openstreetmap.org/copyright)
+
+This database is made available under the Open Database License (ODbL) 1.0:
+https://opendatacommons.org/licenses/odbl/1-0/
+
+Any rights in individual contents of the database are licensed under the
+Database Contents License: https://opendatacommons.org/licenses/dbcl/1-0/
+
+How it was derived: polygons were simplified (Douglas–Peucker, tolerance
+0.001°), quantised to 1/10,000 degree and packed with a 1°×1° grid index by
+scripts/build/tz.ts in the geodata-kit repository, which is the means of
+reproducing it from the source.
+
+ODbL is a share-alike licence: if you publicly use an adapted version of this
+database, you must offer that adapted database under the ODbL as well. Using
+the lookup results in your application (a "Produced Work") requires
+attribution, for example: "Timezone data © OpenStreetMap contributors (ODbL)".
+
+The JavaScript code of geodata-kit-tz is MIT-licensed (see LICENSE).

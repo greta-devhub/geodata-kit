@@ -1,0 +1,101 @@
+{
+  "_comment": "Political memberships with dates (from inclusive, to inclusive). Compiled from europa.eu (© European Union, CC BY 4.0) and efta.int; current members are cross-checked against CLDR (EU, EZ) and Wikidata at build time.",
+  "groups": [
+    {
+      "slug": "eu",
+      "name": "European Union",
+      "source": "https://european-union.europa.eu/principles-countries-history/eu-countries_en",
+      "members": [
+        { "code": "BE", "from": "1958-01-01" }, { "code": "DE", "from": "1958-01-01" }, { "code": "FR", "from": "1958-01-01" },
+        { "code": "IT", "from": "1958-01-01" }, { "code": "LU", "from": "1958-01-01" }, { "code": "NL", "from": "1958-01-01" },
+        { "code": "DK", "from": "1973-01-01" }, { "code": "IE", "from": "1973-01-01" },
+        { "code": "GB", "from": "1973-01-01", "to": "2020-01-31" },
+        { "code": "GR", "from": "1981-01-01" },
+        { "code": "ES", "from": "1986-01-01" }, { "code": "PT", "from": "1986-01-01" },
+        { "code": "AT", "from": "1995-01-01" }, { "code": "FI", "from": "1995-01-01" }, { "code": "SE", "from": "1995-01-01" },
+        { "code": "CY", "from": "2004-05-01" }, { "code": "CZ", "from": "2004-05-01" }, { "code": "EE", "from": "2004-05-01" },
+        { "code": "HU", "from": "2004-05-01" }, { "code": "LT", "from": "2004-05-01" }, { "code": "LV", "from": "2004-05-01" },
+        { "code": "MT", "from": "2004-05-01" }, { "code": "PL", "from": "2004-05-01" }, { "code": "SI", "from": "2004-05-01" },
+        { "code": "SK", "from": "2004-05-01" },
+        { "code": "BG", "from": "2007-01-01" }, { "code": "RO", "from": "2007-01-01" },
+        { "code": "HR", "from": "2013-07-01" }
+      ]
+    },
+    {
+      "slug": "eurozone",
+      "name": "Eurozone",
+      "source": "https://european-union.europa.eu/institutions-law-budget/euro/countries-using-euro_en",
+      "members": [
+        { "code": "AT", "from": "1999-01-01" }, { "code": "BE", "from": "1999-01-01" }, { "code": "DE", "from": "1999-01-01" },
+        { "code": "ES", "from": "1999-01-01" }, { "code": "FI", "from": "1999-01-01" }, { "code": "FR", "from": "1999-01-01" },
+        { "code": "IE", "from": "1999-01-01" }, { "code": "IT", "from": "1999-01-01" }, { "code": "LU", "from": "1999-01-01" },
+        { "code": "NL", "from": "1999-01-01" }, { "code": "PT", "from": "1999-01-01" },
+        { "code": "GR", "from": "2001-01-01" },
+        { "code": "SI", "from": "2007-01-01" },
+        { "code": "CY", "from": "2008-01-01" }, { "code": "MT", "from": "2008-01-01" },
+        { "code": "SK", "from": "2009-01-01" },
+        { "code": "EE", "from": "2011-01-01" },
+        { "code": "LV", "from": "2014-01-01" },
+        { "code": "LT", "from": "2015-01-01" },
+        { "code": "HR", "from": "2023-01-01" },
+        { "code": "BG", "from": "2026-01-01" }
+      ]
+    },
+    {
+      "slug": "schengen",
+      "name": "Schengen Area",
+      "source": "https://home-affairs.ec.europa.eu/policies/schengen/schengen-area_en",
+      "note": "Dates are when border controls were lifted. BG and RO lifted air and sea controls on 2024-03-31 and land controls on 2025-01-01 (used here).",
+      "members": [
+        { "code": "BE", "from": "1995-03-26" }, { "code": "DE", "from": "1995-03-26" }, { "code": "ES", "from": "1995-03-26" },
+        { "code": "FR", "from": "1995-03-26" }, { "code": "LU", "from": "1995-03-26" }, { "code": "NL", "from": "1995-03-26" },
+        { "code": "PT", "from": "1995-03-26" },
+        { "code": "IT", "from": "1997-10-26" },
+        { "code": "AT", "from": "1997-12-01" },
+        { "code": "GR", "from": "2000-03-26" },
+        { "code": "DK", "from": "2001-03-25" }, { "code": "FI", "from": "2001-03-25" }, { "code": "IS", "from": "2001-03-25" },
+        { "code": "NO", "from": "2001-03-25" }, { "code": "SE", "from": "2001-03-25" },
+        { "code": "CZ", "from": "2007-12-21" }, { "code": "EE", "from": "2007-12-21" }, { "code": "HU", "from": "2007-12-21" },
+        { "code": "LT", "from": "2007-12-21" }, { "code": "LV", "from": "2007-12-21" }, { "code": "MT", "from": "2007-12-21" },
+        { "code": "PL", "from": "2007-12-21" }, { "code": "SI", "from": "2007-12-21" }, { "code": "SK", "from": "2007-12-21" },
+        { "code": "CH", "from": "2008-12-12" },
+        { "code": "LI", "from": "2011-12-19" },
+        { "code": "HR", "from": "2023-01-01" },
+        { "code": "BG", "from": "2025-01-01" }, { "code": "RO", "from": "2025-01-01" }
+      ]
+    },
+    {
+      "slug": "efta",
+      "name": "European Free Trade Association (EFTA)",
+      "source": "https://www.efta.int/about-efta/history",
+      "members": [
+        { "code": "CH", "from": "1960-05-03" }, { "code": "NO", "from": "1960-05-03" },
+        { "code": "IS", "from": "1970-03-01" },
+        { "code": "LI", "from": "1991-09-01" },
+        { "code": "GB", "from": "1960-05-03", "to": "1972-12-31" }, { "code": "DK", "from": "1960-05-03", "to": "1972-12-31" },
+        { "code": "PT", "from": "1960-05-03", "to": "1985-12-31" },
+        { "code": "AT", "from": "1960-05-03", "to": "1994-12-31" }, { "code": "SE", "from": "1960-05-03", "to": "1994-12-31" },
+        { "code": "FI", "from": "1986-01-01", "to": "1994-12-31" }
+      ]
+    },
+    {
+      "slug": "eea",
+      "name": "European Economic Area (EEA)",
+      "source": "https://www.efta.int/eea",
+      "note": "EU members join the EEA with their EU accession (dates here use the EU accession date; formal EEA enlargement agreements sometimes applied later). GB left at the end of the Brexit transition period.",
+      "derivedFromEu": true,
+      "members": [
+        { "code": "IS", "from": "1994-01-01" }, { "code": "NO", "from": "1994-01-01" },
+        { "code": "LI", "from": "1995-05-01" }
+      ],
+      "overrides": {
+        "AT": { "from": "1994-01-01" }, "FI": { "from": "1994-01-01" }, "SE": { "from": "1994-01-01" },
+        "BE": { "from": "1994-01-01" }, "DE": { "from": "1994-01-01" }, "FR": { "from": "1994-01-01" },
+        "IT": { "from": "1994-01-01" }, "LU": { "from": "1994-01-01" }, "NL": { "from": "1994-01-01" },
+        "DK": { "from": "1994-01-01" }, "IE": { "from": "1994-01-01" }, "GR": { "from": "1994-01-01" },
+        "ES": { "from": "1994-01-01" }, "PT": { "from": "1994-01-01" },
+        "GB": { "from": "1994-01-01", "to": "2020-12-31" }
+      }
+    }
+  ]
+}

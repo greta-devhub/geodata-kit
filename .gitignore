@@ -1,0 +1,9 @@
+node_modules/
+.cache/
+dist/
+packages/*/data/
+python/.venv/
+python/src/geodata_kit/data/
+python/dist/
+__pycache__/
+*.tgz

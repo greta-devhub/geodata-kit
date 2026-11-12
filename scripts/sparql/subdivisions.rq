@@ -1,0 +1,7 @@
+# ISO 3166-2 code (P300) of every subdivision, with its GeoNames id (P1566)
+# and the alpha-2 code of its country. Used to join GeoNames admin1 → ISO 3166-2.
+SELECT ?item ?iso ?geonames ?country WHERE {
+  ?item wdt:P300 ?iso .
+  OPTIONAL { ?item wdt:P1566 ?geonames . }
+  OPTIONAL { ?item wdt:P17 ?countryItem . ?countryItem wdt:P297 ?country . }
+}

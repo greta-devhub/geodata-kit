@@ -1,0 +1,44 @@
+{
+  "name": "geodata-kit-postal",
+  "version": "0.1.0",
+  "description": "Optional data for geodata-kit: postal code \u2192 place and place \u2192 postal codes for 124 countries (GeoNames, 1.8 million codes). Node.js only.",
+  "keywords": [
+    "postal-code",
+    "zip-code",
+    "postcode",
+    "geonames",
+    "geodata-kit"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "NOTICE",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup"
+  }
+}

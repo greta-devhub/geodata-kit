@@ -1,0 +1,12 @@
+# Current official languages (P37) of every country with an ISO alpha-2 code.
+# Statements with an end time (P582) or deprecated rank are skipped.
+SELECT ?country ?lang ?iso1 ?iso3 ?wikimedia WHERE {
+  ?countryItem wdt:P297 ?country ; p:P37 ?statement .
+  FILTER NOT EXISTS { ?countryItem wdt:P576 ?dissolved . }
+  ?statement ps:P37 ?lang .
+  FILTER NOT EXISTS { ?statement pq:P582 ?end . }
+  FILTER NOT EXISTS { ?statement wikibase:rank wikibase:DeprecatedRank . }
+  OPTIONAL { ?lang wdt:P218 ?iso1 . }
+  OPTIONAL { ?lang wdt:P220 ?iso3 . }
+  OPTIONAL { ?lang wdt:P424 ?wikimedia . }
+}

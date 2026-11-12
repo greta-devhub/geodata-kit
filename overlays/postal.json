@@ -1,0 +1,27 @@
+{
+  "_comment": "Prefixes written in front of postal codes, which parsers strip. Besides these, '<alpha-2>-' (e.g. 'DE-') is always accepted. Most are the old international vehicle codes still printed on European mail (e.g. 'D-80331').",
+  "prefixes": {
+    "AT": ["A-"],
+    "BE": ["B-"],
+    "CH": ["CH-"],
+    "CZ": ["CZ-"],
+    "DE": ["D-"],
+    "DK": ["DK-"],
+    "ES": ["E-"],
+    "FI": ["FIN-", "SF-"],
+    "FR": ["F-"],
+    "HR": ["HR-"],
+    "HU": ["H-"],
+    "IT": ["I-"],
+    "LI": ["FL-"],
+    "LU": ["L-"],
+    "MC": ["MC-"],
+    "NL": ["NL-"],
+    "NO": ["N-"],
+    "PL": ["PL-"],
+    "PT": ["P-"],
+    "SE": ["S-", "SE-"],
+    "SI": ["SI-", "SLO-"],
+    "SK": ["SK-"]
+  }
+}

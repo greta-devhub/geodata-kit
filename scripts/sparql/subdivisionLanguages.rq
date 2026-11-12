@@ -1,0 +1,11 @@
+# Current official languages (P37) of every subdivision with an ISO 3166-2 code.
+# This is what tells where a regional official language (Catalan, Romansh, …) applies.
+SELECT ?iso ?lang ?iso1 ?iso3 ?wikimedia WHERE {
+  ?item wdt:P300 ?iso ; p:P37 ?statement .
+  ?statement ps:P37 ?lang .
+  FILTER NOT EXISTS { ?statement pq:P582 ?end . }
+  FILTER NOT EXISTS { ?statement wikibase:rank wikibase:DeprecatedRank . }
+  OPTIONAL { ?lang wdt:P218 ?iso1 . }
+  OPTIONAL { ?lang wdt:P220 ?iso3 . }
+  OPTIONAL { ?lang wdt:P424 ?wikimedia . }
+}

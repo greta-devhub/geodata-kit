@@ -1,0 +1,2935 @@
+{
+ "description": "Country resolution, names and facts. Names and aliases marked 'project' come from real data in our projects.",
+ "cases": [
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Luxembourg"
+   ],
+   "path": "code",
+   "expect": "LU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Austria"
+   ],
+   "path": "code",
+   "expect": "AT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Switzerland"
+   ],
+   "path": "code",
+   "expect": "CH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Germany"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Liechtenstein"
+   ],
+   "path": "code",
+   "expect": "LI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Burkina Faso"
+   ],
+   "path": "code",
+   "expect": "BF",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Côte d'Ivoire"
+   ],
+   "path": "code",
+   "expect": "CI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "France"
+   ],
+   "path": "code",
+   "expect": "FR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Gabon"
+   ],
+   "path": "code",
+   "expect": "GA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Monaco"
+   ],
+   "path": "code",
+   "expect": "MC",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guinea"
+   ],
+   "path": "code",
+   "expect": "GN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Italy"
+   ],
+   "path": "code",
+   "expect": "IT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "San Marino"
+   ],
+   "path": "code",
+   "expect": "SM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Vatican"
+   ],
+   "path": "code",
+   "expect": "VA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Argentina"
+   ],
+   "path": "code",
+   "expect": "AR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Chile"
+   ],
+   "path": "code",
+   "expect": "CL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Colombia"
+   ],
+   "path": "code",
+   "expect": "CO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Costa Rica"
+   ],
+   "path": "code",
+   "expect": "CR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cuba"
+   ],
+   "path": "code",
+   "expect": "CU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Dominican Republic"
+   ],
+   "path": "code",
+   "expect": "DO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ecuador"
+   ],
+   "path": "code",
+   "expect": "EC",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Spain"
+   ],
+   "path": "code",
+   "expect": "ES",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guatemala"
+   ],
+   "path": "code",
+   "expect": "GT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Honduras"
+   ],
+   "path": "code",
+   "expect": "HN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mexico"
+   ],
+   "path": "code",
+   "expect": "MX",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Nicaragua"
+   ],
+   "path": "code",
+   "expect": "NI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Panama"
+   ],
+   "path": "code",
+   "expect": "PA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "El Salvador"
+   ],
+   "path": "code",
+   "expect": "SV",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Uruguay"
+   ],
+   "path": "code",
+   "expect": "UY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Angola"
+   ],
+   "path": "code",
+   "expect": "AO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Brazil"
+   ],
+   "path": "code",
+   "expect": "BR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cabo Verde"
+   ],
+   "path": "code",
+   "expect": "CV",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guinea-Bissau"
+   ],
+   "path": "code",
+   "expect": "GW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mozambique"
+   ],
+   "path": "code",
+   "expect": "MZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Portugal"
+   ],
+   "path": "code",
+   "expect": "PT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sao Tome and Principe"
+   ],
+   "path": "code",
+   "expect": "ST",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Timor-Leste"
+   ],
+   "path": "code",
+   "expect": "TL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Netherlands"
+   ],
+   "path": "code",
+   "expect": "NL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Suriname"
+   ],
+   "path": "code",
+   "expect": "SR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sweden"
+   ],
+   "path": "code",
+   "expect": "SE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Denmark"
+   ],
+   "path": "code",
+   "expect": "DK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Norway"
+   ],
+   "path": "code",
+   "expect": "NO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Finland"
+   ],
+   "path": "code",
+   "expect": "FI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Poland"
+   ],
+   "path": "code",
+   "expect": "PL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Czechia"
+   ],
+   "path": "code",
+   "expect": "CZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Slovakia"
+   ],
+   "path": "code",
+   "expect": "SK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Hungary"
+   ],
+   "path": "code",
+   "expect": "HU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Moldova, Republic of"
+   ],
+   "path": "code",
+   "expect": "MD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cyprus"
+   ],
+   "path": "code",
+   "expect": "CY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Greece"
+   ],
+   "path": "code",
+   "expect": "GR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bulgaria"
+   ],
+   "path": "code",
+   "expect": "BG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United States"
+   ],
+   "path": "code",
+   "expect": "US",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United Kingdom"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ireland"
+   ],
+   "path": "code",
+   "expect": "IE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Belgium"
+   ],
+   "path": "code",
+   "expect": "BE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Estonia"
+   ],
+   "path": "code",
+   "expect": "EE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Croatia"
+   ],
+   "path": "code",
+   "expect": "HR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Latvia"
+   ],
+   "path": "code",
+   "expect": "LV",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Lithuania"
+   ],
+   "path": "code",
+   "expect": "LT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Malta"
+   ],
+   "path": "code",
+   "expect": "MT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Romania"
+   ],
+   "path": "code",
+   "expect": "RO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Slovenia"
+   ],
+   "path": "code",
+   "expect": "SI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Andorra"
+   ],
+   "path": "code",
+   "expect": "AD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United Arab Emirates"
+   ],
+   "path": "code",
+   "expect": "AE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Albania"
+   ],
+   "path": "code",
+   "expect": "AL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Australia"
+   ],
+   "path": "code",
+   "expect": "AU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Azerbaijan"
+   ],
+   "path": "code",
+   "expect": "AZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bosnia and Herzegovina"
+   ],
+   "path": "code",
+   "expect": "BA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bangladesh"
+   ],
+   "path": "code",
+   "expect": "BD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "The Bahamas"
+   ],
+   "path": "code",
+   "expect": "BS",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Botswana"
+   ],
+   "path": "code",
+   "expect": "BW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Belarus"
+   ],
+   "path": "code",
+   "expect": "BY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Canada"
+   ],
+   "path": "code",
+   "expect": "CA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cambodia"
+   ],
+   "path": "code",
+   "expect": "KH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "China"
+   ],
+   "path": "code",
+   "expect": "CN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Algeria"
+   ],
+   "path": "code",
+   "expect": "DZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Egypt"
+   ],
+   "path": "code",
+   "expect": "EG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ethiopia"
+   ],
+   "path": "code",
+   "expect": "ET",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Georgia"
+   ],
+   "path": "code",
+   "expect": "GE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ghana"
+   ],
+   "path": "code",
+   "expect": "GH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Hong Kong"
+   ],
+   "path": "code",
+   "expect": "HK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Indonesia"
+   ],
+   "path": "code",
+   "expect": "ID",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Israel"
+   ],
+   "path": "code",
+   "expect": "IL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "India"
+   ],
+   "path": "code",
+   "expect": "IN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Iraq"
+   ],
+   "path": "code",
+   "expect": "IQ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Iceland"
+   ],
+   "path": "code",
+   "expect": "IS",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Jersey"
+   ],
+   "path": "code",
+   "expect": "JE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Japan"
+   ],
+   "path": "code",
+   "expect": "JP",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Kenya"
+   ],
+   "path": "code",
+   "expect": "KE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "South Korea"
+   ],
+   "path": "code",
+   "expect": "KR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Lebanon"
+   ],
+   "path": "code",
+   "expect": "LB",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sri Lanka"
+   ],
+   "path": "code",
+   "expect": "LK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Libya"
+   ],
+   "path": "code",
+   "expect": "LY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Morocco"
+   ],
+   "path": "code",
+   "expect": "MA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "North Macedonia"
+   ],
+   "path": "code",
+   "expect": "MK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Myanmar"
+   ],
+   "path": "code",
+   "expect": "MM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mauritius"
+   ],
+   "path": "code",
+   "expect": "MU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Malaysia"
+   ],
+   "path": "code",
+   "expect": "MY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Nigeria"
+   ],
+   "path": "code",
+   "expect": "NG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "New Zealand"
+   ],
+   "path": "code",
+   "expect": "NZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Philippines"
+   ],
+   "path": "code",
+   "expect": "PH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Pakistan"
+   ],
+   "path": "code",
+   "expect": "PK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Qatar"
+   ],
+   "path": "code",
+   "expect": "QA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Serbia"
+   ],
+   "path": "code",
+   "expect": "RS",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Russia"
+   ],
+   "path": "code",
+   "expect": "RU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Rwanda"
+   ],
+   "path": "code",
+   "expect": "RW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Saudi Arabia"
+   ],
+   "path": "code",
+   "expect": "SA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sudan"
+   ],
+   "path": "code",
+   "expect": "SD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Singapore"
+   ],
+   "path": "code",
+   "expect": "SG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Tunisia"
+   ],
+   "path": "code",
+   "expect": "TN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Turkey"
+   ],
+   "path": "code",
+   "expect": "TR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Taiwan"
+   ],
+   "path": "code",
+   "expect": "TW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Tanzania"
+   ],
+   "path": "code",
+   "expect": "TZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ukraine"
+   ],
+   "path": "code",
+   "expect": "UA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Uganda"
+   ],
+   "path": "code",
+   "expect": "UG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Vietnam"
+   ],
+   "path": "code",
+   "expect": "VN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Kosovo"
+   ],
+   "path": "code",
+   "expect": "XK",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "South Africa"
+   ],
+   "path": "code",
+   "expect": "ZA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Peru"
+   ],
+   "path": "code",
+   "expect": "PE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Venezuela"
+   ],
+   "path": "code",
+   "expect": "VE",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bolivia"
+   ],
+   "path": "code",
+   "expect": "BO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Paraguay"
+   ],
+   "path": "code",
+   "expect": "PY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Burundi"
+   ],
+   "path": "code",
+   "expect": "BI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cameroon"
+   ],
+   "path": "code",
+   "expect": "CM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Senegal"
+   ],
+   "path": "code",
+   "expect": "SN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Antigua and Barbuda"
+   ],
+   "path": "code",
+   "expect": "AG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Armenia"
+   ],
+   "path": "code",
+   "expect": "AM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Aruba"
+   ],
+   "path": "code",
+   "expect": "AW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Barbados"
+   ],
+   "path": "code",
+   "expect": "BB",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bahrain"
+   ],
+   "path": "code",
+   "expect": "BH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bermuda"
+   ],
+   "path": "code",
+   "expect": "BM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Brunei Darussalam"
+   ],
+   "path": "code",
+   "expect": "BN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bahamas"
+   ],
+   "path": "code",
+   "expect": "BS",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Belize"
+   ],
+   "path": "code",
+   "expect": "BZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Dominica"
+   ],
+   "path": "code",
+   "expect": "DM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guernsey"
+   ],
+   "path": "code",
+   "expect": "GG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Gibraltar"
+   ],
+   "path": "code",
+   "expect": "GI",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Isle of Man"
+   ],
+   "path": "code",
+   "expect": "IM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "British Indian Ocean Territory"
+   ],
+   "path": "code",
+   "expect": "IO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Jamaica"
+   ],
+   "path": "code",
+   "expect": "JM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Jordan"
+   ],
+   "path": "code",
+   "expect": "JO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Kyrgyzstan"
+   ],
+   "path": "code",
+   "expect": "KG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Comoros"
+   ],
+   "path": "code",
+   "expect": "KM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Saint Kitts and Nevis"
+   ],
+   "path": "code",
+   "expect": "KN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cayman Islands"
+   ],
+   "path": "code",
+   "expect": "KY",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Kazakhstan"
+   ],
+   "path": "code",
+   "expect": "KZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Saint Lucia"
+   ],
+   "path": "code",
+   "expect": "LC",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Montenegro"
+   ],
+   "path": "code",
+   "expect": "ME",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Marshall Islands"
+   ],
+   "path": "code",
+   "expect": "MH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mongolia"
+   ],
+   "path": "code",
+   "expect": "MN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Macao"
+   ],
+   "path": "code",
+   "expect": "MO",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Nepal"
+   ],
+   "path": "code",
+   "expect": "NP",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Oman"
+   ],
+   "path": "code",
+   "expect": "OM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Puerto Rico"
+   ],
+   "path": "code",
+   "expect": "PR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Seychelles"
+   ],
+   "path": "code",
+   "expect": "SC",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Turks and Caicos Islands"
+   ],
+   "path": "code",
+   "expect": "TC",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Togo"
+   ],
+   "path": "code",
+   "expect": "TG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Thailand"
+   ],
+   "path": "code",
+   "expect": "TH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Saint Vincent and the Grenadines"
+   ],
+   "path": "code",
+   "expect": "VC",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Virgin Islands (British)"
+   ],
+   "path": "code",
+   "expect": "VG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Vanuatu"
+   ],
+   "path": "code",
+   "expect": "VU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Benin"
+   ],
+   "path": "code",
+   "expect": "BJ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Democratic Republic of the Congo"
+   ],
+   "path": "code",
+   "expect": "CD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Republic of the Congo"
+   ],
+   "path": "code",
+   "expect": "CG",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Curaçao"
+   ],
+   "path": "code",
+   "expect": "CW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Western Sahara"
+   ],
+   "path": "code",
+   "expect": "EH",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Grenada"
+   ],
+   "path": "code",
+   "expect": "GD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guam"
+   ],
+   "path": "code",
+   "expect": "GU",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Haiti"
+   ],
+   "path": "code",
+   "expect": "HT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Iran"
+   ],
+   "path": "code",
+   "expect": "IR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Kuwait"
+   ],
+   "path": "code",
+   "expect": "KW",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Laos"
+   ],
+   "path": "code",
+   "expect": "LA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mali"
+   ],
+   "path": "code",
+   "expect": "ML",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mauritania"
+   ],
+   "path": "code",
+   "expect": "MR",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Namibia"
+   ],
+   "path": "code",
+   "expect": "NA",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Pitcairn"
+   ],
+   "path": "code",
+   "expect": "PN",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Palestine"
+   ],
+   "path": "code",
+   "expect": "PS",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sierra Leone"
+   ],
+   "path": "code",
+   "expect": "SL",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Chad"
+   ],
+   "path": "code",
+   "expect": "TD",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Turkmenistan"
+   ],
+   "path": "code",
+   "expect": "TM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Trinidad and Tobago"
+   ],
+   "path": "code",
+   "expect": "TT",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Uzbekistan"
+   ],
+   "path": "code",
+   "expect": "UZ",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Samoa"
+   ],
+   "path": "code",
+   "expect": "WS",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Zambia"
+   ],
+   "path": "code",
+   "expect": "ZM",
+   "note": "country name used in project data"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Bahamas"
+   ],
+   "path": "code",
+   "expect": "BS",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "British Virgin Islands"
+   ],
+   "path": "code",
+   "expect": "VG",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Brunei"
+   ],
+   "path": "code",
+   "expect": "BN",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Czech Republic"
+   ],
+   "path": "code",
+   "expect": "CZ",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Côte d'Ivoire (Ivory Coast)"
+   ],
+   "path": "code",
+   "expect": "CI",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "DEU"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Great Britain"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Hong Kong S.A.R"
+   ],
+   "path": "code",
+   "expect": "HK",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Hong Kong SAR"
+   ],
+   "path": "code",
+   "expect": "HK",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ivory Coast"
+   ],
+   "path": "code",
+   "expect": "CI",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "KSA"
+   ],
+   "path": "code",
+   "expect": "SA",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Lichtenstein"
+   ],
+   "path": "code",
+   "expect": "LI",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Macau S.A.R."
+   ],
+   "path": "code",
+   "expect": "MO",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Moldova"
+   ],
+   "path": "code",
+   "expect": "MD",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Republic of Korea"
+   ],
+   "path": "code",
+   "expect": "KR",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Taiwan, Province of China"
+   ],
+   "path": "code",
+   "expect": "TW",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "The Netherlands"
+   ],
+   "path": "code",
+   "expect": "NL",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "UAE"
+   ],
+   "path": "code",
+   "expect": "AE",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "UK"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "USA"
+   ],
+   "path": "code",
+   "expect": "US",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United Kingdom (UK)"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United States (USA)"
+   ],
+   "path": "code",
+   "expect": "US",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United States of America"
+   ],
+   "path": "code",
+   "expect": "US",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "United States."
+   ],
+   "path": "code",
+   "expect": "US",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Viet Nam"
+   ],
+   "path": "code",
+   "expect": "VN",
+   "note": "project alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "de"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    " DE "
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "deu"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "276"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "40"
+   ],
+   "path": "code",
+   "expect": "AT"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "de"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "de"
+   ],
+   "path": "matchedBy",
+   "expect": "alpha2"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "DEU"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "DEU"
+   ],
+   "path": "matchedBy",
+   "expect": "alpha3"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "276"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "276"
+   ],
+   "path": "matchedBy",
+   "expect": "numeric"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Germany"
+   ],
+   "path": "code",
+   "expect": "DE"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Germany"
+   ],
+   "path": "matchedBy",
+   "expect": "name"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Holland"
+   ],
+   "path": "code",
+   "expect": "NL"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Holland"
+   ],
+   "path": "matchedBy",
+   "expect": "alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "England"
+   ],
+   "path": "code",
+   "expect": "GB"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "England"
+   ],
+   "path": "matchedBy",
+   "expect": "subdivision"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "UK"
+   ],
+   "path": "code",
+   "expect": "GB"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Deutschland"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Österreich"
+   ],
+   "path": "code",
+   "expect": "AT",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Osterreich"
+   ],
+   "path": "code",
+   "expect": "AT",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Schweiz"
+   ],
+   "path": "code",
+   "expect": "CH",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Suisse"
+   ],
+   "path": "code",
+   "expect": "CH",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Svizzera"
+   ],
+   "path": "code",
+   "expect": "CH",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Svizra"
+   ],
+   "path": "code",
+   "expect": "CH",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Türkiye"
+   ],
+   "path": "code",
+   "expect": "TR",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Turkiye"
+   ],
+   "path": "code",
+   "expect": "TR",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "España"
+   ],
+   "path": "code",
+   "expect": "ES",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Polska"
+   ],
+   "path": "code",
+   "expect": "PL",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Allemagne"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Alemania"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Niemcy"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Holland"
+   ],
+   "path": "code",
+   "expect": "NL",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Nederland"
+   ],
+   "path": "code",
+   "expect": "NL",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Belgique"
+   ],
+   "path": "code",
+   "expect": "BE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "België"
+   ],
+   "path": "code",
+   "expect": "BE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Česko"
+   ],
+   "path": "code",
+   "expect": "CZ",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Magyarország"
+   ],
+   "path": "code",
+   "expect": "HU",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sverige"
+   ],
+   "path": "code",
+   "expect": "SE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Danmark"
+   ],
+   "path": "code",
+   "expect": "DK",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Norge"
+   ],
+   "path": "code",
+   "expect": "NO",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Suomi"
+   ],
+   "path": "code",
+   "expect": "FI",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ελλάδα"
+   ],
+   "path": "code",
+   "expect": "GR",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Россия"
+   ],
+   "path": "code",
+   "expect": "RU",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "日本"
+   ],
+   "path": "code",
+   "expect": "JP",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Scotland"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Wales"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Northern Ireland"
+   ],
+   "path": "code",
+   "expect": "GB",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "BRD"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Germany (DE)"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "the Netherlands"
+   ],
+   "path": "code",
+   "expect": "NL",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Germany."
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Côte d’Ivoire"
+   ],
+   "path": "code",
+   "expect": "CI",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Cote d'Ivoire"
+   ],
+   "path": "code",
+   "expect": "CI",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Kosovo"
+   ],
+   "path": "code",
+   "expect": "XK",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "XK"
+   ],
+   "path": "code",
+   "expect": "XK",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Republic of Kosovo"
+   ],
+   "path": "code",
+   "expect": "XK",
+   "note": "endonym/alias/formatting"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Niger"
+   ],
+   "path": "code",
+   "expect": "NE",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Nigeria"
+   ],
+   "path": "code",
+   "expect": "NG",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guinea"
+   ],
+   "path": "code",
+   "expect": "GN",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Guinea-Bissau"
+   ],
+   "path": "code",
+   "expect": "GW",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Equatorial Guinea"
+   ],
+   "path": "code",
+   "expect": "GQ",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Papua New Guinea"
+   ],
+   "path": "code",
+   "expect": "PG",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Dominica"
+   ],
+   "path": "code",
+   "expect": "DM",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Dominican Republic"
+   ],
+   "path": "code",
+   "expect": "DO",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Georgia"
+   ],
+   "path": "code",
+   "expect": "GE",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "South Korea"
+   ],
+   "path": "code",
+   "expect": "KR",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "North Korea"
+   ],
+   "path": "code",
+   "expect": "KP",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Korea"
+   ],
+   "path": "code",
+   "expect": "KR",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Sudan"
+   ],
+   "path": "code",
+   "expect": "SD",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "South Sudan"
+   ],
+   "path": "code",
+   "expect": "SS",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Austria"
+   ],
+   "path": "code",
+   "expect": "AT",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Australia"
+   ],
+   "path": "code",
+   "expect": "AU",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Iceland"
+   ],
+   "path": "code",
+   "expect": "IS",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Ireland"
+   ],
+   "path": "code",
+   "expect": "IE",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Mali"
+   ],
+   "path": "code",
+   "expect": "ML",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Malawi"
+   ],
+   "path": "code",
+   "expect": "MW",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Oman"
+   ],
+   "path": "code",
+   "expect": "OM",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Romania"
+   ],
+   "path": "code",
+   "expect": "RO",
+   "note": "near-name pair must stay apart"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "DD"
+   ],
+   "path": "code",
+   "expect": "DE",
+   "note": "retired code with one successor"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "ZR"
+   ],
+   "path": "code",
+   "expect": "CD",
+   "note": "retired code with one successor"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "BU"
+   ],
+   "path": "code",
+   "expect": "MM",
+   "note": "retired code with one successor"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "TP"
+   ],
+   "path": "code",
+   "expect": "TL",
+   "note": "retired code with one successor"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "DD"
+   ],
+   "path": "matchedBy",
+   "expect": "retired"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Congo"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Atlantis"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    ""
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "   "
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "XX"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Europe"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "CS"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "YU"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "Nigerie"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "123456"
+   ],
+   "expect": null,
+   "note": "must stay unresolved"
+  },
+  {
+   "fn": "getSuccessorCodes",
+   "args": [
+    "CS"
+   ],
+   "expect": [
+    "RS",
+    "ME"
+   ]
+  },
+  {
+   "fn": "getSuccessorCodes",
+   "args": [
+    "UK"
+   ],
+   "expect": [
+    "GB"
+   ]
+  },
+  {
+   "fn": "normalizeCountryCode",
+   "args": [
+    " de "
+   ],
+   "expect": "DE"
+  },
+  {
+   "fn": "normalizeCountryCode",
+   "args": [
+    "UK"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "isCountryCode",
+   "args": [
+    "DE"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isCountryCode",
+   "args": [
+    "de"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "getCountryName",
+   "args": [
+    "DE",
+    "de"
+   ],
+   "expect": "Deutschland"
+  },
+  {
+   "fn": "getCountryName",
+   "args": [
+    "DE",
+    "de-CH"
+   ],
+   "expect": "Deutschland"
+  },
+  {
+   "fn": "getCountryName",
+   "args": [
+    "CH",
+    "fr"
+   ],
+   "expect": "Suisse"
+  },
+  {
+   "fn": "getCountryName",
+   "args": [
+    "XK",
+    "en"
+   ],
+   "expect": "Kosovo"
+  },
+  {
+   "fn": "getCountryName",
+   "args": [
+    "CD",
+    "en"
+   ],
+   "expect": "Democratic Republic of the Congo"
+  },
+  {
+   "fn": "getCountryName",
+   "args": [
+    "DE",
+    "ja"
+   ],
+   "expect": "Germany",
+   "note": "unbundled locale falls back to English"
+  },
+  {
+   "fn": "formatCountry",
+   "args": [
+    "DE",
+    {
+     "withCode": true
+    }
+   ],
+   "expect": "Germany (DE)"
+  },
+  {
+   "fn": "formatCountry",
+   "args": [
+    "DE",
+    {
+     "upperCase": true
+    }
+   ],
+   "expect": "GERMANY"
+  },
+  {
+   "fn": "formatCountry",
+   "args": [
+    "de",
+    {
+     "locale": "de",
+     "withCode": true
+    }
+   ],
+   "expect": "Deutschland (DE)"
+  },
+  {
+   "fn": "getCurrency",
+   "args": [
+    "BG"
+   ],
+   "expect": "EUR"
+  },
+  {
+   "fn": "getCurrency",
+   "args": [
+    "CH"
+   ],
+   "expect": "CHF"
+  },
+  {
+   "fn": "getCurrencies",
+   "args": [
+    "BG",
+    {
+     "at": "2025-06-01"
+    }
+   ],
+   "path": "[].code",
+   "expect": [
+    "BGN"
+   ]
+  },
+  {
+   "fn": "getCallingCode",
+   "args": [
+    "XK"
+   ],
+   "expect": "383"
+  },
+  {
+   "fn": "getCallingCode",
+   "args": [
+    "DE"
+   ],
+   "expect": "49"
+  },
+  {
+   "fn": "getFlagEmoji",
+   "args": [
+    "DE"
+   ],
+   "expect": "🇩🇪"
+  },
+  {
+   "fn": "getDemonym",
+   "args": [
+    "DE"
+   ],
+   "expect": "German"
+  },
+  {
+   "fn": "getWeekStart",
+   "args": [
+    "US"
+   ],
+   "expect": "sun"
+  },
+  {
+   "fn": "getMeasurementSystem",
+   "args": [
+    "US"
+   ],
+   "expect": "US"
+  },
+  {
+   "fn": "suggestCountries",
+   "args": [
+    "Germnay"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "DE"
+   ],
+   "note": "typo with swapped letters"
+  },
+  {
+   "fn": "suggestCountries",
+   "args": [
+    "Congo"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "CD",
+    "CG"
+   ],
+   "note": "ambiguous name: both candidates"
+  },
+  {
+   "fn": "suggestCountries",
+   "args": [
+    "Swizerland"
+   ],
+   "path": "[].code",
+   "op": "includesAll",
+   "expect": [
+    "CH"
+   ]
+  }
+ ]
+}

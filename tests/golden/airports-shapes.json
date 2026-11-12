@@ -1,0 +1,146 @@
+{
+ "description": "Airports and point-in-polygon lookups.",
+ "cases": [
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "FRA"
+   ],
+   "path": "icao",
+   "expect": "EDDF"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "ZRH"
+   ],
+   "path": "country",
+   "expect": "CH"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "zrh"
+   ],
+   "path": "timezone",
+   "expect": "Europe/Zurich"
+  },
+  {
+   "fn": "getAirportByIcao",
+   "args": [
+    "EGLL"
+   ],
+   "path": "iata",
+   "expect": "LHR"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "MUC"
+   ],
+   "path": "cityId",
+   "expect": 2867714,
+   "note": "Munich airport serves Munich"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "XXX"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "searchAirports",
+   "args": [
+    "Heathrow",
+    {
+     "limit": 1
+    }
+   ],
+   "path": "[].iata",
+   "expect": [
+    "LHR"
+   ]
+  },
+  {
+   "fn": "listAirports",
+   "args": [
+    "LI"
+   ],
+   "path": "length",
+   "op": "lte",
+   "expect": 2
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    47.56,
+    7.59
+   ],
+   "expect": "CH",
+   "note": "Basel, next to FR and DE"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    48.5734,
+    7.7521
+   ],
+   "expect": "FR",
+   "note": "Strasbourg, next to DE"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    42.6629,
+    21.1655
+   ],
+   "expect": "XK",
+   "note": "Pristina"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    52.52,
+    13.405
+   ],
+   "expect": "DE"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    0,
+    -30
+   ],
+   "expect": null,
+   "note": "Atlantic Ocean"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    48.137,
+    11.575
+   ],
+   "path": "subdivision.iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    34.05,
+    -118.24
+   ],
+   "path": "iso",
+   "expect": "US-CA"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    47.37,
+    8.54
+   ],
+   "path": "iso",
+   "expect": "CH-ZH"
+  }
+ ]
+}

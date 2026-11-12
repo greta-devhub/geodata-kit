@@ -1,0 +1,86 @@
+{
+  "_comment": "Business and regional country groups. Geographic groups (continents, UN M49 regions) are generated from GeoNames and CLDR; political groups with dates live in memberships.json. Business groups have no single authority: each lists its definition so users can judge it, and expandGroups(['cee', 'AT']) adds anything a team counts differently.",
+  "groups": [
+    {
+      "slug": "dach",
+      "name": "DACH",
+      "definition": "German-speaking core of Europe: Germany (D), Austria (A), Switzerland (CH), plus Liechtenstein.",
+      "members": ["DE", "AT", "CH", "LI"]
+    },
+    {
+      "slug": "benelux",
+      "name": "Benelux",
+      "definition": "Benelux Union members.",
+      "members": ["BE", "NL", "LU"]
+    },
+    {
+      "slug": "nordic",
+      "name": "Nordic countries",
+      "definition": "Nordic Council: Denmark, Finland, Iceland, Norway, Sweden and the autonomous Faroe Islands, Greenland and Åland.",
+      "members": ["DK", "FI", "IS", "NO", "SE", "FO", "GL", "AX"]
+    },
+    {
+      "slug": "baltic",
+      "name": "Baltic states",
+      "definition": "Estonia, Latvia, Lithuania.",
+      "members": ["EE", "LV", "LT"]
+    },
+    {
+      "slug": "cee",
+      "name": "Central and Eastern Europe (CEE)",
+      "definition": "Former Eastern Bloc and Yugoslav states in Europe (OECD-style CEE), plus Ukraine, Belarus and Moldova.",
+      "members": ["AL", "BA", "BG", "BY", "CZ", "EE", "HR", "HU", "LT", "LV", "MD", "ME", "MK", "PL", "RO", "RS", "SI", "SK", "UA", "XK"]
+    },
+    {
+      "slug": "eastern_europe",
+      "name": "Eastern Europe (broad)",
+      "definition": "Broad business definition: UN M49 Eastern Europe, the Baltic states, the Balkans and the South Caucasus.",
+      "members": ["AL", "AM", "AZ", "BA", "BG", "BY", "CZ", "EE", "GE", "HR", "HU", "LT", "LV", "MD", "ME", "MK", "PL", "RO", "RS", "RU", "SI", "SK", "UA", "XK"]
+    },
+    {
+      "slug": "emea",
+      "name": "EMEA",
+      "definition": "Europe, the Middle East and Africa: UN M49 Europe, Africa and Western Asia, plus Kosovo and Iran.",
+      "fromM49": ["150", "002", "145"],
+      "members": ["XK", "IR"]
+    },
+    {
+      "slug": "mena",
+      "name": "MENA",
+      "definition": "Middle East and North Africa (World Bank region).",
+      "members": ["AE", "BH", "DJ", "DZ", "EG", "IL", "IQ", "IR", "JO", "KW", "LB", "LY", "MA", "MT", "OM", "PS", "QA", "SA", "SY", "TN", "YE"]
+    },
+    {
+      "slug": "apac",
+      "name": "Asia-Pacific (APAC)",
+      "definition": "UN M49 Eastern, South-eastern and Southern Asia and Oceania, without Iran (counted in MENA).",
+      "fromM49": ["030", "035", "034", "009"],
+      "exclude": ["IR"]
+    },
+    {
+      "slug": "north_america",
+      "name": "North America (business)",
+      "definition": "UN M49 Northern America plus Mexico (NAFTA/USMCA area).",
+      "fromM49": ["021"],
+      "members": ["MX"]
+    },
+    {
+      "slug": "latin_america",
+      "name": "Latin America and the Caribbean",
+      "definition": "UN M49 Latin America and the Caribbean (419).",
+      "fromM49": ["419"]
+    },
+    {
+      "slug": "caribbean",
+      "name": "Caribbean",
+      "definition": "UN M49 Caribbean (029).",
+      "fromM49": ["029"]
+    },
+    {
+      "slug": "central_asia",
+      "name": "Central Asia",
+      "definition": "UN M49 Central Asia (143).",
+      "fromM49": ["143"]
+    }
+  ]
+}

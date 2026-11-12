@@ -1,0 +1,91 @@
+# After a merge into main: run every check again, then publish the version in
+# package.json to npm and PyPI if it isn't published yet, tag it and create a
+# GitHub release. A version is done once its tag vX.Y.Z exists, so merges that
+# don't change the version publish nothing.
+#
+# Authentication without stored tokens:
+#   npm  — trusted publishing (npmjs.com → each package → Settings → Trusted publisher: this repo,
+#          workflow "release.yml", environment "release", with direct publish allowed). npm can only
+#          set this up for existing packages, so version 0.1.0 is published once by hand (README,
+#          "One-time setup").
+#   PyPI — trusted publishing (add a "pending publisher" on pypi.org for geodata-kit,
+#          geodata-kit-localities and geodata-kit-postal: this repo, workflow "release.yml", environment "release").
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    name: Publish
+    needs: checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment: release
+    permissions:
+      contents: write   # tag and GitHub release
+      id-token: write   # npm and PyPI trusted publishing, provenance
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.14
+          cache: npm
+      # Trusted publishing needs npm 11.5.1+, staged publishing and `npm trust` 11.15.0+.
+      - run: npm install -g npm@^11.15.0
+      - run: npm ci
+      - run: npm run emit
+      - run: npm run build --workspaces
+
+      - name: Publish to npm (versions not on npm yet)
+        id: npm
+        run: npm run release:publish-npm
+
+      # A version counts as released once its git tag exists. This also covers the first
+      # release, whose npm packages are published by hand before CI can publish them.
+      - name: Is this version released?
+        id: tag
+        run: |
+          if git rev-parse -q --verify "refs/tags/v${{ steps.npm.outputs.version }}" >/dev/null; then echo "released=true" >> "$GITHUB_OUTPUT"; else echo "released=false" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: astral-sh/setup-uv@v6
+        if: steps.tag.outputs.released == 'false'
+      - name: Build Python distributions
+        if: steps.tag.outputs.released == 'false'
+        working-directory: python
+        run: |
+          rm -rf dist
+          uv build --out-dir dist
+          (cd extras/geodata_kit_localities && uv build --out-dir ../../dist)
+          (cd extras/geodata_kit_postal && uv build --out-dir ../../dist)
+      - name: Publish to PyPI
+        if: steps.tag.outputs.released == 'false'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: python/dist
+          skip-existing: true
+
+      - name: Tag and GitHub release
+        if: steps.tag.outputs.released == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.npm.outputs.version }}
+        run: |
+          npx tsx scripts/release/release-notes.ts > release-notes.md
+          git tag "v$VERSION"
+          git push origin "v$VERSION"
+          gh release create "v$VERSION" --title "v$VERSION" --notes-file release-notes.md

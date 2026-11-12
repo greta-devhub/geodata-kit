@@ -1,0 +1,1454 @@
+{
+ "description": "Subdivisions (GeoNames admin1–4, ISO 3166-2).",
+ "cases": [
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AL",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Alabama",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AK",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AK"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Alaska",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AK"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AZ",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AZ"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Arizona",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AZ"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AR",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Arkansas",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-AR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "CA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-CA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "California",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-CA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "CO",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-CO"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Colorado",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-CO"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "CT",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-CT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Connecticut",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-CT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "DE",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-DE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Delaware",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-DE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "DC",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-DC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "District of Columbia",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-DC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "FL",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-FL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Florida",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-FL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "GA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-GA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Georgia",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-GA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "HI",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-HI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Hawaii",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-HI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "ID",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-ID"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Idaho",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-ID"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "IL",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-IL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Illinois",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-IL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "IN",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-IN"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Indiana",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-IN"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "IA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-IA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Iowa",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-IA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "KS",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-KS"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Kansas",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-KS"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "KY",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-KY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Kentucky",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-KY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "LA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-LA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Louisiana",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-LA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "ME",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-ME"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Maine",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-ME"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MD",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MD"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Maryland",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MD"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Massachusetts",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MI",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Michigan",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MN",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MN"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Minnesota",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MN"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MS",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MS"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Mississippi",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MS"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MO",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MO"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Missouri",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MO"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "MT",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Montana",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-MT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NE",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Nebraska",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NV",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NV"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Nevada",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NV"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NH",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "New Hampshire",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NJ",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NJ"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "New Jersey",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NJ"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NM",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NM"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "New Mexico",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NM"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NY",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "New York",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NC",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "North Carolina",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-NC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "ND",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-ND"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "North Dakota",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-ND"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "OH",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-OH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Ohio",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-OH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "OK",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-OK"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Oklahoma",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-OK"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "OR",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-OR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Oregon",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-OR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "PA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-PA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Pennsylvania",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-PA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "RI",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-RI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Rhode Island",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-RI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "SC",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-SC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "South Carolina",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-SC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "SD",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-SD"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "South Dakota",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-SD"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "TN",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-TN"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Tennessee",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-TN"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "TX",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-TX"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Texas",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-TX"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "UT",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-UT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Utah",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-UT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "VT",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-VT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Vermont",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-VT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "VA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-VA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Virginia",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-VA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "WA",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Washington",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WA"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "WV",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WV"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "West Virginia",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WV"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "WI",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Wisconsin",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "WY",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Wyoming",
+    "US"
+   ],
+   "path": "iso",
+   "expect": "US-WY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AG",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-AG"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AI",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-AI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "AR",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-AR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "BE",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-BE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "BL",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-BL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "BS",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-BS"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "FR",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-FR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "GE",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-GE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "GL",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-GL"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "GR",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-GR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "JU",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-JU"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "LU",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-LU"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NE",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-NE"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NW",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-NW"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "OW",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-OW"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "SG",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-SG"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "SH",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-SH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "SO",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-SO"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "SZ",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-SZ"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "TG",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-TG"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "TI",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-TI"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "UR",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-UR"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "VD",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-VD"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "VS",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-VS"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "ZG",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-ZG"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "ZH",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-ZH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Bavaria",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Bayern",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "BY",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "DE-BY",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Freistaat Bayern",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "bayern",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Baden-Württemberg",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BW"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Baden-Wurttemberg",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-BW"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "NRW",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-NW",
+   "note": "common abbreviation"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Nordrhein-Westfalen",
+    "DE"
+   ],
+   "path": "iso",
+   "expect": "DE-NW"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Kanton Zürich",
+    "CH"
+   ],
+   "path": "iso",
+   "expect": "CH-ZH"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Tirol",
+    "AT"
+   ],
+   "path": "iso",
+   "expect": "AT-7"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Catalunya",
+    "ES"
+   ],
+   "path": "iso",
+   "expect": "ES-CT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Québec",
+    "CA"
+   ],
+   "path": "iso",
+   "expect": "CA-QC"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "ON",
+    "CA"
+   ],
+   "path": "iso",
+   "expect": "CA-ON"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Scotland",
+    "GB"
+   ],
+   "path": "iso",
+   "expect": "GB-SCT"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "DE-BY"
+   ],
+   "path": "name",
+   "expect": "Bavaria"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Bayern"
+   ],
+   "expect": null,
+   "note": "names need a country"
+  },
+  {
+   "fn": "resolveSubdivision",
+   "args": [
+    "Atlantis",
+    "DE"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "getSubdivision",
+   "args": [
+    "DE-BY"
+   ],
+   "path": "code",
+   "expect": "02"
+  },
+  {
+   "fn": "getSubdivision",
+   "args": [
+    "DE.02"
+   ],
+   "path": "iso",
+   "expect": "DE-BY"
+  },
+  {
+   "fn": "isSubdivisionCode",
+   "args": [
+    "DE-BY"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isSubdivisionCode",
+   "args": [
+    "FR-75C"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isSubdivisionCode",
+   "args": [
+    "DE-XX"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "getSubdivisionName",
+   "args": [
+    "FR-75C"
+   ],
+   "expect": "Paris"
+  },
+  {
+   "fn": "listSubdivisions",
+   "args": [
+    "DE"
+   ],
+   "path": "length",
+   "expect": 16
+  },
+  {
+   "fn": "listSubdivisions",
+   "args": [
+    "US"
+   ],
+   "path": "length",
+   "expect": 51
+  },
+  {
+   "fn": "listSubdivisions",
+   "args": [
+    "CH"
+   ],
+   "path": "length",
+   "expect": 26
+  },
+  {
+   "fn": "findSubdivision",
+   "args": [
+    "Oberbayern",
+    "DE"
+   ],
+   "path": "level",
+   "expect": 2,
+   "note": "level-2 name in German via alternate names? falls back to English name"
+  },
+  {
+   "fn": "findSubdivision",
+   "args": [
+    "Upper Bavaria",
+    "DE"
+   ],
+   "path": "path",
+   "expect": "02.091"
+  },
+  {
+   "fn": "findSubdivision",
+   "args": [
+    "Landkreis München",
+    "DE"
+   ],
+   "path": "path",
+   "expect": "02.091.09184"
+  },
+  {
+   "fn": "loadSubdivisions",
+   "args": [
+    "DE",
+    {
+     "level": 3,
+     "parent": "DE-BY"
+    }
+   ],
+   "path": "length",
+   "op": "gte",
+   "expect": 70
+  },
+  {
+   "fn": "getSubdivisionChain",
+   "args": [
+    {
+     "country": "DE",
+     "admin1": "02",
+     "admin2": "091",
+     "admin3": "09184",
+     "admin4": "09184148"
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Bavaria",
+    "Upper Bavaria",
+    "Landkreis München",
+    "Unterhaching"
+   ]
+  }
+ ]
+}

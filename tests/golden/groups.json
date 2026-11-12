@@ -1,0 +1,598 @@
+{
+ "description": "Country groups. Project memberships must be contained in the package groups (business groups may be wider).",
+ "cases": [
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "dach"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "DE",
+    "AT",
+    "CH",
+    "LI"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "benelux"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "BE",
+    "NL",
+    "LU"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "nordic"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "DK",
+    "FI",
+    "IS",
+    "NO",
+    "SE"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "baltic"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "EE",
+    "LV",
+    "LT"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "eastern_europe"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "PL",
+    "CZ",
+    "SK",
+    "HU",
+    "RO",
+    "BG",
+    "HR",
+    "SI",
+    "EE",
+    "LV",
+    "LT",
+    "UA",
+    "BY",
+    "MD",
+    "RS",
+    "XK",
+    "BA",
+    "AL",
+    "MK",
+    "GE",
+    "ME"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "north_america"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "US",
+    "CA",
+    "MX"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "latin_america"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "MX",
+    "BR",
+    "AR",
+    "CL",
+    "CO",
+    "PE",
+    "VE",
+    "BO",
+    "PY",
+    "CR",
+    "CU",
+    "DO",
+    "EC",
+    "GT",
+    "HN",
+    "NI",
+    "PA",
+    "SV",
+    "UY",
+    "BZ",
+    "PR"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "emea"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "IS",
+    "LI",
+    "NO",
+    "CH",
+    "GB",
+    "UA",
+    "BY",
+    "MD",
+    "RS",
+    "XK",
+    "BA",
+    "AL",
+    "MK",
+    "GE",
+    "TR",
+    "IL",
+    "AE",
+    "SA",
+    "QA",
+    "IQ",
+    "LB",
+    "EG",
+    "ZA",
+    "NG",
+    "KE",
+    "GH",
+    "MA",
+    "TN",
+    "DZ",
+    "ET",
+    "RW",
+    "UG",
+    "TZ",
+    "AO",
+    "CV",
+    "MZ",
+    "SD",
+    "AM",
+    "BH",
+    "GG",
+    "GI",
+    "IM",
+    "JO",
+    "KM",
+    "ME",
+    "OM",
+    "SC",
+    "TG",
+    "BI",
+    "BJ",
+    "CD",
+    "CG",
+    "CM",
+    "EH",
+    "IR",
+    "KW",
+    "ML",
+    "MR",
+    "NA",
+    "PS",
+    "SL",
+    "SN",
+    "TD",
+    "ZM"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "cee"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "AL",
+    "BA",
+    "BG",
+    "BY",
+    "CZ",
+    "EE",
+    "HR",
+    "HU",
+    "LT",
+    "LV",
+    "MD",
+    "MK",
+    "PL",
+    "RO",
+    "RS",
+    "SI",
+    "SK",
+    "UA",
+    "XK",
+    "ME"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "eu"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "eea"
+   ],
+   "op": "includesAll",
+   "expect": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "IS",
+    "LI",
+    "NO"
+   ],
+   "note": "every member our project uses is in the group"
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "eu"
+   ],
+   "op": "sameMembers",
+   "expect": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE"
+   ]
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "eea"
+   ],
+   "op": "sameMembers",
+   "expect": [
+    "AT",
+    "BE",
+    "BG",
+    "HR",
+    "CY",
+    "CZ",
+    "DK",
+    "EE",
+    "FI",
+    "FR",
+    "DE",
+    "GR",
+    "HU",
+    "IE",
+    "IT",
+    "LV",
+    "LT",
+    "LU",
+    "MT",
+    "NL",
+    "PL",
+    "PT",
+    "RO",
+    "SK",
+    "SI",
+    "ES",
+    "SE",
+    "IS",
+    "LI",
+    "NO"
+   ]
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "dach"
+   ],
+   "op": "sameMembers",
+   "expect": [
+    "DE",
+    "AT",
+    "CH",
+    "LI"
+   ]
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "GB",
+    "eu",
+    {
+     "at": "2019-01-01"
+    }
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "GB",
+    "eu",
+    {
+     "at": "2021-01-01"
+    }
+   ],
+   "expect": false
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "BG",
+    "eurozone",
+    {
+     "at": "2025-12-31"
+    }
+   ],
+   "expect": false
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "BG",
+    "eurozone",
+    {
+     "at": "2026-01-01"
+    }
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "HR",
+    "schengen",
+    {
+     "at": "2022-06-01"
+    }
+   ],
+   "expect": false
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "CH",
+    "schengen"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isInGroup",
+   "args": [
+    "CH",
+    "eu"
+   ],
+   "expect": false
+  },
+  {
+   "fn": "expandGroups",
+   "args": [
+    [
+     "dach",
+     "FR",
+     "Polska"
+    ]
+   ],
+   "expect": [
+    "AT",
+    "CH",
+    "DE",
+    "LI",
+    "FR",
+    "PL"
+   ],
+   "note": "group members in code order, then the other items in input order"
+  },
+  {
+   "fn": "expandGroups",
+   "args": [
+    [
+     "cee",
+     "AT"
+    ]
+   ],
+   "op": "includesAll",
+   "expect": [
+    "AT",
+    "PL",
+    "CZ"
+   ],
+   "note": "a team that counts Austria in CEE adds it explicitly"
+  },
+  {
+   "fn": "getContinent",
+   "args": [
+    "DE"
+   ],
+   "path": "code",
+   "expect": "EU"
+  },
+  {
+   "fn": "getM49Region",
+   "args": [
+    "DE"
+   ],
+   "path": "subregion.name",
+   "expect": "Western Europe"
+  },
+  {
+   "fn": "getM49Region",
+   "args": [
+    "BR"
+   ],
+   "path": "groupings.[].code",
+   "expect": [
+    "419"
+   ]
+  },
+  {
+   "fn": "getCountriesInGroup",
+   "args": [
+    "un_western_europe"
+   ],
+   "op": "sameMembers",
+   "expect": [
+    "AT",
+    "BE",
+    "CH",
+    "DE",
+    "FR",
+    "LI",
+    "LU",
+    "MC",
+    "NL"
+   ]
+  },
+  {
+   "fn": "getGroupsOfCountry",
+   "args": [
+    "DE",
+    {
+     "kind": "political"
+    }
+   ],
+   "path": "[].slug",
+   "op": "sameMembers",
+   "expect": [
+    "eu",
+    "eurozone",
+    "schengen",
+    "eea"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1186 @@
+{
+ "description": "Cities, location parsing and city timezones. Includes the cases the city-timezones package missed.",
+ "cases": [
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "München",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin",
+   "note": "missed by city-timezones (native name)"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "München",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Munich",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Munich",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Muenchen",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Muenchen",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Köln",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin",
+   "note": "missed by city-timezones"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Köln",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Cologne",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Cologne",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Zürich",
+     "country": "CH"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Zurich"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Zürich",
+     "country": "CH"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Zurich",
+     "country": "CH"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Zurich",
+   "note": "missed by city-timezones (ASCII name)"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Zurich",
+     "country": "CH"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin, Germany",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin",
+   "note": "primary_location format in project data"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin, Germany",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin, Germany"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin",
+   "note": "country taken from the text"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin, Germany"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Birmingham",
+     "country": "GB"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/London"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Birmingham",
+     "country": "GB"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Birmingham",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Chicago",
+   "note": "Birmingham, Alabama is the biggest US Birmingham"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Birmingham",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Birmingham",
+     "subdivision": "MI",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Detroit"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Birmingham",
+     "subdivision": "MI",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Pristina",
+     "country": "XK"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Belgrade",
+   "note": "Kosovo: no data in city-timezones"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Pristina",
+     "country": "XK"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Prishtina",
+     "country": "XK"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Belgrade"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Prishtina",
+     "country": "XK"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "St Helier",
+     "country": "JE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Jersey",
+   "note": "Jersey: no data in city-timezones"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "St Helier",
+     "country": "JE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Saint Helier",
+     "country": "JE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Jersey"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Saint Helier",
+     "country": "JE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Büsingen am Hochrhein",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Busingen",
+   "note": "German exclave with its own zone"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Büsingen am Hochrhein",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Phoenix",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Phoenix"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Phoenix",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Indianapolis",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Indiana/Indianapolis"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Indianapolis",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Springfield",
+     "subdivision": "US-MO",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Chicago"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Springfield",
+     "subdivision": "US-MO",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Nowhereville",
+     "subdivision": "CA",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Los_Angeles",
+   "note": "unknown town: biggest city of the state"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Nowhereville",
+     "subdivision": "CA",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "subdivision"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Nowhereville",
+     "subdivision": "Texas",
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Chicago"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Nowhereville",
+     "subdivision": "Texas",
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "subdivision"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "country": "US"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/New_York"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "country": "US"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "country"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "country"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "country": "Germany"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "country": "Germany"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "country"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Sydney",
+     "country": "AU"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Australia/Sydney"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Sydney",
+     "country": "AU"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Perth",
+     "country": "AU"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Australia/Perth"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Perth",
+     "country": "AU"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Perth",
+     "country": "GB"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/London"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Perth",
+     "country": "GB"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Vancouver",
+     "country": "CA"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Vancouver"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Vancouver",
+     "country": "CA"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "São Paulo",
+     "country": "BR"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Sao_Paulo"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "São Paulo",
+     "country": "BR"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Sao Paulo",
+     "country": "BR"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Sao_Paulo"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Sao Paulo",
+     "country": "BR"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Manaus",
+     "country": "BR"
+    }
+   ],
+   "path": "timezone",
+   "expect": "America/Manaus"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Manaus",
+     "country": "BR"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Wien",
+     "country": "AT"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Vienna"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Wien",
+     "country": "AT"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Genf",
+     "country": "CH"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Zurich"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Genf",
+     "country": "CH"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Den Haag",
+     "country": "NL"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Amsterdam"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Den Haag",
+     "country": "NL"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "80331 München",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin",
+   "note": "postal code before the city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "80331 München",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Frankfurt am Main",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Frankfurt am Main",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "city"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin"
+    }
+   ],
+   "expect": null,
+   "note": "no country, none in the text"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin",
+     "country": "Atlantis"
+    }
+   ],
+   "expect": null
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "München",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "geonameId",
+   "expect": 2867714
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Springfield",
+    {
+     "country": "US",
+     "subdivision": "Missouri"
+    }
+   ],
+   "path": "admin1",
+   "expect": "MO"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Springfield",
+    {
+     "country": "US",
+     "subdivision": "IL"
+    }
+   ],
+   "path": "admin1",
+   "expect": "IL"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Paris",
+    {
+     "country": "FR"
+    }
+   ],
+   "path": "featureCode",
+   "expect": "PPLC"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Paris",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "admin1",
+   "expect": "TX",
+   "note": "Paris, Texas is the biggest US Paris"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Munich",
+    {
+     "country": "DE",
+     "tier": 15000
+    }
+   ],
+   "path": "tier",
+   "expect": 15000
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Atlantis",
+    {
+     "country": "DE"
+    }
+   ],
+   "expect": null
+  },
+  {
+   "fn": "getCityByUnlocode",
+   "args": [
+    "DEHAM"
+   ],
+   "path": "name",
+   "expect": "Hamburg"
+  },
+  {
+   "fn": "getPlaceByWikidataId",
+   "args": [
+    "Q64"
+   ],
+   "path": "name",
+   "expect": "Berlin"
+  },
+  {
+   "fn": "getCity",
+   "args": [
+    2950159
+   ],
+   "path": "name",
+   "expect": "Berlin"
+  },
+  {
+   "fn": "searchCities",
+   "args": [
+    "Muni",
+    {
+     "country": "DE",
+     "limit": 1
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Munich"
+   ]
+  },
+  {
+   "fn": "searchCities",
+   "args": [
+    "Zur",
+    {
+     "country": "CH",
+     "limit": 1
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Zürich"
+   ]
+  },
+  {
+   "fn": "listCities",
+   "args": [
+    {
+     "country": "LI",
+     "tier": 15000
+    }
+   ],
+   "path": "length",
+   "op": "lte",
+   "expect": 2
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Berlin, Germany"
+   ],
+   "path": "city.name",
+   "expect": "Berlin"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Berlin, Germany"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "München (DE)"
+   ],
+   "path": "city.name",
+   "expect": "Munich"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "San Francisco, CA"
+   ],
+   "path": "city.admin1",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "San Francisco, CA"
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Austin, TX, USA"
+   ],
+   "path": "subdivision.iso",
+   "expect": "US-TX"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Zürich Switzerland"
+   ],
+   "path": "city.name",
+   "expect": "Zürich"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "80331 München, Deutschland"
+   ],
+   "path": "city.name",
+   "expect": "Munich"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Toronto, Ontario, Canada"
+   ],
+   "path": "subdivision.iso",
+   "expect": "CA-ON"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Germany"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Germany"
+   ],
+   "path": "city",
+   "expect": null
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Graz",
+    {
+     "country": "AT"
+    }
+   ],
+   "path": "city.name",
+   "expect": "Graz"
+  },
+  {
+   "fn": "findNearestCities",
+   "args": [
+    48.137,
+    11.575,
+    {
+     "limit": 1
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Munich"
+   ]
+  },
+  {
+   "fn": "findNearestCities",
+   "args": [
+    47.5596,
+    7.5886,
+    {
+     "country": "CH",
+     "limit": 1
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Basel"
+   ]
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Wollbach bei Bad Kissingen",
+    {
+     "country": "DE"
+    }
+   ],
+   "expect": null,
+   "note": "village not in cities500"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Wollbach bei Bad Kissingen",
+    {
+     "country": "DE",
+     "tier": "all"
+    }
+   ],
+   "path": "kind",
+   "expect": "locality",
+   "note": "found with geodata-kit-localities"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Wollbach bei Bad Kissingen",
+     "country": "DE"
+    }
+   ],
+   "path": "matchedBy",
+   "expect": "locality"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Schwabing",
+    {
+     "country": "DE",
+     "tier": "all"
+    }
+   ],
+   "path": "parentId",
+   "expect": 2867714,
+   "note": "Munich district links to Munich"
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Schwabing",
+     "country": "DE"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin"
+  },
+  {
+   "fn": "hasLocalities",
+   "args": [],
+   "expect": true
+  }
+ ]
+}

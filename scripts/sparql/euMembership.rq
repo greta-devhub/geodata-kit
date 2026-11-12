@@ -1,0 +1,8 @@
+# EU membership (P463 = European Union, Q458) with start and end dates.
+# Only a cross-check for the curated table in overlays/memberships.json.
+SELECT ?country ?start ?end WHERE {
+  ?item wdt:P297 ?country ; p:P463 ?statement .
+  ?statement ps:P463 wd:Q458 .
+  OPTIONAL { ?statement pq:P580 ?start . }
+  OPTIONAL { ?statement pq:P582 ?end . }
+}

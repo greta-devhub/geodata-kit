@@ -1,0 +1,2514 @@
+{
+ "source": "Wikidata (wikidata.org), CC0 1.0",
+ "query": "scripts/sparql/countryFacts.rq",
+ "retrieved": "2026-11-12",
+ "rows": [
+  {
+   "country": "AC",
+   "item": "Q31890709",
+   "callingCode": "+247",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AD",
+   "item": "Q228",
+   "demonym": "Andorran",
+   "callingCode": "+376",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AE",
+   "item": "Q878",
+   "demonym": "Emirati",
+   "callingCode": "+971",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AE",
+   "item": "Q878",
+   "demonym": "Emiri",
+   "callingCode": "+971",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AE",
+   "item": "Q878",
+   "demonym": "Emirian",
+   "callingCode": "+971",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AF",
+   "item": "Q889",
+   "demonym": "Afghan",
+   "callingCode": "+93",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AG",
+   "item": "Q781",
+   "demonym": "Antigua and Barbuda",
+   "callingCode": "+1268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AG",
+   "item": "Q781",
+   "demonym": "Antiguan",
+   "callingCode": "+1268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AG",
+   "item": "Q781",
+   "demonym": "Barbudan",
+   "callingCode": "+1268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AI",
+   "item": "Q25228",
+   "demonym": "Anguillan",
+   "callingCode": "+1264",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AL",
+   "item": "Q222",
+   "demonym": "Albanian",
+   "callingCode": "+355",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AL",
+   "item": "Q222",
+   "demonym": "Albanians",
+   "callingCode": "+355",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AM",
+   "item": "Q399",
+   "demonym": "Armenian",
+   "callingCode": "+374",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AO",
+   "item": "Q916",
+   "demonym": "Angolan",
+   "callingCode": "+244",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AQ",
+   "item": "Q10372207",
+   "callingCode": "+672"
+  },
+  {
+   "country": "AQ",
+   "item": "Q51",
+   "demonym": "Antarctican",
+   "callingCode": "+672"
+  },
+  {
+   "country": "AR",
+   "item": "Q414",
+   "demonym": "Argentine",
+   "callingCode": "+54",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AR",
+   "item": "Q414",
+   "demonym": "Argentine",
+   "callingCode": "+54",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AR",
+   "item": "Q414",
+   "demonym": "Argentinian",
+   "callingCode": "+54",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AR",
+   "item": "Q414",
+   "demonym": "Argentinian",
+   "callingCode": "+54",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AS",
+   "item": "Q16641",
+   "demonym": "American Samoan",
+   "callingCode": "+1684",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AT",
+   "item": "Q40",
+   "demonym": "Austrian",
+   "callingCode": "+43",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AU",
+   "item": "Q408",
+   "demonym": "Aussie",
+   "callingCode": "+61",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AU",
+   "item": "Q408",
+   "demonym": "Aussies",
+   "callingCode": "+61",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AU",
+   "item": "Q408",
+   "demonym": "Australian",
+   "callingCode": "+61",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AU",
+   "item": "Q408",
+   "demonym": "Australians",
+   "callingCode": "+61",
+   "drivingSide": "left"
+  },
+  {
+   "country": "AW",
+   "item": "Q21203",
+   "demonym": "Aruban",
+   "callingCode": "+297",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AX",
+   "item": "Q5689",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AZ",
+   "item": "Q227",
+   "demonym": "Azerbaijani",
+   "callingCode": "+994",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AZ",
+   "item": "Q227",
+   "demonym": "Azerbaijanis",
+   "callingCode": "+994",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AZ",
+   "item": "Q227",
+   "demonym": "Azeri",
+   "callingCode": "+994",
+   "drivingSide": "right"
+  },
+  {
+   "country": "AZ",
+   "item": "Q227",
+   "demonym": "Azeris",
+   "callingCode": "+994",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BA",
+   "item": "Q225",
+   "demonym": "Bosnian",
+   "callingCode": "+387",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BA",
+   "item": "Q225",
+   "demonym": "Herzegovinian",
+   "callingCode": "+387",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BB",
+   "item": "Q244",
+   "demonym": "Barbadian",
+   "callingCode": "+1246",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BD",
+   "item": "Q902",
+   "demonym": "Bangladeshi",
+   "callingCode": "+880",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BE",
+   "item": "Q31",
+   "demonym": "Belgian",
+   "callingCode": "+32",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BF",
+   "item": "Q965",
+   "demonym": "Burkinabe",
+   "callingCode": "+226",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BF",
+   "item": "Q965",
+   "demonym": "Burkinabé",
+   "callingCode": "+226",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BF",
+   "item": "Q965",
+   "demonym": "Burkinabè",
+   "callingCode": "+226",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BG",
+   "item": "Q219",
+   "demonym": "Bulgarian",
+   "callingCode": "+359",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BH",
+   "item": "Q398",
+   "demonym": "Bahraini",
+   "callingCode": "+973",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BI",
+   "item": "Q967",
+   "demonym": "Burundian",
+   "callingCode": "+257",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BJ",
+   "item": "Q962",
+   "demonym": "Beninese",
+   "callingCode": "+229",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BL",
+   "item": "Q25362",
+   "callingCode": "+590",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BM",
+   "item": "Q23635",
+   "demonym": "Bermudan",
+   "callingCode": "+1441",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BM",
+   "item": "Q23635",
+   "demonym": "Bermudian",
+   "callingCode": "+1441",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BN",
+   "item": "Q921",
+   "callingCode": "+673",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BO",
+   "item": "Q750",
+   "demonym": "Bolivian",
+   "callingCode": "+591",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BQ",
+   "item": "Q27561",
+   "callingCode": "+599",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BR",
+   "item": "Q155",
+   "demonym": "Brazilian",
+   "callingCode": "+55",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BR",
+   "item": "Q155",
+   "demonym": "Brazilians",
+   "callingCode": "+55",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BS",
+   "item": "Q778",
+   "demonym": "Bahamian",
+   "callingCode": "+1242",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BT",
+   "item": "Q917",
+   "demonym": "Bhutanese",
+   "callingCode": "+975",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BV",
+   "item": "Q23408"
+  },
+  {
+   "country": "BW",
+   "item": "Q963",
+   "demonym": "Batswana",
+   "callingCode": "+267",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BW",
+   "item": "Q963",
+   "demonym": "Botswanan",
+   "callingCode": "+267",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BW",
+   "item": "Q963",
+   "demonym": "Botswanans",
+   "callingCode": "+267",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BW",
+   "item": "Q963",
+   "demonym": "Motswana",
+   "callingCode": "+267",
+   "drivingSide": "left"
+  },
+  {
+   "country": "BY",
+   "item": "Q184",
+   "demonym": "Belarusian",
+   "callingCode": "+375",
+   "drivingSide": "right"
+  },
+  {
+   "country": "BZ",
+   "item": "Q242",
+   "demonym": "Belizean",
+   "callingCode": "+501",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CA",
+   "item": "Q16",
+   "demonym": "Canadian",
+   "callingCode": "+1",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CA",
+   "item": "Q16",
+   "demonym": "Canadians",
+   "callingCode": "+1",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CC",
+   "item": "Q36004",
+   "callingCode": "+61891",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CD",
+   "item": "Q974",
+   "demonym": "Congolese",
+   "callingCode": "+243",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CF",
+   "item": "Q929",
+   "demonym": "Central African",
+   "callingCode": "+236",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CG",
+   "item": "Q971",
+   "demonym": "Congolese",
+   "callingCode": "+242",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CH",
+   "item": "Q39",
+   "demonym": "Swiss",
+   "callingCode": "+41",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CI",
+   "item": "Q1008",
+   "demonym": "Ivoirian",
+   "callingCode": "+225",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CI",
+   "item": "Q1008",
+   "demonym": "Ivorian",
+   "callingCode": "+225",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CK",
+   "item": "Q26988",
+   "demonym": "Cook Islander",
+   "callingCode": "+682",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CL",
+   "item": "Q298",
+   "demonym": "Chilean",
+   "callingCode": "+56",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CM",
+   "item": "Q1009",
+   "demonym": "Cameroonian",
+   "callingCode": "+237",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CN",
+   "item": "Q148",
+   "demonym": "Chinese",
+   "callingCode": "+86",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CO",
+   "item": "Q739",
+   "demonym": "Colombian",
+   "callingCode": "+57",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CP",
+   "item": "Q161258"
+  },
+  {
+   "country": "CQ",
+   "item": "Q3405693",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CR",
+   "item": "Q800",
+   "demonym": "Costa Rican",
+   "callingCode": "+506",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CR",
+   "item": "Q800",
+   "demonym": "Costa Ricans",
+   "callingCode": "+506",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CU",
+   "item": "Q241",
+   "demonym": "Cuban",
+   "callingCode": "+53",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CV",
+   "item": "Q1011",
+   "demonym": "Cabo Verdean",
+   "callingCode": "+238",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CV",
+   "item": "Q1011",
+   "demonym": "Cape Verdean",
+   "callingCode": "+238",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CW",
+   "item": "Q25279",
+   "demonym": "Curaçaoan",
+   "callingCode": "+5999",
+   "drivingSide": "right"
+  },
+  {
+   "country": "CX",
+   "item": "Q31063",
+   "demonym": "Christmas Islander",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CX",
+   "item": "Q31063",
+   "demonym": "Christmas Islanders",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CY",
+   "item": "Q229",
+   "demonym": "Cypriot",
+   "callingCode": "+357",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CY",
+   "item": "Q644636",
+   "callingCode": "+357",
+   "drivingSide": "left"
+  },
+  {
+   "country": "CZ",
+   "item": "Q213",
+   "demonym": "Czech",
+   "callingCode": "+420",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DE",
+   "item": "Q183",
+   "demonym": "German",
+   "callingCode": "+49",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DG",
+   "item": "Q184851",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DJ",
+   "item": "Q977",
+   "demonym": "Djiboutian",
+   "callingCode": "+253",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DK",
+   "item": "Q35",
+   "demonym": "Dane",
+   "callingCode": "+45",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DK",
+   "item": "Q35",
+   "demonym": "Danish",
+   "callingCode": "+45",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DM",
+   "item": "Q784",
+   "demonym": "Dominican",
+   "callingCode": "+1767",
+   "drivingSide": "left"
+  },
+  {
+   "country": "DO",
+   "item": "Q786",
+   "demonym": "Dominican",
+   "callingCode": "+1809",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DO",
+   "item": "Q786",
+   "demonym": "Dominican",
+   "callingCode": "+1829",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DO",
+   "item": "Q786",
+   "demonym": "Dominican",
+   "callingCode": "+1849",
+   "drivingSide": "right"
+  },
+  {
+   "country": "DZ",
+   "item": "Q262",
+   "demonym": "Algerian",
+   "callingCode": "+213",
+   "drivingSide": "right"
+  },
+  {
+   "country": "EC",
+   "item": "Q736",
+   "demonym": "Ecuadoran",
+   "callingCode": "+593",
+   "drivingSide": "right"
+  },
+  {
+   "country": "EC",
+   "item": "Q736",
+   "demonym": "Ecuadorian",
+   "callingCode": "+593",
+   "drivingSide": "right"
+  },
+  {
+   "country": "EE",
+   "item": "Q191",
+   "demonym": "Estonian",
+   "callingCode": "+372",
+   "drivingSide": "right"
+  },
+  {
+   "country": "EG",
+   "item": "Q79",
+   "demonym": "Egyptian",
+   "callingCode": "+20",
+   "drivingSide": "right"
+  },
+  {
+   "country": "EH",
+   "item": "Q6250",
+   "callingCode": "+212",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ER",
+   "item": "Q986",
+   "demonym": "Eritrean",
+   "callingCode": "+291",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ES",
+   "item": "Q29",
+   "demonym": "Spaniard",
+   "callingCode": "+34",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ES",
+   "item": "Q29",
+   "demonym": "Spanish",
+   "callingCode": "+34",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ET",
+   "item": "Q115",
+   "demonym": "Ethiopian",
+   "callingCode": "+251",
+   "drivingSide": "right"
+  },
+  {
+   "country": "FI",
+   "item": "Q33",
+   "demonym": "Finn",
+   "callingCode": "+358",
+   "drivingSide": "right"
+  },
+  {
+   "country": "FI",
+   "item": "Q33",
+   "demonym": "Finnish",
+   "callingCode": "+358",
+   "drivingSide": "right"
+  },
+  {
+   "country": "FJ",
+   "item": "Q712",
+   "demonym": "Fijian",
+   "callingCode": "+679",
+   "drivingSide": "left"
+  },
+  {
+   "country": "FK",
+   "item": "Q9648",
+   "callingCode": "+500",
+   "drivingSide": "left"
+  },
+  {
+   "country": "FM",
+   "item": "Q702",
+   "demonym": "Micronesian",
+   "callingCode": "+691",
+   "drivingSide": "right"
+  },
+  {
+   "country": "FO",
+   "item": "Q4628",
+   "callingCode": "+298",
+   "drivingSide": "right"
+  },
+  {
+   "country": "FR",
+   "item": "Q142",
+   "demonym": "French",
+   "callingCode": "+33",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GA",
+   "item": "Q1000",
+   "demonym": "Gabonese",
+   "callingCode": "+241",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GB",
+   "item": "Q145",
+   "demonym": "British",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "GB",
+   "item": "Q145",
+   "demonym": "Briton",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "GD",
+   "item": "Q769",
+   "demonym": "Grenadian",
+   "callingCode": "+1473",
+   "drivingSide": "left"
+  },
+  {
+   "country": "GE",
+   "item": "Q230",
+   "demonym": "Georgian",
+   "callingCode": "+995",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GF",
+   "item": "Q3769",
+   "demonym": "French Guianese",
+   "callingCode": "+594",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GF",
+   "item": "Q3769",
+   "demonym": "Guianese",
+   "callingCode": "+594",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GG",
+   "item": "Q25230",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "GH",
+   "item": "Q117",
+   "demonym": "Ghanaian",
+   "callingCode": "+233",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GI",
+   "item": "Q1410",
+   "demonym": "Gibraltarian",
+   "callingCode": "+350",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GL",
+   "item": "Q223",
+   "demonym": "Greenlandic",
+   "callingCode": "+299",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GM",
+   "item": "Q1005",
+   "demonym": "Gambian",
+   "callingCode": "+220",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GN",
+   "item": "Q1006",
+   "demonym": "Guinean",
+   "callingCode": "+224",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GP",
+   "item": "Q17012",
+   "demonym": "Guadeloupean",
+   "callingCode": "+590",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GQ",
+   "item": "Q983",
+   "demonym": "Equatoguinean",
+   "callingCode": "+240",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GQ",
+   "item": "Q983",
+   "demonym": "Equatorial Guinean",
+   "callingCode": "+240",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GR",
+   "item": "Q41",
+   "demonym": "Greek",
+   "callingCode": "+30",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GS",
+   "item": "Q35086",
+   "demonym": "South Georgian",
+   "callingCode": "+500",
+   "drivingSide": "left"
+  },
+  {
+   "country": "GS",
+   "item": "Q35086",
+   "demonym": "South Sandwich Islander",
+   "callingCode": "+500",
+   "drivingSide": "left"
+  },
+  {
+   "country": "GT",
+   "item": "Q774",
+   "demonym": "Guatemalan",
+   "callingCode": "+502",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GU",
+   "item": "Q16635",
+   "demonym": "Guamanian",
+   "callingCode": "+1671",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GU",
+   "item": "Q16635",
+   "demonym": "Guamanians",
+   "callingCode": "+1671",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GW",
+   "item": "Q1007",
+   "demonym": "Bissau-Guinean",
+   "callingCode": "+245",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GW",
+   "item": "Q1007",
+   "demonym": "Guinea-Bissauan",
+   "callingCode": "+245",
+   "drivingSide": "right"
+  },
+  {
+   "country": "GY",
+   "item": "Q734",
+   "demonym": "Guyanese",
+   "callingCode": "+592",
+   "drivingSide": "left"
+  },
+  {
+   "country": "HK",
+   "item": "Q8646",
+   "demonym": "Hong Kong people",
+   "callingCode": "+852",
+   "drivingSide": "left"
+  },
+  {
+   "country": "HK",
+   "item": "Q8646",
+   "demonym": "Hong Kong",
+   "callingCode": "+852",
+   "drivingSide": "left"
+  },
+  {
+   "country": "HK",
+   "item": "Q8646",
+   "demonym": "Hongkonger",
+   "callingCode": "+852",
+   "drivingSide": "left"
+  },
+  {
+   "country": "HM",
+   "item": "Q131198",
+   "demonym": "Heard and McDonald Islander"
+  },
+  {
+   "country": "HN",
+   "item": "Q783",
+   "demonym": "Honduran",
+   "callingCode": "+504",
+   "drivingSide": "right"
+  },
+  {
+   "country": "HR",
+   "item": "Q224",
+   "demonym": "Croatian",
+   "callingCode": "+385",
+   "drivingSide": "right"
+  },
+  {
+   "country": "HT",
+   "item": "Q790",
+   "demonym": "Haitian",
+   "callingCode": "+509",
+   "drivingSide": "right"
+  },
+  {
+   "country": "HU",
+   "item": "Q28",
+   "demonym": "Hungarian",
+   "callingCode": "+36",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ID",
+   "item": "Q252",
+   "demonym": "Indonesian",
+   "callingCode": "+62",
+   "drivingSide": "left"
+  },
+  {
+   "country": "IE",
+   "item": "Q27",
+   "demonym": "Irish",
+   "callingCode": "+353",
+   "drivingSide": "left"
+  },
+  {
+   "country": "IL",
+   "item": "Q801",
+   "demonym": "Israeli",
+   "callingCode": "+972",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IL",
+   "item": "Q801",
+   "demonym": "Israelis",
+   "callingCode": "+972",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IM",
+   "item": "Q9676",
+   "demonym": "Manx",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "IN",
+   "item": "Q668",
+   "demonym": "Indian",
+   "callingCode": "+91",
+   "drivingSide": "left"
+  },
+  {
+   "country": "IO",
+   "item": "Q43448",
+   "demonym": "British",
+   "callingCode": "+246",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IQ",
+   "item": "Q796",
+   "demonym": "Iraqi",
+   "callingCode": "+964",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IR",
+   "item": "Q794",
+   "demonym": "Iranian",
+   "callingCode": "+98",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IR",
+   "item": "Q794",
+   "demonym": "Persian",
+   "callingCode": "+98",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IS",
+   "item": "Q189",
+   "callingCode": "+354",
+   "drivingSide": "right"
+  },
+  {
+   "country": "IT",
+   "item": "Q38",
+   "demonym": "Italian",
+   "callingCode": "+39",
+   "drivingSide": "right"
+  },
+  {
+   "country": "JE",
+   "item": "Q785",
+   "demonym": "Islander",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "JE",
+   "item": "Q785",
+   "demonym": "Jersey bean",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "JE",
+   "item": "Q785",
+   "demonym": "Jerseyman",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "JE",
+   "item": "Q785",
+   "demonym": "Jerseywoman",
+   "callingCode": "+44",
+   "drivingSide": "left"
+  },
+  {
+   "country": "JM",
+   "item": "Q766",
+   "demonym": "Jamaican",
+   "callingCode": "+1876",
+   "drivingSide": "left"
+  },
+  {
+   "country": "JO",
+   "item": "Q810",
+   "demonym": "Jordanian",
+   "callingCode": "+962",
+   "drivingSide": "right"
+  },
+  {
+   "country": "JP",
+   "item": "Q17",
+   "demonym": "Japanese",
+   "callingCode": "+81",
+   "drivingSide": "left"
+  },
+  {
+   "country": "KE",
+   "item": "Q114",
+   "demonym": "Kenyan",
+   "callingCode": "+254",
+   "drivingSide": "left"
+  },
+  {
+   "country": "KG",
+   "item": "Q813",
+   "demonym": "Kyrgyz",
+   "callingCode": "+996",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KG",
+   "item": "Q813",
+   "demonym": "Kyrgyzstani",
+   "callingCode": "+996",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KH",
+   "item": "Q424",
+   "demonym": "Cambodian",
+   "callingCode": "+855",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KI",
+   "item": "Q710",
+   "demonym": "I-Kiribati",
+   "callingCode": "+686",
+   "drivingSide": "left"
+  },
+  {
+   "country": "KM",
+   "item": "Q970",
+   "demonym": "Comoran",
+   "callingCode": "+269",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KM",
+   "item": "Q970",
+   "demonym": "Comorans",
+   "callingCode": "+269",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KM",
+   "item": "Q970",
+   "demonym": "Comorian",
+   "callingCode": "+269",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KM",
+   "item": "Q970",
+   "demonym": "Comorians",
+   "callingCode": "+269",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KN",
+   "item": "Q763",
+   "demonym": "Kittitian",
+   "callingCode": "+1869",
+   "drivingSide": "left"
+  },
+  {
+   "country": "KN",
+   "item": "Q763",
+   "demonym": "Nevisian",
+   "callingCode": "+1869",
+   "drivingSide": "left"
+  },
+  {
+   "country": "KP",
+   "item": "Q423",
+   "demonym": "North Korean",
+   "callingCode": "+850",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KR",
+   "item": "Q884",
+   "demonym": "South Korean",
+   "callingCode": "+82",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KW",
+   "item": "Q817",
+   "demonym": "Kuwaiti",
+   "callingCode": "+965",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KY",
+   "item": "Q5785",
+   "demonym": "Caymanian",
+   "callingCode": "+1345",
+   "drivingSide": "left"
+  },
+  {
+   "country": "KZ",
+   "item": "Q232",
+   "demonym": "Kazakh",
+   "callingCode": "+7",
+   "drivingSide": "right"
+  },
+  {
+   "country": "KZ",
+   "item": "Q232",
+   "demonym": "Kazakhstani",
+   "callingCode": "+7",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LA",
+   "item": "Q819",
+   "demonym": "Lao",
+   "callingCode": "+856",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LA",
+   "item": "Q819",
+   "demonym": "Laos",
+   "callingCode": "+856",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LA",
+   "item": "Q819",
+   "demonym": "Laotian",
+   "callingCode": "+856",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LA",
+   "item": "Q819",
+   "demonym": "Laotians",
+   "callingCode": "+856",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LB",
+   "item": "Q822",
+   "demonym": "Lebanese",
+   "callingCode": "+961",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LC",
+   "item": "Q760",
+   "demonym": "Saint Lucian",
+   "callingCode": "+1758",
+   "drivingSide": "left"
+  },
+  {
+   "country": "LI",
+   "item": "Q347",
+   "demonym": "Liechtensteiner",
+   "callingCode": "+423",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LK",
+   "item": "Q854",
+   "demonym": "Sri Lankan",
+   "callingCode": "+94",
+   "drivingSide": "left"
+  },
+  {
+   "country": "LR",
+   "item": "Q1014",
+   "demonym": "Liberian",
+   "callingCode": "+231",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LS",
+   "item": "Q1013",
+   "demonym": "Basotho",
+   "callingCode": "+266",
+   "drivingSide": "left"
+  },
+  {
+   "country": "LS",
+   "item": "Q1013",
+   "demonym": "Mosotho",
+   "callingCode": "+266",
+   "drivingSide": "left"
+  },
+  {
+   "country": "LT",
+   "item": "Q37",
+   "demonym": "Lithuanian",
+   "callingCode": "+370",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LU",
+   "item": "Q32",
+   "demonym": "Luxembourgian",
+   "callingCode": "+352",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LU",
+   "item": "Q32",
+   "demonym": "Luxembourgish",
+   "callingCode": "+352",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LV",
+   "item": "Q211",
+   "demonym": "Latvian",
+   "callingCode": "+371",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LV",
+   "item": "Q211",
+   "demonym": "Latvians",
+   "callingCode": "+371",
+   "drivingSide": "right"
+  },
+  {
+   "country": "LY",
+   "item": "Q1016",
+   "demonym": "Libyan",
+   "callingCode": "+218",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MA",
+   "item": "Q1028",
+   "demonym": "Moroccan",
+   "callingCode": "+212",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MC",
+   "item": "Q235",
+   "demonym": "Monacan",
+   "callingCode": "+377",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MC",
+   "item": "Q235",
+   "demonym": "Monegasque",
+   "callingCode": "+377",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MC",
+   "item": "Q235",
+   "demonym": "Monégasque",
+   "callingCode": "+377",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MD",
+   "item": "Q217",
+   "demonym": "Moldavian",
+   "callingCode": "+373",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MD",
+   "item": "Q217",
+   "demonym": "Moldovan",
+   "callingCode": "+373",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ME",
+   "item": "Q236",
+   "demonym": "Montenegrin",
+   "callingCode": "+382",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MF",
+   "item": "Q126125",
+   "demonym": "Saint-Martinois",
+   "callingCode": "+590",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MG",
+   "item": "Q1019",
+   "demonym": "Malagasy",
+   "callingCode": "+261",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MH",
+   "item": "Q709",
+   "demonym": "Marshallese",
+   "callingCode": "+692",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MK",
+   "item": "Q221",
+   "demonym": "Macedonian",
+   "callingCode": "+389",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ML",
+   "item": "Q912",
+   "demonym": "Malian",
+   "callingCode": "+223",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MM",
+   "item": "Q836",
+   "demonym": "Burmese",
+   "callingCode": "+95",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MM",
+   "item": "Q836",
+   "demonym": "Myanma",
+   "callingCode": "+95",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MN",
+   "item": "Q711",
+   "demonym": "Mongol",
+   "callingCode": "+976",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MN",
+   "item": "Q711",
+   "demonym": "Mongolian",
+   "callingCode": "+976",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MO",
+   "item": "Q14773",
+   "callingCode": "+853",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MP",
+   "item": "Q16644",
+   "demonym": "Chamorro",
+   "callingCode": "+1670",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MP",
+   "item": "Q16644",
+   "demonym": "Chamorros",
+   "callingCode": "+1670",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MP",
+   "item": "Q16644",
+   "demonym": "Northern Mariana Islander",
+   "callingCode": "+1670",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MP",
+   "item": "Q16644",
+   "demonym": "Northern Mariana Islanders",
+   "callingCode": "+1670",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MP",
+   "item": "Q16644",
+   "demonym": "Northern Marianan",
+   "callingCode": "+1670",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MP",
+   "item": "Q16644",
+   "demonym": "Northern Marianans",
+   "callingCode": "+1670",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MQ",
+   "item": "Q17054",
+   "callingCode": "+596",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MR",
+   "item": "Q1025",
+   "demonym": "Mauritanian",
+   "callingCode": "+222",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MS",
+   "item": "Q13353",
+   "demonym": "Montserratian",
+   "callingCode": "+1664",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MT",
+   "item": "Q233",
+   "demonym": "Maltese",
+   "callingCode": "+356",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MU",
+   "item": "Q1027",
+   "demonym": "Mauritian",
+   "callingCode": "+230",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MV",
+   "item": "Q826",
+   "demonym": "Maldivian",
+   "callingCode": "+960",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MW",
+   "item": "Q1020",
+   "demonym": "Malawian",
+   "callingCode": "+265",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MX",
+   "item": "Q96",
+   "demonym": "Mexican",
+   "callingCode": "+52",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MX",
+   "item": "Q96",
+   "demonym": "Mexicans",
+   "callingCode": "+52",
+   "drivingSide": "right"
+  },
+  {
+   "country": "MY",
+   "item": "Q833",
+   "demonym": "Malaysian",
+   "callingCode": "+60",
+   "drivingSide": "left"
+  },
+  {
+   "country": "MZ",
+   "item": "Q1029",
+   "demonym": "Mozambican",
+   "callingCode": "+258",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NA",
+   "item": "Q1030",
+   "demonym": "Namibian",
+   "callingCode": "+264",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NC",
+   "item": "Q33788",
+   "demonym": "New Caledonian",
+   "callingCode": "+687",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NC",
+   "item": "Q33788",
+   "demonym": "New Caledonians",
+   "callingCode": "+687",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NE",
+   "item": "Q1032",
+   "demonym": "Nigerien",
+   "callingCode": "+227",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NF",
+   "item": "Q31057",
+   "demonym": "Norfolk Islander",
+   "callingCode": "+6723",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NF",
+   "item": "Q31057",
+   "demonym": "Norfolk Islanders",
+   "callingCode": "+6723",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NG",
+   "item": "Q1033",
+   "demonym": "Nigerian",
+   "callingCode": "+234",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NG",
+   "item": "Q1033",
+   "demonym": "Nigerians",
+   "callingCode": "+234",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NI",
+   "item": "Q811",
+   "demonym": "Nicaraguan",
+   "callingCode": "+505",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NL",
+   "item": "Q29999",
+   "demonym": "Dutch",
+   "callingCode": "+31",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NO",
+   "item": "Q20",
+   "demonym": "Norwegian",
+   "callingCode": "+47",
+   "drivingSide": "right"
+  },
+  {
+   "country": "NP",
+   "item": "Q837",
+   "demonym": "Nepalese",
+   "callingCode": "+977",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NP",
+   "item": "Q837",
+   "demonym": "Nepali",
+   "callingCode": "+977",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NR",
+   "item": "Q697",
+   "demonym": "Nauruan",
+   "callingCode": "+674",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NU",
+   "item": "Q34020",
+   "demonym": "Niuean",
+   "callingCode": "+683",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NZ",
+   "item": "Q664",
+   "demonym": "New Zealand",
+   "callingCode": "+64",
+   "drivingSide": "left"
+  },
+  {
+   "country": "NZ",
+   "item": "Q664",
+   "demonym": "New Zealander",
+   "callingCode": "+64",
+   "drivingSide": "left"
+  },
+  {
+   "country": "OM",
+   "item": "Q842",
+   "demonym": "Omani",
+   "callingCode": "+968",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PA",
+   "item": "Q804",
+   "demonym": "Panamanian",
+   "callingCode": "+507",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PE",
+   "item": "Q419",
+   "demonym": "Peruvian",
+   "callingCode": "+51",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PF",
+   "item": "Q30971",
+   "demonym": "French Polynesian",
+   "callingCode": "+689",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PG",
+   "item": "Q691",
+   "demonym": "Papua New Guinean",
+   "callingCode": "+675",
+   "drivingSide": "left"
+  },
+  {
+   "country": "PH",
+   "item": "Q928",
+   "demonym": "Filipina",
+   "callingCode": "+63",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PH",
+   "item": "Q928",
+   "demonym": "Filipino",
+   "callingCode": "+63",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PH",
+   "item": "Q928",
+   "demonym": "Philippine",
+   "callingCode": "+63",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PK",
+   "item": "Q843",
+   "demonym": "Pakistani",
+   "callingCode": "+92",
+   "drivingSide": "left"
+  },
+  {
+   "country": "PL",
+   "item": "Q36",
+   "demonym": "Polish",
+   "callingCode": "+48",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PM",
+   "item": "Q34617",
+   "callingCode": "+508",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PN",
+   "item": "Q35672",
+   "demonym": "Pitcairn Islander",
+   "callingCode": "+64",
+   "drivingSide": "left"
+  },
+  {
+   "country": "PR",
+   "item": "Q1183",
+   "demonym": "Puerto Rican",
+   "callingCode": "+1787",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PR",
+   "item": "Q1183",
+   "demonym": "Puerto Rican",
+   "callingCode": "+1939",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PS",
+   "item": "Q219060",
+   "demonym": "Palestinian",
+   "callingCode": "+970",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PT",
+   "item": "Q45",
+   "demonym": "Portuguese",
+   "callingCode": "+351",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PW",
+   "item": "Q695",
+   "demonym": "Palauan",
+   "callingCode": "+680",
+   "drivingSide": "right"
+  },
+  {
+   "country": "PY",
+   "item": "Q733",
+   "demonym": "Paraguayan",
+   "callingCode": "+595",
+   "drivingSide": "right"
+  },
+  {
+   "country": "QA",
+   "item": "Q846",
+   "demonym": "Qatari",
+   "callingCode": "+974",
+   "drivingSide": "right"
+  },
+  {
+   "country": "RE",
+   "item": "Q17070",
+   "callingCode": "+262",
+   "drivingSide": "right"
+  },
+  {
+   "country": "RO",
+   "item": "Q218",
+   "demonym": "Romanian",
+   "callingCode": "+40",
+   "drivingSide": "right"
+  },
+  {
+   "country": "RS",
+   "item": "Q403",
+   "demonym": "Serbian",
+   "callingCode": "+381",
+   "drivingSide": "right"
+  },
+  {
+   "country": "RU",
+   "item": "Q159",
+   "demonym": "Russian",
+   "callingCode": "+7",
+   "drivingSide": "right"
+  },
+  {
+   "country": "RW",
+   "item": "Q1037",
+   "demonym": "Rwandan",
+   "callingCode": "+250",
+   "drivingSide": "right"
+  },
+  {
+   "country": "RW",
+   "item": "Q1037",
+   "demonym": "Rwandese",
+   "callingCode": "+250",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SA",
+   "item": "Q851",
+   "callingCode": "+966",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SB",
+   "item": "Q685",
+   "demonym": "Solomon Islander",
+   "callingCode": "+677",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SB",
+   "item": "Q685",
+   "demonym": "Solomon Islands",
+   "callingCode": "+677",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SC",
+   "item": "Q1042",
+   "demonym": "Seychellois",
+   "callingCode": "+248",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SC",
+   "item": "Q1042",
+   "demonym": "Seychelloise",
+   "callingCode": "+248",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SD",
+   "item": "Q1049",
+   "demonym": "Sudanese",
+   "callingCode": "+249",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SE",
+   "item": "Q34",
+   "demonym": "Swedish",
+   "callingCode": "+46",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SG",
+   "item": "Q334",
+   "demonym": "Singaporean",
+   "callingCode": "+65",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SH",
+   "item": "Q192184",
+   "callingCode": "+247",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SH",
+   "item": "Q192184",
+   "callingCode": "+27",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SH",
+   "item": "Q192184",
+   "callingCode": "+290",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SI",
+   "item": "Q215",
+   "demonym": "Slovene",
+   "callingCode": "+386",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SI",
+   "item": "Q215",
+   "demonym": "Slovenian",
+   "callingCode": "+386",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SJ",
+   "item": "Q842829",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SK",
+   "item": "Q214",
+   "demonym": "Slovak",
+   "callingCode": "+421",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SL",
+   "item": "Q1044",
+   "demonym": "Sierra Leonean",
+   "callingCode": "+232",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SM",
+   "item": "Q238",
+   "demonym": "Sammarinese",
+   "callingCode": "+378",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SN",
+   "item": "Q1041",
+   "demonym": "Senegalese",
+   "callingCode": "+221",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SO",
+   "item": "Q1045",
+   "demonym": "Somali",
+   "callingCode": "+252",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SO",
+   "item": "Q1045",
+   "demonym": "Somalian",
+   "callingCode": "+252",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SR",
+   "item": "Q730",
+   "demonym": "Surinamese",
+   "callingCode": "+597",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SS",
+   "item": "Q958",
+   "demonym": "South Sudanese",
+   "callingCode": "+211",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ST",
+   "item": "Q1039",
+   "demonym": "Santomean",
+   "callingCode": "+239",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ST",
+   "item": "Q1039",
+   "demonym": "Sao Tomean",
+   "callingCode": "+239",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ST",
+   "item": "Q1039",
+   "demonym": "São Toméan",
+   "callingCode": "+239",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ST",
+   "item": "Q1039",
+   "demonym": "Sao Tomeans",
+   "callingCode": "+239",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ST",
+   "item": "Q1039",
+   "demonym": "São Toméans",
+   "callingCode": "+239",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SV",
+   "item": "Q792",
+   "demonym": "Salvadoran",
+   "callingCode": "+503",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SX",
+   "item": "Q26273",
+   "demonym": "St. Maartener",
+   "callingCode": "+1721",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SY",
+   "item": "Q858",
+   "demonym": "Syrian",
+   "callingCode": "+963",
+   "drivingSide": "right"
+  },
+  {
+   "country": "SZ",
+   "item": "Q1050",
+   "demonym": "emaSwati",
+   "callingCode": "+268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SZ",
+   "item": "Q1050",
+   "demonym": "liSwati",
+   "callingCode": "+268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SZ",
+   "item": "Q1050",
+   "demonym": "Swazi",
+   "callingCode": "+268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "SZ",
+   "item": "Q1050",
+   "demonym": "Swazis",
+   "callingCode": "+268",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TA",
+   "item": "Q34625512",
+   "callingCode": "+2908",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TC",
+   "item": "Q18221",
+   "demonym": "Turks and Caicos Islander",
+   "callingCode": "+1649",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TD",
+   "item": "Q657",
+   "demonym": "Chadian",
+   "callingCode": "+235",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TF",
+   "item": "Q129003",
+   "demonym": "French",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TG",
+   "item": "Q945",
+   "demonym": "Togolese",
+   "callingCode": "+228",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TH",
+   "item": "Q869",
+   "demonym": "Thai",
+   "callingCode": "+66",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TJ",
+   "item": "Q863",
+   "demonym": "Tajikistani",
+   "callingCode": "+992",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TK",
+   "item": "Q36823",
+   "demonym": "Tokelauan",
+   "callingCode": "+690",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TL",
+   "item": "Q574",
+   "demonym": "East Timorese",
+   "callingCode": "+670",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TM",
+   "item": "Q874",
+   "demonym": "Turkmen",
+   "callingCode": "+993",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TM",
+   "item": "Q874",
+   "demonym": "Turkmenistani",
+   "callingCode": "+993",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TN",
+   "item": "Q948",
+   "demonym": "Tunisian",
+   "callingCode": "+216",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TO",
+   "item": "Q678",
+   "demonym": "Tongan",
+   "callingCode": "+676",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TR",
+   "item": "Q43",
+   "demonym": "Turkish",
+   "callingCode": "+36",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TR",
+   "item": "Q43",
+   "demonym": "Turkish",
+   "callingCode": "+90",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TT",
+   "item": "Q754",
+   "demonym": "Trinidadian",
+   "callingCode": "+1868",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TV",
+   "item": "Q672",
+   "demonym": "Tuvaluan",
+   "callingCode": "+688",
+   "drivingSide": "left"
+  },
+  {
+   "country": "TW",
+   "item": "Q865",
+   "demonym": "Taiwan",
+   "callingCode": "+886",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TW",
+   "item": "Q865",
+   "demonym": "taiwanese",
+   "callingCode": "+886",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TW",
+   "item": "Q865",
+   "demonym": "Taiwanese",
+   "callingCode": "+886",
+   "drivingSide": "right"
+  },
+  {
+   "country": "TZ",
+   "item": "Q924",
+   "demonym": "Tanzanian",
+   "callingCode": "+255",
+   "drivingSide": "left"
+  },
+  {
+   "country": "UA",
+   "item": "Q212",
+   "callingCode": "+380",
+   "drivingSide": "right"
+  },
+  {
+   "country": "UG",
+   "item": "Q1036",
+   "demonym": "Ugandan",
+   "callingCode": "+256",
+   "drivingSide": "left"
+  },
+  {
+   "country": "UM",
+   "item": "Q16645",
+   "drivingSide": "right"
+  },
+  {
+   "country": "US",
+   "item": "Q30",
+   "demonym": "American",
+   "callingCode": "+1",
+   "drivingSide": "right"
+  },
+  {
+   "country": "US",
+   "item": "Q30",
+   "demonym": "Americans",
+   "callingCode": "+1",
+   "drivingSide": "right"
+  },
+  {
+   "country": "UY",
+   "item": "Q77",
+   "demonym": "Uruguayan",
+   "callingCode": "+598",
+   "drivingSide": "right"
+  },
+  {
+   "country": "UZ",
+   "item": "Q265",
+   "demonym": "Uzbek",
+   "callingCode": "+998",
+   "drivingSide": "right"
+  },
+  {
+   "country": "UZ",
+   "item": "Q265",
+   "demonym": "Uzbekistani",
+   "callingCode": "+998",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VA",
+   "item": "Q237",
+   "demonym": "Vatican",
+   "callingCode": "+379",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VC",
+   "item": "Q757",
+   "demonym": "Saint Vincentian",
+   "callingCode": "+1784",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VC",
+   "item": "Q757",
+   "demonym": "Saint Vincentians",
+   "callingCode": "+1784",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VC",
+   "item": "Q757",
+   "demonym": "Vincentian",
+   "callingCode": "+1784",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VC",
+   "item": "Q757",
+   "demonym": "Vincentians",
+   "callingCode": "+1784",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VC",
+   "item": "Q757",
+   "demonym": "Vincy",
+   "callingCode": "+1784",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VE",
+   "item": "Q717",
+   "demonym": "Venezuelan",
+   "callingCode": "+58",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VE",
+   "item": "Q717",
+   "demonym": "Venezuelans",
+   "callingCode": "+58",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VG",
+   "item": "Q25305",
+   "callingCode": "+1284",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VI",
+   "item": "Q11703",
+   "callingCode": "+1340",
+   "drivingSide": "left"
+  },
+  {
+   "country": "VN",
+   "item": "Q881",
+   "demonym": "Vietnamese",
+   "callingCode": "+84",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VU",
+   "item": "Q686",
+   "demonym": "Ni-Vanuatu",
+   "callingCode": "+678",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VU",
+   "item": "Q686",
+   "demonym": "Vanuatuan",
+   "callingCode": "+678",
+   "drivingSide": "right"
+  },
+  {
+   "country": "VU",
+   "item": "Q686",
+   "demonym": "Vanuatuans",
+   "callingCode": "+678",
+   "drivingSide": "right"
+  },
+  {
+   "country": "WF",
+   "item": "Q35555",
+   "demonym": "Futunan",
+   "callingCode": "+681",
+   "drivingSide": "right"
+  },
+  {
+   "country": "WF",
+   "item": "Q35555",
+   "demonym": "Wallisian",
+   "callingCode": "+681",
+   "drivingSide": "right"
+  },
+  {
+   "country": "WS",
+   "item": "Q683",
+   "demonym": "Samoan",
+   "callingCode": "+685",
+   "drivingSide": "left"
+  },
+  {
+   "country": "XK",
+   "item": "Q1246",
+   "demonym": "Kosovan",
+   "callingCode": "+383",
+   "drivingSide": "right"
+  },
+  {
+   "country": "XK",
+   "item": "Q1246",
+   "demonym": "Kosovar",
+   "callingCode": "+383",
+   "drivingSide": "right"
+  },
+  {
+   "country": "YE",
+   "item": "Q805",
+   "demonym": "Yemeni",
+   "callingCode": "+967",
+   "drivingSide": "right"
+  },
+  {
+   "country": "YT",
+   "item": "Q17063",
+   "callingCode": "+262",
+   "drivingSide": "right"
+  },
+  {
+   "country": "ZA",
+   "item": "Q258",
+   "demonym": "South African",
+   "callingCode": "+27",
+   "drivingSide": "left"
+  },
+  {
+   "country": "ZM",
+   "item": "Q953",
+   "demonym": "Zambian",
+   "callingCode": "+260",
+   "drivingSide": "left"
+  },
+  {
+   "country": "ZM",
+   "item": "Q953",
+   "demonym": "Zambians",
+   "callingCode": "+260",
+   "drivingSide": "left"
+  },
+  {
+   "country": "ZW",
+   "item": "Q954",
+   "demonym": "Zimbabwean",
+   "callingCode": "+263",
+   "drivingSide": "left"
+  },
+  {
+   "country": "ZW",
+   "item": "Q954",
+   "demonym": "Zimbabweans",
+   "callingCode": "+263",
+   "drivingSide": "left"
+  }
+ ]
+}

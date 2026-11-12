@@ -1,0 +1,116 @@
+{
+ "source": "Wikidata (wikidata.org), CC0 1.0",
+ "query": "scripts/sparql/euMembership.rq",
+ "retrieved": "2026-11-12",
+ "rows": [
+  {
+   "country": "AT",
+   "start": "1995-01-01T00:00:00Z"
+  },
+  {
+   "country": "BE",
+   "start": "1957-03-25T00:00:00Z"
+  },
+  {
+   "country": "BG",
+   "start": "2007-01-01T00:00:00Z"
+  },
+  {
+   "country": "CY",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "CZ",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "DE",
+   "start": "1958-01-01T00:00:00Z"
+  },
+  {
+   "country": "DK",
+   "start": "1973-01-01T00:00:00Z"
+  },
+  {
+   "country": "EE",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "ES",
+   "start": "1986-01-01T00:00:00Z"
+  },
+  {
+   "country": "FI",
+   "start": "1995-01-01T00:00:00Z"
+  },
+  {
+   "country": "FR",
+   "start": "1957-03-25T00:00:00Z"
+  },
+  {
+   "country": "GB",
+   "start": "1973-01-01T00:00:00Z",
+   "end": "2020-01-31T00:00:00Z"
+  },
+  {
+   "country": "GR",
+   "start": "1981-01-01T00:00:00Z"
+  },
+  {
+   "country": "HR",
+   "start": "2013-07-01T00:00:00Z"
+  },
+  {
+   "country": "HU",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "IE",
+   "start": "1973-01-01T00:00:00Z"
+  },
+  {
+   "country": "IT",
+   "start": "1957-03-25T00:00:00Z"
+  },
+  {
+   "country": "LT",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "LU",
+   "start": "1957-03-25T00:00:00Z"
+  },
+  {
+   "country": "LV",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "MT",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "PL",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "PT",
+   "start": "1986-01-01T00:00:00Z"
+  },
+  {
+   "country": "RO",
+   "start": "2007-01-01T00:00:00Z"
+  },
+  {
+   "country": "SE",
+   "start": "1995-01-01T00:00:00Z"
+  },
+  {
+   "country": "SI",
+   "start": "2004-05-01T00:00:00Z"
+  },
+  {
+   "country": "SK",
+   "start": "2004-05-01T00:00:00Z"
+  }
+ ]
+}

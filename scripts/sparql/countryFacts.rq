@@ -1,0 +1,8 @@
+# English demonyms (P1549), calling codes (P474) and driving side (P1622) per country.
+SELECT ?country ?item ?demonym ?callingCode ?drivingSide WHERE {
+  ?item wdt:P297 ?country .
+  FILTER NOT EXISTS { ?item wdt:P576 ?dissolved . }
+  OPTIONAL { ?item wdt:P1549 ?demonym . FILTER(LANG(?demonym) = "en") }
+  OPTIONAL { ?item wdt:P474 ?callingCode . }
+  OPTIONAL { ?item wdt:P1622 ?side . ?side rdfs:label ?drivingSide . FILTER(LANG(?drivingSide) = "en") }
+}
