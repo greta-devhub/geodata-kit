@@ -8,7 +8,7 @@
 #          workflow "release.yml", environment "release", with direct publish allowed). npm can only
 #          set this up for existing packages, so version 0.1.0 is published once by hand (README,
 #          "One-time setup").
-#   PyPI — trusted publishing (add a "pending publisher" on pypi.org for geodata-kit,
+#   PyPI — trusted publishing (add a "pending publisher" on pypi.org for geodata-kit-py,
 #          geodata-kit-localities and geodata-kit-postal: this repo, workflow "release.yml", environment "release").
 name: Release
 

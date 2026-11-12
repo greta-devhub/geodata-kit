@@ -3,7 +3,7 @@ requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
 [project]
-name = "geodata-kit"
+name = "geodata-kit-py"
 version = "0.1.0"
 description = "Countries, subdivisions, cities, languages, timezones, address and phone data for Python. Offline, no runtime dependencies. Built from GeoNames, Unicode CLDR, IANA tzdata, Wikidata, Natural Earth and libphonenumber."
 readme = "README.md"

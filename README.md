@@ -10,7 +10,7 @@ data and shipped for TypeScript/JavaScript and Python.
 | `geodata-kit-localities` | npm | 4.9M villages and districts, gzip per country | 83 MB / 83 MB |
 | `geodata-kit-postal` | npm | 1.8M postal codes, 124 countries | 19 MB / 19 MB |
 | `geodata-kit-tz` | npm | timezone polygons, point → zone (ODbL data) | 5 MB / 7 MB |
-| `geodata-kit` (+ `[localities]`, `[postal]` extras) | PyPI | same API in snake_case, same data | 19 MB wheel |
+| `geodata-kit-py` (+ `[localities]`, `[postal]` extras; import `geodata_kit`) | PyPI | same API in snake_case, same data | 19 MB wheel |
 
 ## Layout
 
@@ -200,7 +200,8 @@ Do these once, in this order, when the repository moves to GitHub:
 3. **Environment.** Create an environment named `release`. Optionally add
    required reviewers, so every publish needs one click of approval.
 4. **PyPI.** On pypi.org, add a *pending publisher* for each of
-   `geodata-kit`, `geodata-kit-localities` and `geodata-kit-postal`:
+   `geodata-kit-py`, `geodata-kit-localities` and `geodata-kit-postal`
+   (`geodata-kit` is too similar to an existing PyPI project, `geodatakit`):
    this repository, workflow `release.yml`, environment `release`.
 5. **npm.**
    1. Turn on 2FA with an authenticator app (npmjs.com → Account → Two-Factor
