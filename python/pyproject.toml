@@ -20,6 +20,13 @@ classifiers = [
 ]
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/greta-devhub/geodata-kit"
+Repository = "https://github.com/greta-devhub/geodata-kit"
+Issues = "https://github.com/greta-devhub/geodata-kit/issues"
+Changelog = "https://github.com/greta-devhub/geodata-kit/releases"
+Documentation = "https://github.com/greta-devhub/geodata-kit/tree/main/python#readme"
+
 [project.optional-dependencies]
 localities = ["geodata-kit-localities==0.1.0"]
 postal = ["geodata-kit-postal==0.1.0"]

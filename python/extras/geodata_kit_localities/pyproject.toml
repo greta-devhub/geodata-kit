@@ -12,5 +12,12 @@ license-files = ["LICENSE", "NOTICE"]
 requires-python = ">=3.12"
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/greta-devhub/geodata-kit"
+Repository = "https://github.com/greta-devhub/geodata-kit"
+Issues = "https://github.com/greta-devhub/geodata-kit/issues"
+Changelog = "https://github.com/greta-devhub/geodata-kit/releases"
+Documentation = "https://github.com/greta-devhub/geodata-kit/tree/main/python/extras/geodata_kit_localities#readme"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/geodata_kit_localities"]

@@ -20,6 +20,15 @@
     "geo"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greta-devhub/geodata-kit.git",
+    "directory": "packages/geodata-kit"
+  },
+  "homepage": "https://github.com/greta-devhub/geodata-kit/tree/main/packages/geodata-kit#readme",
+  "bugs": {
+    "url": "https://github.com/greta-devhub/geodata-kit/issues"
+  },
   "type": "module",
   "sideEffects": false,
   "engines": {
