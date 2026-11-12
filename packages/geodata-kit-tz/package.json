@@ -11,6 +11,15 @@
     "geodata-kit"
   ],
   "license": "MIT AND ODbL-1.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greta-devhub/geodata-kit.git",
+    "directory": "packages/geodata-kit-tz"
+  },
+  "homepage": "https://github.com/greta-devhub/geodata-kit/tree/main/packages/geodata-kit-tz#readme",
+  "bugs": {
+    "url": "https://github.com/greta-devhub/geodata-kit/issues"
+  },
   "type": "module",
   "sideEffects": false,
   "engines": {

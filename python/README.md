@@ -1,11 +1,12 @@
-# geodata-kit
+# geodata-kit-py
 
 Countries, regions, cities, languages, timezones, addresses and phone numbers
-for Python, offline and with no dependencies.
+for Python, offline and with no dependencies. Install name `geodata-kit-py`,
+import name `geodata_kit`.
 
 ```bash
-pip install geodata-kit
-pip install "geodata-kit[localities,postal]"   # optional: villages, postal codes
+pip install geodata-kit-py
+pip install "geodata-kit-py[localities,postal]"   # optional: villages, postal codes
 ```
 
 ```python

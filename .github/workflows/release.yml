@@ -1,15 +1,15 @@
 # After a merge into main: run every check again, then publish the version in
-# package.json to npm and PyPI if it isn't published yet, tag it and create a
-# GitHub release. A version is done once its tag vX.Y.Z exists, so merges that
-# don't change the version publish nothing.
+# package.json to npm if it isn't published yet, tag it and create a GitHub
+# release. A version is done once its tag vX.Y.Z exists, so merges that don't
+# change the version publish nothing.
 #
-# Authentication without stored tokens:
-#   npm  — trusted publishing (npmjs.com → each package → Settings → Trusted publisher: this repo,
-#          workflow "release.yml", environment "release", with direct publish allowed). npm can only
-#          set this up for existing packages, so version 0.1.0 is published once by hand (README,
-#          "One-time setup").
-#   PyPI — trusted publishing (add a "pending publisher" on pypi.org for geodata-kit,
-#          geodata-kit-localities and geodata-kit-postal: this repo, workflow "release.yml", environment "release").
+# npm authentication without stored tokens: trusted publishing (npmjs.com →
+# each package → Settings → Trusted publisher: this repo, workflow
+# "release.yml", environment "release", with direct publish allowed). npm can
+# only set this up for existing packages, so version 0.1.0 was published once
+# by hand (README, "One-time setup").
+#
+# The Python packages are built and tested in CI but not published yet.
 name: Release
 
 on:
@@ -36,7 +36,7 @@ jobs:
     environment: release
     permissions:
       contents: write   # tag and GitHub release
-      id-token: write   # npm and PyPI trusted publishing, provenance
+      id-token: write   # npm trusted publishing, provenance
     steps:
       - uses: actions/checkout@v4
         with:
@@ -56,28 +56,35 @@ jobs:
         run: npm run release:publish-npm
 
       # A version counts as released once its git tag exists. This also covers the first
-      # release, whose npm packages are published by hand before CI can publish them.
+      # release, whose npm packages were published by hand before CI could publish them.
       - name: Is this version released?
         id: tag
         run: |
           if git rev-parse -q --verify "refs/tags/v${{ steps.npm.outputs.version }}" >/dev/null; then echo "released=true" >> "$GITHUB_OUTPUT"; else echo "released=false" >> "$GITHUB_OUTPUT"; fi
 
-      - uses: astral-sh/setup-uv@v6
-        if: steps.tag.outputs.released == 'false'
-      - name: Build Python distributions
-        if: steps.tag.outputs.released == 'false'
-        working-directory: python
-        run: |
-          rm -rf dist
-          uv build --out-dir dist
-          (cd extras/geodata_kit_localities && uv build --out-dir ../../dist)
-          (cd extras/geodata_kit_postal && uv build --out-dir ../../dist)
-      - name: Publish to PyPI
-        if: steps.tag.outputs.released == 'false'
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: python/dist
-          skip-existing: true
+      # ── PyPI publishing: disabled until its own ticket ──────────────────────────────
+      # To re-enable: register PyPI trusted publishers, then uncomment these steps.
+      # PyPI accepts each *pending* publisher configuration (owner, repo, workflow,
+      # environment) for one new project only, so geodata-kit-py, geodata-kit-localities
+      # and geodata-kit-postal need different environments (one job each) or a first
+      # manual upload for two of them. See README, "One-time setup", step 4.
+      #
+      # - uses: astral-sh/setup-uv@v6
+      #   if: steps.tag.outputs.released == 'false'
+      # - name: Build Python distributions
+      #   if: steps.tag.outputs.released == 'false'
+      #   working-directory: python
+      #   run: |
+      #     rm -rf dist
+      #     uv build --out-dir dist
+      #     (cd extras/geodata_kit_localities && uv build --out-dir ../../dist)
+      #     (cd extras/geodata_kit_postal && uv build --out-dir ../../dist)
+      # - name: Publish to PyPI
+      #   if: steps.tag.outputs.released == 'false'
+      #   uses: pypa/gh-action-pypi-publish@release/v1
+      #   with:
+      #     packages-dir: python/dist
+      #     skip-existing: true
 
       - name: Tag and GitHub release
         if: steps.tag.outputs.released == 'false'
