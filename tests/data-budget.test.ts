@@ -24,7 +24,7 @@ const MB = 1024 * 1024;
 const BUDGETS: Record<string, number> = {
   'core': 1.0 * MB, // bundled into the main entry point
   'subdivisions': 27 * MB,
-  'cities': 29 * MB,
+  'cities': 33 * MB,
   'localities': 95 * MB,
   'postal': 22 * MB,
   'tz': 8.5 * MB,

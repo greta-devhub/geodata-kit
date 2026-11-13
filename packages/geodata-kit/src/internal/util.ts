@@ -9,6 +9,20 @@ export function cleanInput(input: string): string {
     .trim();
 }
 
+/**
+ * A value built on first use and then kept. Lookup tables use it so loading the
+ * package does no work, and so bundlers can drop the tables an app never uses
+ * (call it with a `@__PURE__` annotation).
+ */
+export function lazy<T>(build: () => T): () => T {
+  let value: T | undefined;
+  let built = false;
+  return () => {
+    if (!built) { value = build(); built = true; }
+    return value as T;
+  };
+}
+
 export function toIsoDate(date: DateInput | undefined): string {
   if (date === undefined) return new Date().toISOString().slice(0, 10);
   if (typeof date === 'string') return date.slice(0, 10);

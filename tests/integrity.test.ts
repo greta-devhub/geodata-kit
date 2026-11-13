@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
@@ -72,5 +72,19 @@ describe('meta', () => {
       expect(source.licence, source.file).toBeTruthy();
       expect(source.sha256, source.file).toMatch(/^[0-9a-f]{64}$/);
     }
+  });
+
+  it('exports the data date from every package', async () => {
+    const { dataDate } = readData<{ dataDate: string }>('meta.json');
+    expect(dataDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    for (const name of readdirSync(join(DATA, '..', 'packages'))) {
+      const module = await import(name) as { DATA_DATE?: string };
+      expect(module.DATA_DATE, name).toBe(dataDate);
+    }
+  });
+
+  it('lists exactly the locales that have country names', async () => {
+    const { DISPLAY_LOCALES } = await import('../packages/geodata-kit/src/internal/core-data.js');
+    expect([...DISPLAY_LOCALES].sort()).toEqual(Object.keys(readData<Record<string, unknown>>('core', 'names.json')).sort());
   });
 });

@@ -153,17 +153,17 @@ def find_subdivision(text: str, country: str, options: dict | None = None, *, le
 
 
 def get_subdivision_chain(place) -> list[Subdivision]:
-    """Bayern → Oberbayern → Landkreis München → Unterhaching, for anything with country and admin1..admin4."""
+    """Bayern → Oberbayern → Landkreis München → Unterhaching, for anything with country and subdivision1..subdivision4."""
     get = (lambda key: place.get(key)) if isinstance(place, dict) else (lambda key: getattr(place, key, None))
     code = normalize_country_code(get("country") or "")
-    admin1 = get("admin1")
-    if not code or not admin1:
+    subdivision1 = get("subdivision1")
+    if not code or not subdivision1:
         return []
     chain = []
-    level1 = get_subdivision(f"{code}.{admin1}")
+    level1 = get_subdivision(f"{code}.{subdivision1}")
     if level1:
         chain.append(level1)
-    parts = [admin1, get("admin2"), get("admin3"), get("admin4")]
+    parts = [subdivision1, get("subdivision2"), get("subdivision3"), get("subdivision4")]
     deep = _deep(code)
     if not parts[1] or not deep:
         return chain

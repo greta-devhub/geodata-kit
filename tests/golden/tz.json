@@ -121,6 +121,33 @@
     151.21
    ],
    "expect": "Australia/Sydney"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    200,
+    10
+   ],
+   "expect": null,
+   "note": "invalid latitude gives null, no error (same as geodata-kit-shapes)"
+  },
+  {
+   "fn": "getTimezonesAt",
+   "args": [
+    200,
+    10
+   ],
+   "expect": [],
+   "note": "invalid latitude"
+  },
+  {
+   "fn": "getTimezoneAt",
+   "args": [
+    35.6762,
+    499.6503
+   ],
+   "expect": "Asia/Tokyo",
+   "note": "longitudes wrap around"
   }
  ]
 }

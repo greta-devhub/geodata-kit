@@ -27,7 +27,7 @@ describe('geodata-kit-tz', () => {
       for (const row of file.rows) {
         total++;
         const expected = canonicalTimezone(file.tz[row[11] as number]!);
-        const actual = canonicalTimezone(await getTimezoneAt(row[5] as number, row[6] as number));
+        const actual = canonicalTimezone((await getTimezoneAt(row[5] as number, row[6] as number)) ?? '');
         if (expected === actual) sameName++;
         else if (behaviour(expected!) !== behaviour(actual!)) mismatches.push(`${country} ${row[1]}: GeoNames ${expected}, polygons ${actual}`);
       }

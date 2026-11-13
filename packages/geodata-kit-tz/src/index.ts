@@ -80,14 +80,20 @@ function insideRing(ring: Int32Array, x: number, y: number): boolean {
 }
 
 /** Nautical timezone for open sea: Etc/GMT-1 east of 7.5°E, etc. (the sign is inverted in these names). */
+import { dataDate } from '../../../data/meta.json';
 export function nauticalTimezone(lng: number): string {
   const offset = Math.round(lng / 15);
   if (offset === 0) return 'Etc/GMT';
   return `Etc/GMT${offset > 0 ? '-' : '+'}${Math.abs(offset)}`;
 }
 
+/**
+ * Invalid coordinates (not a number, latitude outside ±90) give no zone rather
+ * than an error, like every lookup in the geodata-kit family. Longitudes wrap
+ * around, so 190 is the same as -170.
+ */
 async function zonesAt(lat: number, lng: number, firstOnly: boolean): Promise<string[]> {
-  if (!Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90) throw new RangeError(`Invalid coordinate ${lat}, ${lng}`);
+  if (typeof lat !== 'number' || typeof lng !== 'number' || !Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90) return [];
   const normalizedLng = ((((lng + 180) % 360) + 360) % 360) - 180;
   const index = await load();
   const x = Math.round(normalizedLng * SCALE);
@@ -115,12 +121,13 @@ async function zonesAt(lat: number, lng: number, firstOnly: boolean): Promise<st
  * (39.77, -86.16) → "America/Indiana/Indianapolis". At sea: "Etc/GMT±N".
  * Where zones overlap in the source (Xinjiang: Asia/Urumqi inside Asia/Shanghai),
  * the most specific (smallest) one is returned; see getTimezonesAt.
+ * Null for invalid coordinates.
  */
-export async function getTimezoneAt(lat: number, lng: number): Promise<string> {
-  return (await zonesAt(lat, lng, true))[0]!;
+export async function getTimezoneAt(lat: number, lng: number): Promise<string | null> {
+  return (await zonesAt(lat, lng, true))[0] ?? null;
 }
 
-/** Every zone whose polygon contains the point, most specific first (usually one). */
+/** Every zone whose polygon contains the point, most specific first (usually one). Empty for invalid coordinates. */
 export async function getTimezonesAt(lat: number, lng: number): Promise<string[]> {
   return zonesAt(lat, lng, false);
 }
@@ -129,3 +136,9 @@ export async function getTimezonesAt(lat: number, lng: number): Promise<string[]
 export async function listPolygonTimezones(): Promise<string[]> {
   return [...(await load()).zones];
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

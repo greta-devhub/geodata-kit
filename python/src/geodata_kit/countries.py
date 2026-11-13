@@ -297,20 +297,27 @@ def resolve_countries(texts: Iterable[str | None]) -> dict:
 
 
 def suggest_countries(text: str, limit: int = 5) -> list[Country]:
-    """"Did you mean" candidates (typos, ambiguous names). Never applied automatically."""
+    """"Did you mean" candidates (typos, ambiguous names). Never applied automatically.
+
+    Best first: names that start with the input, then names that contain it as a word, then names within a few
+    typos. A country's own name counts before an alias; ties go to the bigger population.
+    """
     key = fold(clean_input(text))
     if not key:
         return []
     aliases = _aliases()
-    pairs = [*aliases["names"].items(), *aliases["aliases"].items(), *aliases["subdivisions"].items()]
+    # Every resolvable name with its country; `own` marks a country's names in the bundled languages (not its aliases).
+    keys = [*((alias, code, True) for alias, code in aliases["names"].items()),
+            *((alias, code, False) for alias, code in aliases["aliases"].items()),
+            *((alias, code, False) for alias, code in aliases["subdivisions"].items())]
     # Allowed typos: 1 for short input, 2 up to 8 letters (a swapped pair is 2 edits), 3 above.
     max_distance = 1 if len(key) <= 4 else 2 if len(key) <= 8 else 3
     best: dict[str, float] = {}
-    for alias, code in pairs:
+    for alias, code, own in keys:
         if alias.startswith(key):
-            score: float = 0.5
+            score: float = 0.2 if own else 0.4
         elif key in alias.split(" "):
-            score = 0.75
+            score = 0.6 if own else 0.8
         else:
             score = edit_distance(key, alias, max_distance)
         if score <= max_distance and score < best.get(code, float("inf")):

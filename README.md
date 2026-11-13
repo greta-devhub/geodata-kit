@@ -11,7 +11,7 @@ README in `packages/<name>/`.
 |---|---|---|---|
 | `geodata-kit` | countries, names, groups, languages, timezones, facts | – | 2 MB |
 | `geodata-kit-subdivisions` | states and provinces, levels 1–4, ISO 3166-2 | core | 27 MB |
-| `geodata-kit-cities` | 237k cities, locations, city timezones | core, subdivisions | 31 MB |
+| `geodata-kit-cities` | 237k cities, locations, city timezones | core, subdivisions | 36 MB |
 | `geodata-kit-airports` | 10.5k airports by IATA / ICAO | core | 1 MB |
 | `geodata-kit-shapes` | point → country / subdivision | – | 9.5 MB |
 | `geodata-kit-address` | address formats, postal-code rules | core | 0.6 MB |
@@ -88,6 +88,47 @@ Google address data and Wikidata retrieved 2026-11-12. All of it is listed in
 - **CommonJS** keeps `import()` (esbuild `supported['dynamic-import']`), so
   CommonJS users load the same ESM data modules.
 
+**Bundle size of the core.** The core is one file with about 960 KB of data,
+so it must stay tree-shakeable. Two rules, guarded by
+`tests/tree-shaking.test.ts` (size budgets per imported function):
+- Nothing runs when the module loads. Lookup tables are built on first use
+  with `/* @__PURE__ */ lazy(() => …)` from `src/internal/util.ts`. A
+  top-level `new Map(…)`, or a call that wires modules together, puts all
+  the data back into every bundle.
+- The big JSON files are imported section by section (named imports in
+  `src/internal/core-data.ts`), so a function only keeps the sections it reads.
+
+**Lookups without a country.** `data/cities/world.json` holds, for every name
+of a city over 15,000 inhabitants, the biggest city with that name: `names`
+for the cities' own names, `aliases` for names in other languages. `findCity`,
+`parseLocation` and `searchCities` use it when no country is given, and load
+only the countries of the cities they return.
+
+**Names in other scripts.** `scripts/build/cities.ts` keeps Latin-script
+alternate names in the 8 bundled languages and the country's own languages;
+names in other scripts in the country's own languages; and, for cities15000,
+names in the `WORLD_LANGUAGES` list plus abbreviations ("NYC").
+
+**Data date.** `scripts/build/meta.ts` writes `dataDate` (the newest download
+date) into `data/meta.json`. Every package imports only that key and exports
+it as `DATA_DATE`; the Python package gets it from `scripts/emit.ts`.
+
+**Family rules for lookups.** Bad input returns `null` (or an empty list),
+never an error: unknown names, invalid coordinates, unknown countries.
+Longitudes wrap around in both coordinate packages.
+
+**Licence fields.** `license` in each `package.json` is an SPDX expression
+that includes the data licences of that package (`MIT AND CC-BY-4.0`, …),
+because licence scanners read only that field. Update it when a package gets
+data from a new source.
+
+**Dependencies between packages.** They are normal `dependencies`, not peer
+dependencies, so `npm install geodata-kit-cities` works alone in npm, pnpm
+and Yarn. All packages are released together under one version, and the
+READMEs ask users to keep them on the same version: mixed versions make npm
+install a second copy of the core. The core keeps no state, so a second copy
+costs disk space but does not break lookups.
+
 **City tiers.** These are GeoNames' own lists, and each tier includes the
 bigger ones:
 
@@ -149,7 +190,7 @@ The generator fails instead of guessing when:
 
 ## Tests
 
-- `tests/golden/*.json`: 783 cases (countries, languages, groups, subdivisions,
+- `tests/golden/*.json`: 873 cases (countries, languages, groups, subdivisions,
   cities, airports and shapes, address, phone, tz) in a neutral format
   `{ fn, args, path, op, expect }`. Run by `tests/golden.test.ts` and
   `python/tests/test_golden.py`. The cases include the country names and
@@ -157,6 +198,7 @@ The generator fails instead of guessing when:
 - `tests/integrity.test.ts`: codes, timezones, national languages, group members, meta.
 - `tests/data-budget.test.ts`: size budgets (measured + ~15%), tier nesting, attribution.
 - `tests/phone-compare.test.ts`: 10,000 generated numbers against libphonenumber-js (dev dependency).
+- `tests/tree-shaking.test.ts`: what a bundler keeps when an app imports one core function (size budgets).
 - `tests/tz-agreement.test.ts`: polygon timezones against GeoNames for all 34,215 cities15000.
 
 ## Branches, CI and releases
@@ -281,6 +323,15 @@ The first four npm packages were published as 0.1.0 on 2026-11-12; the split int
 - **`geodata-kit-localities` size:** it is 83 MB packed, which npm accepted
   for 0.1.0. If a later version is rejected for size, split it per continent:
   `scripts/build/localities.ts` already writes one file per country.
+- **Country shapes:** the source draws countries for small-scale maps.
+  `getCountryAt` therefore lets the finer subdivision outlines decide near any
+  border or coast, and takes the nearest land within 5 km. Still wrong:
+  enclaves that are not in the source (Baarle-Hertog, Büsingen), the northern
+  1.5 km of Gibraltar, and Vatican City, which the source stores as a 130 m
+  marker (the lookup covers 500 m around it).
+- **City names:** alternate names cover the bundled languages, the country's
+  own languages and, for cities over 15,000 inhabitants, twelve widely used
+  languages in other scripts. A name in any other language is not found.
 - **Business groups:** they follow common definitions (written in
   `overlays/groups.json`). Teams that count differently can add codes, e.g.
   `expandGroups(['cee', 'AT'])`.

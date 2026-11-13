@@ -5,6 +5,7 @@
  * Subdivisions, cities, airports, shapes, address rules and phone numbers are
  * separate packages (geodata-kit-cities, …) so this one stays small.
  */
+import { dataDate } from '../../../data/meta.json';
 export * from './types.js';
 export { fold } from './fold.js';
 export { cleanInput as cleanText, editDistance } from './internal/util.js';
@@ -71,3 +72,9 @@ export {
   type CountryLanguagesOptions,
 } from './languages.js';
 export { canonicalTimezone, getCountryTimezones, getPrimaryTimezone, isTimezone, listTimezones } from './timezones.js';
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

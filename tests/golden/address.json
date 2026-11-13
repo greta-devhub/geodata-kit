@@ -593,6 +593,89 @@
     "DE"
    ],
    "expect": false
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "2134",
+    "US"
+   ],
+   "path": "[].postalCode",
+   "op": "includesAll",
+   "expect": [
+    "02134"
+   ],
+   "note": "leading zero lost in a spreadsheet"
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "1067",
+    "DE"
+   ],
+   "path": "[].name",
+   "op": "includesAll",
+   "expect": [
+    "Dresden"
+   ]
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "1000",
+    "FR"
+   ],
+   "path": "[].postalCode",
+   "op": "includesAll",
+   "expect": [
+    "01000"
+   ]
+  },
+  {
+   "fn": "findPlacesByPostalCode",
+   "args": [
+    "21",
+    "US"
+   ],
+   "expect": [],
+   "note": "more than two zeros missing: not guessed"
+  },
+  {
+   "fn": "findPostalCodes",
+   "args": [
+    {
+     "city": "Munich",
+     "country": "DE"
+    }
+   ],
+   "op": "includesAll",
+   "expect": [
+    "80331"
+   ],
+   "note": "English name, found through geodata-kit-cities"
+  },
+  {
+   "fn": "findPostalCodes",
+   "args": [
+    {
+     "city": "Vienna",
+     "country": "AT"
+    }
+   ],
+   "path": "length",
+   "op": "gte",
+   "expect": 20,
+   "note": "English name, found through geodata-kit-cities"
+  },
+  {
+   "fn": "findPostalCodes",
+   "args": [
+    {
+     "city": "Nowhereville",
+     "country": "DE"
+    }
+   ],
+   "expect": []
   }
  ]
 }
