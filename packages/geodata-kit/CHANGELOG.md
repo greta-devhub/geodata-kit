@@ -1,5 +1,11 @@
 # geodata-kit
 
+## 0.4.1
+
+### Patch Changes
+
+- `resolveCountry('uk')` reports `matchedBy: 'alias'` instead of `'retired'`: UK was never an assigned code, ISO only reserves it for GB. The same holds for the other codes ISO reserves without assigning them (EA, IC, …); codes that were assigned and withdrawn (`'DD'`, `'ZR'`) stay `'retired'`. `normalizeCountryCode('uk')` stays `null` (it accepts assigned codes only), which the README now says.
+
 ## 0.4.0
 
 No changes in this package. It is released with the others because all geodata-kit packages share one version; the changes of 0.4.0 are in geodata-kit-address.

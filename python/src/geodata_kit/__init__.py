@@ -40,7 +40,7 @@ from .subdivisions import (
 )
 from .timezones import canonical_timezone, get_country_timezones, get_primary_timezone, is_timezone, list_timezones
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 #: Date of the data in this version, as YYYY-MM-DD. The data is refreshed about once a month.
 DATA_DATE: str = _load_data("info.json")["dataDate"]
 __all__ = [name for name in dir() if not name.startswith("_")]

@@ -41,6 +41,8 @@ interface RegionMetadata {
   leadingDigits?: string;
   main?: true;
   preferredExtnPrefix?: string;
+  /** Digits the country dropped that old records still carry after the calling code (Mexico's mobile "1"). */
+  droppedPrefix?: string;
   general: { pattern: string; lengths: number[]; localLengths: number[] };
   types: Partial<Record<TypeKey, TypeDesc>>;
   formats: Format[];
@@ -73,7 +75,16 @@ function toAsciiDigits(text: string): string {
     .replace(/[۰-۹]/g, (d) => String(d.charCodeAt(0) - 0x06f0));
 }
 
-function prepare(text: string): { digits: string; plus: boolean; extension: string | null } | null {
+/** Letters on a phone keypad: "1-800-FLOWERS" is 1-800-3569377. */
+const KEYPAD: Record<string, string> = Object.fromEntries(
+  ['ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'].flatMap((letters, index) => [...letters].map((letter) => [letter, String(index + 2)])),
+);
+
+/**
+ * Digits of the number; `spelled` also has its letters as keypad digits when it
+ * has at least three (a vanity number such as "1-800-FLOWERS"), else null.
+ */
+function prepare(text: string): { digits: string; spelled: string | null; plus: boolean; extension: string | null } | null {
   let value = toAsciiDigits(text).trim();
   // "tel:+49-89-1234567;ext=12"
   value = value.replace(/^tel:/i, '');
@@ -86,7 +97,9 @@ function prepare(text: string): { digits: string; plus: boolean; extension: stri
   const plus = value.startsWith('+');
   const digits = value.replace(/\D/g, '');
   if (digits.length < 2 || digits.length > 17) return null;
-  return { digits, plus, extension };
+  const letters = value.match(/[A-Za-z]/g)?.length ?? 0;
+  const spelled = letters >= 3 ? value.replace(/[A-Za-z]/g, (letter) => KEYPAD[letter.toUpperCase()]!).replace(/\D/g, '') : null;
+  return { digits, spelled: spelled && spelled.length <= 17 ? spelled : null, plus, extension };
 }
 
 // ─── Core rules ───────────────────────────────────────────────────────────
@@ -194,13 +207,25 @@ function build(callingCode: string, nationalNumber: string, extension: string | 
 /**
  * Parses a phone number. Numbers without "+" or an international prefix need
  * the country they are written in: parsePhoneNumber('089 1234567', 'DE').
+ * Letters are read as on a phone keypad ("1-800-FLOWERS" → +18003569377).
  * Returns null when no number can be read; check `isValid` for validity.
  */
 export function parsePhoneNumber(text: string | null | undefined, defaultCountry?: string): PhoneNumber | null {
   if (typeof text !== 'string') return null;
   const prepared = prepare(text);
   if (!prepared) return null;
-  const { digits, plus, extension } = prepared;
+  const { digits, spelled, plus, extension } = prepared;
+  const parsed = parseDigits(digits, plus, extension, defaultCountry);
+  // Letters in the number ("1-800-FLOWERS"): a word after a valid number is
+  // not dialled ("+49 89 1234567 office"); otherwise the letters are keypad
+  // digits, and when they make no valid number either there is no number to
+  // give back: the digits alone ("+11800") would be a wrong one.
+  if (spelled === null || parsed?.isValid) return parsed;
+  const spelledNumber = parseDigits(spelled, plus, extension, defaultCountry);
+  return spelledNumber?.isValid ? spelledNumber : null;
+}
+
+function parseDigits(digits: string, plus: boolean, extension: string | null, defaultCountry: string | undefined): PhoneNumber | null {
   const defaultRegion = defaultCountry?.trim().toUpperCase();
   const defaultMetadata = defaultRegion ? METADATA.regions[defaultRegion] : undefined;
 
@@ -232,6 +257,12 @@ export function parsePhoneNumber(text: string | null | undefined, defaultCountry
   const metadata = (defaultMetadata && defaultMetadata.callingCode === callingCode ? defaultMetadata : null) ?? mainMetadata(callingCode);
   if (!metadata) return null;
   national = stripNationalPrefix(national, metadata);
+  // Old records still carry digits the country dropped ("+52 1 55 …" for Mexican
+  // mobiles before 2019): removed only when that turns an invalid number valid.
+  const dropped = metadata.droppedPrefix;
+  if (dropped && national.startsWith(dropped) && typeFor(national, metadata) === 'unknown' && typeFor(national.slice(dropped.length), metadata) !== 'unknown') {
+    national = national.slice(dropped.length);
+  }
   if (national.length < 2 || national.length > 17) return null;
   return build(callingCode, national, extension);
 }

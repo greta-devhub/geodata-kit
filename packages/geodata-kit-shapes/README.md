@@ -26,8 +26,12 @@ Accuracy:
 - Where shapes overlap, the smallest wins, so enclaves such as San Marino and
   Lesotho resolve. Vatican City is stored as a marker and covers 500 m around
   it (`MARKER_KM`).
-- Not covered: tiny enclaves such as Baarle-Hertog and Büsingen (they return
-  the surrounding country), and the northern edge of Gibraltar.
+- Tiny enclaves such as Baarle-Hertog and Büsingen, and the northern half of
+  Gibraltar, are not in the outlines. Install `geodata-kit-tz` (with
+  `geodata-kit`) and `getCountryAt` resolves them too: near a border it asks
+  the timezone polygons, which follow borders to about 110 m, and a timezone
+  only one country uses decides (`Europe/Busingen` → DE). Without it they
+  return the surrounding country. `getSubdivisionAt` uses the outlines only.
 - Invalid coordinates (not a number, latitude outside ±90) return `null`.
   Longitudes wrap around, so 190 is the same as -170.
 

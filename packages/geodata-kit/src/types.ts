@@ -51,6 +51,10 @@ export interface Country {
   flag: string;
 }
 
+/**
+ * How resolveCountry matched: 'retired' is a code that was assigned and later
+ * withdrawn ("DD" → DE); 'alias' includes codes ISO only reserves ("UK" → GB).
+ */
 export type CountryMatchKind = 'alpha2' | 'alpha3' | 'numeric' | 'name' | 'alias' | 'subdivision' | 'retired';
 
 export interface CountryMatch {

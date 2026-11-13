@@ -54,7 +54,11 @@ const countries = /* @__PURE__ */ lazy((): ReadonlyMap<string, Country> => {
   return new Map(COUNTRY_RECORDS.map((record) => [record.code, toCountry(record, today)]));
 });
 
-/** Upper-cased, trimmed alpha-2 code if it is a known country, else null. */
+/**
+ * Upper-cased, trimmed alpha-2 code if it is an assigned code of a country,
+ * else null. Reserved codes such as "UK" are not country codes and give null;
+ * resolveCountry reads them ("UK" → GB).
+ */
 export function normalizeCountryCode(value: string | null | undefined): CountryCode | null {
   if (typeof value !== 'string') return null;
   const code = value.trim().toUpperCase();
@@ -159,6 +163,13 @@ export function formatCountry(code: string, options: FormatCountryOptions = {}):
 
 // ─── Resolution ───────────────────────────────────────────────────────────
 
+/**
+ * Codes ISO 3166 reserves for a territory without ever having assigned them
+ * ("exceptionally reserved"): "UK" for the United Kingdom, "EA" for Ceuta and
+ * Melilla, … A match through one of these is an alias, not a retired code.
+ */
+const NEVER_ASSIGNED = /* @__PURE__ */ lazy((): ReadonlySet<string> => new Set(['AC', 'CP', 'CQ', 'DG', 'EA', 'EU', 'EZ', 'IC', 'TA', 'UK', 'UN']));
+
 function lookupFolded(key: string): { code: string; kind: 'name' | 'alias' | 'subdivision' } | null {
   const name = ALIAS_NAMES[key];
   if (name) return { code: name, kind: 'name' };
@@ -174,7 +185,7 @@ function resolveCleaned(text: string): Omit<CountryMatch, 'input'> | null {
     const upper = text.toUpperCase();
     if (countries().has(upper)) return { code: upper, matchedBy: 'alpha2' };
     const successors = RETIRED[upper];
-    if (successors?.length === 1) return { code: successors[0]!, matchedBy: 'retired' };
+    if (successors?.length === 1) return { code: successors[0]!, matchedBy: NEVER_ASSIGNED().has(upper) ? 'alias' : 'retired' };
   }
   if (/^[A-Za-z]{3}$/.test(text)) {
     const code = countryByAlpha3().get(text.toUpperCase());

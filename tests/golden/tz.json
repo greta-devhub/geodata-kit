@@ -148,6 +148,51 @@
    ],
    "expect": "Asia/Tokyo",
    "note": "longitudes wrap around"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    51.4387,
+    4.9268
+   ],
+   "expect": "BE",
+   "note": "with geodata-kit-tz: Baarle-Hertog, Belgian enclave in NL (#20)"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    51.4436,
+    4.93
+   ],
+   "expect": "NL",
+   "note": "Baarle-Nassau next to it stays NL"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    47.6965,
+    8.6905
+   ],
+   "expect": "DE",
+   "note": "Büsingen, German exclave in CH"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    36.1512,
+    -5.3497
+   ],
+   "expect": "GI",
+   "note": "Gibraltar airport, outside the coarse Gibraltar outline"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    47.3769,
+    8.5417
+   ],
+   "expect": "CH",
+   "note": "well inside a country: unchanged"
   }
  ]
 }

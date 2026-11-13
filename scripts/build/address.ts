@@ -44,6 +44,11 @@ export interface AddressFormatRecord {
     match?: 'either' | 'both';
     /** True when a code must start with the range of one of the regions (every real code does). */
     byRegion?: true;
+    /**
+     * Words real codes carry after a valid code, with an optional office
+     * number: "CEDEX" in "75008 CEDEX 08" (French business mail).
+     */
+    suffixes?: string[];
     layouts: string[];
     examples: string[];
     prefixes: string[];
@@ -218,6 +223,15 @@ export async function buildAddress(): Promise<void> {
     const ranges = byRegion ? new RegExp(`^(?:${regions.map((region) => region.postalPattern).join('|')})`, 'i') : null;
     const valid = (code: string): boolean => accepts(code) && (!ranges || ranges.test(code.replace(/[\s-]/g, '')));
 
+    // Suffixes: a word that real codes carry after a valid code, often enough to be a rule.
+    const suffixCounts = new Map<string, number>();
+    for (const code of codes) {
+      const found = /^(.+?) ([A-Z]{3,})(?: \d{1,2})?$/.exec(code);
+      if (found && !valid(code) && valid(found[1]!)) suffixCounts.set(found[2]!, (suffixCounts.get(found[2]!) ?? 0) + 1);
+    }
+    const suffixes = [...suffixCounts].filter(([, count]) => count >= MIN_EVIDENCE).map(([word]) => word).sort(compareStrings);
+    if (suffixes.length) report[country.code] = `${report[country.code] ? `${report[country.code]}; ` : ''}suffixes: ${suffixes.map((word) => `${word} (${suffixCounts.get(word)} real codes)`).join(', ')}`;
+
     // Examples that the final rule rejects are legacy forms (Armenia's "375010"); they are dropped.
     // An example counts as it would be normalised: written in a layout, as given, or without separators.
     const acceptable = (example: string): boolean => {
@@ -242,6 +256,7 @@ export async function buildAddress(): Promise<void> {
         secondaryPattern: geonamesPattern,
         ...(match ? { match } : {}),
         ...(byRegion ? { byRegion } : {}),
+        ...(suffixes.length ? { suffixes } : {}),
         layouts: finalLayouts,
         examples,
         prefixes,

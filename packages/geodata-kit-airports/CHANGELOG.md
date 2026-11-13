@@ -1,5 +1,13 @@
 # geodata-kit-airports
 
+## 0.4.1
+
+### Patch Changes
+
+- Airports with more than one IATA code are found by each of them: `getAirportByIata('BSL')` and `getAirportByIata('MLH')` return EuroAirport Basel–Mulhouse–Freiburg (EAP), and `searchAirports` matches them too. New field `alternateIata` (`['BSL', 'MLH']`; 25 airports have one). A code that is another airport's main code, or that two airports share, is left out.
+- Updated dependencies
+  - geodata-kit@0.4.1
+
 ## 0.4.0
 
 ### Patch Changes

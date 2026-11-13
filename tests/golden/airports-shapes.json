@@ -441,6 +441,71 @@
    ],
    "expect": "JP",
    "note": "longitudes wrap around (same as geodata-kit-tz)"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "BSL"
+   ],
+   "path": "icao",
+   "expect": "LFSB",
+   "note": "an airport with several IATA codes (#19)"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "MLH"
+   ],
+   "path": "icao",
+   "expect": "LFSB"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "EAP"
+   ],
+   "path": "icao",
+   "expect": "LFSB"
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "bsl"
+   ],
+   "path": "alternateIata",
+   "op": "sameMembers",
+   "expect": [
+    "BSL",
+    "MLH"
+   ]
+  },
+  {
+   "fn": "getAirportByIata",
+   "args": [
+    "FRA"
+   ],
+   "path": "alternateIata",
+   "expect": []
+  },
+  {
+   "fn": "searchAirports",
+   "args": [
+    "MLH"
+   ],
+   "path": "[].icao",
+   "op": "includesAll",
+   "expect": [
+    "LFSB"
+   ]
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    36.1408,
+    -5.3536
+   ],
+   "expect": "GI",
+   "note": "Gibraltar town (#20)"
   }
  ]
 }

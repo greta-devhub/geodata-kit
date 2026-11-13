@@ -51,7 +51,12 @@ def _js_template(template: str) -> str:
 _EXTENSION = re.compile(r"(?:;ext=|[\s,]*(?:#|x|xtn|ext\.?|extension|extn|ext:|доб\.?|anexo)[\s.:]*)(\d{1,7})#?\s*$", re.I)
 
 
+# Letters on a phone keypad: "1-800-FLOWERS" is 1-800-3569377.
+_KEYPAD = {letter: str(index + 2) for index, letters in enumerate(["ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ"]) for letter in letters}
+
+
 def _prepare(text: str):
+    """(digits, spelled, plus, extension); `spelled` has letters as keypad digits when there are at least three."""
     value = unicodedata.normalize("NFKC", text)
     value = "".join(str(ord(ch) - 0x0660) if "\u0660" <= ch <= "\u0669" else str(ord(ch) - 0x06F0) if "\u06f0" <= ch <= "\u06f9" else ch for ch in value).strip()
     value = re.sub(r"^tel:", "", value, flags=re.I)
@@ -68,7 +73,12 @@ def _prepare(text: str):
     digits = re.sub(r"\D", "", value)
     if len(digits) < 2 or len(digits) > 17:
         return None
-    return digits, plus, extension
+    spelled = None
+    if len(re.findall(r"[A-Za-z]", value)) >= 3:
+        spelled = re.sub(r"\D", "", re.sub(r"[A-Za-z]", lambda m: _KEYPAD[m.group(0).upper()], value))
+        if len(spelled) > 17:
+            spelled = None
+    return digits, spelled, plus, extension
 
 
 def _regions_for(calling_code: str) -> list[str]:
@@ -169,13 +179,23 @@ def _build(calling_code: str, national: str, extension: str | None) -> PhoneNumb
 
 
 def parse_phone_number(text: str | None, default_country: str | None = None) -> PhoneNumber | None:
-    """parse_phone_number("089 1234567", "DE").e164 == "+49891234567"."""
+    """parse_phone_number("089 1234567", "DE").e164 == "+49891234567". Letters are keypad digits ("1-800-FLOWERS")."""
     if not isinstance(text, str):
         return None
     prepared = _prepare(text)
     if not prepared:
         return None
-    digits, plus, extension = prepared
+    digits, spelled, plus, extension = prepared
+    parsed = _parse_digits(digits, plus, extension, default_country)
+    # Letters in the number: a word after a valid number is not dialled ("+49 89 1234567 office"); otherwise the
+    # letters are keypad digits, and when they make no valid number either there is none to give back.
+    if spelled is None or (parsed and parsed.is_valid):
+        return parsed
+    spelled_number = _parse_digits(spelled, plus, extension, default_country)
+    return spelled_number if spelled_number and spelled_number.is_valid else None
+
+
+def _parse_digits(digits: str, plus: bool, extension: str | None, default_country: str | None) -> PhoneNumber | None:
     region = default_country.strip().upper() if default_country else None
     default_meta = _meta()["regions"].get(region) if region else None
     if plus:
@@ -202,6 +222,11 @@ def parse_phone_number(text: str | None, default_country: str | None = None) -> 
     if not meta:
         return None
     national = _strip_national_prefix(national, meta)
+    # Old records still carry digits the country dropped ("+52 1 55 …" for Mexican mobiles before 2019): removed
+    # only when that turns an invalid number valid.
+    dropped = meta.get("droppedPrefix")
+    if dropped and national.startswith(dropped) and _type_for(national, meta) == "unknown" and _type_for(national[len(dropped):], meta) != "unknown":
+        national = national[len(dropped):]
     if len(national) < 2 or len(national) > 17:
         return None
     return _build(calling_code, national, extension)

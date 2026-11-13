@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "geodata-kit-py"
-version = "0.4.0"
+version = "0.4.1"
 description = "Countries, subdivisions, cities, languages, timezones, address and phone data for Python. Offline, no runtime dependencies."
 readme = "README.md"
 license = "MIT AND CC-BY-4.0 AND Unicode-3.0 AND Apache-2.0"
@@ -28,8 +28,8 @@ Changelog = "https://github.com/greta-devhub/geodata-kit/releases"
 Documentation = "https://github.com/greta-devhub/geodata-kit/tree/main/python#readme"
 
 [project.optional-dependencies]
-localities = ["geodata-kit-localities==0.4.0"]
-postal = ["geodata-kit-postal==0.4.0"]
+localities = ["geodata-kit-localities==0.4.1"]
+postal = ["geodata-kit-postal==0.4.1"]
 dev = ["pytest>=8.3"]
 
 [tool.hatch.build.targets.wheel]

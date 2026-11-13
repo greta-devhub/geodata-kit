@@ -119,6 +119,12 @@ def _retired() -> dict[str, list[str]]:
     return load("core", "retired.json")
 
 
+# Codes ISO 3166 reserves for a territory without ever having assigned them ("exceptionally reserved"):
+# "UK" for the United Kingdom, "EA" for Ceuta and Melilla, … A match through one of these is an alias, not a
+# retired code.
+_NEVER_ASSIGNED = frozenset({"AC", "CP", "CQ", "DG", "EA", "EU", "EZ", "IC", "TA", "UK", "UN"})
+
+
 def display_locales() -> list[str]:
     return list(_names().keys())
 
@@ -137,7 +143,10 @@ def pick_locale(locale: str | None) -> str:
 # ─── Codes ────────────────────────────────────────────────────────────────
 
 def normalize_country_code(value: str | None) -> str | None:
-    """Upper-cased, trimmed alpha-2 code if it is a known country, else None."""
+    """Upper-cased, trimmed alpha-2 code if it is an assigned code of a country, else None.
+
+    Reserved codes such as "UK" are not country codes and give None; resolve_country reads them ("UK" → GB).
+    """
     if not isinstance(value, str):
         return None
     code = value.strip().upper()
@@ -240,7 +249,7 @@ def _resolve_cleaned(text: str) -> tuple[str, MatchKind] | None:
             return upper, "alpha2"
         successors = _retired().get(upper)
         if successors and len(successors) == 1:
-            return successors[0], "retired"
+            return successors[0], "alias" if upper in _NEVER_ASSIGNED else "retired"
     if re.fullmatch(r"[A-Za-z]{3}", text):
         code = _by_alpha3().get(text.upper())
         if code:

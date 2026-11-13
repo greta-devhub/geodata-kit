@@ -3,7 +3,11 @@
  * code (codes come from alternateNamesV2), with the nearest cities500 city
  * (within 60 km, same country) as the city served.
  *
- *   { tz: string[], rows: [geonameid, name, iata|0, icao|0, country, admin1, lat, lng, tzIndex, cityId|0][] }
+ *   { tz: string[], rows: [geonameid, name, iata|0, icao|0, country, admin1, lat, lng, tzIndex, cityId|0, alternateIata|0][] }
+ *
+ * Some airports have more than one IATA code (EuroAirport: EAP, BSL, MLH). The
+ * preferred one is `iata`; the others go to `alternateIata` (space-separated),
+ * except a code that is another airport's own or that two airports share.
  */
 import { readdirSync } from 'node:fs';
 
@@ -20,17 +24,18 @@ function distanceKm(aLat: number, aLng: number, bLat: number, bLng: number): num
 }
 
 export async function buildAirports(): Promise<void> {
-  const airports = new Map<number, { id: number; name: string; country: string; admin1: string; lat: number; lng: number; tz: string; iata: string | null; icao: string | null }>();
+  const airports = new Map<number, { id: number; name: string; country: string; admin1: string; lat: number; lng: number; tz: string; iata: string | null; icao: string | null; iataCodes: Set<string> }>();
   for await (const c of readTsv(cachePath('work', 'airports.tsv'))) {
     // id, name, ascii, code, population, lat, lng, cc, a1, a2, a3, a4, tz
     if (!c[7] || !c[12]) continue;
-    airports.set(Number(c[0]), { id: Number(c[0]), name: c[1]!, country: c[7]!, admin1: c[8] === '00' ? '' : c[8]!, lat: Number(c[5]), lng: Number(c[6]), tz: c[12]!, iata: null, icao: null });
+    airports.set(Number(c[0]), { id: Number(c[0]), name: c[1]!, country: c[7]!, admin1: c[8] === '00' ? '' : c[8]!, lat: Number(c[5]), lng: Number(c[6]), tz: c[12]!, iata: null, icao: null, iataCodes: new Set() });
   }
   for await (const [id, language, name, preferred] of readTsv(cachePath('work', 'altnames.tsv'))) {
     if (language !== 'iata' && language !== 'icao') continue;
     const airport = airports.get(Number(id));
     if (!airport) continue;
     const code = name!.trim().toUpperCase();
+    if (language === 'iata' && /^[A-Z0-9]{3}$/.test(code)) airport.iataCodes.add(code);
     if (language === 'iata' && /^[A-Z0-9]{3}$/.test(code) && (!airport.iata || preferred === '1')) airport.iata = code;
     if (language === 'icao' && /^[A-Z0-9]{4}$/.test(code) && (!airport.icao || preferred === '1')) airport.icao = code;
   }
@@ -48,6 +53,11 @@ export async function buildAirports(): Promise<void> {
   }
 
   const withCode = [...airports.values()].filter((airport) => airport.iata || airport.icao).sort((a, b) => a.id - b.id);
+  const primaryCodes = new Set(withCode.map((airport) => airport.iata).filter(Boolean));
+  const alternateCount = new Map<string, number>();
+  for (const airport of withCode) for (const code of airport.iataCodes) if (code !== airport.iata) alternateCount.set(code, (alternateCount.get(code) ?? 0) + 1);
+  const alternatesOf = (airport: (typeof withCode)[number]): string[] =>
+    [...airport.iataCodes].filter((code) => code !== airport.iata && !primaryCodes.has(code) && alternateCount.get(code) === 1).sort(compareStrings);
   const zones = [...new Set(withCode.map((airport) => airport.tz))].sort(compareStrings);
   const zoneIndex = new Map(zones.map((zone, index) => [zone, index]));
   const rows = withCode.map((airport) => {
@@ -61,8 +71,8 @@ export async function buildAirports(): Promise<void> {
       if (!best || score < best.score) best = { id: point.id, score };
     }
     return [airport.id, airport.name, airport.iata ?? 0, airport.icao ?? 0, airport.country, airport.admin1,
-      roundCoordinate(airport.lat), roundCoordinate(airport.lng), zoneIndex.get(airport.tz)!, best?.id ?? 0];
+      roundCoordinate(airport.lat), roundCoordinate(airport.lng), zoneIndex.get(airport.tz)!, best?.id ?? 0, alternatesOf(airport).join(' ') || 0];
   });
   writeJson(dataPath('airports.json'), { tz: zones, rows }, 'compact');
-  console.log(`  airports: ${rows.length} (IATA ${withCode.filter((a) => a.iata).length}, ICAO ${withCode.filter((a) => a.icao).length})`);
+  console.log(`  airports: ${rows.length} (IATA ${withCode.filter((a) => a.iata).length}, ICAO ${withCode.filter((a) => a.icao).length}, ${rows.filter((row) => row[10]).length} with alternate IATA codes)`);
 }

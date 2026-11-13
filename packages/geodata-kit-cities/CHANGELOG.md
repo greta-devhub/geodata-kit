@@ -1,5 +1,13 @@
 # geodata-kit-cities
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies
+  - geodata-kit@0.4.1
+  - geodata-kit-subdivisions@0.4.1
+
 ## 0.4.0
 
 ### Patch Changes

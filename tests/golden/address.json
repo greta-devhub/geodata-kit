@@ -1260,6 +1260,15 @@
     "Hauptstr. 1, 80331 München"
    ],
    "path": "country",
+   "expect": "DE",
+   "note": "a postal code with a place of that code (#16)"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, 80331"
+   ],
+   "path": "country",
    "expect": null,
    "note": "a bare postal code is not enough to know the country"
   },
@@ -1713,6 +1722,367 @@
    ],
    "path": "postalCode",
    "expect": "28013"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "01001 CEDEX",
+    "FR"
+   ],
+   "expect": "01001 CEDEX",
+   "note": "CEDEX codes of businesses (#14)"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "75008 CEDEX 08",
+    "FR"
+   ],
+   "expect": "75008 CEDEX 08"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "75008 Cedex",
+    "FR"
+   ],
+   "expect": "75008 CEDEX"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "F-75008 cedex 8",
+    "FR"
+   ],
+   "expect": "75008 CEDEX 8"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "97405 cedex",
+    "RE"
+   ],
+   "expect": "97405 CEDEX",
+   "note": "overseas departments too"
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "97306 CEDEX",
+    "GF"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "97201 CEDEX",
+    "MQ"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "97001 CEDEX",
+    "GP"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "80331 CEDEX",
+    "DE"
+   ],
+   "expect": null,
+   "note": "only where real codes use the suffix"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "CEDEX",
+    "FR"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "7500 CEDEX",
+    "FR"
+   ],
+   "expect": null,
+   "note": "the code before CEDEX must be valid"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Rue de la Paix, 75008 Paris Cedex 08",
+    {
+     "country": "FR"
+    }
+   ],
+   "path": "postalCode",
+   "expect": "75008 CEDEX 08",
+   "note": "CEDEX after the city, as French mail writes it"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Rue de la Paix, 75008 Paris Cedex 08",
+    {
+     "country": "FR"
+    }
+   ],
+   "path": "city",
+   "expect": "Paris"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Service clients\nBP 10\n01001 CEDEX Bourg-en-Bresse",
+    {
+     "country": "FR"
+    }
+   ],
+   "path": "postalCode",
+   "expect": "01001 CEDEX"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Service clients\nBP 10\n01001 CEDEX Bourg-en-Bresse",
+    {
+     "country": "FR"
+    }
+   ],
+   "path": "city",
+   "expect": "Bourg-en-Bresse"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10 Rue de Rivoli, 75001 Paris"
+   ],
+   "path": "country",
+   "expect": "FR",
+   "note": "postal code + place of that code decide the country (#16)"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10 Rue de Rivoli, 75001 Paris"
+   ],
+   "path": "postalCode",
+   "expect": "75001"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10 Rue de Rivoli, 75001 Paris"
+   ],
+   "path": "city",
+   "expect": "Paris"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Max Muster\nUnter den Linden 1\n10117 Berlin"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Max Muster\nUnter den Linden 1\n10117 Berlin"
+   ],
+   "path": "city",
+   "expect": "Berlin"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Max Muster\nUnter den Linden 1\n10117 Berlin"
+   ],
+   "path": "lines",
+   "expect": [
+    "Max Muster",
+    "Unter den Linden 1"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, 8001 Zürich"
+   ],
+   "path": "country",
+   "expect": "CH"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstrasse 1, 1000 Nowhereville"
+   ],
+   "path": "country",
+   "expect": null,
+   "note": "no place of that name at that code anywhere: no guess"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10117 Berlin",
+    {
+     "country": "Atlantis"
+    }
+   ],
+   "path": "country",
+   "expect": null,
+   "note": "an unknown country given is not replaced by a guess"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Musterweg 5, 80331 Berlin",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "postalCheck",
+   "expect": "mismatch",
+   "note": "80331 is München, far from Berlin (#15)"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Musterweg 5, 80331 Berlin",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "expectedCity",
+   "expect": "München"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Musterweg 5, 80331 Berlin",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "city",
+   "expect": "Berlin",
+   "note": "the written city is kept"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "10 Downing Street\nLondon\nSW1A 2AA",
+    {
+     "country": "GB"
+    }
+   ],
+   "path": "postalCheck",
+   "expect": "unknown",
+   "note": "a nearby locality name is no mismatch"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Musterweg 5, 80331 Nowhereville",
+    {
+     "country": "DE"
+    }
+   ],
+   "path": "postalCheck",
+   "expect": "unknown",
+   "note": "an unknown city is no mismatch"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München, Deutschland"
+   ],
+   "path": "expectedCity",
+   "expect": null
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001"
+   ],
+   "path": "country",
+   "expect": "US",
+   "note": "ZIP of another state: fields kept, flagged"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001"
+   ],
+   "path": "postalCode",
+   "expect": "10001"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001"
+   ],
+   "path": "region",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001"
+   ],
+   "path": "city",
+   "expect": "Fake City"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001"
+   ],
+   "path": "postalCheck",
+   "expect": "mismatch"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001"
+   ],
+   "path": "expectedRegion",
+   "expect": "NY"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Fake City, CA 10001",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "postalCheck",
+   "expect": "mismatch"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "expectedRegion",
+   "expect": null
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "postalCheck",
+   "expect": "confirmed"
   }
  ]
 }
