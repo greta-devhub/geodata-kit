@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-subdivisions",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "States, provinces, cantons and the levels below them for every country, with ISO 3166-2 codes, local names and free-text resolution. Offline add-on for geodata-kit.",
   "keywords": [
     "subdivisions",
@@ -52,7 +52,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "geodata-kit": "^0.3.0"
+    "geodata-kit": "^0.4.0"
   },
   "scripts": {
     "build": "tsup"
