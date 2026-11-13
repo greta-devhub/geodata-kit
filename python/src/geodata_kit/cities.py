@@ -24,10 +24,10 @@ class City:
     name: str
     ascii_name: str
     country: str
-    admin1: str
-    admin2: str
-    admin3: str
-    admin4: str
+    subdivision1: str
+    subdivision2: str
+    subdivision3: str
+    subdivision4: str
     feature_code: str
     population: int
     lat: float
@@ -135,6 +135,29 @@ def _localities(country: str) -> dict[str, list[City]] | None:
     return index
 
 
+# ─── World index: lookups without a country ───────────────────────────────
+
+def _world() -> dict:
+    """Cities over 15,000 inhabitants as flat [id, population, country index] triples, biggest first, and for
+    every name the biggest city that has it: `names` are the cities' own names, `aliases` their names in other
+    languages (used only where no city has that name itself)."""
+    return load("cities", "world.json")
+
+
+def _world_city(data: dict, index: int) -> City | None:
+    country = data["countries"][data["cities"][index * 3 + 2]]
+    return _load_country(country, 15000).by_id.get(data["cities"][index * 3])
+
+
+def _find_world_city(key: str) -> City | None:
+    """The biggest city worldwide with this (folded) name, among cities over 15,000 inhabitants."""
+    data = _world()
+    for index in (data["names"], data["aliases"]):
+        if key in index:
+            return _world_city(data, index[key])
+    return None
+
+
 # ─── Lookups ──────────────────────────────────────────────────────────────
 
 def _to_country(country) -> str | None:
@@ -154,7 +177,7 @@ def _subdivision_filter(country: str, subdivision):
     if not resolved or resolved.country != country:
         return lambda city: False
     depth = len(resolved.path.split("."))
-    return lambda city: ".".join([city.admin1, city.admin2, city.admin3, city.admin4][:depth]) == resolved.path
+    return lambda city: ".".join([city.subdivision1, city.subdivision2, city.subdivision3, city.subdivision4][:depth]) == resolved.path
 
 
 def _clean_city_name(text: str) -> str:
@@ -171,7 +194,11 @@ def _opt(options: dict | None, key: str, default=None):
 
 
 def find_city(name: str, options: dict | None = None, *, country: str | None = None, subdivision=None, tier=500) -> City | None:
-    """Best match for a place name in a country (exact/ASCII name, then alternate names; ranked by population)."""
+    """Best match for a place name in a country (exact/ASCII name, then alternate names; ranked by population).
+
+    Without a country: the country of a subdivision such as "US-IL" if given, else the biggest city of that
+    name worldwide (cities over 15,000 inhabitants).
+    """
     country = _opt(options, "country", country)
     subdivision = _opt(options, "subdivision", subdivision)
     tier = _opt(options, "tier", tier)
@@ -180,11 +207,27 @@ def find_city(name: str, options: dict | None = None, *, country: str | None = N
 
 
 def _find_candidates(name: str, country, subdivision, tier) -> list[City]:
-    code = _to_country(country)
-    if not code or not isinstance(name, str):
+    if not isinstance(name, str):
         return []
     key = fold(_clean_city_name(name))
     if not key:
+        return []
+    # A subdivision with a country in it ("US-MO", or a Subdivision) is enough to know the country.
+    if isinstance(subdivision, str):
+        prefix = re.match(r"\s*([A-Za-z]{2})-", subdivision)
+        implied = normalize_country_code(prefix.group(1)) if prefix else None
+    else:
+        implied = subdivision.country if subdivision else None
+    if not country and implied:
+        return _find_candidates(name, implied, subdivision, tier)
+    if country is None or country == "":
+        city = _find_world_city(key)
+        if not city:
+            return []
+        in_subdivision = _subdivision_filter(city.country, subdivision)
+        return [city] if not in_subdivision or in_subdivision(city) else []
+    code = _to_country(country)
+    if not code:
         return []
     keep = _subdivision_filter(code, subdivision)
     store = _load_country(code, tier)
@@ -200,7 +243,27 @@ def _find_candidates(name: str, country, subdivision, tier) -> list[City]:
     return matches
 
 
-def search_cities(query: str, options: dict | None = None, *, country=None, subdivision=None, min_population=None, tier=500, limit=10) -> list[City]:
+# A match on a name in another language ("San Pablo" for São Paulo) counts this much of a match on the city's own name.
+_ALIAS_WEIGHT = 0.2
+
+
+def _match_weight(name: str, key: str) -> float:
+    """How well an indexed name matches the query: the whole name, its start, or the start of a later word."""
+    if name == key:
+        return 10
+    if name.startswith(key):
+        return 1
+    return 0.3 if f" {key}" in name else 0
+
+
+def search_cities(query: str, options: dict | None = None, *, country=None, subdivision=None, min_population=None, tier=None, limit=10) -> list[City]:
+    """Autocomplete-style search over names and alternate names, ranked by size and by how well the name matches.
+
+    A city called exactly like the query counts ten times its population, a name starting with it once, a later
+    word starting with it a third; names in other languages count a fifth of that. Without a country the search
+    covers cities over 15,000 inhabitants worldwide; pass `tier` (or `subdivision`) to search smaller places
+    everywhere, which loads every country.
+    """
     country = _opt(options, "country", country)
     subdivision = _opt(options, "subdivision", subdivision)
     min_population = _opt(options, "minPopulation", min_population)
@@ -209,23 +272,51 @@ def search_cities(query: str, options: dict | None = None, *, country=None, subd
     key = fold(clean_input(query))
     if not key:
         return []
+
+    def ranked(found: dict[int, tuple[City, float]]) -> list[City]:
+        ordered = sorted(found.values(), key=lambda entry: (-(entry[0].population * entry[1]), -entry[1], *_rank(entry[0])))
+        return [city for city, _ in ordered[:limit]]
+
+    if not country and tier is None and not subdivision:
+        data = _world()
+        cities = data["cities"]
+        weights: dict[int, float] = {}
+        for entries, factor in ((data["names"], 1), (data["aliases"], _ALIAS_WEIGHT)):
+            for name, index in entries.items():
+                weight = _match_weight(name, key) * factor
+                if not weight or (min_population is not None and cities[index * 3 + 1] < min_population):
+                    continue
+                if weight > weights.get(index, 0):
+                    weights[index] = weight
+        # Only the cities that can make the list are loaded, each from its own country file.
+        best = sorted(weights.items(), key=lambda item: (-(cities[item[0] * 3 + 1] * item[1]), -item[1], item[0]))[:limit]
+        found: dict[int, tuple[City, float]] = {}
+        for index, weight in best:
+            city = _world_city(data, index)
+            if city:
+                found[city.geoname_id] = (city, weight)
+        return ranked(found)
+
+    if tier is None:
+        tier = 500
     codes = [c for c in [_to_country(country)] if c] if country else _all_country_codes()
-    results: dict[int, City] = {}
+    found = {}
     for code in codes:
         store = _load_country(code, tier)
         keep = _subdivision_filter(code, subdivision)
-        for index in (store.main, store.alternate):
-            for name, cities in index.items():
-                if not name.startswith(key) and f" {key}" not in name:
+        for names, factor in ((store.main, 1), (store.alternate, _ALIAS_WEIGHT)):
+            for name, cities in names.items():
+                weight = _match_weight(name, key) * factor
+                if not weight:
                     continue
                 for city in cities:
                     if not _in_tier(city, tier) or (keep and not keep(city)):
                         continue
                     if min_population is not None and city.population < min_population:
                         continue
-                    results[city.geoname_id] = city
-    exact = lambda c: 0 if fold(c.name) == key or fold(c.ascii_name) == key else 1  # noqa: E731
-    return sorted(results.values(), key=lambda c: (exact(c), *_rank(c)))[:limit]
+                    if weight > (found[city.geoname_id][1] if city.geoname_id in found else 0):
+                        found[city.geoname_id] = (city, weight)
+    return ranked(found)
 
 
 def list_cities(options: dict | None = None, *, country=None, subdivision=None, min_population=None, tier=500) -> list[City]:
@@ -282,10 +373,42 @@ def _split_location(text: str) -> list[str]:
     return [part.strip() for part in re.split(r"\s*[,;|/]\s*|\s+-\s+|\s*\(\s*|\s*\)\s*", clean_input(text)) if part.strip()]
 
 
+# Words around a city name in "Greater London", "Munich Metropolitan Area", "Großraum Stuttgart", "Region Hannover".
+# ASCII-only case folding, as in the TypeScript patterns.
+_AREA_PREFIX = re.compile(r"^(?:greater|großraum|grossraum|metropolregion|region|raum)\s+", re.I | re.A)
+_AREA_SUFFIX = re.compile(r"\s+(?:(?:metropolitan|metro)\s+)?(?:area|region)\Z|\s+und\s+umgebung\Z", re.I | re.A)
+
+# Regions known by a nickname, mapped to their main city (place id).
+_AREA_NICKNAMES = {
+    "bay area": 5391959,  # San Francisco
+    "sf bay area": 5391959,
+    "silicon valley": 5392171,  # San Jose
+}
+
+
+def _area_city_names(text: str) -> list[str]:
+    """Names to try for an area description, most specific first: "Greater Munich Metropolitan Area" → ["Munich"];
+    "San Francisco Bay Area" → ["San Francisco Bay", "San Francisco"]. Empty when the text has no area words."""
+    stripped = _AREA_SUFFIX.sub("", _AREA_PREFIX.sub("", text, count=1), count=1).strip()
+    if not stripped or stripped == text:
+        return []
+    words = stripped.split(" ")
+    return [" ".join(words[: len(words) - index]) for index in range(len(words))]
+
+
 def parse_location(text: str, options: dict | None = None, *, country=None, tier=500) -> dict:
-    """"Berlin, Germany", "München (DE)", "San Francisco, CA" → {"city", "subdivision", "country"}."""
+    """"Berlin, Germany", "München (DE)", "San Francisco, CA" → {"city", "subdivision", "country"}.
+
+    Text that is only a place ("Berlin", "New York", "Greater London", "Bay Area") gives the biggest city of that
+    name worldwide, among cities over 15,000 inhabitants. A country name wins over a city name ("Luxembourg").
+    """
     country = _opt(options, "country", country)
     tier = _opt(options, "tier", tier)
+    return _parse_location_text(text, country, tier, True)
+
+
+def _parse_location_text(text: str, country, tier, worldwide: bool) -> dict:
+    """`worldwide=False` leaves out the "only a place" guess: used when the caller named a country that does not exist."""
     empty = {"city": None, "subdivision": None, "country": _to_country(country)}
     if not isinstance(text, str) or not clean_input(text):
         return empty
@@ -304,13 +427,12 @@ def parse_location(text: str, options: dict | None = None, *, country=None, tier
             if index > 0 and match and match.code == code:
                 continue
             city_parts.append(part)
-        for candidate in (city_parts[0] if city_parts else None, " ".join(city_parts)):
-            if not candidate:
-                continue
+        names = [name for name in (city_parts[0] if city_parts else None, " ".join(city_parts)) if name]
+        for candidate in [*names, *(variant for name in names for variant in _area_city_names(name))]:
             city = find_city(candidate, country=code, subdivision=subdivision, tier=tier) or (
                 None if subdivision else find_city(candidate, country=code, tier=tier))
             if city:
-                return {"city": city, "subdivision": subdivision or (resolve_subdivision(city.admin1, code) if city.admin1 else None), "country": code}
+                return {"city": city, "subdivision": subdivision or (resolve_subdivision(city.subdivision1, code) if city.subdivision1 else None), "country": code}
         return {"city": None, "subdivision": subdivision, "country": code} if subdivision else None
 
     given = _to_country(country)
@@ -338,8 +460,24 @@ def parse_location(text: str, options: dict | None = None, *, country=None, tier
                 return result
         if match:
             return {**empty, "country": match.code}
+    if len(parts) != 1:
+        return empty
     only = resolve_country(parts[0])
-    return {**empty, "country": only.code} if only and len(parts) == 1 else empty
+    if only:
+        return {**empty, "country": only.code}
+    if not worldwide:
+        return empty
+
+    # Only a place: a known area nickname, else the biggest city of that name worldwide.
+    nickname = _AREA_NICKNAMES.get(fold(parts[0]))
+    city = get_city(nickname) if nickname else None
+    for candidate in (parts[0], *_area_city_names(parts[0])):
+        if city:
+            break
+        city = find_city(candidate)
+    if not city:
+        return empty
+    return {"city": city, "subdivision": resolve_subdivision(city.subdivision1, city.country) if city.subdivision1 else None, "country": city.country}
 
 
 # ─── Timezones ────────────────────────────────────────────────────────────
@@ -354,7 +492,8 @@ def resolve_city_timezone(location: dict | None = None, options: dict | None = N
     city_name = clean_input(city) if city else ""
     subdivision_input = subdivision
     if city_name and (re.search(r"[,;(/|]", city_name) or not code):
-        parsed = parse_location(city_name, country=code, tier=tier)
+        # A country that was given but is unknown ("Atlantis") is bad input: don't guess a city from the name alone.
+        parsed = _parse_location_text(city_name, code, tier, not (isinstance(country, str) and country.strip()))
         code = code or parsed["country"]
         if parsed["city"]:
             place = parsed["city"]
@@ -389,6 +528,13 @@ def distance_km(a_lat: float, a_lng: float, b_lat: float, b_lng: float) -> float
 
 def find_nearest_cities(lat: float, lng: float, options: dict | None = None, *, country=None, tier=None, limit=5,
                         max_distance_km=None) -> list[City]:
+    """Nearest cities to a point, closest first, with their distance. Without a country every country is loaded for
+    the tier (default 15000 here). Invalid coordinates (not a number, latitude outside ±90) give an empty list."""
+    for value in (lat, lng):
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
+            return []
+    if lat < -90 or lat > 90:
+        return []
     country = _opt(options, "country", country)
     tier = _opt(options, "tier", tier) or (500 if country else 15000)
     limit = _opt(options, "limit", limit)

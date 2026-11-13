@@ -2,7 +2,11 @@
 
 Countries for TypeScript and JavaScript: names in 8 languages, free-text
 resolution, search, groups, languages, timezones and currencies. Offline,
-typed, no dependencies, about 1.5 MB.
+typed, no dependencies.
+
+In a browser bundle you pay only for what you import: about 30 KB gzipped for
+country codes and facts, about 40 KB with names in the 8 languages, about
+120 KB with free-text resolution.
 
 ```bash
 npm install geodata-kit
@@ -17,19 +21,36 @@ getNationalLanguages('CH').map((l) => l.code);           // ['de', 'fr', 'it', '
 getCountriesInGroup('dach');                             // ['AT', 'CH', 'DE', 'LI']
 ```
 
+## Which package do I need?
+
+| I want to… | Install |
+|---|---|
+| validate, name, search or group countries (EU, DACH, …) | `geodata-kit` |
+| know the languages, currency or timezones of a country | `geodata-kit` |
+| find a city, read text like "Berlin, Germany", get a city's timezone | `geodata-kit-cities` |
+| also match villages and city districts | `geodata-kit-cities` + `geodata-kit-localities` |
+| work with states, provinces and cantons | `geodata-kit-subdivisions` |
+| know which country or state a coordinate is in | `geodata-kit-shapes` |
+| get the exact timezone of a coordinate | `geodata-kit-tz` |
+| look up an airport by IATA or ICAO code | `geodata-kit-airports` |
+| format or read postal addresses, check postal codes | `geodata-kit-address` |
+| find the place of a postal code | `geodata-kit-postal` |
+| parse, validate and format phone numbers | `geodata-kit-phone` |
+
 ## The geodata-kit family
 
-Install only the parts you need. All packages share one version number and work offline.
+Install only the parts you need. All packages work offline and are released
+together under one version number: keep the ones you install on the same version.
 
 | Package | For | Size |
 |---|---|---|
-| **`geodata-kit`** (this one) | countries, names, search, groups (EU, DACH, …), languages, timezones, currencies | 1.5 MB |
-| [`geodata-kit-subdivisions`](https://www.npmjs.com/package/geodata-kit-subdivisions) | states, provinces, cantons and the levels below | 24 MB |
-| [`geodata-kit-cities`](https://www.npmjs.com/package/geodata-kit-cities) | 237,000 cities, free-text locations, city timezones | 27 MB |
+| **`geodata-kit`** (this one) | countries, names, search, groups (EU, DACH, …), languages, timezones, currencies | 2 MB |
+| [`geodata-kit-subdivisions`](https://www.npmjs.com/package/geodata-kit-subdivisions) | states, provinces, cantons and the levels below | 27 MB |
+| [`geodata-kit-cities`](https://www.npmjs.com/package/geodata-kit-cities) | 237,000 cities, free-text locations, city timezones | 36 MB |
 | [`geodata-kit-airports`](https://www.npmjs.com/package/geodata-kit-airports) | airports by IATA / ICAO code | 1 MB |
 | [`geodata-kit-shapes`](https://www.npmjs.com/package/geodata-kit-shapes) | which country or region a coordinate is in | 10 MB |
-| [`geodata-kit-address`](https://www.npmjs.com/package/geodata-kit-address) | address formats, required fields, postal-code rules | 0.5 MB |
-| [`geodata-kit-phone`](https://www.npmjs.com/package/geodata-kit-phone) | parse, validate and format phone numbers | 0.5 MB |
+| [`geodata-kit-address`](https://www.npmjs.com/package/geodata-kit-address) | address formats, required fields, postal-code rules | 0.6 MB |
+| [`geodata-kit-phone`](https://www.npmjs.com/package/geodata-kit-phone) | parse, validate and format phone numbers | 0.6 MB |
 | [`geodata-kit-localities`](https://www.npmjs.com/package/geodata-kit-localities) | 4.9 million villages and city districts (used by geodata-kit-cities) | 83 MB |
 | [`geodata-kit-postal`](https://www.npmjs.com/package/geodata-kit-postal) | postal code → place lookups | 19 MB |
 | [`geodata-kit-tz`](https://www.npmjs.com/package/geodata-kit-tz) | exact timezone for any coordinate | 7.5 MB |
@@ -62,6 +83,10 @@ Groups: continents (`continent_europe`, …), UN regions (`un_western_europe`, �
 `eu`, `eurozone`, `schengen`, `eea`, `efta`, `dach`, `benelux`, `nordic`,
 `baltic`, `cee`, `eastern_europe`, `emea`, `mena`, `apac`, `north_america`,
 `latin_america`, `caribbean`, `central_asia`.
+
+Business groups follow the wider common definition, and `getGroup(slug).definition`
+says what each one includes. `dach` is Germany, Austria, Switzerland and
+Liechtenstein; for the three big countries only, pass `['DE', 'AT', 'CH']`.
 
 ## Languages
 
@@ -102,7 +127,7 @@ accept lower case. Options are optional unless shown without `?`.
 | `getSuccessorCodes(retiredCode)` | codes that replaced a retired one: `'CS'` → `['RS', 'ME']` |
 | `resolveCountry(text)` | `{ code, matchedBy, input }` from a name in many languages, alias, alpha-2/3 or numeric code; `null` if unknown or ambiguous |
 | `resolveCountries(texts)` | `{ resolved: Map, unresolved: string[] }` for a whole list |
-| `suggestCountries(text, limit?)` | likely countries for a typo or ambiguous name |
+| `suggestCountries(text, limit?)` | likely countries for a typo, an ambiguous name or the start of a name, best match first |
 | `getCountryName(code, locale?)` | name in en, de, fr, es, it, nl, pt or pl |
 | `getCountryAliases(code)` | other names: `['Deutschland', 'BRD', …]` |
 | `formatCountry(code, { locale?, withCode?, upperCase? })` | `'Germany'`, `'Germany (DE)'`, `'GERMANY'` |
@@ -177,7 +202,17 @@ The same helpers every lookup in the family uses.
 
 All types (`Country`, `CountryMatch`, `Group`, `CountryLanguage`, …) are exported for TypeScript.
 
+## Data
+
+The data is refreshed about once a month, and each release says so in its
+changelog. `DATA_DATE` tells you how fresh the installed version is.
+
+| Constant | Value |
+|---|---|
+| `DATA_DATE` | date of the data in this version, for example `'2026-11-12'` |
+
 ## License
 
-MIT. The data comes with its own licences and credits, listed in `NOTICE`.
-Keep `NOTICE` with the data when you redistribute it.
+Code: MIT. Data: CC BY 4.0, Unicode License v3 and Apache 2.0.
+CC BY 4.0 asks for credit: if you show or redistribute the data, include the
+credits from `NOTICE`.

@@ -5,6 +5,7 @@
  * Install it next to geodata-kit and the city functions use it automatically
  * (tier 'all'). It can also be used on its own.
  */
+import { dataDate } from '../../../data/meta.json';
 import { existsSync, readdirSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { gunzipSync } from 'node:zlib';
@@ -34,3 +35,9 @@ export function listLocalityCountries(): string[] {
   if (!existsSync(DATA_DIR)) return [];
   return readdirSync(DATA_DIR).filter((file) => file.endsWith('.json.gz')).map((file) => file.slice(0, 2)).sort();
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

@@ -1,14 +1,16 @@
 import { normalizeCountryCode } from './countries.js';
 import { fold } from './fold.js';
-import { DISPLAY_LOCALES, LANGUAGES } from './internal/core-data.js';
+import {
+  DEFAULT_LOCALES, DISPLAY_LOCALES, LANGUAGE_ALIASES, LANGUAGE_CODE_ALIASES, LANGUAGE_COUNTRIES, LANGUAGE_INFO, LANGUAGE_SUBDIVISIONS,
+} from './internal/core-data.js';
 import { cleanInput, languageBase, pickLocale } from './internal/util.js';
 import type { CountryCode, CountryLanguage, LanguageCode, LanguageStatus } from './types.js';
 
-const NATIONAL: ReadonlySet<LanguageStatus> = new Set(['official', 'de_facto_official']);
+const isNational = (status: LanguageStatus): boolean => status === 'official' || status === 'de_facto_official';
 
 function listFor(code: string): CountryLanguage[] {
   const normalized = normalizeCountryCode(code);
-  return normalized ? LANGUAGES.countries[normalized] ?? [] : [];
+  return normalized ? LANGUAGE_COUNTRIES[normalized] ?? [] : [];
 }
 
 const copy = (language: CountryLanguage): CountryLanguage => ({ ...language, ...(language.regions ? { regions: [...language.regions] } : {}) });
@@ -19,7 +21,7 @@ const copy = (language: CountryLanguage): CountryLanguage => ({ ...language, ...
  * pick a correspondence language from.
  */
 export function getNationalLanguages(code: string): CountryLanguage[] {
-  return listFor(code).filter((language) => NATIONAL.has(language.status)).map(copy);
+  return listFor(code).filter((language) => isNational(language.status)).map(copy);
 }
 
 export interface CountryLanguagesOptions {
@@ -32,7 +34,7 @@ export interface CountryLanguagesOptions {
 function statusMatches(language: CountryLanguage, status: CountryLanguagesOptions['status']): boolean {
   if (!status) return true;
   const wanted = Array.isArray(status) ? status : [status];
-  return wanted.some((entry) => (entry === 'national' ? NATIONAL.has(language.status) : language.status === entry));
+  return wanted.some((entry) => (entry === 'national' ? isNational(language.status) : language.status === entry));
 }
 
 /** Every language spoken in the country, national first, then by share. */
@@ -49,7 +51,7 @@ export function getCountryLanguages(code: string, options: CountryLanguagesOptio
  * (e.g. Swiss German) when an official language exists.
  */
 export function getPrimaryLanguage(code: string): LanguageCode | null {
-  const national = listFor(code).filter((language) => NATIONAL.has(language.status));
+  const national = listFor(code).filter((language) => isNational(language.status));
   const official = national.filter((language) => language.status === 'official');
   return (official[0] ?? national[0])?.code ?? null;
 }
@@ -67,7 +69,7 @@ export function getLanguagesOfSubdivision(subdivision: string): CountryLanguage[
   const iso = subdivision.trim().toUpperCase();
   const country = iso.slice(0, 2);
   const countryList = listFor(country);
-  const codes = LANGUAGES.subdivisions[iso];
+  const codes = LANGUAGE_SUBDIVISIONS[iso];
   if (!codes?.length) return getNationalLanguages(country);
   return codes
     .map((code) => countryList.find((language) => language.code === code) ?? { code, status: 'official_regional' as const, share: null, speakers: null })
@@ -78,7 +80,7 @@ export function getLanguagesOfSubdivision(subdivision: string): CountryLanguage[
 /** Default locale of a country: CH → "de-CH", RS → "sr-Cyrl-RS", US → "en-US". */
 export function getDefaultLocale(code: string): string | null {
   const normalized = normalizeCountryCode(code);
-  return normalized ? LANGUAGES.defaultLocales[normalized] ?? null : null;
+  return normalized ? DEFAULT_LOCALES[normalized] ?? null : null;
 }
 
 /**
@@ -91,7 +93,7 @@ export function getCountriesByLanguage(
 ): { country: CountryCode; status: LanguageStatus; share: number | null }[] {
   const code = resolveLanguage(language) ?? language;
   const result: { country: CountryCode; status: LanguageStatus; share: number | null }[] = [];
-  for (const [country, list] of Object.entries(LANGUAGES.countries)) {
+  for (const [country, list] of Object.entries(LANGUAGE_COUNTRIES)) {
     const entry = list.find((item) => item.code === code);
     if (!entry || !statusMatches(entry, options.status)) continue;
     if (options.minShare !== undefined && (entry.share ?? 0) < options.minShare) continue;
@@ -119,20 +121,20 @@ export function resolveLanguage(text: string | null | undefined): LanguageCode |
   if (!cleaned) return null;
   if (/^[A-Za-z]{2,3}([-_][A-Za-z0-9]{2,8})*$/.test(cleaned)) {
     const base = languageBase(cleaned);
-    if (LANGUAGES.languages[base]) return base;
+    if (LANGUAGE_INFO[base]) return base;
     const primary = base.split('-')[0]!;
-    if (LANGUAGES.languages[primary]) return primary;
-    const aliased = LANGUAGES.codeAliases[primary];
+    if (LANGUAGE_INFO[primary]) return primary;
+    const aliased = LANGUAGE_CODE_ALIASES[primary];
     if (aliased) return aliased;
   }
-  return LANGUAGES.aliases[fold(cleaned)] ?? null;
+  return LANGUAGE_ALIASES[fold(cleaned)] ?? null;
 }
 
 /** Name of a language in a bundled locale (en, de, fr, es, it, nl, pt, pl); "endonym" for its own name. */
 export function getLanguageName(code: string, locale: string = 'en'): string | null {
   const resolved = resolveLanguage(code);
   if (!resolved) return null;
-  const info = LANGUAGES.languages[resolved];
+  const info = LANGUAGE_INFO[resolved];
   if (!info) return null;
   if (locale === 'endonym') return info.endonym ?? info.names.en ?? null;
   return info.names[pickLocale(locale, DISPLAY_LOCALES)] ?? info.names.en ?? null;
@@ -141,5 +143,5 @@ export function getLanguageName(code: string, locale: string = 'en'): string | n
 /** Scripts a language is written in (ISO 15924), e.g. "sr" → ["Cyrl", "Latn"]. */
 export function getLanguageScripts(code: string): string[] {
   const resolved = resolveLanguage(code);
-  return resolved ? [...(LANGUAGES.languages[resolved]?.scripts ?? [])] : [];
+  return resolved ? [...(LANGUAGE_INFO[resolved]?.scripts ?? [])] : [];
 }

@@ -160,6 +160,287 @@
    "path": "code",
    "expect": "02",
    "note": "GeoNames level-1 code, for getSubdivision('DE.02')"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    55.6761,
+    12.5683
+   ],
+   "expect": "DK",
+   "note": "Copenhagen: on the coast, outside the coarse country outline"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    45.4371,
+    12.3326
+   ],
+   "expect": "IT",
+   "note": "Venice: lagoon city"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    41.0082,
+    28.9784
+   ],
+   "expect": "TR",
+   "note": "Istanbul"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    -22.9068,
+    -43.1729
+   ],
+   "expect": "BR",
+   "note": "Rio de Janeiro"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    25.7907,
+    -80.13
+   ],
+   "expect": "US",
+   "note": "Miami Beach: barrier island"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    26.2235,
+    50.5876
+   ],
+   "expect": "BH",
+   "note": "Manama, Bahrain"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    43.7384,
+    7.4246
+   ],
+   "expect": "MC",
+   "note": "Monaco"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    40.7128,
+    -74.006
+   ],
+   "expect": "US",
+   "note": "Manhattan"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    38.7223,
+    -9.1393
+   ],
+   "expect": "PT",
+   "note": "Lisbon"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    59.3293,
+    18.0686
+   ],
+   "expect": "SE",
+   "note": "Stockholm"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    18.9388,
+    72.8354
+   ],
+   "expect": "IN",
+   "note": "Mumbai: nearest land within a few km"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    22.2793,
+    114.1628
+   ],
+   "expect": "HK",
+   "note": "Hong Kong, Central"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    22.1987,
+    113.5439
+   ],
+   "expect": "MO",
+   "note": "Macau"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    41.9029,
+    12.4534
+   ],
+   "expect": "VA",
+   "note": "Vatican City: stored as a marker, covers 500 m around it"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    41.9022,
+    12.4568
+   ],
+   "expect": "VA",
+   "note": "St Peter's Square"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    41.9031,
+    12.4663
+   ],
+   "expect": "IT",
+   "note": "Castel Sant'Angelo, 1 km east of the Vatican"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    41.902,
+    12.433
+   ],
+   "expect": "IT",
+   "note": "Rome, west of the Vatican: the coarse outline puts the Vatican here"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    43.9356,
+    12.4473
+   ],
+   "expect": "SM",
+   "note": "San Marino, an enclave"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    -29.3151,
+    27.4869
+   ],
+   "expect": "LS",
+   "note": "Maseru, Lesotho, an enclave"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    36.1245,
+    -5.343
+   ],
+   "expect": "GI",
+   "note": "Rock of Gibraltar"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    42.3314,
+    -83.0458
+   ],
+   "expect": "US",
+   "note": "Detroit, across the river from Windsor"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    42.3149,
+    -83.0364
+   ],
+   "expect": "CA",
+   "note": "Windsor, Ontario"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    48.5728,
+    7.8158
+   ],
+   "expect": "DE",
+   "note": "Kehl, across the Rhine from Strasbourg"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    30,
+    -40
+   ],
+   "expect": null,
+   "note": "open Atlantic"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    53.6,
+    3.0
+   ],
+   "expect": null,
+   "note": "North Sea, far from land"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    200,
+    10
+   ],
+   "expect": null,
+   "note": "invalid latitude gives null, no error"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    18.9388,
+    72.8354
+   ],
+   "path": "iso",
+   "expect": "IN-MH",
+   "note": "Mumbai: nearest land"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    43.7384,
+    7.4246
+   ],
+   "path": "country",
+   "expect": "MC",
+   "note": "Monaco"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    30,
+    -40
+   ],
+   "expect": null,
+   "note": "open sea"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    91,
+    0
+   ],
+   "expect": null,
+   "note": "invalid latitude"
+  },
+  {
+   "fn": "getCountryAt",
+   "args": [
+    35.6762,
+    499.6503
+   ],
+   "expect": "JP",
+   "note": "longitudes wrap around (same as geodata-kit-tz)"
   }
  ]
 }

@@ -28,5 +28,7 @@ export async function writeMeta(): Promise<void> {
     return { query: name, retrieved: snapshot.retrieved, rows: snapshot.rows.length };
   });
   const geonamesDate = sources.find((source) => source.file === 'countryInfo.txt')?.downloadedAt ?? null;
-  writeJson(dataPath('meta.json'), { geonamesSnapshot: geonamesDate, sources, wikidata }, 'lines');
+  // The date users see as DATA_DATE: the day the newest source file was downloaded.
+  const dataDate = sources.map((source) => source.downloadedAt).sort().at(-1) ?? null;
+  writeJson(dataPath('meta.json'), { dataDate, geonamesSnapshot: geonamesDate, sources, wikidata }, 'lines');
 }

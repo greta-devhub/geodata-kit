@@ -16,7 +16,7 @@ class Airport:
     iata: str | None
     icao: str | None
     country: str
-    admin1: str
+    subdivision1: str
     lat: float
     lng: float
     timezone: str

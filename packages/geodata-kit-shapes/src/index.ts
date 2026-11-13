@@ -1,15 +1,38 @@
 /**
  * geodata-kit-shapes — which country or first-level subdivision a point lies
  * in, from boundary polygons (countries 1:50m, subdivisions 1:10m,
- * simplified to about 200–400 m). Good for "which country is this coordinate
- * in"; near borders the answer can be off by a few hundred metres.
+ * simplified to about 200–400 m).
+ *
+ * The outlines are simplified, so three rules keep the answers right where it
+ * matters most, in coastal cities and small states:
+ *  - near any border or coast the finer subdivision outlines decide, and
+ *    where shapes overlap the smallest one wins;
+ *  - a territory too small for the data is stored as a marker and covers
+ *    MARKER_KM around it (Vatican City);
+ *  - a point that falls just off the simplified coast (a harbour, a pier, a
+ *    small island) gets the nearest land within NEAR_COAST_KM.
+ * Tiny enclaves such as Baarle-Hertog are not in the data.
  */
+import { dataDate } from '../../../data/meta.json';
 import { loadCountryShapes, loadSubdivisionShapes } from './loaders.generated.js';
 
 interface ShapeFeature { id: string; bbox: [number, number, number, number]; polygons: number[][][] }
 interface SubdivisionShape extends ShapeFeature { country: string; code: string | null; iso: string | null; name: string | null }
 
+/** Coordinates are stored as integers in 1/1000 degree (about 111 m of latitude). */
 const SCALE = 1000;
+const KM_PER_UNIT = 0.1112;
+
+/** A point this close to land still counts as that land: simplified coasts cut off harbours and small islands. */
+export const NEAR_COAST_KM = 5;
+/** A shape no bigger than two grid cells is a marker for a territory too small for the data; it covers this distance around it. */
+export const MARKER_KM = 0.5;
+/**
+ * Closer than this to any coarse country outline, the finer subdivision
+ * outlines decide. The coarse set is drawn for small maps: it cuts off coasts
+ * and moves microstates by a kilometre or more.
+ */
+const COARSE_EDGE_KM = 15;
 
 /** Ray casting on a flat [x0, y0, x1, y1, …] ring. */
 function insideRing(ring: number[], x: number, y: number): boolean {
@@ -28,15 +51,95 @@ function contains(feature: ShapeFeature, x: number, y: number): boolean {
   return feature.polygons.some((rings) => insideRing(rings[0]!, x, y) && !rings.slice(1).some((hole) => insideRing(hole, x, y)));
 }
 
+const bboxArea = (feature: ShapeFeature): number => (feature.bbox[2] - feature.bbox[0]) * (feature.bbox[3] - feature.bbox[1]);
+
+const isMarker = (feature: ShapeFeature): boolean => feature.bbox[2] - feature.bbox[0] <= 2 && feature.bbox[3] - feature.bbox[1] <= 2;
+
+/** The smallest shape that contains the point (or marker that covers it): an enclave or microstate wins over what surrounds it. */
+function smallestContaining<T extends ShapeFeature>(features: T[], x: number, y: number): T | null {
+  let best: T | null = null;
+  for (const feature of features) {
+    if (best && bboxArea(feature) >= bboxArea(best)) continue;
+    if (contains(feature, x, y) || (isMarker(feature) && distanceToOutline(feature, x, y, MARKER_KM) < MARKER_KM)) best = feature;
+  }
+  return best;
+}
+
+/** Distance in km from the point to the outline of a shape; Infinity when its bounding box is farther than `limitKm`. */
+function distanceToOutline(feature: ShapeFeature, x: number, y: number, limitKm: number): number {
+  // One unit of longitude shrinks with latitude; near the poles the factor is clamped so the search box stays finite.
+  const shrink = Math.max(0.05, Math.cos((y / SCALE) * (Math.PI / 180)));
+  const limit = limitKm / KM_PER_UNIT;
+  const [minX, minY, maxX, maxY] = feature.bbox;
+  if (x < minX - limit / shrink || x > maxX + limit / shrink || y < minY - limit || y > maxY + limit) return Infinity;
+  let best = Infinity;
+  for (const rings of feature.polygons) {
+    for (const ring of rings) {
+      for (let i = 0, j = ring.length - 2; i < ring.length; j = i, i += 2) {
+        const ax = (ring[j]! - x) * shrink; const ay = ring[j + 1]! - y;
+        const bx = (ring[i]! - x) * shrink; const by = ring[i + 1]! - y;
+        const dx = bx - ax; const dy = by - ay;
+        const length = dx * dx + dy * dy;
+        const t = length === 0 ? 0 : Math.max(0, Math.min(1, -(ax * dx + ay * dy) / length));
+        const distance = Math.hypot(ax + t * dx, ay + t * dy);
+        if (distance < best) best = distance;
+      }
+    }
+  }
+  return best * KM_PER_UNIT;
+}
+
+/** The shape whose outline is nearest to the point, if within `limitKm`. Ties go to the first shape in the data, so results are stable. */
+function nearestWithin<T extends ShapeFeature>(features: T[], x: number, y: number, limitKm: number): T | null {
+  let best: T | null = null;
+  let bestDistance = limitKm;
+  for (const feature of features) {
+    const distance = distanceToOutline(feature, x, y, bestDistance);
+    if (distance < bestDistance) { best = feature; bestDistance = distance; }
+  }
+  return best;
+}
+
+/**
+ * Integer grid position of a coordinate. Null for invalid input (not a number,
+ * latitude outside ±90), like every lookup in the geodata-kit family.
+ * Longitudes wrap around, so 190 is the same as -170.
+ */
+function toGrid(lat: number, lng: number): { x: number; y: number } | null {
+  if (typeof lat !== 'number' || typeof lng !== 'number' || !Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  if (lat < -90 || lat > 90) return null;
+  const wrapped = ((((lng + 180) % 360) + 360) % 360) - 180;
+  return { x: Math.round(wrapped * SCALE), y: Math.round(lat * SCALE) };
+}
+
 let countryShapes: Promise<ShapeFeature[]> | null = null;
 let subdivisionShapes: Promise<SubdivisionShape[]> | null = null;
+const loadCountries = (): Promise<ShapeFeature[]> => (countryShapes ??= loadCountryShapes().then((module) => module.default as ShapeFeature[]));
+const loadSubdivisions = (): Promise<SubdivisionShape[]> => (subdivisionShapes ??= loadSubdivisionShapes().then((module) => module.default as SubdivisionShape[]));
 
-/** ISO alpha-2 code of the country at a point, or null at sea / outside any country. */
+/**
+ * ISO alpha-2 code of the country at a point: (41.01, 28.98) → "TR".
+ * Null on the open sea (more than NEAR_COAST_KM from land) and for invalid coordinates.
+ */
 export async function getCountryAt(lat: number, lng: number): Promise<string | null> {
-  countryShapes ??= loadCountryShapes().then((module) => module.default as ShapeFeature[]);
-  const x = Math.round(lng * SCALE);
-  const y = Math.round(lat * SCALE);
-  return (await countryShapes).find((feature) => contains(feature, x, y))?.id ?? null;
+  const point = toGrid(lat, lng);
+  if (!point) return null;
+  const countries = await loadCountries();
+  const coarse = smallestContaining(countries, point.x, point.y);
+  // Well inside a country, far from every outline: the coarse data is enough and the bigger subdivision data stays unloaded.
+  if (coarse && !countries.some((country) => distanceToOutline(country, point.x, point.y, COARSE_EDGE_KM) < COARSE_EDGE_KM)) return coarse.id;
+  const subdivisions = await loadSubdivisions();
+  const fine = smallestContaining(subdivisions, point.x, point.y);
+  if (fine) return fine.country;
+  if (coarse) return coarse.id;
+  const nearSubdivision = nearestWithin(subdivisions, point.x, point.y, NEAR_COAST_KM);
+  const nearCountry = nearestWithin(countries, point.x, point.y, NEAR_COAST_KM);
+  if (nearSubdivision && nearCountry) {
+    const a = distanceToOutline(nearSubdivision, point.x, point.y, NEAR_COAST_KM);
+    const b = distanceToOutline(nearCountry, point.x, point.y, NEAR_COAST_KM);
+    return a <= b ? nearSubdivision.country : nearCountry.id;
+  }
+  return nearSubdivision?.country ?? nearCountry?.id ?? null;
 }
 
 export interface SubdivisionAtPoint {
@@ -50,11 +153,20 @@ export interface SubdivisionAtPoint {
   name: string | null;
 }
 
-/** First-level subdivision at a point: (48.14, 11.58) → { country: 'DE', iso: 'DE-BY', code: '02', name: 'Bavaria' }. */
+/**
+ * First-level subdivision at a point: (48.14, 11.58) → { country: 'DE', iso: 'DE-BY', code: '02', name: 'Bavaria' }.
+ * Null on the open sea (more than NEAR_COAST_KM from land), for invalid coordinates and where a country has no subdivision shapes.
+ */
 export async function getSubdivisionAt(lat: number, lng: number): Promise<SubdivisionAtPoint | null> {
-  subdivisionShapes ??= loadSubdivisionShapes().then((module) => module.default as SubdivisionShape[]);
-  const x = Math.round(lng * SCALE);
-  const y = Math.round(lat * SCALE);
-  const feature = (await subdivisionShapes).find((candidate) => contains(candidate, x, y));
+  const point = toGrid(lat, lng);
+  if (!point) return null;
+  const subdivisions = await loadSubdivisions();
+  const feature = smallestContaining(subdivisions, point.x, point.y) ?? nearestWithin(subdivisions, point.x, point.y, NEAR_COAST_KM);
   return feature ? { country: feature.country, iso: feature.iso, code: feature.code, name: feature.name } : null;
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

@@ -20,6 +20,13 @@ const TARGETS: Target[] = [
   { label: 'python __version__', path: 'python/src/geodata_kit/__init__.py', pattern: /^__version__ = "[^"]+"$/m, replace: (v) => `__version__ = "${v}"` },
   { label: 'geodata-kit-localities (PyPI) version', path: 'python/extras/geodata_kit_localities/pyproject.toml', pattern: /^version = "[^"]+"$/m, replace: (v) => `version = "${v}"` },
   { label: 'geodata-kit-postal (PyPI) version', path: 'python/extras/geodata_kit_postal/pyproject.toml', pattern: /^version = "[^"]+"$/m, replace: (v) => `version = "${v}"` },
+  // uv.lock records the local packages' versions too; keep it in step so `uv sync` leaves no diff.
+  ...['geodata-kit-py', 'geodata-kit-localities', 'geodata-kit-postal'].map((name): Target => ({
+    label: `python/uv.lock ${name}`,
+    path: 'python/uv.lock',
+    pattern: new RegExp(`^name = "${name}"\\nversion = "[^"]+"$`, 'm'),
+    replace: (v) => `name = "${name}"\nversion = "${v}"`,
+  })),
 ];
 
 function main(): void {

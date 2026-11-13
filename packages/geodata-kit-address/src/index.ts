@@ -6,6 +6,7 @@
  * postal formats. With the optional geodata-kit-postal package installed,
  * parseAddress also checks the city against the postal code.
  */
+import { dataDate } from '../../../data/meta.json';
 import formatsJson from '../../../data/address/formats.json';
 import { cleanText, editDistance, fold, formatCountry, normalizeCountryCode, resolveCountry } from 'geodata-kit';
 
@@ -407,3 +408,9 @@ export async function parseAddress(text: string, options: { country?: string } =
   }
   return result;
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

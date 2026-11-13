@@ -4,6 +4,7 @@
  * stripping with transform rules, region choice for shared calling codes
  * (+1, +7, +44, …) and number types. Data licences and credits: see NOTICE.
  */
+import { dataDate } from '../../../data/meta.json';
 import metadataJson from '../../../data/phone/metadata.json';
 
 export type PhoneNumberType =
@@ -236,8 +237,9 @@ export function parsePhoneNumber(text: string | null | undefined, defaultCountry
 }
 
 /**
- * Parses free-text fields with several numbers: "+49 89 1234567, 030 987654",
- * JSON arrays ('["+4989…","+4930…"]') or one number per line. Invalid parts are skipped.
+ * Parses a field that lists several numbers: "+49 89 1234567, 030 987654",
+ * a JSON array or one number per line. Invalid parts are skipped. It splits
+ * lists; it does not look for numbers inside a sentence.
  */
 export function parsePhoneNumbers(text: string | null | undefined, defaultCountry?: string): PhoneNumber[] {
   if (typeof text !== 'string' || !text.trim()) return [];
@@ -343,3 +345,9 @@ export function getExamplePhoneNumber(country: string, type: Exclude<PhoneNumber
 export function listPhoneRegions(): string[] {
   return Object.keys(METADATA.regions);
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

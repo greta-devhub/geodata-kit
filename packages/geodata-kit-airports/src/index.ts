@@ -2,6 +2,7 @@
  * geodata-kit-airports — 10.5k airports with an IATA or ICAO code,
  * each with the city it serves. Loads once, on first use.
  */
+import { dataDate } from '../../../data/meta.json';
 import { cleanText, fold, normalizeCountryCode } from 'geodata-kit';
 
 import { loadAirports } from './loaders.generated.js';
@@ -13,7 +14,7 @@ export interface Airport {
   icao: string | null;
   country: string;
   /** Level-1 subdivision code (see geodata-kit-subdivisions). */
-  admin1: string;
+  subdivision1: string;
   lat: number;
   lng: number;
   timezone: string;
@@ -28,7 +29,7 @@ function data(): Promise<{ all: Airport[]; byIata: Map<string, Airport>; byIcao:
   loaded ??= loadAirports().then((module) => {
     const file = module.default as { tz: string[]; rows: Row[] };
     const all = file.rows.map((row): Airport => ({
-      geonameId: row[0], name: row[1], iata: row[2] || null, icao: row[3] || null, country: row[4], admin1: row[5],
+      geonameId: row[0], name: row[1], iata: row[2] || null, icao: row[3] || null, country: row[4], subdivision1: row[5],
       lat: row[6], lng: row[7], timezone: file.tz[row[8]]!, cityId: row[9] || null,
     }));
     const byIata = new Map<string, Airport>();
@@ -80,3 +81,9 @@ export async function searchAirports(query: string, options: { country?: string;
   scored.sort((a, b) => a.score - b.score || Number(!a.airport.iata) - Number(!b.airport.iata) || a.airport.name.localeCompare(b.airport.name));
   return scored.slice(0, options.limit ?? 10).map((entry) => entry.airport);
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

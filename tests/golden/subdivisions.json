@@ -1,5 +1,5 @@
 {
- "description": "Subdivisions (GeoNames admin1–4, ISO 3166-2).",
+ "description": "Subdivisions (levels 1–4, ISO 3166-2).",
  "cases": [
   {
    "fn": "resolveSubdivision",
@@ -1436,10 +1436,10 @@
    "args": [
     {
      "country": "DE",
-     "admin1": "02",
-     "admin2": "091",
-     "admin3": "09184",
-     "admin4": "09184148"
+     "subdivision1": "02",
+     "subdivision2": "091",
+     "subdivision3": "09184",
+     "subdivision4": "09184148"
     }
    ],
    "path": "[].name",

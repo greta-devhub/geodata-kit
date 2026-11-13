@@ -1,9 +1,9 @@
-import { _setFilterHooks, normalizeCountryCode, resolveCountry } from './countries.js';
-import { COUNTRY_BY_CODE, GROUPS, M49_NAMES, type GroupRecord } from './internal/core-data.js';
-import { isActive, toIsoDate } from './internal/util.js';
+import { normalizeCountryCode, resolveCountry } from './countries.js';
+import { GROUPS, M49_NAMES, countryByCode, type GroupRecord } from './internal/core-data.js';
+import { isActive, lazy, toIsoDate } from './internal/util.js';
 import type { CountryCode, DateInput, Group, GroupKind, M49Area } from './types.js';
 
-const BY_SLUG: ReadonlyMap<string, GroupRecord> = new Map(GROUPS.map((group) => [group.slug, group]));
+const bySlug = /* @__PURE__ */ lazy((): ReadonlyMap<string, GroupRecord> => new Map(GROUPS.map((group) => [group.slug, group])));
 
 function copy(group: GroupRecord): Group {
   return { ...group, members: group.members.map((member) => ({ ...member })) };
@@ -21,13 +21,13 @@ export function listGroups(kind?: GroupKind): Group[] {
 }
 
 export function getGroup(slug: string): Group | null {
-  const group = BY_SLUG.get(slug.trim().toLowerCase());
+  const group = bySlug().get(slug.trim().toLowerCase());
   return group ? copy(group) : null;
 }
 
 /** Member codes on a date (default today): GB is in "eu" at 2019-01-01, not today. */
 export function getCountriesInGroup(slug: string, options: { at?: DateInput } = {}): CountryCode[] {
-  const group = BY_SLUG.get(slug.trim().toLowerCase());
+  const group = bySlug().get(slug.trim().toLowerCase());
   if (!group) return [];
   const day = toIsoDate(options.at);
   return group.members.filter((member) => isActive(member, day)).map((member) => member.code);
@@ -61,7 +61,7 @@ export function expandGroups(items: Iterable<string>, options: { at?: DateInput 
     if (!seen.has(code)) { seen.add(code); result.push(code); }
   };
   for (const item of items) {
-    if (BY_SLUG.has(item.trim().toLowerCase())) {
+    if (bySlug().has(item.trim().toLowerCase())) {
       for (const code of getCountriesInGroup(item, options)) push(code);
     } else {
       const match = resolveCountry(item);
@@ -82,7 +82,7 @@ export function listContinents(): Continent[] {
 
 /** Continent of a country. */
 export function getContinent(code: string): Continent | null {
-  const record = COUNTRY_BY_CODE.get(normalizeCountryCode(code) ?? '');
+  const record = countryByCode().get(normalizeCountryCode(code) ?? '');
   return record ? listContinents().find((continent) => continent.code === record.continent) ?? null : null;
 }
 
@@ -96,7 +96,7 @@ export interface M49Region {
 
 /** UN M49 region chain of a country: Germany → Europe / Western Europe. */
 export function getM49Region(code: string): M49Region | null {
-  const record = COUNTRY_BY_CODE.get(normalizeCountryCode(code) ?? '');
+  const record = countryByCode().get(normalizeCountryCode(code) ?? '');
   if (!record) return null;
   const area = (value: string | null): M49Area | null => (value ? { code: value, name: M49_NAMES[value] ?? value } : null);
   return {
@@ -106,10 +106,3 @@ export function getM49Region(code: string): M49Region | null {
     groupings: record.m49.groupings.map((value) => area(value)!),
   };
 }
-
-// Lets listCountries({ group }) work without a circular import.
-import { getCountriesByLanguage } from './languages.js';
-_setFilterHooks(
-  (slug) => getCountriesInGroup(slug),
-  (language) => getCountriesByLanguage(language, { status: 'national' }).map((entry) => entry.country),
-);

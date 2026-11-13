@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-phone",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Parse, validate, classify and format phone numbers for every country. Offline, typed, no dependencies.",
   "keywords": [
     "phone",
@@ -10,7 +10,7 @@
     "formatting",
     "geodata-kit"
   ],
-  "license": "MIT",
+  "license": "MIT AND Apache-2.0",
   "author": "geodata-kit contributors",
   "repository": {
     "type": "git",

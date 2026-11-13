@@ -2,6 +2,7 @@
 
 Offline, no runtime dependencies. Data licences and credits: see NOTICE.
 """
+from ._data import load as _load_data
 from .address import (
     format_address, get_address_format, get_postal_code_rules, get_required_address_fields, is_valid_postal_code,
     is_valid_region, list_regions, normalize_postal_code, parse_address, resolve_region,
@@ -32,12 +33,14 @@ from .phone import (
     PhoneNumber, format_phone_number, get_example_phone_number, get_phone_number_type, is_possible_phone_number,
     is_valid_phone_number, list_phone_regions, parse_phone_number, parse_phone_numbers,
 )
-from .shapes import get_country_at, get_subdivision_at
+from .shapes import MARKER_KM, NEAR_COAST_KM, get_country_at, get_subdivision_at
 from .subdivisions import (
     Subdivision, find_subdivision, get_subdivision, get_subdivision_chain, get_subdivision_name, is_subdivision_code,
     list_subdivisions, load_subdivisions, resolve_subdivision,
 )
 from .timezones import canonical_timezone, get_country_timezones, get_primary_timezone, is_timezone, list_timezones
 
-__version__ = "0.2.1"
+__version__ = "0.3.0"
+#: Date of the data in this version, as YYYY-MM-DD. The data is refreshed about once a month.
+DATA_DATE: str = _load_data("info.json")["dataDate"]
 __all__ = [name for name in dir() if not name.startswith("_")]
