@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "geodata-kit-postal"
 version = "0.2.0"
-description = "Optional data for geodata-kit: postal code → place and place → postal codes for 124 countries (GeoNames)."
+description = "Optional data for geodata-kit: postal code → place and place → postal codes for 124 countries."
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE", "NOTICE"]

@@ -32,7 +32,7 @@ export interface Country {
   /** km². */
   area: number | null;
   population: number | null;
-  /** GeoNames continent code: AF AN AS EU NA OC SA. */
+  /** Continent code: AF AN AS EU NA OC SA. */
   continent: string;
   tld: string | null;
   /** Country calling code without "+", e.g. "49". */
@@ -40,7 +40,7 @@ export interface Country {
   /** Currencies in use today (tender only), main currency first. */
   currencies: string[];
   neighbours: CountryCode[];
-  /** IANA timezones (tzdata zone.tab order). */
+  /** IANA timezones of the country. */
   timezones: string[];
   demonym: string | null;
   drivingSide: 'left' | 'right' | null;
@@ -72,10 +72,9 @@ export interface Group {
   slug: string;
   name: string;
   kind: GroupKind;
-  /** UN M49 code for 'un' groups, GeoNames code for continents. */
+  /** UN M49 code for 'un' groups, continent code for continents. */
   code?: string;
   definition?: string;
-  source?: string;
   /** All members ever, with dates for political groups. */
   members: GroupMember[];
 }
@@ -85,7 +84,7 @@ export type LanguageStatus = 'official' | 'de_facto_official' | 'official_region
 export interface CountryLanguage {
   code: LanguageCode;
   status: LanguageStatus;
-  /** Share of the population that speaks it, in percent (CLDR). */
+  /** Share of the population that speaks it, in percent. */
   share: number | null;
   /** Population × share. */
   speakers: number | null;

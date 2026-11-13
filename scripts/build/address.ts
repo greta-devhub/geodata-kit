@@ -21,7 +21,7 @@ export interface AddressFormatRecord {
   upperCase: string;
   postal: {
     pattern: string | null;
-    geonamesPattern: string | null;
+    secondaryPattern: string | null;
     layouts: string[];
     examples: string[];
     prefixes: string[];
@@ -82,7 +82,7 @@ export async function buildAddress(): Promise<void> {
       upperCase: google.upper ?? '',
       postal: hasPostal ? {
         pattern: zip,
-        geonamesPattern,
+        secondaryPattern: geonamesPattern,
         layouts,
         examples: split(google.zipex?.replace(/,/g, '~')),
         prefixes,

@@ -7,8 +7,8 @@
  * Current EU and Eurozone members are checked against CLDR and Wikidata; a mismatch fails the build.
  */
 import { supplemental } from '../lib/cldr.js';
-import { compareStrings, readJson, readTsv, writeJson } from '../lib/io.js';
-import { cachePath, dataPath, overlayPath } from '../lib/paths.js';
+import { compareStrings, readJson, writeJson } from '../lib/io.js';
+import { dataPath, overlayPath } from '../lib/paths.js';
 import type { CountryRecord } from './countries.js';
 
 export interface GroupMember { code: string; from?: string; to?: string }
@@ -17,7 +17,6 @@ export interface Group {
   name: string;
   kind: 'continent' | 'un' | 'political' | 'business';
   definition?: string;
-  source?: string;
   code?: string;
   members: GroupMember[];
 }
@@ -37,17 +36,11 @@ export async function buildGroups(): Promise<void> {
   const m49Names = readJson<Record<string, string>>(dataPath('core', 'm49.json'));
   const groups: Group[] = [];
 
-  // Continents (GeoNames continent column; names from the CONT features).
+  // Continents (GeoNames continent column).
   const continentNames: Record<string, string> = { AF: 'Africa', AN: 'Antarctica', AS: 'Asia', EU: 'Europe', NA: 'North America', OC: 'Oceania', SA: 'South America' };
-  const continentIds: Record<string, number> = {};
-  for await (const row of readTsv(cachePath('work', 'continents.tsv'))) {
-    const entry = Object.entries(continentNames).find(([, name]) => name === row[1]);
-    if (entry) continentIds[entry[0]] = Number(row[0]);
-  }
   for (const [code, name] of Object.entries(continentNames)) {
     groups.push({
       slug: `continent_${slugify(name)}`, name, kind: 'continent', code,
-      source: `GeoNames continent ${code}${continentIds[code] ? ` (geonameid ${continentIds[code]})` : ''}`,
       members: countries.filter((country) => country.continent === code).map((country) => ({ code: country.code })),
     });
   }
@@ -63,7 +56,6 @@ export async function buildGroups(): Promise<void> {
   for (const [code, members] of [...m49Members.entries()].sort(([a], [b]) => compareStrings(a, b))) {
     groups.push({
       slug: `un_${slugify(m49Names[code] ?? code)}`, name: m49Names[code] ?? code, kind: 'un', code,
-      source: `UN M49 ${code} (via Unicode CLDR territoryContainment)`,
       members: [...members].sort(compareStrings).map((member) => ({ code: member })),
     });
   }
@@ -78,7 +70,7 @@ export async function buildGroups(): Promise<void> {
     }
     for (const member of members) if (!codes.has(member.code)) throw new Error(`${group.slug}: unknown code ${member.code}`);
     groups.push({
-      slug: group.slug, name: group.name, kind: 'political', source: group.source, definition: group.note,
+      slug: group.slug, name: group.name, kind: 'political', definition: group.note,
       members: members.sort((a, b) => compareStrings(a.code, b.code)),
     });
   }

@@ -2,7 +2,7 @@
  * Text folding shared by the data generator and every runtime lookup.
  * Both sides must fold the same way, otherwise index keys never match.
  *
- * Ported from the city-name normaliser of an earlier GeoNames timezone
+ * Ported from the city-name normaliser of an earlier timezone
  * prototype, with the same behaviour.
  */
 

@@ -1,17 +1,17 @@
 {
   "name": "geodata-kit-phone",
   "version": "0.2.0",
-  "description": "Parse, validate, classify and format phone numbers for every country with libphonenumber's metadata. Offline, typed, no dependencies.",
+  "description": "Parse, validate, classify and format phone numbers for every country. Offline, typed, no dependencies.",
   "keywords": [
     "phone",
     "phone-number",
-    "libphonenumber",
     "e164",
     "validation",
     "formatting",
     "geodata-kit"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -46,9 +46,13 @@
     "dist",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

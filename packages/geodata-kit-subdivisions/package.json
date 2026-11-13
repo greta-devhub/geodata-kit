@@ -1,7 +1,7 @@
 {
   "name": "geodata-kit-subdivisions",
   "version": "0.2.0",
-  "description": "States, provinces, cantons and the levels below them for every country, with ISO 3166-2 codes, local names and free-text resolution. Offline add-on for geodata-kit, built from GeoNames, Unicode CLDR and Wikidata.",
+  "description": "States, provinces, cantons and the levels below them for every country, with ISO 3166-2 codes, local names and free-text resolution. Offline add-on for geodata-kit.",
   "keywords": [
     "subdivisions",
     "iso-3166-2",
@@ -9,10 +9,10 @@
     "provinces",
     "regions",
     "admin1",
-    "geonames",
     "geodata-kit"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -48,12 +48,16 @@
     "data",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "geodata-kit": "^0.2.0"
   },
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

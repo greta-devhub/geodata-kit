@@ -1,7 +1,7 @@
 {
   "name": "geodata-kit-address",
   "version": "0.2.0",
-  "description": "Address formats, required fields, regions and postal-code rules for every country, with address formatting and parsing. Offline add-on for geodata-kit, built from Google address metadata and GeoNames.",
+  "description": "Address formats, required fields, regions and postal-code rules for every country, with address formatting and parsing. Offline add-on for geodata-kit.",
   "keywords": [
     "address",
     "postal-code",
@@ -12,6 +12,7 @@
     "geodata-kit"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -46,12 +47,16 @@
     "dist",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "geodata-kit": "^0.2.0"
   },
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

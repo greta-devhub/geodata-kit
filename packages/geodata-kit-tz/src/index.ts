@@ -1,7 +1,6 @@
 /**
  * geodata-kit-tz — exact IANA timezone for a coordinate, from timezone
- * polygons (timezone-boundary-builder, data © OpenStreetMap contributors,
- * ODbL 1.0 — see LICENSE-DATA). Polygons are simplified to about 110 m.
+ * polygons (data under ODbL 1.0 — see LICENSE-DATA and NOTICE). Polygons are simplified to about 110 m.
  *
  * Works in Node.js (reads the file) and in browsers (fetches it next to the module).
  */

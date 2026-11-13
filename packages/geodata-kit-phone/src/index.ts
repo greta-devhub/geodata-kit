@@ -1,9 +1,8 @@
 /**
- * geodata-kit-phone — parse, validate, classify and format phone numbers with
- * libphonenumber's metadata (Apache-2.0). The parsing rules follow
- * libphonenumber: calling-code and international-prefix extraction, national
- * prefix stripping with transform rules, region choice for shared calling
- * codes (+1, +7, +44, …) and number types.
+ * geodata-kit-phone — parse, validate, classify and format phone numbers:
+ * calling-code and international-prefix extraction, national-prefix
+ * stripping with transform rules, region choice for shared calling codes
+ * (+1, +7, +44, …) and number types. Data licences and credits: see NOTICE.
  */
 import metadataJson from '../../../data/phone/metadata.json';
 
@@ -115,7 +114,7 @@ function matchesDesc(nationalNumber: string, desc: { pattern: string; lengths: n
   return full(desc.pattern).test(nationalNumber);
 }
 
-/** Strips the national prefix (and applies the transform rule) the way libphonenumber does. */
+/** Strips the national prefix and applies the region's transform rule. */
 function stripNationalPrefix(nationalNumber: string, metadata: RegionMetadata): string {
   const prefixPattern = metadata.nationalPrefixForParsing ?? metadata.nationalPrefix;
   if (!prefixPattern) return nationalNumber;
@@ -298,7 +297,7 @@ export function formatPhoneNumber(number: string | PhoneNumber, format: PhoneFor
   if (!parsed) return null;
   const { callingCode, nationalNumber, extension } = parsed;
   if (format === 'E164') return parsed.e164;
-  // Like libphonenumber, every number of a calling code is formatted with the
+  // Every number of a calling code is formatted with the
   // main region's rules (+1 territories such as AG have no formats of their own).
   const metadata = mainMetadata(callingCode);
   let formatted = nationalNumber;
@@ -321,7 +320,7 @@ export function formatPhoneNumber(number: string | PhoneNumber, format: PhoneFor
       const chosen = chooseFormat(formats, nationalNumber);
       if (chosen) formatted = nationalNumber.replace(full(chosen.pattern), chosen.format);
       // International style separates groups with spaces only ("+1 800 212 3456"),
-      // as libphonenumber-js does and ITU-T E.123 recommends.
+      // as ITU-T E.123 recommends.
       formatted = formatted.replace(/[-\u2010-\u2015\u2212\u30FC\uFF0D-\uFF0F \u00A0\u00AD\u200B\u2060\u3000()\uFF08\uFF09\uFF3B\uFF3D.\[\]/~\u2053\u223C\uFF5E]+/g, ' ').trim();
     }
   }
@@ -331,7 +330,7 @@ export function formatPhoneNumber(number: string | PhoneNumber, format: PhoneFor
   return `+${callingCode} ${formatted}${extensionText}`;
 }
 
-/** Example number of a region and type (from libphonenumber), e.g. getExamplePhoneNumber('DE', 'mobile'). */
+/** Example number of a region and type, e.g. getExamplePhoneNumber('DE', 'mobile'). */
 export function getExamplePhoneNumber(country: string, type: Exclude<PhoneNumberType, 'unknown' | 'fixed_line_or_mobile'> = 'fixed_line'): PhoneNumber | null {
   const metadata = METADATA.regions[country.trim().toUpperCase()];
   if (!metadata) return null;

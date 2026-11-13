@@ -1,7 +1,7 @@
 /**
  * geodata-kit-subdivisions — states, provinces, cantons, Länder and the levels
- * below them. "Subdivision" is the ISO 3166-2 / CLDR term; level 1 is
- * GeoNames' admin1 (Bavaria), level 2 admin2 (Upper Bavaria), level 3 admin3
+ * below them ("subdivision" is the ISO 3166-2 term). Level 1 is a state or
+ * province (Bavaria), level 2 the next division (Upper Bavaria), level 3
  * (Landkreis München), level 4 admin4 (Gemeinde Unterhaching).
  *
  * Level 1 is bundled and synchronous. Levels 2–4 load per country on first use.
@@ -17,7 +17,7 @@ export type SubdivisionLevel = 1 | 2 | 3 | 4;
 export interface Subdivision {
   country: string;
   level: SubdivisionLevel;
-  /** GeoNames code on this level ("02" for Bavaria, "091" for Upper Bavaria). */
+  /** Code on this level ("02" for Bavaria, "091" for Upper Bavaria). */
   code: string;
   /** Codes from level 1 down to this one, joined with ".": "02.091.09162". */
   path: string;
@@ -84,19 +84,19 @@ export function listSubdivisions(country: string): Subdivision[] {
 }
 
 /**
- * A level-1 subdivision by ISO 3166-2 code ("DE-BY") or GeoNames key ("DE.02").
+ * A level-1 subdivision by ISO 3166-2 code ("DE-BY") or internal key ("DE.02").
  * Use findSubdivision for names and lower levels.
  */
 export function getSubdivision(code: string): Subdivision | null {
   const upper = code.trim().toUpperCase();
   const byIso = LEVEL1_BY_ISO.get(upper);
   if (byIso) return byIso;
-  const geonames = /^([A-Z]{2})\.(.+)$/.exec(code.trim());
-  if (geonames) return LEVEL1_BY_COUNTRY.get(geonames[1]!.toUpperCase())?.find((subdivision) => subdivision.code === geonames[2]) ?? null;
+  const key = /^([A-Z]{2})\.(.+)$/.exec(code.trim());
+  if (key) return LEVEL1_BY_COUNTRY.get(key[1]!.toUpperCase())?.find((subdivision) => subdivision.code === key[2]) ?? null;
   return null;
 }
 
-/** True for a valid ISO 3166-2 code on any level ("DE-BY", "FR-75C"), per the CLDR list. */
+/** True for a valid ISO 3166-2 code on any level ("DE-BY", "FR-75C"). */
 export function isSubdivisionCode(value: unknown): boolean {
   return typeof value === 'string' && value.trim().toUpperCase() in ISO_NAMES;
 }
@@ -121,8 +121,8 @@ export function resolveSubdivision(text: string | null | undefined, country?: st
   if (!code) return null;
   const withIso = LEVEL1_BY_ISO.get(`${code}-${cleaned.toUpperCase()}`);
   if (withIso) return withIso;
-  const byGeonamesCode = LEVEL1_BY_COUNTRY.get(code)?.find((subdivision) => subdivision.code.toUpperCase() === cleaned.toUpperCase());
-  if (byGeonamesCode) return byGeonamesCode;
+  const byKey = LEVEL1_BY_COUNTRY.get(code)?.find((subdivision) => subdivision.code.toUpperCase() === cleaned.toUpperCase());
+  if (byKey) return byKey;
   return level1Index(code).get(fold(cleaned)) ?? null;
 }
 
@@ -201,7 +201,7 @@ export async function findSubdivision(
   return null;
 }
 
-/** Anything that carries GeoNames admin codes, such as a City. */
+/** Anything that carries subdivision codes (admin1–admin4), such as a City. */
 export interface PlaceWithSubdivisionCodes {
   country: string;
   admin1?: string | null;

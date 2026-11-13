@@ -36,7 +36,7 @@ export interface CountryRecord {
   demonym: string | null;
   drivingSide: 'left' | 'right' | null;
   postal: { format: string | null; regex: string | null };
-  geonamesLanguages: string[];
+  languageTags: string[];
 }
 
 export interface GroupRecord {
@@ -45,7 +45,6 @@ export interface GroupRecord {
   kind: GroupKind;
   code?: string;
   definition?: string;
-  source?: string;
   members: GroupMember[];
 }
 

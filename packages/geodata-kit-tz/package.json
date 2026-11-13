@@ -1,7 +1,7 @@
 {
   "name": "geodata-kit-tz",
   "version": "0.2.0",
-  "description": "Optional companion to geodata-kit: exact IANA timezone for any coordinate from timezone polygons (timezone-boundary-builder). Code MIT, data ODbL 1.0.",
+  "description": "Optional companion to geodata-kit: exact IANA timezone for any coordinate from timezone polygons. Code MIT, data ODbL 1.0.",
   "keywords": [
     "timezone",
     "tz",
@@ -11,6 +11,7 @@
     "geodata-kit"
   ],
   "license": "MIT AND ODbL-1.0",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -47,9 +48,13 @@
     "NOTICE",
     "LICENSE",
     "LICENSE-DATA",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

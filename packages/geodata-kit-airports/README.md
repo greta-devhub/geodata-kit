@@ -17,7 +17,7 @@ await getAirportByIcao('EGLL');  // London Heathrow
 await searchAirports('Heathrow', { limit: 1 });
 ```
 
-`cityId` is the GeoNames id of the city served; with `geodata-kit-cities`
+`cityId` is the place id (`geonameId`) of the city served; with `geodata-kit-cities`
 installed, `getCity(cityId)` returns it.
 
 ## API
@@ -50,4 +50,5 @@ Install only the parts you need. All packages share one version number and work 
 
 ## License
 
-MIT. Data from GeoNames (CC BY 4.0); see `NOTICE`. If you publish data taken from this package, credit GeoNames.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

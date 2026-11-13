@@ -1,4 +1,4 @@
-"""Cities (GeoNames cities500 in tier bands), localities (optional package), location parsing and city timezones."""
+"""Cities (populated places with 500+ inhabitants, in tier bands), localities (optional package), location parsing and city timezones."""
 from __future__ import annotations
 
 import functools

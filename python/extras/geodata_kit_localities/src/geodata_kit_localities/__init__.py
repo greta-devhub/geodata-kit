@@ -1,4 +1,4 @@
-"""Villages, hamlets and city districts from GeoNames that are not in cities500 (one gzip file per country).
+"""Villages, hamlets and city districts that are not in the cities data (one gzip file per country).
 
 geodata-kit uses this package automatically when it is installed (tier "all").
 Row layout: [geonameid, name, asciiName|0, featureCode, population, lat, lng, a1, a2, a3, a4, tzIndex, parentId|0].

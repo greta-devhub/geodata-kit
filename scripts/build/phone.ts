@@ -11,7 +11,6 @@ import { readFileSync } from 'node:fs';
 
 import { compareStrings, writeJson } from '../lib/io.js';
 import { cachePath, dataPath } from '../lib/paths.js';
-import { LIBPHONENUMBER_VERSION } from '../sources.js';
 
 export const NUMBER_TYPES = [
   'fixedLine', 'mobile', 'tollFree', 'premiumRate', 'sharedCost', 'personalNumber', 'voip', 'pager', 'uan', 'voicemail', 'noInternationalDialling',
@@ -136,7 +135,6 @@ export async function buildPhone(): Promise<void> {
   }
 
   writeJson(dataPath('phone', 'metadata.json'), {
-    source: `libphonenumber ${LIBPHONENUMBER_VERSION} (Apache-2.0)`,
     regions: Object.fromEntries(Object.entries(regions).sort(([a], [b]) => compareStrings(a, b))),
     byCallingCode: Object.fromEntries(Object.entries(byCallingCode).sort(([a], [b]) => Number(a) - Number(b))),
   }, 'lines');

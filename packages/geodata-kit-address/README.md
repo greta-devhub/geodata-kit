@@ -57,4 +57,5 @@ Install only the parts you need. All packages share one version number and work 
 
 ## License
 
-MIT. Data from Google's address metadata (CC BY 4.0) and GeoNames (CC BY 4.0); see `NOTICE`.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

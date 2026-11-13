@@ -2,7 +2,7 @@
  * geodata-kit-address — address formats, required fields, regions and
  * postal-code rules for every country, plus formatting and parsing.
  *
- * Data: Google libaddressinput address metadata (CC BY 4.0) and GeoNames
+ * Data licences and credits: see NOTICE.
  * postal formats. With the optional geodata-kit-postal package installed,
  * parseAddress also checks the city against the postal code.
  */
@@ -16,7 +16,7 @@ interface FormatRecord {
   latinFormat: string | null;
   required: string;
   upperCase: string;
-  postal: { pattern: string | null; geonamesPattern: string | null; layouts: string[]; examples: string[]; prefixes: string[]; label: string } | null;
+  postal: { pattern: string | null; secondaryPattern: string | null; layouts: string[]; examples: string[]; prefixes: string[]; label: string } | null;
   regionLabel: string;
   localityLabel: string;
   sublocalityLabel: string;
@@ -50,7 +50,7 @@ const fieldsOf = (letters: string): AddressField[] => [...letters].map((letter) 
 export interface AddressFormat {
   /** Fields per line, in envelope order: [['name'], ['organization'], ['addressLines'], ['postalCode', 'city']]. */
   lines: AddressField[][];
-  /** Raw Google format string (%N, %O, %A, %D, %C, %S, %Z, %X, %n). */
+  /** Raw format string (%N, %O, %A, %D, %C, %S, %Z, %X, %n). */
   pattern: string;
   /** Latin-script variant for countries that write addresses big-endian locally (JP, CN, KR, …). */
   latinPattern: string | null;
@@ -109,7 +109,7 @@ export function isValidRegion(value: string, country: string): boolean {
 export interface PostalCodeRules {
   /** Anchored, case-insensitive pattern a normalised code must match. */
   pattern: RegExp;
-  /** Layouts from GeoNames: '#' digit, '@' letter ("@# #@@" …). */
+  /** Layouts: '#' digit, '@' letter ("@# #@@" …). */
   layouts: string[];
   examples: string[];
   /** Prefixes accepted in front of the code ("D-", "CH-"). */
@@ -123,12 +123,12 @@ function patterns(country: string, format: FormatRecord): RegExp[] {
   if (!cached) {
     cached = [];
     if (format.postal?.pattern) cached.push(new RegExp(`^(?:${format.postal.pattern})$`, 'i'));
-    if (format.postal?.geonamesPattern) {
+    if (format.postal?.secondaryPattern) {
       try {
-        const geonames = format.postal.geonamesPattern;
-        cached.push(new RegExp(geonames.startsWith('^') ? `^(?:${geonames.slice(1, geonames.endsWith('$') ? -1 : undefined)})$` : `^(?:${geonames})$`, 'i'));
+        const secondary = format.postal.secondaryPattern;
+        cached.push(new RegExp(secondary.startsWith('^') ? `^(?:${secondary.slice(1, secondary.endsWith('$') ? -1 : undefined)})$` : `^(?:${secondary})$`, 'i'));
       } catch {
-        // A few GeoNames patterns use syntax JavaScript does not accept; Google's pattern is enough then.
+        // A few secondary patterns use syntax JavaScript does not accept; the main pattern is enough then.
       }
     }
     patternCache.set(country, cached);
@@ -298,7 +298,7 @@ function importPostal(): Promise<PostalModule | null> {
 function findPostalCode(line: string, country: string): { code: string; start: number; end: number } | null {
   const format = FORMATS[country];
   if (!format?.postal) return null;
-  const sources = [format.postal.pattern, format.postal.geonamesPattern?.replace(/^\^/, '').replace(/\$$/, '')].filter((source): source is string => Boolean(source));
+  const sources = [format.postal.pattern, format.postal.secondaryPattern?.replace(/^\^/, '').replace(/\$$/, '')].filter((source): source is string => Boolean(source));
   const prefixes = format.postal.prefixes.map((prefix) => prefix.replace(/[-]/g, '\\-')).join('|');
   for (const source of sources) {
     let regex: RegExp;

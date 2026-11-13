@@ -1,5 +1,5 @@
 /**
- * geodata-kit-airports — 10.5k airports with an IATA or ICAO code (GeoNames),
+ * geodata-kit-airports — 10.5k airports with an IATA or ICAO code,
  * each with the city it serves. Loads once, on first use.
  */
 import { cleanText, fold, normalizeCountryCode } from 'geodata-kit';
@@ -12,12 +12,12 @@ export interface Airport {
   iata: string | null;
   icao: string | null;
   country: string;
-  /** GeoNames level-1 subdivision code. */
+  /** Level-1 subdivision code (see geodata-kit-subdivisions). */
   admin1: string;
   lat: number;
   lng: number;
   timezone: string;
-  /** GeoNames id of the nearest sizeable city (getCity in geodata-kit-cities), if any within 60 km. */
+  /** Place id of the nearest sizeable city (getCity in geodata-kit-cities), if any within 60 km. */
   cityId: number | null;
 }
 

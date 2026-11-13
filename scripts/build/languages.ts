@@ -78,7 +78,7 @@ export async function buildLanguages(): Promise<void> {
   for (const country of countries) {
     const info = territoryInfo[country.code];
     const population = Number(info?._population ?? country.population ?? 0) || null;
-    const geonamesLocales = new Map(country.geonamesLanguages.map((tag) => [tag.split('-')[0]!.toLowerCase(), tag]));
+    const geonamesLocales = new Map(country.languageTags.map((tag) => [tag.split('-')[0]!.toLowerCase(), tag]));
     const languages = new Map<string, CountryLanguage>();
 
     for (const [rawCode, entry] of Object.entries(info?.languagePopulation ?? {})) {

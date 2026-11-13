@@ -1,7 +1,7 @@
 {
   "name": "geodata-kit",
   "version": "0.2.0",
-  "description": "Countries for TypeScript and JavaScript: names in 8 languages, free-text resolution, search, groups (EU, DACH, …), languages, timezones, currencies and more. Offline, typed, no dependencies. Core of the geodata-kit family, built from GeoNames, Unicode CLDR, IANA tzdata and Wikidata.",
+  "description": "Countries for TypeScript and JavaScript: names in 8 languages, free-text resolution, search, groups (EU, DACH, …), languages, timezones, currencies and more. Offline, typed, no dependencies. Core of the geodata-kit family.",
   "keywords": [
     "countries",
     "country",
@@ -11,11 +11,10 @@
     "languages",
     "timezone",
     "currency",
-    "cldr",
-    "geonames",
     "geo"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -50,9 +49,13 @@
     "dist",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
