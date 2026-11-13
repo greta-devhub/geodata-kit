@@ -1,5 +1,32 @@
 # geodata-kit-address
 
+## 0.4.0
+
+### Minor Changes
+
+- Fixes from a review of 0.3.0.
+
+  Parsing
+
+  - US and Canadian addresses parse correctly: in `"1 Market St, San Francisco, CA 94103"` the city is San Francisco and the region CA (before: the region became the city). Full state names work (`"Austin, Texas 78701"` → TX), as do ZIP+4 codes and text without commas when `geodata-kit-postal` or `geodata-kit-cities` is installed (`"350 Fifth Avenue New York NY 10118"`).
+  - `parseAddress` finds the country from the address itself when none is given: from a postal prefix (`"CH-8001 Zürich"`, `"D-80331 München"`, every prefix of `getPostalCodeRules(…).prefixes` that ends in a dash) or from a region next to a postal code of that region (`"San Francisco, CA 94103"` → US, `"Ottawa ON K1M 1M4"` → CA).
+  - `formatAddress` followed by `parseAddress` gives the same fields back. With `geodata-kit-postal` installed, an upper-case city from an envelope line gets its normal spelling back (`"WASHINGTON"` → `"Washington"`).
+
+  Countries and regions
+
+  - Every function accepts a country name as well as a code: `normalizePostalCode('80331', 'Germany')`, `getRequiredAddressFields('Germany')`, `listRegions('United States')`.
+  - `resolveRegion` accepts English names (`'Rome'` → RM, `'Milan'` → MI, `'Washington, D.C.'` → DC) and names with or without the kind of region (`'County Dublin'`, `'Dublin'` → `Co. Dublin`). Regions have a new optional `aliases` field.
+
+  Postal codes
+
+  - `normalizePostalCode('GIR 0AA', 'GB')` keeps the space.
+  - **Changed:** validation is stricter where the data knows the real ranges. Rejected now: a Dutch code starting with 0 (`0123 AB`), codes outside the region ranges of Andorra, Argentina, Australia, India, Japan, Mexico, South Korea, Spain, Ukraine and the United States (`53013` in Spain, `011001` in India), and old forms in Armenia (`375010`) and Peru (`LIMA 23`). Every one of the 1.08 million real codes in `geodata-kit-postal` is accepted as before. For most other countries only the shape is checked; the README says which.
+  - **Changed:** `formatAddress` returns `[]` for an unknown country instead of throwing, like every other function of the package.
+
+### Patch Changes
+
+- geodata-kit@0.4.0
+
 ## 0.3.0
 
 ### Minor Changes

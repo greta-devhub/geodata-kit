@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "geodata-kit-localities"
-version = "0.3.0"
+version = "0.4.0"
 description = "Optional data for geodata-kit: 4.9 million villages, hamlets and city districts, sharded per country."
 readme = "README.md"
 license = "MIT AND CC-BY-4.0"
