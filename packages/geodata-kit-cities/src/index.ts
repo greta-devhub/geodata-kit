@@ -1,5 +1,5 @@
 /**
- * geodata-kit/cities — every GeoNames populated place with 500+ inhabitants
+ * geodata-kit-cities — every GeoNames populated place with 500+ inhabitants
  * (cities500, 237k places) and, with the optional geodata-kit-localities
  * package, 4.9M more villages, hamlets and city districts.
  *
@@ -12,12 +12,10 @@
  *     500  500+ or seats down to fourth-level subdivisions    (237k, default)
  *   'all' cities500 + localities (needs geodata-kit-localities)
  */
-import { getCountry, normalizeCountryCode, resolveCountry } from './countries.js';
-import { fold } from './fold.js';
-import { cleanInput } from './internal/util.js';
+import { cleanText, fold, getCountry, getPrimaryTimezone, normalizeCountryCode, resolveCountry } from 'geodata-kit';
+import { resolveSubdivision, type Subdivision } from 'geodata-kit-subdivisions';
+
 import { CITY_LOADERS, loadIndex } from './loaders.generated.js';
-import { resolveSubdivision, type Subdivision } from './subdivisions.js';
-import { getPrimaryTimezone } from './timezones.js';
 
 export type Tier = 15000 | 5000 | 1000 | 500 | 'all';
 type Band = 15000 | 5000 | 1000 | 500;
@@ -28,7 +26,7 @@ export interface City {
   name: string;
   asciiName: string;
   country: string;
-  /** GeoNames subdivision codes (level 1–4); see geodata-kit/subdivisions. */
+  /** GeoNames subdivision codes (level 1–4); see geodata-kit-subdivisions. */
   admin1: string;
   admin2: string;
   admin3: string;
@@ -224,7 +222,7 @@ function subdivisionFilter(country: string, subdivision: SubdivisionInput | unde
 
 /** Removes postal codes and similar noise around a city name: "80331 München", "D-80331 München", "Paris 75008". */
 function cleanCityName(text: string): string {
-  return cleanInput(text)
+  return cleanText(text)
     .replace(/\b[A-Z]{1,3}-\d{3,6}\b/g, ' ')
     .replace(/(^|\s)\d{3,6}(?=\s|$)/g, ' ')
     .replace(/\s+/g, ' ')
@@ -281,7 +279,7 @@ export interface SearchCitiesOptions {
 
 /** Autocomplete-style search: names (and alternate names) starting with the query, biggest first. */
 export async function searchCities(query: string, options: SearchCitiesOptions = {}): Promise<City[]> {
-  const key = fold(cleanInput(query));
+  const key = fold(cleanText(query));
   if (!key) return [];
   const tier = options.tier ?? 500;
   const countries = options.country ? [toCountryCode(options.country)].filter((code): code is string => code !== null) : allCountryCodes();
@@ -363,7 +361,7 @@ export interface ParsedLocation {
 }
 
 function splitLocation(text: string): string[] {
-  return cleanInput(text)
+  return cleanText(text)
     .split(/\s*[,;|/]\s*|\s+-\s+|\s*\(\s*|\s*\)\s*/)
     .map((part) => part.trim())
     .filter(Boolean);
@@ -376,7 +374,7 @@ function splitLocation(text: string): string[] {
  */
 export async function parseLocation(text: string, options: { country?: string; tier?: Tier } = {}): Promise<ParsedLocation> {
   const empty: ParsedLocation = { city: null, subdivision: null, country: toCountryCode(options.country) };
-  if (typeof text !== 'string' || !cleanInput(text)) return empty;
+  if (typeof text !== 'string' || !cleanText(text)) return empty;
   let parts = splitLocation(text);
   const tier = options.tier ?? 500;
 
@@ -463,7 +461,7 @@ export interface CityTimezone {
 export async function resolveCityTimezone(input: CityTimezoneInput, options: { tier?: Tier } = {}): Promise<CityTimezone | null> {
   const tier = options.tier ?? 'all';
   let country = toCountryCode(input.country ?? undefined);
-  let cityName = input.city ? cleanInput(input.city) : '';
+  let cityName = input.city ? cleanText(input.city) : '';
   let subdivisionInput: string | Subdivision | undefined = input.subdivision ?? undefined;
 
   if (cityName && (/[,;(/|]/.test(cityName) || !country)) {

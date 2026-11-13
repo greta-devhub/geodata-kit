@@ -9,7 +9,7 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { listCities } from '../packages/geodata-kit/src/cities.js';
+import { listCities } from 'geodata-kit-cities';
 
 const ROOT = join(import.meta.dirname, '..');
 const DATA = join(ROOT, 'data');
@@ -89,7 +89,7 @@ describe('attribution', () => {
   });
 
   it('ships NOTICE and LICENSE in every package', () => {
-    for (const dir of ['packages/geodata-kit', 'packages/geodata-kit-localities', 'packages/geodata-kit-postal', 'packages/geodata-kit-tz', 'python']) {
+    for (const dir of [...readdirSync(join(ROOT, 'packages')).map((name) => `packages/${name}`), 'python']) {
       expect(statSync(join(ROOT, dir, 'NOTICE')).size, dir).toBeGreaterThan(0);
       expect(statSync(join(ROOT, dir, 'LICENSE')).size, dir).toBeGreaterThan(0);
     }

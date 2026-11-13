@@ -1,0 +1,55 @@
+{
+  "name": "geodata-kit-shapes",
+  "version": "0.2.0",
+  "description": "Which country and which state or province a coordinate is in. Offline point-in-polygon lookup on Natural Earth boundaries, no dependencies.",
+  "keywords": [
+    "reverse-geocoding",
+    "point-in-polygon",
+    "country",
+    "coordinates",
+    "natural-earth",
+    "boundaries",
+    "geodata-kit"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greta-devhub/geodata-kit.git",
+    "directory": "packages/geodata-kit-shapes"
+  },
+  "homepage": "https://github.com/greta-devhub/geodata-kit/tree/main/packages/geodata-kit-shapes#readme",
+  "bugs": {
+    "url": "https://github.com/greta-devhub/geodata-kit/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "NOTICE",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup"
+  }
+}

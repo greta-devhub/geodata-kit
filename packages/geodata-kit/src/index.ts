@@ -2,11 +2,12 @@
  * geodata-kit — countries, names, resolution, search, groups, languages,
  * timezones and country facts. Synchronous, no runtime dependencies.
  *
- * Cities, subdivisions, airports, shapes, address rules and phone numbers are
- * separate entry points (geodata-kit/cities, …) so this one stays small.
+ * Subdivisions, cities, airports, shapes, address rules and phone numbers are
+ * separate packages (geodata-kit-cities, …) so this one stays small.
  */
 export * from './types.js';
 export { fold } from './fold.js';
+export { cleanInput as cleanText, editDistance } from './internal/util.js';
 export {
   COUNTRY_CODE_PATTERN,
   formatCountry,

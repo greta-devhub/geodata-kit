@@ -5,7 +5,19 @@ import { join } from 'node:path';
 
 import { ROOT } from '../lib/paths.js';
 
-export const NPM_PACKAGES = ['geodata-kit', 'geodata-kit-localities', 'geodata-kit-postal', 'geodata-kit-tz'] as const;
+/** Every published npm package, in dependency order (a package comes after the ones it depends on). */
+export const NPM_PACKAGES = [
+  'geodata-kit',
+  'geodata-kit-subdivisions',
+  'geodata-kit-cities',
+  'geodata-kit-airports',
+  'geodata-kit-shapes',
+  'geodata-kit-address',
+  'geodata-kit-phone',
+  'geodata-kit-localities',
+  'geodata-kit-postal',
+  'geodata-kit-tz',
+] as const;
 
 export function packageJsonPath(name: string): string {
   return join(ROOT, 'packages', name, 'package.json');

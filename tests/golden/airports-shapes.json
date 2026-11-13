@@ -121,7 +121,7 @@
     48.137,
     11.575
    ],
-   "path": "subdivision.iso",
+   "path": "iso",
    "expect": "DE-BY"
   },
   {
@@ -141,6 +141,25 @@
    ],
    "path": "iso",
    "expect": "CH-ZH"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    48.137,
+    11.575
+   ],
+   "path": "name",
+   "expect": "Bavaria"
+  },
+  {
+   "fn": "getSubdivisionAt",
+   "args": [
+    48.137,
+    11.575
+   ],
+   "path": "code",
+   "expect": "02",
+   "note": "GeoNames level-1 code, for getSubdivision('DE.02')"
   }
  ]
 }

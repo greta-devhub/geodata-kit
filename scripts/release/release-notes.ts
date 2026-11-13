@@ -24,5 +24,5 @@ for (const name of NPM_PACKAGES) {
     .trim();
   if (body) sections.push(`### ${name}\n\n${body}`);
 }
-console.log(sections.length ? sections.join('\n\n') : 'First release of geodata-kit, geodata-kit-localities, geodata-kit-postal and geodata-kit-tz.');
+console.log(sections.length ? sections.join('\n\n') : `Release ${version} of the geodata-kit packages.`);
 console.log(`\nnpm: https://www.npmjs.com/package/geodata-kit/v/${version}`);

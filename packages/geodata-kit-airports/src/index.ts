@@ -1,10 +1,9 @@
 /**
- * geodata-kit/airports — 10.5k airports with an IATA or ICAO code (GeoNames),
+ * geodata-kit-airports — 10.5k airports with an IATA or ICAO code (GeoNames),
  * each with the city it serves. Loads once, on first use.
  */
-import { normalizeCountryCode } from './countries.js';
-import { fold } from './fold.js';
-import { cleanInput } from './internal/util.js';
+import { cleanText, fold, normalizeCountryCode } from 'geodata-kit';
+
 import { loadAirports } from './loaders.generated.js';
 
 export interface Airport {
@@ -18,7 +17,7 @@ export interface Airport {
   lat: number;
   lng: number;
   timezone: string;
-  /** GeoNames id of the nearest sizeable city (geodata-kit/cities getCity), if any within 60 km. */
+  /** GeoNames id of the nearest sizeable city (getCity in geodata-kit-cities), if any within 60 km. */
   cityId: number | null;
 }
 
@@ -62,7 +61,7 @@ export async function listAirports(country: string): Promise<Airport[]> {
 
 /** Search by code or name ("zur", "Heathrow"); codes match exactly first. */
 export async function searchAirports(query: string, options: { country?: string; limit?: number } = {}): Promise<Airport[]> {
-  const cleaned = cleanInput(query);
+  const cleaned = cleanText(query);
   if (!cleaned) return [];
   const upper = cleaned.toUpperCase();
   const key = fold(cleaned);

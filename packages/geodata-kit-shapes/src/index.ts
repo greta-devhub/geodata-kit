@@ -1,14 +1,13 @@
 /**
- * geodata-kit/shapes — which country or first-level subdivision a point lies
+ * geodata-kit-shapes — which country or first-level subdivision a point lies
  * in, from Natural Earth polygons (countries 1:50m, subdivisions 1:10m,
  * simplified to about 200–400 m). Good for "which country is this coordinate
  * in"; near borders the answer can be off by a few hundred metres.
  */
 import { loadCountryShapes, loadSubdivisionShapes } from './loaders.generated.js';
-import { getSubdivision, getSubdivisionName, type Subdivision } from './subdivisions.js';
 
 interface ShapeFeature { id: string; bbox: [number, number, number, number]; polygons: number[][][] }
-interface SubdivisionShape extends ShapeFeature { country: string; code: string | null; iso: string | null }
+interface SubdivisionShape extends ShapeFeature { country: string; code: string | null; iso: string | null; name: string | null }
 
 const SCALE = 1000;
 
@@ -41,26 +40,21 @@ export async function getCountryAt(lat: number, lng: number): Promise<string | n
 }
 
 export interface SubdivisionAtPoint {
+  /** ISO alpha-2 country code. */
   country: string;
-  /** ISO 3166-2 code of the Natural Earth unit, when it has one. */
+  /** ISO 3166-2 code ("DE-BY"), when the unit has one. */
   iso: string | null;
+  /** GeoNames level-1 code ("02"); with geodata-kit-subdivisions: getSubdivision(`${country}.${code}`). */
+  code: string | null;
+  /** English name ("Bavaria"). */
   name: string | null;
-  /** The matching level-1 subdivision (geodata-kit/subdivisions), when Natural Earth and GeoNames agree on the unit. */
-  subdivision: Subdivision | null;
 }
 
-/** First-level subdivision at a point: (48.14, 11.58) → Bavaria. */
+/** First-level subdivision at a point: (48.14, 11.58) → { country: 'DE', iso: 'DE-BY', code: '02', name: 'Bavaria' }. */
 export async function getSubdivisionAt(lat: number, lng: number): Promise<SubdivisionAtPoint | null> {
   subdivisionShapes ??= loadSubdivisionShapes().then((module) => module.default as SubdivisionShape[]);
   const x = Math.round(lng * SCALE);
   const y = Math.round(lat * SCALE);
   const feature = (await subdivisionShapes).find((candidate) => contains(candidate, x, y));
-  if (!feature) return null;
-  const subdivision = feature.code ? getSubdivision(`${feature.country}.${feature.code}`) : null;
-  return {
-    country: feature.country,
-    iso: feature.iso,
-    name: subdivision?.name ?? (feature.iso ? getSubdivisionName(feature.iso) : null),
-    subdivision,
-  };
+  return feature ? { country: feature.country, iso: feature.iso, code: feature.code, name: feature.name } : null;
 }
