@@ -1,0 +1,6 @@
+{
+  "_comment": "Digits a country dropped from its numbers that old records still carry after the calling code. Parsers remove them only when that turns an invalid number into a valid one. Mexico dropped the mobile '1' (+52 1 55 … → +52 55 …) in 2019 (IFT numbering plan); the metadata no longer strips it.",
+  "droppedPrefixes": {
+    "MX": "1"
+  }
+}

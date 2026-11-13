@@ -4,6 +4,9 @@ The outlines are simplified, so three rules keep the answers right in coastal ci
 near any border or coast the finer subdivision outlines decide, and where shapes overlap the smallest wins;
 a territory too small for the data is stored as a marker and covers MARKER_KM around it;
 a point just off the simplified coast gets the nearest land within NEAR_COAST_KM.
+
+Tiny enclaves (Baarle-Hertog, Büsingen) and the northern half of Gibraltar are not in the outlines. The TypeScript
+package reads them from the timezone polygons of geodata-kit-tz, which has no Python port.
 """
 from __future__ import annotations
 
@@ -21,11 +24,6 @@ NEAR_COAST_KM = 5
 MARKER_KM = 0.5
 # Closer than this to any coarse country outline, the finer subdivision outlines decide.
 _COARSE_EDGE_KM = 15
-
-
-def _js_round(value: float) -> int:
-    """Math.round semantics (half up), so Python and TypeScript pick the same cell."""
-    return math.floor(value + 0.5)
 
 
 def _inside_ring(ring: list[int], x: int, y: int) -> bool:
@@ -107,8 +105,8 @@ def _nearest_within(features: list[dict], x: int, y: int, limit_km: float) -> di
     return best
 
 
-def _to_grid(lat: float, lng: float) -> tuple[int, int] | None:
-    """Integer grid position of a coordinate; None for invalid input. Longitudes wrap around, so 190 is the same as -170."""
+def _to_grid(lat: float, lng: float) -> tuple[float, float] | None:
+    """Position of a coordinate in grid units; None for invalid input. Longitudes wrap around, so 190 is the same as -170."""
     for value in (lat, lng):
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value):
             return None
@@ -116,7 +114,9 @@ def _to_grid(lat: float, lng: float) -> tuple[int, int] | None:
         return None
     # fmod keeps the sign of the dividend, like the % operator in TypeScript.
     wrapped = math.fmod(math.fmod(lng + 180, 360) + 360, 360) - 180
-    return _js_round(wrapped * _SCALE), _js_round(lat * _SCALE)
+    # Not rounded to the grid: rounding would move the point up to 55 m, onto or across the outline of a small
+    # territory (Gibraltar is 1.2 km wide in the data).
+    return wrapped * _SCALE, lat * _SCALE
 
 
 def get_country_at(lat: float, lng: float) -> str | None:

@@ -10,7 +10,10 @@ import { loadAirports } from './loaders.generated.js';
 export interface Airport {
   geonameId: number;
   name: string;
+  /** The airport's main IATA code. */
   iata: string | null;
+  /** Other IATA codes it is known by: EuroAirport (EAP) is also BSL and MLH. getAirportByIata finds it by any. */
+  alternateIata: string[];
   icao: string | null;
   country: string;
   /** Level-1 subdivision code (see geodata-kit-subdivisions). */
@@ -22,14 +25,14 @@ export interface Airport {
   cityId: number | null;
 }
 
-type Row = [number, string, string | 0, string | 0, string, string, number, number, number, number | 0];
+type Row = [number, string, string | 0, string | 0, string, string, number, number, number, number | 0, string | 0];
 
 let loaded: Promise<{ all: Airport[]; byIata: Map<string, Airport>; byIcao: Map<string, Airport> }> | null = null;
 function data(): Promise<{ all: Airport[]; byIata: Map<string, Airport>; byIcao: Map<string, Airport> }> {
   loaded ??= loadAirports().then((module) => {
     const file = module.default as { tz: string[]; rows: Row[] };
     const all = file.rows.map((row): Airport => ({
-      geonameId: row[0], name: row[1], iata: row[2] || null, icao: row[3] || null, country: row[4], subdivision1: row[5],
+      geonameId: row[0], name: row[1], iata: row[2] || null, alternateIata: row[10] ? row[10].split(' ') : [], icao: row[3] || null, country: row[4], subdivision1: row[5],
       lat: row[6], lng: row[7], timezone: file.tz[row[8]]!, cityId: row[9] || null,
     }));
     const byIata = new Map<string, Airport>();
@@ -38,12 +41,14 @@ function data(): Promise<{ all: Airport[]; byIata: Map<string, Airport>; byIcao:
       if (airport.iata && !byIata.has(airport.iata)) byIata.set(airport.iata, airport);
       if (airport.icao && !byIcao.has(airport.icao)) byIcao.set(airport.icao, airport);
     }
+    // Alternate codes after every main code, so they never take one.
+    for (const airport of all) for (const code of airport.alternateIata) if (!byIata.has(code)) byIata.set(code, airport);
     return { all, byIata, byIcao };
   });
   return loaded;
 }
 
-/** Airport by IATA code: "FRA" → Frankfurt am Main Airport. */
+/** Airport by IATA code, its main or an alternate one: "FRA" → Frankfurt am Main Airport, "BSL" → EuroAirport (EAP). */
 export async function getAirportByIata(code: string): Promise<Airport | null> {
   return (await data()).byIata.get(code.trim().toUpperCase()) ?? null;
 }
@@ -72,7 +77,7 @@ export async function searchAirports(query: string, options: { country?: string;
     if (country && airport.country !== country) continue;
     const name = fold(airport.name);
     let score: number | null = null;
-    if (airport.iata === upper || airport.icao === upper) score = 0;
+    if (airport.iata === upper || airport.icao === upper || airport.alternateIata.includes(upper)) score = 0;
     else if (name.startsWith(key)) score = 1;
     else if (name.split(' ').some((word) => word.startsWith(key))) score = 2;
     if (score !== null) scored.push({ airport, score });

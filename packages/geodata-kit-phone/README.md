@@ -23,6 +23,12 @@ What you get:
   rate, …), not only valid or invalid.
 - Results are plain objects, so you can store them or send them as JSON.
 - `parsePhoneNumbers` splits a field that holds several numbers.
+- Letters are read as on a phone keypad: `1-800-FLOWERS` is `+18003569377`.
+  Letters that make no valid number give `null`, not a wrong `e164`; a word
+  after a valid number (`+49 89 1234567 office`) is not dialled.
+- Digits a country has dropped that old records still carry are removed when
+  that makes the number valid: Mexican mobiles written `+52 1 55 …` (the "1"
+  was dropped in 2019) parse as `+52 55 …`.
 - About 49 KB gzipped in a browser bundle. If you only need to know whether a
   number is valid and bundle size matters most, a library with reduced
   metadata is smaller.

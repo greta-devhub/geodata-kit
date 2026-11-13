@@ -1,5 +1,23 @@
 # geodata-kit-address
 
+## 0.4.1
+
+### Patch Changes
+
+- Fixes from testing 0.4.0.
+
+  Postal codes
+
+  - French CEDEX codes are valid: `normalizePostalCode('75008 cedex 08', 'FR')` → `'75008 CEDEX 08'`, also in French Guiana, Guadeloupe, Martinique and Réunion, and the codes of French air bases (`'13661 AIR'`). The data build takes these suffixes from the real codes in `geodata-kit-postal`; `getPostalCodeRules(…).suffixes` lists them. `parseAddress` reads the suffix after the city as well, as French mail writes it (`"75008 PARIS CEDEX 08"` → postal code `75008 CEDEX 08`, city `PARIS`). The 0.4.0 note that every real code is accepted was wrong for these 14,600 codes.
+
+  Parsing
+
+  - With `geodata-kit-postal` installed, `parseAddress` finds the country of an address without one from a postal code next to one of its places: `"10 Rue de Rivoli, 75001 Paris"` → FR, `"10117 Berlin"` → DE. Exactly one country must fit; a bare code is still not enough. A `country` option that is not known is not replaced by a guess.
+  - New `postalCheck: 'mismatch'` with `expectedCity` / `expectedRegion`: the postal code belongs to another region than the one written (`"1 Main St, Fake City, CA 10001"` → country US, region CA, `expectedRegion: 'NY'`; before, every field was `null`), or, with `geodata-kit-postal`, to a place more than 30 km from the city written (`"80331 Berlin"` → `expectedCity: 'München'`; before: `'unknown'`). The fields stay as written. Where the postal data has only the first part of codes (GB, CA, NL) the city check gives no verdict, since post towns there serve places far away.
+
+- Updated dependencies
+  - geodata-kit@0.4.1
+
 ## 0.4.0
 
 ### Minor Changes

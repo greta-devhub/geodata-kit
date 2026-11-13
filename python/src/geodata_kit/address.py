@@ -6,6 +6,7 @@ None, False or an empty list for one it does not know; none of them raises.
 from __future__ import annotations
 
 import functools
+import math
 import re
 
 from ._data import load
@@ -222,7 +223,17 @@ def get_postal_code_rules(country: str) -> dict | None:
     postal = record["postal"]
     main, second, _ = _checks(code)
     return {"pattern": (main or second).pattern, "layouts": list(postal["layouts"]), "examples": list(postal["examples"]),
-            "prefixes": list(postal["prefixes"]), "label": postal["label"]}
+            "prefixes": list(postal["prefixes"]), "suffixes": list(postal.get("suffixes") or []), "label": postal["label"]}
+
+
+@functools.cache
+def _suffix_pattern(country: str, where: str) -> re.Pattern | None:
+    """"CEDEX" or "CEDEX 08" at the end (or start) of a text, for a country whose real codes carry such a suffix."""
+    words = (_formats()[country]["postal"] or {}).get("suffixes")
+    if not words:
+        return None
+    body = rf"({'|'.join(words)})(?:\s+(\d{{1,2}}))?"
+    return re.compile(rf"\s+{body}$" if where == "end" else rf"^{body}(?=$|[\s,])", _PATTERN_FLAGS)
 
 
 def _render_layout(layout: str, compact: str) -> str | None:
@@ -262,6 +273,12 @@ def normalize_postal_code(value: str, country: str) -> str | None:
         if text.startswith(prefix) and len(text) > len(prefix):
             text = text[len(prefix):].strip()
             break
+    # "75008 CEDEX 08": the code before the suffix must be valid on its own.
+    suffix = _suffix_pattern(code, "end")
+    found = suffix.search(text) if suffix else None
+    if found:
+        base = normalize_postal_code(text[:found.start()], code)
+        return f"{base} {found.group(1).upper()}{' ' + found.group(2) if found.group(2) else ''}" if base else None
     valid = lambda candidate: _is_valid_code(candidate, code)  # noqa: E731
     compact = re.sub(r"[\s-]", "", text)
     for layout in postal["layouts"]:
@@ -380,8 +397,16 @@ def _find_postal_code(line: str, country: str) -> tuple[str, int, int] | None:
         match = regex.search(line)
         if match:
             code = normalize_postal_code(match.group(1), country)
+            end = match.end()
+            # A suffix right after the code belongs to it: "01001 CEDEX Bourg-en-Bresse".
+            pattern = _suffix_pattern(country, "start") if code else None
+            rest = line[end:]
+            suffix = pattern.search(rest.lstrip()) if pattern else None
+            if code and suffix:
+                code = normalize_postal_code(f"{code} {suffix.group(0)}", country)
+                end += len(rest) - len(rest.lstrip()) + len(suffix.group(0))
             if code:
-                return code, match.start(), match.end()
+                return code, match.start(), end
     return None
 
 
@@ -417,6 +442,13 @@ def _extract(input_lines: list[str], country: str) -> dict:
         return result
 
     city_text: str | None = lines[city_line_index]
+    # French mail writes the suffix after the city: "75008 PARIS CEDEX 08".
+    pattern = _suffix_pattern(country, "end") if result["postal_code"] and not re.search(r"\s[A-Z]{3,}", result["postal_code"]) else None
+    suffix = pattern.search(city_text) if pattern else None
+    if suffix and suffix.start() > 0:
+        result["postal_code"] = normalize_postal_code(f"{result['postal_code']} {suffix.group(0).strip()}", country) or result["postal_code"]
+        city_text = city_text[:suffix.start()].strip()
+        lines[city_line_index] = city_text
     if record["regions"]:
         # Where the region is written right before the postal code, on its line (US "City, ST ZIP") or on the
         # line above (Ireland: county, then Eircode), text split on commas or lines leaves the region alone:
@@ -496,15 +528,126 @@ def _detect_country(lines: list[str]) -> str | None:
             found = _find_postal_code(line[match.start(1):], country)
             if found and found[1] == 0:
                 return country
-    fitting = []
+    with_region = []
     for country in _region_countries():
         extracted = _extract(lines, country)
         region, postal_code = extracted["region"], extracted["postal_code"]
-        if not region or not region.get("postalPattern") or not postal_code:
+        if region and region.get("postalPattern") and postal_code:
+            with_region.append((country, region, postal_code))
+    fitting = [country for country, region, postal_code in with_region if _in_region_range(postal_code, region)]
+    if fitting:
+        return fitting[0] if len(fitting) == 1 else None
+    # A region and a code of the country's shape, but from another region's range ("CA 10001"): still that
+    # country, where ranges are certain; parse_address flags it.
+    shaped = [country for country, _, _ in with_region if (_formats()[country]["postal"] or {}).get("byRegion")]
+    return shaped[0] if len(shaped) == 1 else None
+
+
+def _in_region_range(postal_code: str, region: dict) -> bool:
+    """True when the postal code is in the range of the region ("94103" in California)."""
+    return bool(_region_range(region["postalPattern"]).match(re.sub(r"[\s-]", "", postal_code)))
+
+
+def _city_after_code(record: dict) -> bool | None:
+    """Whether the city follows the postal code on its line ("%Z %C": True), precedes it ("%C, %S %Z": False) or is on
+    another line (None)."""
+    line = next((part for part in record["format"].split("%n") if "%Z" in part), None)
+    if not line or "%C" not in line:
+        return None
+    return line.index("%Z") < line.index("%C")
+
+
+def _place_named(places: list[dict], city: str) -> dict | None:
+    """A place of the postal code with this name: "Paris" or "Paris 01" for 75001."""
+    key = fold(city)
+    same = next((place for place in places if fold(place["name"]) == key), None)
+    if same is None and key:
+        same = next((place for place in places if fold(place["name"]).startswith(key + " ")), None)
+    return same
+
+
+def _postal_module():
+    """The optional geodata_kit_postal package, or None when it is not installed."""
+    try:
+        import geodata_kit_postal
+    except ImportError:
+        return None
+    return geodata_kit_postal
+
+
+def _detect_country_by_place(lines: list[str]) -> str | None:
+    """3. A postal code with one of its places where the country's format puts the city ("75001 Paris", "10117 Berlin";
+    the line above a code that stands alone, for "London" over "SW1A 2AA").
+
+    The code must be valid for the country and the place known there: a place of that very code with
+    geodata_kit_postal, or a city of the country for a country the postal data does not cover. Exactly one country
+    must fit; without geodata_kit_postal, common names ("Berlin" is also a village in Mexico) stay unresolved.
+    """
+    from .cities import find_city  # imported here: cities and address must not import each other at load time
+    postal = _postal_module()
+    covered = set(postal.list_postal_countries()) if postal else set()
+    fitting = []
+    for country, record in _formats().items():
+        if not record["postal"]:
             continue
-        if _region_range(region["postalPattern"]).match(re.sub(r"[\s-]", "", postal_code)):
+        found, index = None, len(lines) - 1
+        while index >= 0:
+            found = _find_postal_code(lines[index], country)
+            if found:
+                break
+            index -= 1
+        if not found:
+            continue
+        line = lines[index]
+        before = re.sub(r"[,\s-]+$", "", clean_input(line[:found[1]]))
+        after = re.sub(r"^[,\s-]+", "", clean_input(line[found[2]:]))
+        order = _city_after_code(record)
+        if order is True:
+            city = after
+        elif order is False:
+            city = before
+        else:
+            city = lines[index - 1] if not before and not after and index > 0 else ""
+        if not city or re.search(r"[0-9]", city):
+            continue
+        if postal and country in covered:
+            known = _place_named(postal.find_places_by_postal_code(found[0], country), city) is not None
+        else:
+            try:
+                known = find_city(city, country=country) is not None
+            except Exception:
+                known = False
+        if known:
             fitting.append(country)
-    return fitting[0] if len(fitting) == 1 else None
+        if len(fitting) > 1:
+            return None
+    return fitting[0] if fitting else None
+
+
+# Below this distance a postal place counts as the city written (a district, a neighbouring locality).
+_MISMATCH_KM = 30
+
+
+def _km_between(a: dict, b: dict) -> float:
+    return math.hypot(a["lat"] - b["lat"], (a["lng"] - b["lng"]) * math.cos(a["lat"] * math.pi / 180)) * 111.2
+
+
+def _city_locations(city: str, country: str, postal) -> list[dict]:
+    """Where a city of the country lies: its own postal places, else the city found by find_city. Empty when unknown."""
+    from .cities import find_city
+    locations = []
+    key = fold(city)
+    for code in postal.find_postal_codes(city=city, country=country):
+        places = postal.find_places_by_postal_code(code, country)
+        named = [place for place in places if fold(place["name"]) == key]
+        locations.extend(named or places)
+    if locations:
+        return locations
+    try:
+        found = find_city(city, country=country)
+    except Exception:
+        found = None
+    return [{"lat": found.lat, "lng": found.lng}] if found else []
 
 
 def _split_street_and_city(text: str, country: str, postal_code: str | None, region: dict | None) -> tuple[str, str] | None:
@@ -548,7 +691,9 @@ def parse_address(text: str, options: dict | None = None, *, country: str | None
     """
     if options:
         country = options.get("country", country)
-    result = {"lines": [], "postal_code": None, "city": None, "region": None, "country": None, "postal_check": "not-checked"}
+    given = country
+    result = {"lines": [], "postal_code": None, "city": None, "region": None, "country": None, "postal_check": "not-checked",
+              "expected_city": None, "expected_region": None}
     if not isinstance(text, str):
         return result
     multiline = "\n" in text
@@ -565,6 +710,9 @@ def parse_address(text: str, options: dict | None = None, *, country: str | None
         lines = lines[:-1]
     if not code:
         code = _detect_country(lines)
+    # A country the caller named but this package does not know is not replaced by a guess.
+    if not code and given is None:
+        code = _detect_country_by_place(lines)
     result["country"] = code
     if not code:
         result["lines"] = lines
@@ -585,15 +733,23 @@ def parse_address(text: str, options: dict | None = None, *, country: str | None
             if street:
                 result["lines"].insert(extracted["city_index"], street)
 
-    # 4. Cross-check with geodata_kit_postal.
-    find_places = _postal_lookup() if result["postal_code"] else None
+    # 4. The region's postal range, where the data proves the ranges.
+    record = _formats()[code]
+    region = extracted["region"]
+    region_mismatch = bool(result["postal_code"] and region and region.get("postalPattern") and (record["postal"] or {}).get("byRegion")
+                           and not _in_region_range(result["postal_code"], region))
+    if region_mismatch:
+        result["postal_check"] = "mismatch"
+        result["expected_region"] = next((entry["key"] for entry in record["regions"]
+                                          if entry.get("postalPattern") and _in_region_range(result["postal_code"], entry)), None)
+
+    # 5. Cross-check with geodata_kit_postal.
+    find_places = _postal_lookup() if result["postal_code"] and not region_mismatch else None
     if find_places:
         places = find_places(result["postal_code"], code)
         city = result["city"]
         city_key = fold(city) if city else ""
-        same = next((p for p in places if fold(p["name"]) == city_key), None)
-        if same is None and city_key:
-            same = next((p for p in places if fold(p["name"]).startswith(city_key + " ")), None)
+        same = _place_named(places, city) if city else None
         if not places:
             result["postal_check"] = "unknown"
         elif city and same:
@@ -608,9 +764,21 @@ def parse_address(text: str, options: dict | None = None, *, country: str | None
             key = loose(city) if city else ""
             allowed = max(1, min(2, len(key) // 4))
             close = next((p for p in places if not key or edit_distance(loose(p["name"]), key, allowed) <= allowed), None)
+            # The data must have this very code: a first part ("SW1A", GB's data) covers too wide an area, and post
+            # towns there serve places far away.
+            compact = lambda value: re.sub(r"[\s-]", "", value.upper())  # noqa: E731
+            wanted = {compact(result["postal_code"]), compact(re.sub(r"-[0-9]+$", "", result["postal_code"]))}
+            exact = any(compact(place["postal_code"]) in wanted for place in places)
             if close:
                 result["city"] = close["name"]
                 result["postal_check"] = "corrected"
+            elif exact and city:
+                # A city the data places, far from every place of the code: the code belongs elsewhere.
+                locations = _city_locations(city, code, _postal_module())
+                far = bool(locations) and all(_km_between(location, place) > _MISMATCH_KM for location in locations for place in places)
+                result["postal_check"] = "mismatch" if far else "unknown"
+                if far:
+                    result["expected_city"] = places[0]["name"]
             else:
                 result["postal_check"] = "unknown"
     return result

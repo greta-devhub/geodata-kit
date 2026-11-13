@@ -35,16 +35,33 @@ country, and takes it from the first of these that it finds:
 2. a country name on the last line (`…, Deutschland`);
 3. a postal prefix in front of a valid code (`CH-8001 Zürich`, `D-80331 München`);
 4. a region next to a postal code from that region's range
-   (`San Francisco, CA 94103` → US, `Ottawa ON K1M 1M4` → CA).
+   (`San Francisco, CA 94103` → US, `Ottawa ON K1M 1M4` → CA), or, where
+   the data proves the ranges, from another region's range (`CA 10001` → US,
+   flagged as a mismatch);
+5. with `geodata-kit-postal` installed, a postal code next to one of its
+   places (`75001 Paris` → FR, `10117 Berlin` → DE). Exactly one country must
+   fit. `geodata-kit-cities` alone does this for countries without postal
+   data, so common names (`Berlin` is also a village in Mexico) stay unresolved.
 
 A bare postal code is not enough (`80331` fits many countries): without one
-of the four, every field is `null` and `lines` holds the input.
+of these, every field is `null` and `lines` holds the input. A `country`
+option this package does not know gives `null` too, never a guess.
 
 Optional packages make it better:
 
 - With `geodata-kit-postal` installed, the city is checked against the postal
   code, near-spellings are fixed ("Muenchn" → "München") and an upper-case
   city from an envelope line gets its normal spelling back.
+
+`postalCheck` says how the postal code fits the rest:
+
+| Value | Meaning |
+|---|---|
+| `'confirmed'` | the city is a place of the postal code |
+| `'corrected'` | the city was missing or misspelt and now has the place's name |
+| `'mismatch'` | the code belongs elsewhere: to another region than the one written (`CA 10001`; `expectedRegion: 'NY'`), or to a place more than 30 km from the city written (`80331 Berlin`; `expectedCity: 'München'`). The fields stay as written |
+| `'unknown'` | no verdict: the code is not in the data, the data has only its first part (GB, CA, NL), or the city is a name the data does not place |
+| `'not-checked'` | no postal code, or `geodata-kit-postal` is not installed (the region check needs no package) |
 - Text without separators (`350 Fifth Avenue New York NY 10118`) needs
   `geodata-kit-postal` or `geodata-kit-cities` to tell the street from the
   city. Without them the street stays in `city`.
@@ -60,7 +77,12 @@ the data knows more:
   Ukraine and the United States, the number ranges of the regions (Spain: 01
   to 52);
 - forms that are no longer in use where the data marks them (Armenia's old
-  six digits).
+  six digits);
+- suffixes that real codes carry, with an optional office number: French
+  CEDEX codes of businesses (`75008 CEDEX 08`, also in French Guiana,
+  Guadeloupe, Martinique and Réunion) and the codes of French air bases
+  (`13661 AIR`). `parseAddress` also reads the suffix after the city, as French
+  mail writes it (`75008 PARIS CEDEX 08`).
 
 For most other countries only the shape is known: `99999` passes for Germany
 although no such code exists. To check that a code exists, use
@@ -75,11 +97,11 @@ although no such code exists. To check that a code exists, use
 | `listRegions(country)` | regions used in addresses: `{ key, name, latinName?, aliases?, iso?, postalPattern? }` |
 | `resolveRegion(value, country)` | region from a key, ISO code or name: local, Latin or English (`'Rome'` → RM, `'Washington, D.C.'` → DC), with or without the kind of region (`'County Dublin'`, `'Dublin'` → `Co. Dublin`) |
 | `isValidRegion(value, country)` | `true` / `false` |
-| `getPostalCodeRules(country)` | `{ pattern, layouts, examples, prefixes, label }` or `null`; `pattern` is the shape only |
+| `getPostalCodeRules(country)` | `{ pattern, layouts, examples, prefixes, suffixes, label }` or `null`; `pattern` is the shape only |
 | `normalizePostalCode(value, country)` | canonical code, or `null` if invalid |
 | `isValidPostalCode(value, country)` | `true` / `false` |
 | `formatAddress(address, { from?, includeCountry?, latin? })` | address lines for an envelope; `[]` for an unknown country |
-| `parseAddress(text, { country? })` | async; `{ lines, postalCode, city, region, country, postalCheck }` |
+| `parseAddress(text, { country? })` | async; `{ lines, postalCode, city, region, country, postalCheck, expectedCity, expectedRegion }` |
 
 ## The geodata-kit family
 

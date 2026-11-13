@@ -2946,6 +2946,48 @@
     2
    ],
    "expect": 1
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "uk"
+   ],
+   "path": "code",
+   "expect": "GB"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "uk"
+   ],
+   "path": "matchedBy",
+   "expect": "alias",
+   "note": "UK was never assigned: ISO reserves it for GB (#13)"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "UK"
+   ],
+   "path": "matchedBy",
+   "expect": "alias"
+  },
+  {
+   "fn": "resolveCountry",
+   "args": [
+    "ZR"
+   ],
+   "path": "matchedBy",
+   "expect": "retired",
+   "note": "formerly assigned codes stay 'retired'"
+  },
+  {
+   "fn": "normalizeCountryCode",
+   "args": [
+    "uk"
+   ],
+   "expect": null,
+   "note": "assigned codes only; resolveCountry reads UK"
   }
  ]
 }

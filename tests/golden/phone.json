@@ -283,6 +283,111 @@
    ],
    "expect": "011 15-2340-4291",
    "note": "Argentine mobile national format"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "1-800-FLOWERS",
+    "US"
+   ],
+   "path": "e164",
+   "expect": "+18003569377",
+   "note": "letters of a vanity number are keypad digits (#17)"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "1-800-FLOWERS",
+    "US"
+   ],
+   "path": "isValid",
+   "expect": true
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "1-800-FLOWERS",
+    "US"
+   ],
+   "path": "type",
+   "expect": "toll_free"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+1 800 FLOWERS"
+   ],
+   "path": "e164",
+   "expect": "+18003569377"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "1-800-FLOWERSXYZ",
+    "US"
+   ],
+   "expect": null,
+   "note": "letters that make no number: null, not a wrong e164"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+49 89 1234567 office"
+   ],
+   "path": "e164",
+   "expect": "+49891234567",
+   "note": "a word after a valid number is not dialled"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+52 1 55 1234 5678"
+   ],
+   "path": "e164",
+   "expect": "+525512345678",
+   "note": "old Mexican mobile \"1\" after +52 (#18)"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+52 1 55 1234 5678"
+   ],
+   "path": "country",
+   "expect": "MX"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+52 1 55 1234 5678"
+   ],
+   "path": "isValid",
+   "expect": true
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "00 52 1 33 1234 5678",
+    "DE"
+   ],
+   "path": "e164",
+   "expect": "+523312345678"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+52 55 1234 5678"
+   ],
+   "path": "e164",
+   "expect": "+525512345678"
+  },
+  {
+   "fn": "parsePhoneNumber",
+   "args": [
+    "+52 1 234 5678"
+   ],
+   "path": "isValid",
+   "expect": false,
+   "note": "the 1 is only dropped when that makes a valid number"
   }
  ]
 }

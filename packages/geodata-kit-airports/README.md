@@ -26,9 +26,9 @@ All functions are async: the data loads on first use.
 
 | Function | Returns |
 |---|---|
-| `getAirportByIata(code)` | `Airport` (geonameId, name, iata, icao, country, subdivision1, lat, lng, timezone, cityId) |
+| `getAirportByIata(code)` | `Airport` (geonameId, name, iata, alternateIata, icao, country, subdivision1, lat, lng, timezone, cityId); finds an airport by any of its IATA codes: `'BSL'`, `'MLH'` and `'EAP'` are all EuroAirport Basel–Mulhouse–Freiburg |
 | `getAirportByIcao(code)` | same, by ICAO code |
-| `searchAirports(query, { country?, limit? })` | by code or name |
+| `searchAirports(query, { country?, limit? })` | by code (main or alternate IATA, ICAO) or name |
 | `listAirports(code)` | airports of a country |
 
 ## The geodata-kit family

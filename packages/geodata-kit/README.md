@@ -121,11 +121,11 @@ accept lower case. Options are optional unless shown without `?`.
 | `getCountry(code)` | `Country` (name, alpha3, numeric, capital, area, population, continent, tld, callingCode, currencies, neighbours, timezones, demonym, drivingSide, weekStart, weekend, measurementSystem, paperSize, flag) or `null` |
 | `listCountries({ group?, continent?, language?, currency? })` | all countries, optionally filtered |
 | `isCountryCode(value)` | `true` for a known code in upper case |
-| `normalizeCountryCode(value)` | `'DE'` for `' de '`, `null` if unknown |
+| `normalizeCountryCode(value)` | `'DE'` for `' de '`, `null` if unknown; only assigned codes, so `'UK'` (reserved by ISO, never assigned) is `null`: use `resolveCountry` for it |
 | `normalizeCountryCodes(values)` | `{ codes, invalid }` |
 | `COUNTRY_CODE_PATTERN` | regex for two letters |
 | `getSuccessorCodes(retiredCode)` | codes that replaced a retired one: `'CS'` → `['RS', 'ME']` |
-| `resolveCountry(text)` | `{ code, matchedBy, input }` from a name in many languages, alias, alpha-2/3 or numeric code; `null` if unknown or ambiguous |
+| `resolveCountry(text)` | `{ code, matchedBy, input }` from a name in many languages, alias, alpha-2/3 or numeric code; `null` if unknown or ambiguous. `matchedBy` is `'retired'` for a withdrawn code (`'DD'` → DE) and `'alias'` for a reserved one (`'UK'` → GB) |
 | `resolveCountries(texts)` | `{ resolved: Map, unresolved: string[] }` for a whole list |
 | `suggestCountries(text, limit?)` | likely countries for a typo, an ambiguous name or the start of a name, best match first |
 | `getCountryName(code, locale?)` | name in en, de, fr, es, it, nl, pt or pl |

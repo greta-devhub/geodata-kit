@@ -27,7 +27,10 @@ with the same function names in snake_case (`resolveCountry` →
 [geodata-kit](https://www.npmjs.com/package/geodata-kit). Options can be
 passed as keyword arguments:
 `find_city("Springfield", country="US", subdivision="MO")`. The coordinate
-timezone lookup of `geodata-kit-tz` is not included.
+timezone lookup of `geodata-kit-tz` is not included, so `get_country_at` does
+not resolve the tiny enclaves (Baarle-Hertog, Büsingen) that the npm package
+reads from it. `parse_address` uses `geodata-kit-postal` when it is installed
+(`pip install geodata-kit-py[postal]`), as the npm package does.
 
 `geodata_kit.DATA_DATE` is the date of the data in the installed version; the
 data is refreshed about once a month.

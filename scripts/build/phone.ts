@@ -6,11 +6,14 @@
  * parsing/transform rules, possible lengths, a pattern and example per number
  * type, and the formatting rules (pattern, format, last leading-digits pattern,
  * national-prefix formatting rule, international format).
+ *
+ * overlays/phone.json adds digits a country dropped that old records still
+ * carry after the calling code (`droppedPrefix`: Mexico's mobile "1").
  */
 import { readFileSync } from 'node:fs';
 
-import { compareStrings, writeJson } from '../lib/io.js';
-import { cachePath, dataPath } from '../lib/paths.js';
+import { compareStrings, readJson, writeJson } from '../lib/io.js';
+import { cachePath, dataPath, overlayPath } from '../lib/paths.js';
 
 export const NUMBER_TYPES = [
   'fixedLine', 'mobile', 'tollFree', 'premiumRate', 'sharedCost', 'personalNumber', 'voip', 'pager', 'uan', 'voicemail', 'noInternationalDialling',
@@ -27,6 +30,8 @@ export interface RegionMetadata {
   leadingDigits?: string;
   main?: true;
   preferredExtnPrefix?: string;
+  /** Digits dropped from the country's numbers that old records still carry after the calling code (Mexico's mobile "1"). */
+  droppedPrefix?: string;
   general: { pattern: string; lengths: number[]; localLengths: number[] };
   types: Partial<Record<(typeof NUMBER_TYPES)[number], TypeDesc>>;
   formats: { pattern: string; format: string; leadingDigits?: string; nationalPrefixRule?: string; nationalPrefixOptional?: true; intlFormat?: string }[];
@@ -62,6 +67,7 @@ export async function buildPhone(): Promise<void> {
   const xml = readFileSync(cachePath('PhoneNumberMetadata.xml'), 'utf8').replace(/<!--[\s\S]*?-->/g, '');
   const regions: Record<string, RegionMetadata> = {};
   const byCallingCode: Record<string, string[]> = {};
+  const dropped = readJson<{ droppedPrefixes: Record<string, string> }>(overlayPath('phone.json')).droppedPrefixes;
 
   for (const match of xml.matchAll(/<territory\s([^>]*)>([\s\S]*?)<\/territory>/g)) {
     const attrs = attributes(match[1]!);
@@ -125,6 +131,7 @@ export async function buildPhone(): Promise<void> {
     if (attrs.leadingDigits) region.leadingDigits = stripSpace(attrs.leadingDigits);
     if (attrs.mainCountryForCode === 'true') region.main = true;
     if (attrs.preferredExtnPrefix) region.preferredExtnPrefix = attrs.preferredExtnPrefix;
+    if (dropped[id]) region.droppedPrefix = dropped[id];
 
     // Non-geographic entities (+800, +882, …) share the id "001"; key them by calling code.
     const key = id === '001' ? `001-${region.callingCode}` : id;
