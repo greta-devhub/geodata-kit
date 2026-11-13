@@ -4,7 +4,6 @@ from __future__ import annotations
 import math
 
 from ._data import load
-from .subdivisions import get_subdivision, get_subdivision_name
 
 _SCALE = 1000
 
@@ -42,10 +41,4 @@ def get_subdivision_at(lat: float, lng: float) -> dict | None:
     feature = next((f for f in load("shapes", "subdivisions.json") if _contains(f, x, y)), None)
     if not feature:
         return None
-    subdivision = get_subdivision(f"{feature['country']}.{feature['code']}") if feature["code"] else None
-    return {
-        "country": feature["country"],
-        "iso": feature["iso"],
-        "name": subdivision.name if subdivision else (get_subdivision_name(feature["iso"]) if feature["iso"] else None),
-        "subdivision": subdivision,
-    }
+    return {"country": feature["country"], "iso": feature["iso"], "code": feature["code"], "name": feature.get("name")}

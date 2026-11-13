@@ -8,8 +8,8 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { canonicalTimezone } from '../packages/geodata-kit/src/index.js';
-import { getTimezoneAt } from '../packages/geodata-kit-tz/src/index.js';
+import { canonicalTimezone } from 'geodata-kit';
+import { getTimezoneAt } from 'geodata-kit-tz';
 
 describe('geodata-kit-tz', () => {
   /** UTC offsets on 15 January and 15 July: zones that behave the same today. */

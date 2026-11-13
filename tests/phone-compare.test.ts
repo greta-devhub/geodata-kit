@@ -6,7 +6,7 @@
 import { parsePhoneNumberFromString, type CountryCode } from 'libphonenumber-js/max';
 import { describe, expect, it } from 'vitest';
 
-import { formatPhoneNumber, listPhoneRegions, parsePhoneNumber, getExamplePhoneNumber } from '../packages/geodata-kit/src/phone.js';
+import { formatPhoneNumber, listPhoneRegions, parsePhoneNumber, getExamplePhoneNumber } from 'geodata-kit-phone';
 
 const TYPE_NAMES: Record<string, string> = {
   FIXED_LINE: 'fixed_line', MOBILE: 'mobile', FIXED_LINE_OR_MOBILE: 'fixed_line_or_mobile', PREMIUM_RATE: 'premium_rate',

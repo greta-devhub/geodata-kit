@@ -1,21 +1,19 @@
-import { existsSync } from 'node:fs';
-
 import { describe, expect, it } from 'vitest';
 
-import * as core from '../packages/geodata-kit/src/index.js';
+import * as core from 'geodata-kit';
+import * as address from 'geodata-kit-address';
+import * as airports from 'geodata-kit-airports';
+import * as cities from 'geodata-kit-cities';
+import * as phone from 'geodata-kit-phone';
+import * as postal from 'geodata-kit-postal';
+import * as shapes from 'geodata-kit-shapes';
+import * as subdivisions from 'geodata-kit-subdivisions';
+import * as tz from 'geodata-kit-tz';
+
 import { applyPath, check, readGoldenFiles } from './golden-runner.js';
 
-/** Every public function of every entry point, by name. Entry points register once they exist. */
-const registry: Record<string, unknown> = { ...core };
-const entryPoints = [
-  ...['subdivisions', 'cities', 'airports', 'shapes', 'address', 'phone'].map((entry) => `../packages/geodata-kit/src/${entry}.ts`),
-  '../packages/geodata-kit-postal/src/index.ts',
-  '../packages/geodata-kit-tz/src/index.ts',
-];
-for (const entry of entryPoints) {
-  const url = new URL(entry, import.meta.url);
-  if (existsSync(url)) Object.assign(registry, await import(/* @vite-ignore */ url.href));
-}
+/** Every public function of every package, by name. */
+const registry: Record<string, unknown> = { ...core, ...subdivisions, ...cities, ...airports, ...shapes, ...address, ...phone, ...postal, ...tz };
 
 for (const [file, golden] of readGoldenFiles()) {
   describe(`golden: ${file}`, () => {

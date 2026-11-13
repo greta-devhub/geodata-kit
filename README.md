@@ -4,13 +4,25 @@ Source of the `geodata-kit` packages: countries, subdivisions, cities,
 languages, timezones, address rules and phone numbers, generated from open
 data and shipped for TypeScript/JavaScript and Python.
 
-| Package | Registry | Contents | Packed / unpacked |
+All npm packages share one version and are released together. Each has its own
+README in `packages/<name>/`.
+
+| npm package | Contents | Depends on | Installed size |
 |---|---|---|---|
-| `geodata-kit` | npm | main library, 7 entry points (see [its README](packages/geodata-kit/README.md)) | 19.5 MB / 70 MB |
-| `geodata-kit-localities` | npm | 4.9M villages and districts, gzip per country | 83 MB / 83 MB |
-| `geodata-kit-postal` | npm | 1.8M postal codes, 124 countries | 19 MB / 19 MB |
-| `geodata-kit-tz` | npm | timezone polygons, point → zone (ODbL data) | 5 MB / 7 MB |
-| `geodata-kit-py` (+ `[localities]`, `[postal]` extras; import `geodata_kit`) | PyPI — **not published yet** (built and tested in CI) | same API in snake_case, same data | 19 MB wheel |
+| `geodata-kit` | countries, names, groups, languages, timezones, facts | – | 2 MB |
+| `geodata-kit-subdivisions` | states and provinces, levels 1–4, ISO 3166-2 | core | 27 MB |
+| `geodata-kit-cities` | 237k cities, locations, city timezones | core, subdivisions | 31 MB |
+| `geodata-kit-airports` | 10.5k airports by IATA / ICAO | core | 1 MB |
+| `geodata-kit-shapes` | point → country / subdivision | – | 9.5 MB |
+| `geodata-kit-address` | address formats, postal-code rules | core | 0.6 MB |
+| `geodata-kit-phone` | phone numbers | – | 0.6 MB |
+| `geodata-kit-localities` | 4.9M villages and districts (used by cities when installed) | – | 80 MB |
+| `geodata-kit-postal` | 1.8M postal codes (used by address when installed) | – | 19 MB |
+| `geodata-kit-tz` | timezone polygons, point → zone (ODbL data) | – | 7 MB |
+
+Python: `geodata-kit-py` (+ `[localities]`, `[postal]` extras; import
+`geodata_kit`) is one package with the same API in snake_case and the same
+data. It is built and tested in CI but **not published yet**.
 
 ## Layout
 
@@ -35,7 +47,7 @@ overlays/           hand-edited inputs, each entry with its source
 data/               generated, committed: the reviewable output of a refresh
   meta.json         every source with URL, licence, size, SHA-256, download date
   reports/          build notes (ISO match rate, language gaps, …)
-packages/           npm packages (sources in src/, data copied in by emit)
+packages/           the ten npm packages (sources in src/, large data copied in by emit)
 python/             Python package and its two data extras (not published yet)
 tests/golden/       language-neutral test cases run by Vitest and pytest
 ```
@@ -49,23 +61,32 @@ libphonenumber 9.0.43, Natural Earth 5.1.2, timezone-boundary-builder 2026f,
 Google address data and Wikidata retrieved 2026-11-12. All of it is listed in
 `data/meta.json`.
 
+**Package boundaries.**
+- A package imports another only by its name (`geodata-kit`,
+  `geodata-kit-subdivisions`), never by a relative path, and lists it in
+  `dependencies` with a caret range that Changesets keeps in step.
+- `workspaces` in the root `package.json` is in dependency order, because
+  `npm run build --workspaces` builds in that order and a package's type
+  build reads the built types of its dependencies.
+- For type checks and tests, `tsconfig.json` (`paths`) and `vitest.config.ts`
+  (`alias`) map package names to their sources, so no build is needed.
+  Builds use `tsconfig.build.json`, which has no such mapping.
+- `geodata-kit-localities` and `geodata-kit-postal` are optional: cities and
+  address import them by a variable name inside a `try`, so nothing breaks
+  when they aren't installed. They read gzip files with `fs` (Node.js only).
+
 **How data loads (npm).**
-- **Core data** (countries, names, aliases, groups, languages, timezones) is
-  bundled into a shared chunk of about 1 MB and is synchronous.
-- **Level-1 subdivisions** are another bundled chunk of about 1.4 MB.
-- **Everything else** is emitted as `data/**/*.mjs` modules and loaded with
-  literal `import()` calls from `src/loaders.generated.js`, so bundlers split
-  it per country:
+- **Small data is bundled** into the package's code and is synchronous: core
+  data (about 1 MB), level-1 subdivisions (1.4 MB), address formats, phone
+  metadata.
+- **Large data is emitted** by `scripts/emit.ts` as `data/**/*.mjs` modules in
+  the owning package and loaded with literal `import()` calls from its
+  `src/loaders.generated.js`, so bundlers split it:
   - cities: one module per country and tier band;
   - levels 2–4 of subdivisions: one module per country;
   - airports and shapes: one module each.
-
-  An esbuild browser build produces about 1,080 lazy chunks.
 - **CommonJS** keeps `import()` (esbuild `supported['dynamic-import']`), so
   CommonJS users load the same ESM data modules.
-- **Optional packages** (localities, postal) are imported by a variable name,
-  so bundlers don't fail when they aren't installed. They read gzip files with
-  `fs`, so they are Node.js only.
 
 **City tiers.** These are GeoNames' own lists, and each tier includes the
 bigger ones:
@@ -112,8 +133,8 @@ npm run extract -- --force        # ≈1 min
 npm run wikidata                  # optional: refresh the Wikidata snapshot
 npm run generate                  # ≈1.5 min, deterministic
 npm run emit
-npm test                          # 830 TypeScript tests
-npm run python:test               # 779 Python tests
+npm test                          # 840 TypeScript tests
+npm run python:test               # 783 Python tests
 git diff --stat data/             # review what changed, then bump versions
 ```
 
@@ -128,7 +149,7 @@ The generator fails instead of guessing when:
 
 ## Tests
 
-- `tests/golden/*.json`: 779 cases (countries, languages, groups, subdivisions,
+- `tests/golden/*.json`: 783 cases (countries, languages, groups, subdivisions,
   cities, airports and shapes, address, phone, tz) in a neutral format
   `{ fn, args, path, op, expect }`. Run by `tests/golden.test.ts` and
   `python/tests/test_golden.py`. The cases include the country names and
@@ -147,7 +168,7 @@ feature branch ──PR──▶ dev ──PR "Release x.y.z"──▶ main ─�
 
 | When | Workflow | What runs |
 |---|---|---|
-| push to `dev`, PR into `dev` | `ci.yml`, `changeset.yml` | types, 830 TS tests, version sync, build, npm publish dry run; 779 Python tests, wheel build, `twine check`; for PRs into `dev`: **changeset present** |
+| push to `dev`, PR into `dev` | `ci.yml`, `changeset.yml` | types, 840 TS tests, version sync, build, npm publish dry run; 783 Python tests, wheel build, `twine check`; for PRs into `dev`: **changeset present** |
 | PR `dev` → `main` | `ci.yml` | the same, plus **ready to release**: no unapplied changesets, version newer than npm, changelog entry |
 | merge into `main` | `release.yml` | all checks again, then publish every package whose version isn't on npm yet (with provenance), git tag `vX.Y.Z`, GitHub release with the changelog. A merge without a new version publishes nothing. Python packages are not published yet. |
 | 3rd of every month, or by hand | `refresh-data.yml` | download and regenerate all data, run all tests, open a PR into `dev` with a patch changeset if anything changed |
@@ -164,13 +185,26 @@ feature branch ──PR──▶ dev ──PR "Release x.y.z"──▶ main ─�
 
 ### Releasing
 
-1. On `dev`, run `npm run release:version`. It:
+1. On a branch off `dev` (the last feature branch or `release/x.y.z`), run
+   `npm run release:version`. It:
    - turns all changesets into one new version for every package;
    - writes the changelogs;
    - copies the version into the Python packages;
    - updates the lockfile.
-2. Commit, push, and open a PR from `dev` into `main` titled "Release x.y.z".
-3. Merge it. `release.yml` publishes everything; nothing else to do.
+2. Commit, push, and merge that branch into `dev` by PR. The changeset check
+   recognises a release PR by its version bump.
+3. Open a PR from `dev` into `main` titled "Release x.y.z" and merge it.
+   `release.yml` publishes every package and creates the tag and GitHub release.
+
+### Adding a package
+
+1. Create `packages/<name>/` with `package.json`, `tsup.config.ts`, `src/`,
+   `README.md` (with an API table; a test checks it), `LICENSE` and `NOTICE`.
+2. Add it to `workspaces` in the root `package.json` (after its dependencies),
+   to `NPM_PACKAGES` in `scripts/release/versions.ts` and to the `fixed` group
+   in `.changeset/config.json`.
+3. Publish its first version by hand (`npm run release:publish-npm` after
+   `npm login`): npm can only connect GitHub publishing to packages that exist.
 
 ## Versions
 
@@ -208,14 +242,14 @@ Do these once, in this order, when the repository moves to GitHub:
 5. **npm.**
    1. Turn on 2FA with an authenticator app (npmjs.com → Account → Two-Factor
       Authentication).
-   2. Publish version 0.1.0 once from your machine, because npm can only set
-      up trusted publishing for packages that already exist:
+   2. Publish a package's first version once from your machine, because npm
+      can only set up trusted publishing for packages that already exist:
       ```bash
       npm login
       npm ci && npm run build
       npm run release:publish-npm   # npm asks for the 2FA code
       ```
-   3. On npmjs.com, for each of the four packages, open Settings → Trusted
+   3. On npmjs.com, for each package, open Settings → Trusted
       publisher → GitHub Actions. Enter this repository, workflow
       `release.yml`, environment `release`, and allow direct publish.
    4. Set "Require two-factor authentication and disallow tokens" under
@@ -228,7 +262,7 @@ Do these once, in this order, when the repository moves to GitHub:
    data-refresh PRs (the refresh job runs all tests itself, so they are
    still checked).
 
-The four npm packages were first published as 0.1.0 on 2026-11-12.
+The first four npm packages were published as 0.1.0 on 2026-11-12; the split into ten packages is 0.2.0.
 
 ## Known limits
 
@@ -244,9 +278,9 @@ The four npm packages were first published as 0.1.0 on 2026-11-12.
 - **Polygon timezones:** they agree with GeoNames for 99.67% of cities by zone
   name and 99.96% by current offset. The source has deliberate overlaps
   (Asia/Urumqi inside Asia/Shanghai); the smaller polygon wins.
-- **`geodata-kit-localities` size:** it is 83 MB packed. If the npm registry
-  rejects that size, split it per continent: `scripts/build/localities.ts`
-  already writes one file per country.
+- **`geodata-kit-localities` size:** it is 83 MB packed, which npm accepted
+  for 0.1.0. If a later version is rejected for size, split it per continent:
+  `scripts/build/localities.ts` already writes one file per country.
 - **Business groups:** they follow common definitions (written in
   `overlays/groups.json`). Teams that count differently can add codes, e.g.
   `expandGroups(['cee', 'AT'])`.

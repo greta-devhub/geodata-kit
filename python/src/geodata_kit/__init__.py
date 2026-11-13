@@ -20,7 +20,7 @@ from .countries import (
     get_week_start, is_country_code, list_countries, normalize_country_code, normalize_country_codes, resolve_countries,
     resolve_country, search_countries, sort_countries, suggest_countries,
 )
-from .fold import fold
+from .fold import clean_input as clean_text, edit_distance, fold
 from .groups import (
     expand_groups, get_continent, get_countries_in_group, get_group, get_groups_of_country, get_m49_region, is_in_group,
     list_continents, list_groups,
@@ -41,5 +41,5 @@ from .subdivisions import (
 )
 from .timezones import canonical_timezone, get_country_timezones, get_primary_timezone, is_timezone, list_timezones
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = [name for name in dir() if not name.startswith("_")]

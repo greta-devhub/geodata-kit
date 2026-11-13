@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 import { describe, expect, it } from 'vitest';
 
-import { canonicalTimezone, getCountry, getNationalLanguages, isTimezone, listCountries, listGroups, listTimezones, resolveCountry } from '../packages/geodata-kit/src/index.js';
+import { canonicalTimezone, getCountry, getNationalLanguages, isTimezone, listCountries, listGroups, listTimezones, resolveCountry } from 'geodata-kit';
 
 const DATA = join(import.meta.dirname, '..', 'data');
 const readData = <T>(...parts: string[]): T => JSON.parse(readFileSync(join(DATA, ...parts), 'utf8')) as T;

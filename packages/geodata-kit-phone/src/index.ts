@@ -1,5 +1,5 @@
 /**
- * geodata-kit/phone — parse, validate, classify and format phone numbers with
+ * geodata-kit-phone — parse, validate, classify and format phone numbers with
  * libphonenumber's metadata (Apache-2.0). The parsing rules follow
  * libphonenumber: calling-code and international-prefix extraction, national
  * prefix stripping with transform rules, region choice for shared calling

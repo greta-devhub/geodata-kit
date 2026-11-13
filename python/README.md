@@ -19,13 +19,15 @@ normalize_postal_code("sw1a1aa", "GB")                         # 'SW1A 1AA'
 parse_phone_number("089 1234567", "DE").e164                   # '+49891234567'
 ```
 
-The functions are the same as in the npm package
-[geodata-kit](https://www.npmjs.com/package/geodata-kit), named in
-snake_case (`resolveCountry` → `resolve_country`). Options can be passed as
-keyword arguments: `find_city("Springfield", country="US", subdivision="MO")`.
-The full list of functions is in the
-[npm README](https://www.npmjs.com/package/geodata-kit#api-reference); all of
-them exist here except the coordinate timezone lookup of `geodata-kit-tz`.
+This one package contains what the npm packages `geodata-kit`,
+`geodata-kit-subdivisions`, `geodata-kit-cities`, `geodata-kit-airports`,
+`geodata-kit-shapes`, `geodata-kit-address` and `geodata-kit-phone` contain,
+with the same function names in snake_case (`resolveCountry` →
+`resolve_country`). Their READMEs on npm list every function, starting at
+[geodata-kit](https://www.npmjs.com/package/geodata-kit). Options can be
+passed as keyword arguments:
+`find_city("Springfield", country="US", subdivision="MO")`. The coordinate
+timezone lookup of `geodata-kit-tz` is not included.
 
 MIT. Data from GeoNames (CC BY 4.0), Unicode CLDR, IANA tzdata, Wikidata,
 Natural Earth, libphonenumber and Google's address metadata; see `NOTICE`.

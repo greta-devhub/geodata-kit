@@ -1,7 +1,7 @@
 /**
  * Polygons for point lookups (Natural Earth, public domain):
  *   data/shapes/countries.json      admin-0 at 1:50m, keyed by ISO alpha-2 (ISO_A2_EH)
- *   data/shapes/subdivisions.json   admin-1 at 1:10m, keyed by ISO 3166-2 and GeoNames admin1 code
+ *   data/shapes/subdivisions.json   admin-1 at 1:10m, with ISO 3166-2 code, GeoNames admin1 code and English name
  *
  * Rings are simplified (Douglas–Peucker) and stored as flat integer arrays in
  * 1/1000 degree (~110 m): [lng0, lat0, lng1, lat1, …].
@@ -111,7 +111,7 @@ export async function buildShapes(): Promise<void> {
   const byGeonameId = new Map(level1.map((record) => [record.geonameId, record]));
   const byIso = new Map(level1.filter((record) => record.iso).map((record) => [record.iso!, record]));
   const subdivisions = readJson<{ features: Feature[] }>(cachePath('ne_10m_admin_1_states_provinces.geojson'));
-  const subdivisionFeatures: { id: string; country: string; code: string | null; iso: string | null; bbox: number[]; polygons: number[][][] }[] = [];
+  const subdivisionFeatures: { id: string; country: string; code: string | null; iso: string | null; name: string | null; bbox: number[]; polygons: number[][][] }[] = [];
   let unlinked = 0;
   for (const feature of subdivisions.features) {
     const props = feature.properties;
@@ -129,7 +129,8 @@ export async function buildShapes(): Promise<void> {
       existing.polygons.push(...encoded.polygons);
       existing.bbox = [Math.min(existing.bbox[0]!, encoded.bbox[0]!), Math.min(existing.bbox[1]!, encoded.bbox[1]!), Math.max(existing.bbox[2]!, encoded.bbox[2]!), Math.max(existing.bbox[3]!, encoded.bbox[3]!)];
     } else {
-      subdivisionFeatures.push({ id, country, code: record?.code ?? null, iso: record?.iso ?? iso, ...encoded });
+      const name = record?.name ?? (typeof props.name_en === 'string' && props.name_en ? props.name_en : typeof props.name === 'string' ? props.name : null);
+      subdivisionFeatures.push({ id, country, code: record?.code ?? null, iso: record?.iso ?? iso, name, ...encoded });
     }
   }
   subdivisionFeatures.sort((a, b) => (a.id < b.id ? -1 : 1));
