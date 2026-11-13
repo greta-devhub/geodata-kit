@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-address",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Address formats, required fields, regions and postal-code rules for every country, with address formatting and parsing. Offline add-on for geodata-kit.",
   "keywords": [
     "address",
@@ -51,7 +51,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "geodata-kit": "^0.2.0"
+    "geodata-kit": "^0.2.1"
   },
   "scripts": {
     "build": "tsup"

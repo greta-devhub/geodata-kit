@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-tz",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Optional companion to geodata-kit: exact IANA timezone for any coordinate from timezone polygons. Code MIT, data ODbL 1.0.",
   "keywords": [
     "timezone",
