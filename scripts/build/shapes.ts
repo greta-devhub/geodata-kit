@@ -63,8 +63,31 @@ function encodeRing(ring: Ring, tolerance: number): number[] | null {
   return flat.length >= 8 ? flat : null; // at least 4 points
 }
 
-function encodeGeometry(geometry: Geometry, tolerance: number): { bbox: number[]; polygons: number[][][] } | null {
+/** Largest side of the bounding box of a geometry, in degrees. */
+function extent(geometry: Geometry): { size: number; box: [number, number, number, number] } {
   const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  const box: [number, number, number, number] = [Infinity, Infinity, -Infinity, -Infinity];
+  for (const polygon of polygons) {
+    for (const [lng, lat] of polygon[0]!) {
+      box[0] = Math.min(box[0], lng); box[1] = Math.min(box[1], lat);
+      box[2] = Math.max(box[2], lng); box[3] = Math.max(box[3], lat);
+    }
+  }
+  return { size: Math.max(box[2] - box[0], box[3] - box[1]), box };
+}
+
+/**
+ * Small territories keep more detail: the tolerance shrinks with the size of
+ * the whole feature (Gibraltar, Monaco, Macau, city districts), so a 3 km wide
+ * place is not reduced to a triangle. A feature is never dropped: one that is
+ * smaller than the grid (the source stores Vatican City as a 130 m marker)
+ * is kept as a one-cell box, which the lookup treats as a marker.
+ */
+function encodeGeometry(geometry: Geometry, baseTolerance: number): { bbox: number[]; polygons: number[][][] } | null {
+  const polygons = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
+  const { size, box } = extent(geometry);
+  if (!Number.isFinite(size)) return null;
+  const tolerance = Math.min(baseTolerance, Math.max(0.0003, size / 60));
   const encoded: number[][][] = [];
   const bbox = [Infinity, Infinity, -Infinity, -Infinity];
   for (const polygon of polygons) {
@@ -78,7 +101,10 @@ function encodeGeometry(geometry: Geometry, tolerance: number): { bbox: number[]
     }
     encoded.push(rings);
   }
-  return encoded.length ? { bbox, polygons: encoded } : null;
+  if (encoded.length) return { bbox, polygons: encoded };
+  const x0 = Math.floor(box[0] * SCALE); const y0 = Math.floor(box[1] * SCALE);
+  const x1 = Math.max(x0 + 1, Math.ceil(box[2] * SCALE)); const y1 = Math.max(y0 + 1, Math.ceil(box[3] * SCALE));
+  return { bbox: [x0, y0, x1, y1], polygons: [[[x0, y0, x1, y0, x1, y1, x0, y1, x0, y0]]] };
 }
 
 /** Natural Earth units without an ISO code that GeoNames counts as part of a country. */

@@ -29,5 +29,9 @@ passed as keyword arguments:
 `find_city("Springfield", country="US", subdivision="MO")`. The coordinate
 timezone lookup of `geodata-kit-tz` is not included.
 
-MIT. The data comes with its own licences and credits, listed in `NOTICE`.
-Keep `NOTICE` with the data when you redistribute it.
+`geodata_kit.DATA_DATE` is the date of the data in the installed version; the
+data is refreshed about once a month.
+
+Code: MIT. Data: CC BY 4.0, Unicode License v3 and Apache 2.0.
+CC BY 4.0 asks for credit: if you show or redistribute the data, include the
+credits from `NOTICE`.

@@ -251,3 +251,4 @@ export const CITY_LOADERS = {
 };
 
 export const loadIndex = () => import('../data/index.mjs');
+export const loadWorld = () => import('../data/world.mjs');

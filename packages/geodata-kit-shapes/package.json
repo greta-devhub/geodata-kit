@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-shapes",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Which country and which state or province a coordinate is in. Offline point-in-polygon lookup, no dependencies.",
   "keywords": [
     "reverse-geocoding",
@@ -10,7 +10,7 @@
     "boundaries",
     "geodata-kit"
   ],
-  "license": "MIT",
+  "license": "MIT AND CC-BY-4.0",
   "author": "geodata-kit contributors",
   "repository": {
     "type": "git",

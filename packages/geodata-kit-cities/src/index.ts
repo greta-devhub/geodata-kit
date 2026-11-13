@@ -12,10 +12,11 @@
  *     500  500+ or seats down to fourth-level subdivisions    (237k, default)
  *   'all' tier 500 + localities (needs geodata-kit-localities)
  */
+import { dataDate } from '../../../data/meta.json';
 import { cleanText, fold, getCountry, getPrimaryTimezone, normalizeCountryCode, resolveCountry } from 'geodata-kit';
 import { resolveSubdivision, type Subdivision } from 'geodata-kit-subdivisions';
 
-import { CITY_LOADERS, loadIndex } from './loaders.generated.js';
+import { CITY_LOADERS, loadIndex, loadWorld } from './loaders.generated.js';
 
 export type Tier = 15000 | 5000 | 1000 | 500 | 'all';
 type Band = 15000 | 5000 | 1000 | 500;
@@ -26,11 +27,14 @@ export interface City {
   name: string;
   asciiName: string;
   country: string;
-  /** Subdivision codes (level 1–4); see geodata-kit-subdivisions. */
-  admin1: string;
-  admin2: string;
-  admin3: string;
-  admin4: string;
+  /** Subdivision code on level 1 (state, province: "02" = Bavaria); see geodata-kit-subdivisions. */
+  subdivision1: string;
+  /** Subdivision code on level 2 ("091" = Upper Bavaria), or "". */
+  subdivision2: string;
+  /** Subdivision code on level 3, or "". */
+  subdivision3: string;
+  /** Subdivision code on level 4, or "". */
+  subdivision4: string;
   /** Feature code: PPLC capital, PPLA seat of a first-level subdivision, PPL place, PPLX district, … */
   featureCode: string;
   population: number;
@@ -121,7 +125,7 @@ async function loadBand(country: string, band: Band): Promise<void> {
       for (const row of file.rows) {
         const city: City = {
           geonameId: row[0], name: row[1], asciiName: row[2] || row[1], country,
-          admin1: row[7], admin2: row[8], admin3: row[9], admin4: row[10],
+          subdivision1: row[7], subdivision2: row[8], subdivision3: row[9], subdivision4: row[10],
           featureCode: row[3], population: row[4], lat: row[5], lng: row[6], timezone: file.tz[row[11]]!,
           tier: band, kind: 'city', unlocode: row[13] || null, wikidataId: row[14] || null,
           alternateNames: row[12] || [], parentId: null,
@@ -186,7 +190,7 @@ function loadLocalityStore(country: string): Promise<LocalityStore | null> {
       for (const row of data.rows) {
         const city: City = {
           geonameId: row[0], name: row[1], asciiName: row[2] || row[1], country,
-          admin1: row[7], admin2: row[8], admin3: row[9], admin4: row[10],
+          subdivision1: row[7], subdivision2: row[8], subdivision3: row[9], subdivision4: row[10],
           featureCode: row[3], population: row[4], lat: row[5], lng: row[6], timezone: data.tz[row[11]]!,
           tier: 'locality', kind: row[3] === 'PPLX' ? 'neighbourhood' : 'locality',
           unlocode: null, wikidataId: null, alternateNames: [], parentId: row[12] || null,
@@ -200,6 +204,38 @@ function loadLocalityStore(country: string): Promise<LocalityStore | null> {
     localityStores.set(country, promise);
   }
   return promise;
+}
+
+// ─── World index: lookups without a country ───────────────────────────────
+
+/**
+ * Cities over 15,000 inhabitants, biggest first, and for every name the biggest
+ * city that has it: `names` are the cities' own names, `aliases` their names in
+ * other languages (used only where no city has that name itself).
+ */
+interface WorldData { countries: string[]; cities: number[]; names: Record<string, number>; aliases: Record<string, number> }
+interface WorldIndex { data: WorldData; names: [string, number][]; aliases: [string, number][] }
+let worldIndex: Promise<WorldIndex> | null = null;
+function loadWorldIndex(): Promise<WorldIndex> {
+  worldIndex ??= loadWorld().then((module) => {
+    const data = module.default as WorldData;
+    return { data, names: Object.entries(data.names), aliases: Object.entries(data.aliases) };
+  });
+  return worldIndex;
+}
+
+async function worldCity(data: WorldData, index: number): Promise<City | null> {
+  const country = data.countries[data.cities[index * 3 + 2]!]!;
+  return (await loadCountry(country, 15000)).byId.get(data.cities[index * 3]!) ?? null;
+}
+
+/** The biggest city worldwide with this (folded) name, among cities over 15,000 inhabitants. */
+async function findWorldCity(key: string): Promise<City | null> {
+  const { data } = await loadWorldIndex();
+  for (const index of [data.names, data.aliases]) {
+    if (Object.prototype.hasOwnProperty.call(index, key)) return worldCity(data, index[key]!);
+  }
+  return null;
 }
 
 // ─── Lookups ──────────────────────────────────────────────────────────────
@@ -217,7 +253,7 @@ function subdivisionFilter(country: string, subdivision: SubdivisionInput | unde
   const resolved = typeof subdivision === 'string' ? resolveSubdivision(subdivision, country) : subdivision;
   if (!resolved || resolved.country !== country) return () => false;
   const parts = resolved.path.split('.');
-  return (city) => [city.admin1, city.admin2, city.admin3, city.admin4].slice(0, parts.length).join('.') === resolved.path;
+  return (city) => [city.subdivision1, city.subdivision2, city.subdivision3, city.subdivision4].slice(0, parts.length).join('.') === resolved.path;
 }
 
 /** Removes postal codes and similar noise around a city name: "80331 München", "D-80331 München", "Paris 75008". */
@@ -230,8 +266,8 @@ function cleanCityName(text: string): string {
 }
 
 export interface FindCityOptions {
-  /** Country code or name (required). */
-  country: string;
+  /** Country code or name. Without it, the biggest city of that name worldwide (cities over 15,000 inhabitants). */
+  country?: string;
   /** Limit to a subdivision: "US-MO", "Missouri", "Bayern". */
   subdivision?: SubdivisionInput;
   /** Default 500. 'all' also searches geodata-kit-localities when installed. */
@@ -240,20 +276,37 @@ export interface FindCityOptions {
 
 /**
  * The best match for a place name in a country: exact name or ASCII name first,
- * then alternate names (München → Munich); several matches are ranked by
- * population, then capital/seat status. "Springfield" + subdivision "US-MO"
- * picks Springfield, Missouri.
+ * then alternate names (München → Munich, Москва → Moscow); several matches
+ * are ranked by population, then capital/seat status. "Springfield" +
+ * subdivision "US-MO" picks Springfield, Missouri.
+ *
+ * Alternate names cover the 8 bundled languages and the languages of the
+ * city's own country in any script; cities over 15,000 inhabitants are also
+ * known in Arabic, Bengali, Chinese, Greek, Hebrew, Hindi, Japanese, Korean,
+ * Persian, Russian, Thai and Ukrainian.
  */
-export async function findCity(name: string, options: FindCityOptions): Promise<City | null> {
+export async function findCity(name: string, options: FindCityOptions = {}): Promise<City | null> {
   return (await findCityCandidates(name, options))[0] ?? null;
 }
 
 async function findCityCandidates(name: string, options: FindCityOptions): Promise<City[]> {
-  const country = toCountryCode(options.country);
-  if (!country || typeof name !== 'string') return [];
-  const tier = options.tier ?? 500;
+  if (typeof name !== 'string') return [];
   const key = fold(cleanCityName(name));
   if (!key) return [];
+  // A subdivision with a country in it ("US-MO", or a Subdivision) is enough to know the country.
+  const implied = typeof options.subdivision === 'string'
+    ? normalizeCountryCode(/^\s*([A-Za-z]{2})-/.exec(options.subdivision)?.[1])
+    : options.subdivision?.country;
+  if (!options.country && implied) return findCityCandidates(name, { ...options, country: implied });
+  if (options.country === undefined || options.country === null || options.country === '') {
+    const city = await findWorldCity(key);
+    if (!city) return [];
+    const inSubdivision = subdivisionFilter(city.country, options.subdivision);
+    return !inSubdivision || inSubdivision(city) ? [city] : [];
+  }
+  const country = toCountryCode(options.country);
+  if (!country) return [];
+  const tier = options.tier ?? 500;
   const filter = subdivisionFilter(country, options.subdivision);
   const entry = await loadCountry(country, tier);
   const pick = (list: City[] | undefined): City[] =>
@@ -269,7 +322,11 @@ async function findCityCandidates(name: string, options: FindCityOptions): Promi
 }
 
 export interface SearchCitiesOptions {
-  /** Without a country, every country is loaded (fine on a server, heavy in a browser). */
+  /**
+   * Without a country, the search covers cities over 15,000 inhabitants
+   * worldwide and is instant. To search smaller places everywhere, pass `tier`
+   * (or `subdivision`): that loads every country, which is slow and heavy.
+   */
   country?: string;
   subdivision?: SubdivisionInput;
   minPopulation?: number;
@@ -277,29 +334,76 @@ export interface SearchCitiesOptions {
   limit?: number;
 }
 
-/** Autocomplete-style search: names (and alternate names) starting with the query, biggest first. */
+/** A match on a name in another language ("San Pablo" for São Paulo) counts this much of a match on the city's own name. */
+const ALIAS_WEIGHT = 0.2;
+
+/** How well an indexed name matches the query: the whole name, its start, or the start of a later word. */
+function matchWeight(name: string, key: string): number {
+  if (name === key) return 10;
+  if (name.startsWith(key)) return 1;
+  return name.includes(` ${key}`) ? 0.3 : 0;
+}
+
+/**
+ * Autocomplete-style search over names and alternate names. Results are
+ * ranked by size and by how well the name matches: a city called exactly like
+ * the query counts ten times its population, a name starting with it once, a
+ * later word starting with it a third; names in other languages count a fifth
+ * of that. So "San" lists Santiago, San Antonio and San Diego before a small
+ * town named San, and "York" still shows York.
+ */
 export async function searchCities(query: string, options: SearchCitiesOptions = {}): Promise<City[]> {
   const key = fold(cleanText(query));
   if (!key) return [];
+  const limit = options.limit ?? 10;
+  const ranked = (found: Map<number, { city: City; weight: number }>): City[] =>
+    [...found.values()]
+      .sort((a, b) => b.city.population * b.weight - a.city.population * a.weight || b.weight - a.weight || compareCities(a.city, b.city))
+      .slice(0, limit)
+      .map((entry) => entry.city);
+
+  if (!options.country && options.tier === undefined && !options.subdivision) {
+    const world = await loadWorldIndex();
+    const { data } = world;
+    const weights = new Map<number, number>();
+    for (const [entries, factor] of [[world.names, 1], [world.aliases, ALIAS_WEIGHT]] as const) {
+      for (const [name, index] of entries) {
+        const weight = matchWeight(name, key) * factor;
+        if (!weight || (options.minPopulation !== undefined && data.cities[index * 3 + 1]! < options.minPopulation)) continue;
+        if (weight > (weights.get(index) ?? 0)) weights.set(index, weight);
+      }
+    }
+    // Only the cities that can make the list are loaded, each from its own country file.
+    const best = [...weights.entries()]
+      .sort(([a, weightA], [b, weightB]) => data.cities[b * 3 + 1]! * weightB - data.cities[a * 3 + 1]! * weightA || weightB - weightA || a - b)
+      .slice(0, limit);
+    const found = new Map<number, { city: City; weight: number }>();
+    for (const [index, weight] of best) {
+      const city = await worldCity(data, index);
+      if (city) found.set(city.geonameId, { city, weight });
+    }
+    return ranked(found);
+  }
+
   const tier = options.tier ?? 500;
   const countries = options.country ? [toCountryCode(options.country)].filter((code): code is string => code !== null) : allCountryCodes();
-  const results = new Map<number, City>();
+  const found = new Map<number, { city: City; weight: number }>();
   for (const country of countries) {
     const entry = await loadCountry(country, tier);
     const filter = subdivisionFilter(country, options.subdivision);
-    for (const index of [entry.main, entry.alternate]) {
+    for (const [index, factor] of [[entry.main, 1], [entry.alternate, ALIAS_WEIGHT]] as const) {
       for (const [name, list] of index) {
-        if (!name.startsWith(key) && !name.includes(` ${key}`)) continue;
+        const weight = matchWeight(name, key) * factor;
+        if (!weight) continue;
         for (const city of list) {
           if (!inTier(city, tier) || (filter && !filter(city))) continue;
           if (options.minPopulation !== undefined && city.population < options.minPopulation) continue;
-          results.set(city.geonameId, city);
+          if (weight > (found.get(city.geonameId)?.weight ?? 0)) found.set(city.geonameId, { city, weight });
         }
       }
     }
   }
-  const exact = (city: City): number => (fold(city.name) === key || fold(city.asciiName) === key ? 0 : 1);
-  return [...results.values()].sort((a, b) => exact(a) - exact(b) || compareCities(a, b)).slice(0, options.limit ?? 10);
+  return ranked(found);
 }
 
 /** All cities of a country (optionally in a subdivision), biggest first. */
@@ -367,12 +471,46 @@ function splitLocation(text: string): string[] {
     .filter(Boolean);
 }
 
+/** Words around a city name in "Greater London", "Munich Metropolitan Area", "Großraum Stuttgart", "Region Hannover". */
+const AREA_PREFIX = /^(?:greater|großraum|grossraum|metropolregion|region|raum)\s+/i;
+const AREA_SUFFIX = /\s+(?:(?:metropolitan|metro)\s+)?(?:area|region)$|\s+und\s+umgebung$/i;
+
+/** Regions known by a nickname, mapped to their main city (place id). */
+const AREA_NICKNAMES: Readonly<Record<string, number>> = {
+  'bay area': 5391959, // San Francisco
+  'sf bay area': 5391959,
+  'silicon valley': 5392171, // San Jose
+};
+
+/**
+ * Names to try for an area description, most specific first: "Greater Munich
+ * Metropolitan Area" → "Munich"; "San Francisco Bay Area" → "San Francisco Bay",
+ * "San Francisco"; "Frankfurt Rhine-Main Metropolitan Area" → …, "Frankfurt".
+ * Empty when the text has no area words.
+ */
+function areaCityNames(text: string): string[] {
+  const stripped = text.replace(AREA_PREFIX, '').replace(AREA_SUFFIX, '').trim();
+  if (!stripped || stripped === text) return [];
+  const words = stripped.split(' ');
+  return words.map((_, index) => words.slice(0, words.length - index).join(' '));
+}
+
 /**
  * Splits free text such as "Berlin, Germany", "München (DE)", "San Francisco, CA",
  * "Zürich Switzerland" or "80331 München" into city, subdivision and country.
  * A known country can be passed in when the text has none.
+ *
+ * Text that is only a place ("Berlin", "New York", "Greater London", "Bay
+ * Area") gives the biggest city of that name worldwide, among cities over
+ * 15,000 inhabitants. A country name wins over a city name ("Luxembourg",
+ * "Singapore" → the country, city null).
  */
 export async function parseLocation(text: string, options: { country?: string; tier?: Tier } = {}): Promise<ParsedLocation> {
+  return parseLocationText(text, options, true);
+}
+
+/** `worldwide: false` leaves out the "only a place" guess: used when the caller named a country that does not exist. */
+async function parseLocationText(text: string, options: { country?: string; tier?: Tier }, worldwide: boolean): Promise<ParsedLocation> {
   const empty: ParsedLocation = { city: null, subdivision: null, country: toCountryCode(options.country) };
   if (typeof text !== 'string' || !cleanText(text)) return empty;
   let parts = splitLocation(text);
@@ -390,11 +528,11 @@ export async function parseLocation(text: string, options: { country?: string; t
       if (index > 0 && resolveCountry(part)?.code === country) return;
       cityParts.push(part);
     });
-    for (const candidate of [cityParts[0], cityParts.join(' ')]) {
-      if (!candidate) continue;
+    const names = [cityParts[0], cityParts.join(' ')].filter((name): name is string => Boolean(name));
+    for (const candidate of [...names, ...names.flatMap(areaCityNames)]) {
       const city = await findCity(candidate, { country, subdivision: subdivision ?? undefined, tier })
         ?? (subdivision ? null : await findCity(candidate, { country, tier }));
-      if (city) return { city, subdivision: subdivision ?? (city.admin1 ? resolveSubdivision(city.admin1, country) : null), country };
+      if (city) return { city, subdivision: subdivision ?? (city.subdivision1 ? resolveSubdivision(city.subdivision1, country) : null), country };
     }
     return subdivision ? { city: null, subdivision, country } : null;
   };
@@ -429,8 +567,20 @@ export async function parseLocation(text: string, options: { country?: string; t
     }
     if (country) return { ...empty, country: country.code };
   }
+  if (parts.length !== 1) return empty;
   const onlyCountry = resolveCountry(parts[0]!);
-  return onlyCountry && parts.length === 1 ? { ...empty, country: onlyCountry.code } : empty;
+  if (onlyCountry) return { ...empty, country: onlyCountry.code };
+  if (!worldwide) return empty;
+
+  // Only a place: a known area nickname, else the biggest city of that name worldwide.
+  const nickname = AREA_NICKNAMES[fold(parts[0]!)];
+  let city = nickname ? await getCity(nickname) : null;
+  for (const candidate of [parts[0]!, ...areaCityNames(parts[0]!)]) {
+    if (city) break;
+    city = await findCity(candidate);
+  }
+  if (!city) return empty;
+  return { city, subdivision: city.subdivision1 ? resolveSubdivision(city.subdivision1, city.country) : null, country: city.country };
 }
 
 // ─── Timezones ────────────────────────────────────────────────────────────
@@ -465,7 +615,8 @@ export async function resolveCityTimezone(input: CityTimezoneInput, options: { t
   let subdivisionInput: string | Subdivision | undefined = input.subdivision ?? undefined;
 
   if (cityName && (/[,;(/|]/.test(cityName) || !country)) {
-    const parsed = await parseLocation(cityName, { country: country ?? undefined, tier });
+    // A country that was given but is unknown ("Atlantis") is bad input: don't guess a city from the name alone.
+    const parsed = await parseLocationText(cityName, { country: country ?? undefined, tier }, !input.country?.trim());
     country ??= parsed.country;
     if (parsed.city) {
       return { timezone: parsed.city.timezone, matchedBy: parsed.city.kind === 'city' ? 'city' : 'locality', place: parsed.city };
@@ -508,13 +659,15 @@ export function distanceKm(a: { lat: number; lng: number }, b: { lat: number; ln
 /**
  * Nearest cities to a point, closest first, with their distance. Without a
  * country every country is loaded for the tier (default 15000 here, to keep a
- * worldwide lookup light).
+ * worldwide lookup light). Invalid coordinates (not a number, latitude outside
+ * ±90) give an empty list.
  */
 export async function findNearestCities(
   lat: number,
   lng: number,
   options: { country?: string; tier?: Tier; limit?: number; maxDistanceKm?: number } = {},
 ): Promise<(City & { distanceKm: number })[]> {
+  if (typeof lat !== 'number' || typeof lng !== 'number' || !Number.isFinite(lat) || !Number.isFinite(lng) || lat < -90 || lat > 90) return [];
   const tier = options.tier ?? (options.country ? 500 : 15000);
   const countries = options.country ? [toCountryCode(options.country)].filter((code): code is string => code !== null) : allCountryCodes();
   const point = { lat, lng };
@@ -530,3 +683,9 @@ export async function findNearestCities(
   }
   return results.sort((a, b) => a.distanceKm - b.distanceKm).slice(0, options.limit ?? 5);
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

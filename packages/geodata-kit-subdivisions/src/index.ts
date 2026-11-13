@@ -2,10 +2,11 @@
  * geodata-kit-subdivisions — states, provinces, cantons, Länder and the levels
  * below them ("subdivision" is the ISO 3166-2 term). Level 1 is a state or
  * province (Bavaria), level 2 the next division (Upper Bavaria), level 3
- * (Landkreis München), level 4 admin4 (Gemeinde Unterhaching).
+ * a district (Landkreis München), level 4 a municipality (Gemeinde Unterhaching).
  *
  * Level 1 is bundled and synchronous. Levels 2–4 load per country on first use.
  */
+import { dataDate } from '../../../data/meta.json';
 import isoJson from '../../../data/subdivisions/iso.json';
 import level1Json from '../../../data/subdivisions/level1.json';
 import { cleanText, fold, normalizeCountryCode } from 'geodata-kit';
@@ -201,24 +202,24 @@ export async function findSubdivision(
   return null;
 }
 
-/** Anything that carries subdivision codes (admin1–admin4), such as a City. */
+/** Anything that carries subdivision codes (subdivision1–subdivision4), such as a City. */
 export interface PlaceWithSubdivisionCodes {
   country: string;
-  admin1?: string | null;
-  admin2?: string | null;
-  admin3?: string | null;
-  admin4?: string | null;
+  subdivision1?: string | null;
+  subdivision2?: string | null;
+  subdivision3?: string | null;
+  subdivision4?: string | null;
 }
 
 /** The chain of subdivisions a place lies in, from level 1 down: Bayern → Oberbayern → Landkreis München → Unterhaching. */
 export async function getSubdivisionChain(place: PlaceWithSubdivisionCodes): Promise<Subdivision[]> {
   const code = normalizeCountryCode(place.country);
-  if (!code || !place.admin1) return [];
+  if (!code || !place.subdivision1) return [];
   const chain: Subdivision[] = [];
-  const level1 = getSubdivision(`${code}.${place.admin1}`);
+  const level1 = getSubdivision(`${code}.${place.subdivision1}`);
   if (level1) chain.push(level1);
-  const parts = [place.admin1, place.admin2, place.admin3, place.admin4];
-  if (!place.admin2) return chain;
+  const parts = [place.subdivision1, place.subdivision2, place.subdivision3, place.subdivision4];
+  if (!place.subdivision2) return chain;
   const deep = await loadDeep(code);
   if (!deep) return chain;
   for (const level of [2, 3, 4] as const) {
@@ -229,3 +230,9 @@ export async function getSubdivisionChain(place: PlaceWithSubdivisionCodes): Pro
   }
   return chain;
 }
+
+/**
+ * Date of the data in this version, as YYYY-MM-DD. The data is refreshed about
+ * once a month; every package of one version carries the same date.
+ */
+export const DATA_DATE: string = dataDate;

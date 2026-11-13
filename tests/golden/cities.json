@@ -830,16 +830,6 @@
    "fn": "resolveCityTimezone",
    "args": [
     {
-     "city": "Berlin"
-    }
-   ],
-   "expect": null,
-   "note": "no country, none in the text"
-  },
-  {
-   "fn": "resolveCityTimezone",
-   "args": [
-    {
      "city": "Berlin",
      "country": "Atlantis"
     }
@@ -866,7 +856,7 @@
      "subdivision": "Missouri"
     }
    ],
-   "path": "admin1",
+   "path": "subdivision1",
    "expect": "MO"
   },
   {
@@ -878,7 +868,7 @@
      "subdivision": "IL"
     }
    ],
-   "path": "admin1",
+   "path": "subdivision1",
    "expect": "IL"
   },
   {
@@ -900,7 +890,7 @@
      "country": "US"
     }
    ],
-   "path": "admin1",
+   "path": "subdivision1",
    "expect": "TX",
    "note": "Paris, Texas is the biggest US Paris"
   },
@@ -1019,7 +1009,7 @@
    "args": [
     "San Francisco, CA"
    ],
-   "path": "city.admin1",
+   "path": "city.subdivision1",
    "expect": "CA"
   },
   {
@@ -1181,6 +1171,375 @@
    "fn": "hasLocalities",
    "args": [],
    "expect": true
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Berlin"
+   ],
+   "path": "city.name",
+   "expect": "Berlin",
+   "note": "only a city: the biggest of that name worldwide"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Berlin"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "London"
+   ],
+   "path": "country",
+   "expect": "GB"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Paris"
+   ],
+   "path": "country",
+   "expect": "FR"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "New York"
+   ],
+   "path": "city.name",
+   "expect": "New York City"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "NYC"
+   ],
+   "path": "city.name",
+   "expect": "New York City",
+   "note": "abbreviation of a big city"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Greater London"
+   ],
+   "path": "city.name",
+   "expect": "London"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Greater Munich Metropolitan Area"
+   ],
+   "path": "city.name",
+   "expect": "Munich",
+   "note": "area words around a city"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "San Francisco Bay Area"
+   ],
+   "path": "city.name",
+   "expect": "San Francisco"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Bay Area"
+   ],
+   "path": "city.name",
+   "expect": "San Francisco",
+   "note": "area nickname"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Frankfurt Rhine-Main Metropolitan Area"
+   ],
+   "path": "city.name",
+   "expect": "Frankfurt am Main"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Großraum Stuttgart"
+   ],
+   "path": "city.name",
+   "expect": "Stuttgart"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Cambridge"
+   ],
+   "path": "country",
+   "expect": "GB",
+   "note": "biggest Cambridge"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Cambridge, MA"
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Luxembourg"
+   ],
+   "path": "city",
+   "expect": null,
+   "note": "a country name wins over the city"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Luxembourg"
+   ],
+   "path": "country",
+   "expect": "LU"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Remote"
+   ],
+   "path": "city",
+   "expect": null,
+   "note": "not a place"
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "Remote"
+   ],
+   "path": "country",
+   "expect": null
+  },
+  {
+   "fn": "parseLocation",
+   "args": [
+    "東京"
+   ],
+   "path": "city.name",
+   "expect": "Tokyo"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Москва",
+    {
+     "country": "RU"
+    }
+   ],
+   "path": "name",
+   "expect": "Moscow",
+   "note": "native script"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Ереван",
+    {
+     "country": "AM"
+    }
+   ],
+   "path": "name",
+   "expect": "Yerevan",
+   "note": "Russian name of a big city abroad"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Երևան",
+    {
+     "country": "AM"
+    }
+   ],
+   "path": "name",
+   "expect": "Yerevan"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "東京",
+    {
+     "country": "JP"
+    }
+   ],
+   "path": "name",
+   "expect": "Tokyo",
+   "note": "two-character name"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Αθήνα",
+    {
+     "country": "GR"
+    }
+   ],
+   "path": "name",
+   "expect": "Athens"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "القاهرة",
+    {
+     "country": "EG"
+    }
+   ],
+   "path": "name",
+   "expect": "Cairo"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "서울",
+    {
+     "country": "KR"
+    }
+   ],
+   "path": "name",
+   "expect": "Seoul"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Київ",
+    {
+     "country": "UA"
+    }
+   ],
+   "path": "name",
+   "expect": "Kyiv"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Berlin"
+   ],
+   "path": "name",
+   "expect": "Berlin",
+   "note": "no country: biggest city of that name"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Moskau"
+   ],
+   "path": "name",
+   "expect": "Moscow"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "ロンドン"
+   ],
+   "path": "name",
+   "expect": "London"
+  },
+  {
+   "fn": "findCity",
+   "args": [
+    "Springfield",
+    {
+     "subdivision": "US-IL"
+    }
+   ],
+   "path": "subdivision1",
+   "expect": "IL",
+   "note": "no country, but the subdivision code names it"
+  },
+  {
+   "fn": "searchCities",
+   "args": [
+    "San",
+    {
+     "limit": 3
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Santiago",
+    "São Paulo",
+    "Santo Domingo"
+   ],
+   "note": "ranked by size and match, not exact tiny towns first"
+  },
+  {
+   "fn": "searchCities",
+   "args": [
+    "San",
+    {
+     "country": "US",
+     "limit": 4
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "San Antonio",
+    "San Diego",
+    "San Jose",
+    "San Francisco"
+   ]
+  },
+  {
+   "fn": "searchCities",
+   "args": [
+    "York",
+    {
+     "limit": 2
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "New York City",
+    "York"
+   ]
+  },
+  {
+   "fn": "searchCities",
+   "args": [
+    "Mün",
+    {
+     "country": "DE",
+     "limit": 2
+    }
+   ],
+   "path": "[].name",
+   "expect": [
+    "Munich",
+    "Münster"
+   ]
+  },
+  {
+   "fn": "resolveCityTimezone",
+   "args": [
+    {
+     "city": "Berlin"
+    }
+   ],
+   "path": "timezone",
+   "expect": "Europe/Berlin",
+   "note": "city only, no country"
+  },
+  {
+   "fn": "findNearestCities",
+   "args": [
+    200,
+    10
+   ],
+   "expect": [],
+   "note": "invalid latitude gives an empty list"
   }
  ]
 }

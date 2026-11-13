@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Countries for TypeScript and JavaScript: names in 8 languages, free-text resolution, search, groups (EU, DACH, …), languages, timezones, currencies and more. Offline, typed, no dependencies. Core of the geodata-kit family.",
   "keywords": [
     "countries",
@@ -13,7 +13,7 @@
     "currency",
     "geo"
   ],
-  "license": "MIT",
+  "license": "MIT AND CC-BY-4.0 AND Unicode-3.0 AND Apache-2.0",
   "author": "geodata-kit contributors",
   "repository": {
     "type": "git",

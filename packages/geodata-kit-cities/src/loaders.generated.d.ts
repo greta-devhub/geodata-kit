@@ -2,3 +2,4 @@
 type Loader = () => Promise<{ default: unknown }>;
 export declare const CITY_LOADERS: Record<string, Record<string, Loader>>;
 export declare const loadIndex: Loader;
+export declare const loadWorld: Loader;

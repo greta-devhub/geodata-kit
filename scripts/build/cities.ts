@@ -7,6 +7,10 @@
  *   data/cities/{CC}/1000.json    in cities1000 but not cities5000
  *   data/cities/{CC}/500.json     the rest of cities500
  *   data/cities/index.json        geonameid → country and Wikidata id → country (for getCity / getPlaceByWikidataId)
+ *   data/cities/world.json        name → biggest city of that name worldwide, for lookups without a country:
+ *                                 { countries: string[], cities: [geonameid, population, countryIndex, …] (biggest first),
+ *                                   names: { foldedName: cityIndex }, aliases: { foldedAlternateName: cityIndex } },
+ *                                 cities15000 only
  *   data/core/primary-timezones.json   timezone of each country's most populous city
  *
  * Each band file: { tz: string[], rows: Row[] } with
@@ -23,6 +27,16 @@ export const BANDS = [15000, 5000, 1000, 500] as const;
 export type Band = (typeof BANDS)[number];
 
 const LATIN = /^[\p{Script=Latin}\p{N}\p{P}\p{Zs}\p{M}'’ʻ`´.-]+$/u;
+/** A plain name in any script: letters, marks, digits, spaces and a few joiners (no lists, no brackets). */
+const PLAIN_NAME = /^[\p{L}\p{M}\p{N}\p{Zs}'’.·・-]{1,40}$/u;
+/** Scripts whose names are often two characters long (東京, 北京, 서울). */
+const SHORT_NAME_SCRIPTS = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]/u;
+/**
+ * Widely used languages that are not written in Latin script. Cities over
+ * 15,000 inhabitants keep their name in these wherever they are ("Ереван",
+ * "ロンドン"); every city keeps its name in the languages of its own country.
+ */
+const WORLD_LANGUAGES = new Set(['ar', 'bn', 'el', 'fa', 'he', 'hi', 'ja', 'ko', 'ru', 'th', 'uk', 'zh']);
 
 interface CityBuild extends GeoNamesPlace {
   band: Band;
@@ -58,10 +72,12 @@ export async function buildCities(): Promise<void> {
 
   // Alternate names and identifiers.
   const relevant = new Map<string, Set<string>>();
+  const own = new Map<string, Set<string>>();
   for (const country of countries) {
-    const set = new Set<string>(['', ...DISPLAY_LOCALES]);
-    for (const language of languages.countries[country.code] ?? []) if (language.status !== 'spoken') set.add(language.code.split('-')[0]!);
-    relevant.set(country.code, set);
+    const official = new Set<string>();
+    for (const language of languages.countries[country.code] ?? []) if (language.status !== 'spoken') official.add(language.code.split('-')[0]!);
+    own.set(country.code, official);
+    relevant.set(country.code, new Set<string>(['', ...DISPLAY_LOCALES, ...official]));
   }
   for await (const [id, language, name, , , colloquial, historic] of readTsv(cachePath('work', 'altnames.tsv'))) {
     const city = cities.get(Number(id));
@@ -70,10 +86,17 @@ export async function buildCities(): Promise<void> {
     if (language === 'wkdt') { if (!city.wikidataId && /^Q\d+$/.test(name)) city.wikidataId = name; continue; }
     if (colloquial === '1' || historic === '1') continue;
     const lang = (language ?? '').split('-')[0]!;
-    if (lang.length > 3 || !relevant.get(city.country)!.has(lang)) continue;
-    if (!LATIN.test(name)) continue;
+    const big = city.band === 15000;
+    if (LATIN.test(name)) {
+      // Abbreviations ("NYC") only for big cities: among small places they collide.
+      if (!(lang.length <= 3 && relevant.get(city.country)!.has(lang)) && !(big && language === 'abbr')) continue;
+    } else {
+      // Other scripts: the country's own languages, plus the world languages for big cities.
+      if (!PLAIN_NAME.test(name) || !(own.get(city.country)!.has(lang) || (big && WORLD_LANGUAGES.has(lang)))) continue;
+    }
     const key = fold(name);
-    if (key.replace(/ /g, '').length < 3 || key === fold(city.name) || key === fold(city.asciiName)) continue;
+    const minimum = SHORT_NAME_SCRIPTS.test(name) ? 2 : 3;
+    if (key.replace(/ /g, '').length < minimum || key === fold(city.name) || key === fold(city.asciiName)) continue;
     if (!city.alternateNames.has(key)) city.alternateNames.set(key, name);
   }
 
@@ -120,6 +143,26 @@ export async function buildCities(): Promise<void> {
       bytes += writeJson(dataPath('cities', country, `${band}.json`), { tz: zones, rows }, 'compact');
     }
   }
+
+  // World index: the biggest city for every name, over all cities15000. A city's
+  // own name beats another city's alternate name, as in the per-country lookup.
+  const big = [...cities.values()].filter((city) => city.band === 15000 && PLACE_CODES.has(city.featureCode)).sort(comparePlaces);
+  const worldCountries = [...new Set(big.map((city) => city.country))].sort(compareStrings);
+  const worldCountryIndex = new Map(worldCountries.map((code, index) => [code, index]));
+  const worldNames = new Map<string, number>();
+  const worldAliases = new Map<string, number>();
+  big.forEach((city, index) => {
+    for (const key of [fold(city.name), fold(city.asciiName)]) if (key && !worldNames.has(key)) worldNames.set(key, index);
+  });
+  big.forEach((city, index) => {
+    for (const key of city.alternateNames.keys()) if (!worldNames.has(key) && !worldAliases.has(key)) worldAliases.set(key, index);
+  });
+  bytes += writeJson(dataPath('cities', 'world.json'), {
+    countries: worldCountries,
+    cities: big.flatMap((city) => [city.id, city.population, worldCountryIndex.get(city.country)!]),
+    names: Object.fromEntries([...worldNames.entries()].sort(([a], [b]) => compareStrings(a, b))),
+    aliases: Object.fromEntries([...worldAliases.entries()].sort(([a], [b]) => compareStrings(a, b))),
+  }, 'compact');
 
   // Delta-encode the id lists (sorted ids → small numbers).
   const encodedIds: Record<string, number[]> = {};

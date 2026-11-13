@@ -1,9 +1,11 @@
 import { fold } from './fold.js';
 import {
-  ALIASES, COUNTRY_BY_ALPHA3, COUNTRY_BY_CODE, COUNTRY_BY_NUMERIC, COUNTRY_RECORDS, DISPLAY_LOCALES,
-  NAMES, RETIRED, type CountryRecord,
+  ALIAS_ALIASES, ALIAS_DISPLAY, ALIAS_NAMES, ALIAS_SUBDIVISIONS, COUNTRY_RECORDS, DISPLAY_LOCALES,
+  NAMES, RETIRED, countryByAlpha3, countryByCode, countryByNumeric, type CountryRecord,
 } from './internal/core-data.js';
-import { cleanInput, editDistance, isActive, pickLocale, toIsoDate } from './internal/util.js';
+import { getCountriesInGroup } from './groups.js';
+import { cleanInput, editDistance, isActive, lazy, pickLocale, toIsoDate } from './internal/util.js';
+import { getCountriesByLanguage } from './languages.js';
 import type { Country, CountryCode, CountryMatch, Currency, DateInput } from './types.js';
 
 /** Matches an ISO 3166-1 alpha-2 code in any case. Use isCountryCode() to also check it exists. */
@@ -20,8 +22,7 @@ function currentCurrencies(record: CountryRecord, day: string): string[] {
   return record.currencies.filter((currency) => currency.tender && isActive(currency, day)).map((currency) => currency.code);
 }
 
-const TODAY = toIsoDate(undefined);
-function toCountry(record: CountryRecord): Country {
+function toCountry(record: CountryRecord, today: string): Country {
   return Object.freeze({
     code: record.code,
     alpha3: record.alpha3,
@@ -34,7 +35,7 @@ function toCountry(record: CountryRecord): Country {
     continent: record.continent,
     tld: record.tld,
     callingCode: record.callingCode,
-    currencies: currentCurrencies(record, TODAY),
+    currencies: currentCurrencies(record, today),
     neighbours: record.neighbours,
     timezones: record.timezones,
     demonym: record.demonym,
@@ -47,18 +48,22 @@ function toCountry(record: CountryRecord): Country {
   });
 }
 
-const COUNTRIES: ReadonlyMap<string, Country> = new Map(COUNTRY_RECORDS.map((record) => [record.code, toCountry(record)]));
+/** Built on first use: loading the package costs nothing, and unused data can be dropped by bundlers. */
+const countries = /* @__PURE__ */ lazy((): ReadonlyMap<string, Country> => {
+  const today = toIsoDate(undefined);
+  return new Map(COUNTRY_RECORDS.map((record) => [record.code, toCountry(record, today)]));
+});
 
 /** Upper-cased, trimmed alpha-2 code if it is a known country, else null. */
 export function normalizeCountryCode(value: string | null | undefined): CountryCode | null {
   if (typeof value !== 'string') return null;
   const code = value.trim().toUpperCase();
-  return COUNTRIES.has(code) ? code : null;
+  return countries().has(code) ? code : null;
 }
 
 /** True for a known alpha-2 code in upper case ("DE"); use normalizeCountryCode to accept "de" or " DE ". */
 export function isCountryCode(value: unknown): value is CountryCode {
-  return typeof value === 'string' && COUNTRIES.has(value);
+  return typeof value === 'string' && countries().has(value);
 }
 
 /** Splits a list into known codes (normalised, de-duplicated, in input order) and invalid entries. */
@@ -81,7 +86,7 @@ export function normalizeCountryCodes(values: Iterable<string | null | undefined
 /** The country for an alpha-2 code (any case), or null. */
 export function getCountry(code: string): Country | null {
   const normalized = normalizeCountryCode(code);
-  return normalized ? COUNTRIES.get(normalized)! : null;
+  return normalized ? countries().get(normalized)! : null;
 }
 
 export interface CountryFilter {
@@ -98,26 +103,18 @@ export interface CountryFilter {
 /** All countries, sorted by code. Filters combine with AND. */
 export function listCountries(filter: CountryFilter = {}): Country[] {
   // Imported lazily to avoid a cycle: groups and languages import this module.
-  let list = [...COUNTRIES.values()];
+  let list = [...countries().values()];
   if (filter.continent) list = list.filter((country) => country.continent === filter.continent!.toUpperCase());
   if (filter.currency) list = list.filter((country) => country.currencies.includes(filter.currency!.toUpperCase()));
   if (filter.group) {
-    const members = new Set(groupMembersHook(filter.group));
+    const members = new Set(getCountriesInGroup(filter.group));
     list = list.filter((country) => members.has(country.code));
   }
   if (filter.language) {
-    const countries = new Set(languageCountriesHook(filter.language));
-    list = list.filter((country) => countries.has(country.code));
+    const speaking = new Set(getCountriesByLanguage(filter.language, { status: 'national' }).map((entry) => entry.country));
+    list = list.filter((country) => speaking.has(country.code));
   }
   return list;
-}
-
-// Hooks set by groups.ts / languages.ts (keeps the module graph acyclic).
-let groupMembersHook: (slug: string) => string[] = () => [];
-let languageCountriesHook: (language: string) => string[] = () => [];
-export function _setFilterHooks(groups: typeof groupMembersHook, languages: typeof languageCountriesHook): void {
-  groupMembersHook = groups;
-  languageCountriesHook = languages;
 }
 
 /** Codes that replaced a retired code: "CS" → ["RS", "ME"], "UK" → ["GB"]. Empty when unknown. */
@@ -140,7 +137,7 @@ export function getCountryName(code: string, locale = 'en'): string | null {
 /** Readable alternative names: English variants, endonyms, common aliases ("Deutschland", "BRD", …). */
 export function getCountryAliases(code: string): string[] {
   const normalized = normalizeCountryCode(code);
-  return normalized ? [...(ALIASES.display[normalized] ?? [])] : [];
+  return normalized ? [...(ALIAS_DISPLAY[normalized] ?? [])] : [];
 }
 
 export interface FormatCountryOptions {
@@ -163,11 +160,11 @@ export function formatCountry(code: string, options: FormatCountryOptions = {}):
 // ─── Resolution ───────────────────────────────────────────────────────────
 
 function lookupFolded(key: string): { code: string; kind: 'name' | 'alias' | 'subdivision' } | null {
-  const name = ALIASES.names[key];
+  const name = ALIAS_NAMES[key];
   if (name) return { code: name, kind: 'name' };
-  const alias = ALIASES.aliases[key];
+  const alias = ALIAS_ALIASES[key];
   if (alias) return { code: alias, kind: 'alias' };
-  const subdivision = ALIASES.subdivisions[key];
+  const subdivision = ALIAS_SUBDIVISIONS[key];
   if (subdivision) return { code: subdivision, kind: 'subdivision' };
   return null;
 }
@@ -175,16 +172,16 @@ function lookupFolded(key: string): { code: string; kind: 'name' | 'alias' | 'su
 function resolveCleaned(text: string): Omit<CountryMatch, 'input'> | null {
   if (/^[A-Za-z]{2}$/.test(text)) {
     const upper = text.toUpperCase();
-    if (COUNTRIES.has(upper)) return { code: upper, matchedBy: 'alpha2' };
+    if (countries().has(upper)) return { code: upper, matchedBy: 'alpha2' };
     const successors = RETIRED[upper];
     if (successors?.length === 1) return { code: successors[0]!, matchedBy: 'retired' };
   }
   if (/^[A-Za-z]{3}$/.test(text)) {
-    const code = COUNTRY_BY_ALPHA3.get(text.toUpperCase());
+    const code = countryByAlpha3().get(text.toUpperCase());
     if (code) return { code, matchedBy: 'alpha3' };
   }
   if (/^\d{1,3}$/.test(text)) {
-    const code = COUNTRY_BY_NUMERIC.get(text.padStart(3, '0'));
+    const code = countryByNumeric().get(text.padStart(3, '0'));
     return code ? { code, matchedBy: 'numeric' } : null;
   }
   const found = lookupFolded(fold(text));
@@ -248,34 +245,41 @@ export function resolveCountries(texts: Iterable<string | null | undefined>): {
   return { resolved, unresolved };
 }
 
-let suggestionKeys: [string, string][] | null = null;
+/** Every resolvable name with its country; `own` marks a country's names in the bundled languages (not its aliases). */
+const suggestionKeys = /* @__PURE__ */ lazy((): [alias: string, code: string, own: boolean][] => [
+  ...Object.entries(ALIAS_NAMES).map(([alias, code]): [string, string, boolean] => [alias, code, true]),
+  ...Object.entries(ALIAS_ALIASES).map(([alias, code]): [string, string, boolean] => [alias, code, false]),
+  ...Object.entries(ALIAS_SUBDIVISIONS).map(([alias, code]): [string, string, boolean] => [alias, code, false]),
+]);
+
 /**
  * "Did you mean" candidates for input that resolveCountry could not match
  * (typos such as "Germnay", or ambiguous names such as "Congo"). Never applied
  * automatically.
+ *
+ * Best first: names that start with the input, then names that contain it as
+ * a word, then names within a few typos. A country's own name counts before
+ * an alias ("united" → United States, United Kingdom, United Arab Emirates,
+ * before countries with a formal name like "United Mexican States"); ties go
+ * to the bigger population.
  */
 export function suggestCountries(text: string, limit = 5): Country[] {
   const key = fold(cleanInput(text));
   if (!key) return [];
-  suggestionKeys ??= [
-    ...Object.entries(ALIASES.names),
-    ...Object.entries(ALIASES.aliases),
-    ...Object.entries(ALIASES.subdivisions),
-  ];
   // Allowed typos: 1 for short input, 2 up to 8 letters (a swapped pair is 2 edits), 3 above.
   const maxDistance = key.length <= 4 ? 1 : key.length <= 8 ? 2 : 3;
   const best = new Map<string, number>();
-  for (const [alias, code] of suggestionKeys) {
+  for (const [alias, code, own] of suggestionKeys()) {
     let score: number;
-    if (alias.startsWith(`${key} `) || alias.startsWith(key)) score = 0.5;
-    else if (alias.split(' ').includes(key)) score = 0.75;
+    if (alias.startsWith(key)) score = own ? 0.2 : 0.4;
+    else if (alias.split(' ').includes(key)) score = own ? 0.6 : 0.8;
     else score = editDistance(key, alias, maxDistance);
     if (score <= maxDistance && score < (best.get(code) ?? Infinity)) best.set(code, score);
   }
   return [...best.entries()]
-    .sort(([codeA, a], [codeB, b]) => a - b || (COUNTRIES.get(codeB)!.population ?? 0) - (COUNTRIES.get(codeA)!.population ?? 0))
+    .sort(([codeA, a], [codeB, b]) => a - b || (countries().get(codeB)!.population ?? 0) - (countries().get(codeA)!.population ?? 0))
     .slice(0, limit)
-    .map(([code]) => COUNTRIES.get(code)!);
+    .map(([code]) => countries().get(code)!);
 }
 
 // ─── Search for pickers ───────────────────────────────────────────────────
@@ -296,9 +300,9 @@ export interface SearchCountriesOptions {
  */
 export function searchCountries(query: string, options: SearchCountriesOptions = {}): Country[] {
   const locale = options.locale ?? 'en';
-  let candidates = [...COUNTRIES.values()];
+  let candidates = [...countries().values()];
   if (options.groups?.length) {
-    const members = new Set(options.groups.flatMap((slug) => groupMembersHook(slug)));
+    const members = new Set(options.groups.flatMap((slug) => getCountriesInGroup(slug)));
     candidates = candidates.filter((country) => members.has(country.code));
   }
   const needle = fold(cleanInput(query));
@@ -332,7 +336,7 @@ export function sortCountries<T extends { code: string }>(countries: readonly T[
 
 /** Currencies of a country on a date (default today), main currency first. Includes history with `at`. */
 export function getCurrencies(code: string, options: { at?: DateInput; includeNonTender?: boolean } = {}): Currency[] {
-  const record = COUNTRY_BY_CODE.get(normalizeCountryCode(code) ?? '');
+  const record = countryByCode().get(normalizeCountryCode(code) ?? '');
   if (!record) return [];
   const day = toIsoDate(options.at);
   return record.currencies
@@ -348,20 +352,20 @@ export function getCurrency(code: string): string | null {
 const fact = <K extends keyof Country>(key: K) => (code: string): Country[K] | null => getCountry(code)?.[key] ?? null;
 
 /** Calling code without "+", e.g. "49". */
-export const getCallingCode = fact('callingCode');
+export const getCallingCode = /* @__PURE__ */ fact('callingCode');
 /** Country-code top-level domain, e.g. ".de". */
-export const getTld = fact('tld');
-export const getCapital = fact('capital');
+export const getTld = /* @__PURE__ */ fact('tld');
+export const getCapital = /* @__PURE__ */ fact('capital');
 /** Area in km². */
-export const getArea = fact('area');
-export const getPopulation = fact('population');
+export const getArea = /* @__PURE__ */ fact('area');
+export const getPopulation = /* @__PURE__ */ fact('population');
 /** English demonym, e.g. "German". */
-export const getDemonym = fact('demonym');
+export const getDemonym = /* @__PURE__ */ fact('demonym');
 /** First day of the week: "mon", "sun", "sat" or "fri". */
-export const getWeekStart = fact('weekStart');
-export const getMeasurementSystem = fact('measurementSystem');
-export const getPaperSize = fact('paperSize');
-export const getDrivingSide = fact('drivingSide');
+export const getWeekStart = /* @__PURE__ */ fact('weekStart');
+export const getMeasurementSystem = /* @__PURE__ */ fact('measurementSystem');
+export const getPaperSize = /* @__PURE__ */ fact('paperSize');
+export const getDrivingSide = /* @__PURE__ */ fact('drivingSide');
 
 /** Bordering countries. */
 export function getNeighbours(code: string): CountryCode[] {
@@ -371,5 +375,5 @@ export function getNeighbours(code: string): CountryCode[] {
 /** Every country with a given calling code ("1" → US, CA and the Caribbean +1 countries). */
 export function getCountriesByCallingCode(callingCode: string): CountryCode[] {
   const digits = callingCode.replace(/\D/g, '');
-  return [...COUNTRIES.values()].filter((country) => country.callingCode === digits).map((country) => country.code);
+  return [...countries().values()].filter((country) => country.callingCode === digits).map((country) => country.code);
 }

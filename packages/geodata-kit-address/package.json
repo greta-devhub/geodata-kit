@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-address",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Address formats, required fields, regions and postal-code rules for every country, with address formatting and parsing. Offline add-on for geodata-kit.",
   "keywords": [
     "address",
@@ -11,7 +11,7 @@
     "address-validation",
     "geodata-kit"
   ],
-  "license": "MIT",
+  "license": "MIT AND CC-BY-4.0",
   "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "geodata-kit": "^0.2.1"
+    "geodata-kit": "^0.3.0"
   },
   "scripts": {
     "build": "tsup"

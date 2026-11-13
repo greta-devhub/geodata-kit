@@ -77,9 +77,10 @@ function main(): void {
       lines.push(`  ${country}: { ${bands.map((file) => `${basename(file, '.mjs')}: () => import('../data/${country}/${file}')`).join(', ')} },`);
     }
     writeModule(join(dir, 'index.mjs'), dataPath('cities', 'index.json'));
-    lines.push('};', '', "export const loadIndex = () => import('../data/index.mjs');");
+    writeModule(join(dir, 'world.mjs'), dataPath('cities', 'world.json'));
+    lines.push('};', '', "export const loadIndex = () => import('../data/index.mjs');", "export const loadWorld = () => import('../data/world.mjs');");
     writeLoaders('geodata-kit-cities', lines,
-      ['export declare const CITY_LOADERS: Record<string, Record<string, Loader>>;', 'export declare const loadIndex: Loader;']);
+      ['export declare const CITY_LOADERS: Record<string, Record<string, Loader>>;', 'export declare const loadIndex: Loader;', 'export declare const loadWorld: Loader;']);
   }
 
   // Airports: one module.
@@ -116,6 +117,9 @@ function main(): void {
   for (const part of ['core', 'subdivisions', 'cities', 'address', 'phone', 'shapes', 'airports.json']) {
     if (existsSync(dataPath(part))) cpSync(dataPath(part), join(pythonData, part), { recursive: true });
   }
+  // Only the date of data/meta.json goes into the package (DATA_DATE); the source list stays in the repository.
+  const { dataDate } = JSON.parse(readFileSync(dataPath('meta.json'), 'utf8')) as { dataDate: string };
+  writeFileSync(join(pythonData, 'info.json'), `${JSON.stringify({ dataDate })}\n`);
   for (const [part, pkg] of [['localities', 'geodata_kit_localities'], ['postal', 'geodata_kit_postal']] as const) {
     const target = join(ROOT, 'python', 'extras', pkg, 'src', pkg, 'data');
     if (!existsSync(dataPath(part))) continue;
