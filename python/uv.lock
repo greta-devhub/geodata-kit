@@ -13,17 +13,17 @@ wheels = [
 
 [[package]]
 name = "geodata-kit-localities"
-version = "0.4.0"
+version = "0.4.1"
 source = { directory = "extras/geodata_kit_localities" }
 
 [[package]]
 name = "geodata-kit-postal"
-version = "0.4.0"
+version = "0.4.1"
 source = { directory = "extras/geodata_kit_postal" }
 
 [[package]]
 name = "geodata-kit-py"
-version = "0.4.0"
+version = "0.4.1"
 source = { editable = "." }
 
 [package.optional-dependencies]

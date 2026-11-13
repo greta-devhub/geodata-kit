@@ -1,5 +1,7 @@
 # geodata-kit-postal
 
+## 0.4.1
+
 ## 0.4.0
 
 No changes in this package. It is released with the others because all geodata-kit packages share one version; the changes of 0.4.0 are in geodata-kit-address.

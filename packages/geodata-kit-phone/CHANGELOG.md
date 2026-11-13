@@ -1,5 +1,12 @@
 # geodata-kit-phone
 
+## 0.4.1
+
+### Patch Changes
+
+- - Vanity numbers: letters are read as on a phone keypad, `parsePhoneNumber('1-800-FLOWERS', 'US')` → `+18003569377` (toll free). Letters that make no valid number give `null` instead of a wrong `e164` (before: `+11800`). A word after a valid number is not dialled (`'+49 89 1234567 office'` stays `+49891234567`).
+  - Old Mexican mobile numbers written with the "1" Mexico dropped in 2019 parse: `'+52 1 55 1234 5678'` → `+525512345678`, MX, valid. The digit is removed only when that turns an invalid number into a valid one.
+
 ## 0.4.0
 
 No changes in this package. It is released with the others because all geodata-kit packages share one version; the changes of 0.4.0 are in geodata-kit-address.

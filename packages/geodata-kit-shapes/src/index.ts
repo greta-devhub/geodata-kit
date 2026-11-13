@@ -11,7 +11,12 @@
  *    MARKER_KM around it (Vatican City);
  *  - a point that falls just off the simplified coast (a harbour, a pier, a
  *    small island) gets the nearest land within NEAR_COAST_KM.
- * Tiny enclaves such as Baarle-Hertog are not in the data.
+ *
+ * Tiny enclaves (Baarle-Hertog, Büsingen) and the northern half of Gibraltar
+ * are not in the outlines. With geodata-kit-tz and geodata-kit installed,
+ * getCountryAt also asks the timezone polygons, which follow the borders to
+ * about 110 m: near a border, a timezone that only one country uses decides
+ * (Europe/Busingen is Germany, Europe/Brussels Belgium).
  */
 import { dataDate } from '../../../data/meta.json';
 import { loadCountryShapes, loadSubdivisionShapes } from './loaders.generated.js';
@@ -101,15 +106,49 @@ function nearestWithin<T extends ShapeFeature>(features: T[], x: number, y: numb
 }
 
 /**
- * Integer grid position of a coordinate. Null for invalid input (not a number,
- * latitude outside ±90), like every lookup in the geodata-kit family.
- * Longitudes wrap around, so 190 is the same as -170.
+ * Position of a coordinate in grid units. Null for invalid input (not a
+ * number, latitude outside ±90), like every lookup in the geodata-kit family.
+ * Longitudes wrap around, so 190 is the same as -170. The point is not rounded
+ * to the grid: rounding would move it up to 55 m, onto or across the outline
+ * of a small territory (Gibraltar is 1.2 km wide in the data).
  */
 function toGrid(lat: number, lng: number): { x: number; y: number } | null {
   if (typeof lat !== 'number' || typeof lng !== 'number' || !Number.isFinite(lat) || !Number.isFinite(lng)) return null;
   if (lat < -90 || lat > 90) return null;
   const wrapped = ((((lng + 180) % 360) + 360) % 360) - 180;
-  return { x: Math.round(wrapped * SCALE), y: Math.round(lat * SCALE) };
+  return { x: wrapped * SCALE, y: lat * SCALE };
+}
+
+type TzModule = { getTimezoneAt: (lat: number, lng: number) => Promise<string | null> };
+type CoreModule = { listCountries: () => { code: string; timezones: string[] }[] };
+
+/** An optional package of the family, or null when it is not installed. The name is a variable so bundlers don't try to resolve it. */
+function importOptional<T>(name: string): Promise<T | null> {
+  return import(/* webpackIgnore: true */ /* @vite-ignore */ name).catch(() => null) as Promise<T | null>;
+}
+
+let timezoneCountry: Promise<((lat: number, lng: number) => Promise<string | null>) | null> | null = null;
+
+/**
+ * With geodata-kit-tz and geodata-kit installed: the country whose own
+ * timezone covers the point ("Europe/Busingen" → DE). Null where the zone is
+ * shared by countries, at sea, or when either package is missing.
+ */
+function countryByTimezone(): Promise<((lat: number, lng: number) => Promise<string | null>) | null> {
+  timezoneCountry ??= (async () => {
+    const [tz, core] = await Promise.all([importOptional<TzModule>('geodata-kit-tz'), importOptional<CoreModule>('geodata-kit')]);
+    if (!tz || !core) return null;
+    const owners = new Map<string, string[]>();
+    for (const country of core.listCountries()) {
+      for (const zone of country.timezones) owners.set(zone, [...(owners.get(zone) ?? []), country.code]);
+    }
+    return async (lat: number, lng: number) => {
+      const zone = await tz.getTimezoneAt(lat, lng).catch(() => null);
+      const countries = zone ? owners.get(zone) : undefined;
+      return countries?.length === 1 ? countries[0]! : null;
+    };
+  })();
+  return timezoneCountry;
 }
 
 let countryShapes: Promise<ShapeFeature[]> | null = null;
@@ -128,6 +167,13 @@ export async function getCountryAt(lat: number, lng: number): Promise<string | n
   const coarse = smallestContaining(countries, point.x, point.y);
   // Well inside a country, far from every outline: the coarse data is enough and the bigger subdivision data stays unloaded.
   if (coarse && !countries.some((country) => distanceToOutline(country, point.x, point.y, COARSE_EDGE_KM) < COARSE_EDGE_KM)) return coarse.id;
+  const found = await countryNearEdge(point, countries, coarse);
+  // Near a border the outlines miss enclaves; a timezone of one country knows them.
+  const byTimezone = found ? await (await countryByTimezone())?.(lat, lng) : null;
+  return byTimezone ?? found;
+}
+
+async function countryNearEdge(point: { x: number; y: number }, countries: ShapeFeature[], coarse: ShapeFeature | null): Promise<string | null> {
   const subdivisions = await loadSubdivisions();
   const fine = smallestContaining(subdivisions, point.x, point.y);
   if (fine) return fine.country;

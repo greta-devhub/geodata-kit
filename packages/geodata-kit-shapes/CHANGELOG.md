@@ -1,5 +1,12 @@
 # geodata-kit-shapes
 
+## 0.4.1
+
+### Patch Changes
+
+- - `getCountryAt(36.1408, -5.3536)` (Gibraltar town) → GI instead of ES: points are no longer rounded to the 110 m grid before the lookup, which moved this one onto the edge of Gibraltar's outline.
+  - With `geodata-kit-tz` and `geodata-kit` installed, `getCountryAt` resolves the enclaves the outlines miss: near a border, a timezone that only one country uses decides. Baarle-Hertog → BE, Büsingen → DE, Gibraltar airport → GI. Without them the result is the surrounding country, as before.
+
 ## 0.4.0
 
 No changes in this package. It is released with the others because all geodata-kit packages share one version; the changes of 0.4.0 are in geodata-kit-address.

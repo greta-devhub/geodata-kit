@@ -30,6 +30,8 @@ interface FormatRecord {
     match?: 'either' | 'both';
     /** A code must start with the range of one of the regions. */
     byRegion?: true;
+    /** Words that may follow a code, with an optional office number: "CEDEX" in "75008 CEDEX 08". */
+    suffixes?: string[];
     layouts: string[];
     examples: string[];
     prefixes: string[];
@@ -208,6 +210,8 @@ export interface PostalCodeRules {
   examples: string[];
   /** Prefixes accepted in front of the code ("D-", "CH-"). */
   prefixes: string[];
+  /** Words accepted after the code, with an optional number: France's "CEDEX" ("75008 CEDEX 08"). */
+  suffixes: string[];
   label: string;
 }
 
@@ -269,8 +273,17 @@ export function getPostalCodeRules(country: string): PostalCodeRules | null {
     layouts: [...format.postal.layouts],
     examples: [...format.postal.examples],
     prefixes: [...format.postal.prefixes],
+    suffixes: [...(format.postal.suffixes ?? [])],
     label: format.postal.label,
   };
+}
+
+/** "CEDEX" or "CEDEX 08" at the end of a text, for a country whose real codes carry such a suffix. */
+function suffixPattern(format: FormatRecord, where: 'end' | 'start'): RegExp | null {
+  const words = format.postal?.suffixes;
+  if (!words?.length) return null;
+  const body = `(${words.join('|')})(?:\\s+(\\d{1,2}))?`;
+  return new RegExp(where === 'end' ? `\\s+${body}$` : `^${body}(?=$|[\\s,])`, 'i');
 }
 
 function renderLayout(layout: string, compact: string): string | null {
@@ -309,6 +322,12 @@ export function normalizePostalCode(value: string, country: string): string | nu
   let text = cleanText(value).toUpperCase().replace(/^〒\s*/, '');
   for (const prefix of [...format.postal.prefixes].sort((a, b) => b.length - a.length)) {
     if (text.startsWith(prefix) && text.length > prefix.length) { text = text.slice(prefix.length).trim(); break; }
+  }
+  // "75008 CEDEX 08": the code before the suffix must be valid on its own.
+  const suffix = suffixPattern(format, 'end')?.exec(text);
+  if (suffix) {
+    const base = normalizePostalCode(text.slice(0, suffix.index), code);
+    return base ? `${base} ${suffix[1]!.toUpperCase()}${suffix[2] ? ` ${suffix[2]}` : ''}` : null;
   }
   const valid = (candidate: string): boolean => isValidCode(candidate, code, format);
   const compact = text.replace(/[\s-]/g, '');
@@ -415,12 +434,31 @@ export interface ParsedAddress {
   /** Region key ("CA", "ON"), where the address has a region. */
   region: string | null;
   country: string | null;
-  /** With geodata-kit-postal: whether the city matches the postal code. */
-  postalCheck: 'confirmed' | 'corrected' | 'unknown' | 'not-checked';
+  /**
+   * Whether the postal code fits the rest of the address:
+   *  - 'confirmed': the city is a place of the postal code (geodata-kit-postal);
+   *  - 'corrected': the city was missing or misspelt and is now the place's name;
+   *  - 'mismatch': the postal code belongs elsewhere: to another region than the
+   *    one written ("CA 10001" is New York), or, with geodata-kit-postal, to a
+   *    place far from the city written ("80331 Berlin": 80331 is München). The
+   *    fields stay as written; expectedRegion / expectedCity say what fits the code;
+   *  - 'unknown': no verdict (code not in the data, or a city name the data does not place);
+   *  - 'not-checked': nothing to check, or geodata-kit-postal is not installed.
+   */
+  postalCheck: 'confirmed' | 'corrected' | 'mismatch' | 'unknown' | 'not-checked';
+  /** On a 'mismatch': a place of the postal code ("München" for 80331), else null. */
+  expectedCity: string | null;
+  /** On a 'mismatch': the region whose postal range has the code ("NY" for 10001), else null. */
+  expectedRegion: string | null;
 }
 
-type PostalModule = { findPlacesByPostalCode: (code: string, country: string) => Promise<{ name: string }[]> };
-type CitiesModule = { findCity: (name: string, options: { country: string; subdivision?: string }) => Promise<{ name: string } | null> };
+interface PostalPlaceLike { postalCode: string; name: string; lat: number; lng: number }
+type PostalModule = {
+  findPlacesByPostalCode: (code: string, country: string) => Promise<PostalPlaceLike[]>;
+  findPostalCodes: (options: { city: string; country: string }) => Promise<string[]>;
+  listPostalCountries: () => string[];
+};
+type CitiesModule = { findCity: (name: string, options: { country: string; subdivision?: string }) => Promise<{ name: string; lat: number; lng: number } | null> };
 const optionalModules = new Map<string, Promise<unknown>>();
 
 /** An optional package of the family, or null when it is not installed. The name is a variable so bundlers don't try to resolve it. */
@@ -448,8 +486,15 @@ function findPostalCode(line: string, country: string): { code: string; start: n
     }
     const match = regex.exec(line);
     if (match) {
-      const code = normalizePostalCode(match[1]!, country);
-      if (code) return { code, start: match.index, end: match.index + match[0].length };
+      let code = normalizePostalCode(match[1]!, country);
+      let end = match.index + match[0].length;
+      // A suffix right after the code belongs to it: "01001 CEDEX Bourg-en-Bresse".
+      const suffix = code ? suffixPattern(format, 'start')?.exec(line.slice(end).trimStart()) : null;
+      if (code && suffix) {
+        code = normalizePostalCode(`${code} ${suffix[0]}`, country);
+        end += line.slice(end).length - line.slice(end).trimStart().length + suffix[0].length;
+      }
+      if (code) return { code, start: match.index, end };
     }
   }
   return null;
@@ -494,6 +539,13 @@ function extract(input: string[], country: string): Extracted {
   if (cityLineIndex < 0) return result;
 
   let cityText: string | null = lines[cityLineIndex]!;
+  // French mail writes the suffix after the city: "75008 PARIS CEDEX 08".
+  const suffix = result.postalCode && !/\s[A-Z]{3,}/.test(result.postalCode) ? suffixPattern(format, 'end')?.exec(cityText) : null;
+  if (suffix && suffix.index > 0) {
+    result.postalCode = normalizePostalCode(`${result.postalCode} ${suffix[0].trim()}`, country) ?? result.postalCode;
+    cityText = cityText.slice(0, suffix.index).trim();
+    lines[cityLineIndex] = cityText;
+  }
   if (format.regions.length) {
     // Where the region is written right before the postal code, on its line (US "City, ST ZIP")
     // or on the line above (Ireland: county, then Eircode), text split on commas or lines
@@ -573,12 +625,92 @@ function detectCountry(lines: string[]): string | null {
   regionCountries ??= Object.entries(FORMATS)
     .filter(([, format]) => format.postal && format.format.includes('%S') && format.regions.some((region) => region.postalPattern))
     .map(([code]) => code);
-  const fitting = regionCountries.filter((country) => {
-    const { region, postalCode } = extract(lines, country);
-    if (!region?.postalPattern || !postalCode) return false;
-    return new RegExp(`^(?:${region.postalPattern})`, 'i').test(postalCode.replace(/[\s-]/g, ''));
-  });
-  return fitting.length === 1 ? fitting[0]! : null;
+  const withRegion = regionCountries.map((country) => ({ country, ...extract(lines, country) }))
+    .filter((entry) => entry.region?.postalPattern && entry.postalCode);
+  const fitting = withRegion.filter((entry) => inRegionRange(entry.postalCode!, entry.region!));
+  if (fitting.length) return fitting.length === 1 ? fitting[0]!.country : null;
+  // A region and a code of the country's shape, but from another region's range
+  // ("CA 10001"): still that country, where ranges are certain; parseAddress flags it.
+  const shaped = withRegion.filter((entry) => FORMATS[entry.country]!.postal?.byRegion);
+  return shaped.length === 1 ? shaped[0]!.country : null;
+}
+
+/** True when the postal code is in the range of the region ("94103" in California). */
+function inRegionRange(postalCode: string, region: Region): boolean {
+  return new RegExp(`^(?:${region.postalPattern})`, 'i').test(postalCode.replace(/[\s-]/g, ''));
+}
+
+/** Whether a country writes the city after the postal code on its line ("%Z %C": true), before it ("%C, %S %Z": false) or on another line (null). */
+function cityAfterCode(format: FormatRecord): boolean | null {
+  const line = format.format.split('%n').find((part) => part.includes('%Z'));
+  if (!line?.includes('%C')) return null;
+  return line.indexOf('%Z') < line.indexOf('%C');
+}
+
+/** A place of the postal code with this name: "Paris" or "Paris 01" for 75001. */
+const placeNamed = <T extends { name: string }>(places: T[], city: string): T | undefined => {
+  const key = fold(city);
+  return places.find((place) => fold(place.name) === key) ?? places.find((place) => key && fold(place.name).startsWith(`${key} `));
+};
+
+/**
+ * 3. With geodata-kit-postal or geodata-kit-cities installed: a postal code
+ *    with one of its places where the country's format puts the city ("75001
+ *    Paris", "10117 Berlin"; the line above a code that stands alone, for
+ *    "London" over "SW1A 2AA"). The code must be valid for the country and the
+ *    place known there: a place of that very code with geodata-kit-postal, or a
+ *    city of the country with geodata-kit-cities for a country the postal data
+ *    does not cover. Exactly one country must fit; with geodata-kit-cities
+ *    alone, common names ("Berlin" is also a village in Mexico) stay unresolved.
+ */
+async function detectCountryByPlace(lines: string[]): Promise<string | null> {
+  const postal = await importOptional<PostalModule>('geodata-kit-postal');
+  const cities = await importOptional<CitiesModule>('geodata-kit-cities');
+  if (!postal && !cities) return null;
+  const covered = new Set(postal?.listPostalCountries() ?? []);
+  const fitting: string[] = [];
+  for (const [country, format] of Object.entries(FORMATS)) {
+    if (!format.postal) continue;
+    let found: { code: string; start: number; end: number } | null = null;
+    let index = lines.length - 1;
+    for (; index >= 0; index--) {
+      found = findPostalCode(lines[index]!, country);
+      if (found) break;
+    }
+    if (!found) continue;
+    const line = lines[index]!;
+    const before = cleanText(line.slice(0, found.start)).replace(/[,\s-]+$/, '');
+    const after = cleanText(line.slice(found.end)).replace(/^[,\s-]+/, '');
+    const order = cityAfterCode(format);
+    const city = order === true ? after : order === false ? before : !before && !after && index > 0 ? lines[index - 1]! : '';
+    if (!city || /\d/.test(city)) continue;
+    let known: boolean;
+    if (postal && covered.has(country)) known = Boolean(placeNamed(await postal.findPlacesByPostalCode(found.code, country), city));
+    else known = Boolean(cities && await cities.findCity(city, { country }).catch(() => null));
+    if (known) fitting.push(country);
+    if (fitting.length > 1) return null;
+  }
+  return fitting[0] ?? null;
+}
+
+/** Below this distance a postal place counts as the city written (a district, a neighbouring locality). */
+const MISMATCH_KM = 30;
+
+const kmBetween = (a: { lat: number; lng: number }, b: { lat: number; lng: number }): number =>
+  Math.hypot(a.lat - b.lat, (a.lng - b.lng) * Math.cos((a.lat * Math.PI) / 180)) * 111.2;
+
+/** Where a city of the country lies: its own postal places, else the city found by geodata-kit-cities. Empty when unknown. */
+async function cityLocations(city: string, country: string, postal: PostalModule): Promise<{ lat: number; lng: number }[]> {
+  const codes = await postal.findPostalCodes({ city, country });
+  const locations: { lat: number; lng: number }[] = [];
+  for (const code of codes) {
+    const places = await postal.findPlacesByPostalCode(code, country);
+    locations.push(...(places.filter((place) => fold(place.name) === fold(city)).length ? places.filter((place) => fold(place.name) === fold(city)) : places));
+  }
+  if (locations.length) return locations;
+  const cities = await importOptional<CitiesModule>('geodata-kit-cities');
+  const found = cities ? await cities.findCity(city, { country }).catch(() => null) : null;
+  return found ? [found] : [];
 }
 
 /**
@@ -620,7 +752,7 @@ async function splitStreetAndCity(text: string, country: string, postalCode: str
  * without them the street stays in `city`.
  */
 export async function parseAddress(text: string, options: { country?: string } = {}): Promise<ParsedAddress> {
-  const result: ParsedAddress = { lines: [], postalCode: null, city: null, region: null, country: null, postalCheck: 'not-checked' };
+  const result: ParsedAddress = { lines: [], postalCode: null, city: null, region: null, country: null, postalCheck: 'not-checked', expectedCity: null, expectedRegion: null };
   if (typeof text !== 'string') return result;
   const multiline = text.includes('\n');
   let lines = (multiline ? text.split(/\r?\n/) : text.split(/\s*,\s*/)).map(cleanText).filter(Boolean);
@@ -634,6 +766,8 @@ export async function parseAddress(text: string, options: { country?: string } =
     lines = lines.slice(0, -1);
   }
   country ??= detectCountry(lines);
+  // A country the caller named but this package does not know is not replaced by a guess.
+  if (!country && (options.country === undefined || options.country === null)) country = await detectCountryByPlace(lines);
   result.country = country;
   if (!country) { result.lines = lines; return result; }
 
@@ -653,13 +787,21 @@ export async function parseAddress(text: string, options: { country?: string } =
     }
   }
 
-  // 4. Cross-check with geodata-kit-postal.
-  if (result.postalCode) {
+  // 4. The region's postal range, where the data proves the ranges.
+  const region = extracted.region;
+  const regionMismatch = Boolean(result.postalCode && region?.postalPattern && FORMATS[country]!.postal?.byRegion && !inRegionRange(result.postalCode, region));
+  if (regionMismatch) {
+    result.postalCheck = 'mismatch';
+    result.expectedRegion = FORMATS[country]!.regions.find((entry) => entry.postalPattern && inRegionRange(result.postalCode!, entry))?.key ?? null;
+  }
+
+  // 5. Cross-check with geodata-kit-postal.
+  if (result.postalCode && !regionMismatch) {
     const postal = await importOptional<PostalModule>('geodata-kit-postal');
     if (postal) {
       const places = await postal.findPlacesByPostalCode(result.postalCode, country);
       const cityKey = result.city ? fold(result.city) : '';
-      const same = places.find((place) => fold(place.name) === cityKey) ?? places.find((place) => cityKey && fold(place.name).startsWith(`${cityKey} `));
+      const same = result.city ? placeNamed(places, result.city) : undefined;
       if (!places.length) {
         result.postalCheck = 'unknown';
       } else if (result.city && same) {
@@ -674,9 +816,19 @@ export async function parseAddress(text: string, options: { country?: string } =
         const looseKey = result.city ? loose(result.city) : '';
         const allowed = Math.max(1, Math.min(2, Math.floor(looseKey.length / 4)));
         const close = places.find((place) => !looseKey || editDistance(loose(place.name), looseKey, allowed) <= allowed);
+        // The data must have this very code: a first part ("SW1A", GB's data) covers too
+        // wide an area, and post towns there serve places far away.
+        const compact = (code: string): string => code.toUpperCase().replace(/[\s-]/g, '');
+        const exact = places.some((place) => [compact(result.postalCode!), compact(result.postalCode!.replace(/-\d+$/, ''))].includes(compact(place.postalCode)));
         if (close) {
           result.city = close.name;
           result.postalCheck = 'corrected';
+        } else if (exact && result.city) {
+          // A city the data places, far from every place of the code: the code belongs elsewhere.
+          const locations = await cityLocations(result.city, country, postal);
+          const far = locations.length > 0 && locations.every((location) => places.every((place) => kmBetween(location, place) > MISMATCH_KM));
+          result.postalCheck = far ? 'mismatch' : 'unknown';
+          if (far) result.expectedCity = places[0]!.name;
         } else {
           result.postalCheck = 'unknown';
         }
