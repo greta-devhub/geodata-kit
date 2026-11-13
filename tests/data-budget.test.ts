@@ -95,4 +95,25 @@ describe('attribution', () => {
     }
     expect(statSync(join(ROOT, 'packages/geodata-kit-tz/LICENSE-DATA')).size).toBeGreaterThan(0);
   });
+
+  it('gives every npm package its README, CHANGELOG and publish metadata', () => {
+    for (const name of readdirSync(join(ROOT, 'packages'))) {
+      const dir = join(ROOT, 'packages', name);
+      const readme = readFileSync(join(dir, 'README.md'), 'utf8');
+      expect(readme.startsWith(`# ${name}\n`), `${name}: README title`).toBe(true);
+      expect(readme, `${name}: install line`).toContain('npm install');
+      for (const section of ['## API', '## The geodata-kit family', '## License']) expect(readme, `${name}: ${section}`).toContain(section);
+      expect(readme, `${name}: marks itself in the family table`).toContain(`**\`${name}\`** (this one)`);
+      expect(statSync(join(dir, 'CHANGELOG.md')).size, `${name}: CHANGELOG`).toBeGreaterThan(0);
+      const pkg = JSON.parse(readFileSync(join(dir, 'package.json'), 'utf8')) as Record<string, unknown>;
+      for (const key of ['description', 'keywords', 'license', 'author', 'repository', 'homepage', 'bugs', 'exports', 'types', 'engines', 'publishConfig']) {
+        expect(pkg[key], `${name}: package.json ${key}`).toBeDefined();
+      }
+      expect(pkg.files, `${name}: published files`).toEqual(expect.arrayContaining(['dist', 'NOTICE', 'LICENSE', 'README.md', 'CHANGELOG.md']));
+    }
+    for (const dir of ['python', ...readdirSync(join(ROOT, 'python/extras')).map((name) => `python/extras/${name}`)]) {
+      expect(statSync(join(ROOT, dir, 'README.md')).size, `${dir}: README`).toBeGreaterThan(0);
+      expect(statSync(join(ROOT, dir, 'NOTICE')).size, `${dir}: NOTICE`).toBeGreaterThan(0);
+    }
+  });
 });

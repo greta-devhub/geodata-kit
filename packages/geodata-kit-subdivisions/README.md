@@ -29,7 +29,7 @@ functions are async.
 | Function | Returns |
 |---|---|
 | `listSubdivisions(code)` | level-1 subdivisions of a country |
-| `getSubdivision(isoOrKey)` | by ISO 3166-2 code (`'DE-BY'`) or GeoNames key (`'DE.02'`) |
+| `getSubdivision(isoOrKey)` | by ISO 3166-2 code (`'DE-BY'`) or internal key (`'DE.02'`) |
 | `resolveSubdivision(text, code?)` | from a name, local name, abbreviation or ISO code |
 | `isSubdivisionCode(value)` | `true` for a valid ISO 3166-2 code |
 | `getSubdivisionName(iso)` | English name of any ISO 3166-2 code |
@@ -56,5 +56,5 @@ Install only the parts you need. All packages share one version number and work 
 
 ## License
 
-MIT. Data from GeoNames (CC BY 4.0), Unicode CLDR and Wikidata; see `NOTICE`.
-If you publish data taken from this package, credit GeoNames.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

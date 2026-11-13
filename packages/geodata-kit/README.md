@@ -179,5 +179,5 @@ All types (`Country`, `CountryMatch`, `Group`, `CountryLanguage`, …) are expor
 
 ## License
 
-MIT. Data from GeoNames (CC BY 4.0), Unicode CLDR, IANA tzdata and Wikidata;
-see `NOTICE`. If you publish data taken from this package, credit GeoNames.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

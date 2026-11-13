@@ -1,8 +1,6 @@
 """geodata-kit — countries, subdivisions, cities, languages, timezones, address and phone data.
 
-Offline, no runtime dependencies. Data: GeoNames (CC BY 4.0), Unicode CLDR (Unicode-3.0), IANA tzdata
-(public domain), Wikidata (CC0), Natural Earth (public domain), libphonenumber metadata (Apache-2.0),
-Google address metadata (CC BY 4.0), europa.eu (CC BY 4.0). See NOTICE.
+Offline, no runtime dependencies. Data licences and credits: see NOTICE.
 """
 from .address import (
     format_address, get_address_format, get_postal_code_rules, get_required_address_fields, is_valid_postal_code,
@@ -41,5 +39,5 @@ from .subdivisions import (
 )
 from .timezones import canonical_timezone, get_country_timezones, get_primary_timezone, is_timezone, list_timezones
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __all__ = [name for name in dir() if not name.startswith("_")]

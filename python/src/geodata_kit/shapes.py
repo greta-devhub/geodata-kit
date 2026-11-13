@@ -1,4 +1,4 @@
-"""Point → country / first-level subdivision from Natural Earth polygons."""
+"""Point → country / first-level subdivision from boundary polygons."""
 from __future__ import annotations
 
 import math

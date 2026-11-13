@@ -35,7 +35,7 @@ function statusMatches(language: CountryLanguage, status: CountryLanguagesOption
   return wanted.some((entry) => (entry === 'national' ? NATIONAL.has(language.status) : language.status === entry));
 }
 
-/** Every language spoken in the country (CLDR), national first, then by share. */
+/** Every language spoken in the country, national first, then by share. */
 export function getCountryLanguages(code: string, options: CountryLanguagesOptions = {}): CountryLanguage[] {
   return listFor(code)
     .filter((language) => statusMatches(language, options.status)

@@ -1,4 +1,4 @@
-"""Subdivisions on four levels (GeoNames admin1–4); level 1 with ISO 3166-2."""
+"""Subdivisions on four levels; level 1 with ISO 3166-2."""
 from __future__ import annotations
 
 import functools

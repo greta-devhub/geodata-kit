@@ -1,15 +1,15 @@
 {
   "name": "geodata-kit-localities",
-  "version": "0.2.0",
-  "description": "Optional data for geodata-kit: 4.9 million villages, hamlets and city districts from GeoNames that are not in cities500, sharded per country. Node.js only.",
+  "version": "0.2.1",
+  "description": "Optional data for geodata-kit-cities: 4.9 million villages, hamlets and city districts, sharded per country. Node.js only.",
   "keywords": [
-    "geonames",
     "localities",
     "villages",
     "places",
     "geodata-kit"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -45,9 +45,13 @@
     "data",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

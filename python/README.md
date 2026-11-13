@@ -29,6 +29,5 @@ passed as keyword arguments:
 `find_city("Springfield", country="US", subdivision="MO")`. The coordinate
 timezone lookup of `geodata-kit-tz` is not included.
 
-MIT. Data from GeoNames (CC BY 4.0), Unicode CLDR, IANA tzdata, Wikidata,
-Natural Earth, libphonenumber and Google's address metadata; see `NOTICE`.
-If you publish data taken from this package, credit GeoNames.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

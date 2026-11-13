@@ -40,7 +40,7 @@ export interface CountryRecord {
   demonym: string | null;
   drivingSide: 'left' | 'right' | null;
   postal: { format: string | null; regex: string | null };
-  geonamesLanguages: string[];
+  languageTags: string[];
 }
 
 interface Corrections {
@@ -201,7 +201,7 @@ export async function buildCountries(): Promise<CountryRecord[]> {
       demonym,
       drivingSide: side === 'left' || side === 'right' ? side : null,
       postal: { format: emptyToNull(c[13]), regex: emptyToNull(c[14]) },
-      geonamesLanguages: emptyToNull(c[15])?.split(',') ?? [],
+      languageTags: emptyToNull(c[15])?.split(',') ?? [],
     });
   }
   countries.sort((a, b) => compareStrings(a.code, b.code));

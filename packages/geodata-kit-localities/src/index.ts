@@ -1,6 +1,6 @@
 /**
- * geodata-kit-localities — villages, hamlets and city districts from GeoNames
- * that are not in cities500 (4.9 million places), one gzip file per country.
+ * geodata-kit-localities — villages, hamlets and city districts
+ * that are not in geodata-kit-cities (4.9 million places), one gzip file per country.
  *
  * Install it next to geodata-kit and the city functions use it automatically
  * (tier 'all'). It can also be used on its own.

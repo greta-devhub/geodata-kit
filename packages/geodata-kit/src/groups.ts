@@ -11,7 +11,7 @@ function copy(group: GroupRecord): Group {
 
 /**
  * All groups, optionally of one kind:
- *  - 'continent': continent_europe, continent_asia, … (GeoNames)
+ *  - 'continent': continent_europe, continent_asia, …
  *  - 'un': UN M49 regions, e.g. un_western_europe, un_latin_america
  *  - 'political': eu, eurozone, schengen, efta, eea (with dates)
  *  - 'business': dach, benelux, nordic, baltic, cee, eastern_europe, emea, mena, apac, north_america, latin_america, caribbean, central_asia
@@ -75,7 +75,7 @@ export function expandGroups(items: Iterable<string>, options: { at?: DateInput 
 
 export interface Continent { code: string; name: string; slug: string }
 
-/** The seven GeoNames continents: AF, AN, AS, EU, NA, OC, SA. */
+/** The seven continents: AF, AN, AS, EU, NA, OC, SA. */
 export function listContinents(): Continent[] {
   return GROUPS.filter((group) => group.kind === 'continent').map((group) => ({ code: group.code!, name: group.name, slug: group.slug }));
 }

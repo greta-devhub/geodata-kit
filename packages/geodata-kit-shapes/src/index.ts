@@ -1,6 +1,6 @@
 /**
  * geodata-kit-shapes — which country or first-level subdivision a point lies
- * in, from Natural Earth polygons (countries 1:50m, subdivisions 1:10m,
+ * in, from boundary polygons (countries 1:50m, subdivisions 1:10m,
  * simplified to about 200–400 m). Good for "which country is this coordinate
  * in"; near borders the answer can be off by a few hundred metres.
  */
@@ -44,7 +44,7 @@ export interface SubdivisionAtPoint {
   country: string;
   /** ISO 3166-2 code ("DE-BY"), when the unit has one. */
   iso: string | null;
-  /** GeoNames level-1 code ("02"); with geodata-kit-subdivisions: getSubdivision(`${country}.${code}`). */
+  /** Level-1 code ("02"); with geodata-kit-subdivisions: getSubdivision(`${country}.${code}`). */
   code: string | null;
   /** English name ("Bavaria"). */
   name: string | null;

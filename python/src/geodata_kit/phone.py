@@ -1,6 +1,6 @@
-"""Phone numbers from libphonenumber metadata (Apache-2.0): parse, validate, classify, format.
+"""Phone numbers: parse, validate, classify, format.
 
-Same rules as the TypeScript module (which follows libphonenumber).
+Same rules as the TypeScript module.
 """
 from __future__ import annotations
 

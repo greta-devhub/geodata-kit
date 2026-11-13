@@ -40,7 +40,7 @@ All functions are async: each country's data loads the first time it is used.
 | `findCity(name, { country, subdivision?, tier? })` | best matching `City` (name, asciiName, country, admin1–4, population, lat, lng, timezone, featureCode, unlocode, wikidataId, alternateNames) |
 | `searchCities(query, { country?, subdivision?, minPopulation?, tier?, limit? })` | cities starting with the query |
 | `listCities({ country, subdivision?, minPopulation?, tier? })` | cities of a country, largest first |
-| `getCity(geonameId)` | by GeoNames id |
+| `getCity(geonameId)` | by place id (`geonameId` of a `City`) |
 | `getCityByUnlocode(code)` | by UN/LOCODE: `'DEHAM'` |
 | `getPlaceByWikidataId(id)` | by Wikidata id: `'Q64'` |
 | `parseLocation(text, { country?, tier? })` | `{ city, subdivision, country }` from text such as `'Berlin, Germany'` |
@@ -69,4 +69,5 @@ Install only the parts you need. All packages share one version number and work 
 
 ## License
 
-MIT. Data from GeoNames (CC BY 4.0); see `NOTICE`. If you publish data taken from this package, credit GeoNames.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.
