@@ -9,7 +9,7 @@ const BY_LOWER: ReadonlyMap<string, string> = new Map([
   ...Object.entries(TIMEZONES.aliases).map(([alias, target]) => [alias.toLowerCase(), target] as const),
 ]);
 
-/** IANA timezones of a country (tzdata zone.tab). Germany → Europe/Berlin, Europe/Busingen. */
+/** IANA timezones of a country. Germany → Europe/Berlin, Europe/Busingen. */
 export function getCountryTimezones(code: string): string[] {
   return [...(getCountry(code)?.timezones ?? [])];
 }
@@ -33,7 +33,7 @@ export function canonicalTimezone(value: string): string | null {
   return CANONICAL.has(found) ? found : TIMEZONES.aliases[found] ?? found;
 }
 
-/** Every canonical IANA timezone known to the bundled tzdata. */
+/** Every canonical IANA timezone in the bundled data. */
 export function listTimezones(): string[] {
   return [...TIMEZONES.zones];
 }

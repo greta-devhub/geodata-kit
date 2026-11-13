@@ -1,4 +1,4 @@
-"""Airports with an IATA or ICAO code (GeoNames), with the city they serve."""
+"""Airports with an IATA or ICAO code, with the city they serve."""
 from __future__ import annotations
 
 import functools

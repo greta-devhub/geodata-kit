@@ -1,18 +1,18 @@
 {
   "name": "geodata-kit-cities",
   "version": "0.2.0",
-  "description": "237,000 cities for every country: find by name in any spelling, parse free-text locations and get the IANA timezone of a city. Offline add-on for geodata-kit, built from GeoNames.",
+  "description": "237,000 cities for every country: find by name in any spelling, parse free-text locations and get the IANA timezone of a city. Offline add-on for geodata-kit.",
   "keywords": [
     "cities",
     "city",
     "timezone",
     "city-timezone",
-    "geonames",
     "location",
     "geocoding",
     "geodata-kit"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -48,7 +48,8 @@
     "data",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "geodata-kit": "^0.2.0",
@@ -56,5 +57,8 @@
   },
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

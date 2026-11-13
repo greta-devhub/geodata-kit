@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE", "NOTICE"]
 requires-python = ">=3.12"
-keywords = ["countries", "iso-3166", "subdivisions", "cities", "geonames", "timezone", "languages", "cldr", "address", "postal-code", "phone-number"]
+keywords = ["countries", "iso-3166", "subdivisions", "cities", "timezone", "languages", "address", "postal-code", "phone-number"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.12",

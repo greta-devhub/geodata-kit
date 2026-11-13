@@ -1,8 +1,8 @@
 /**
  * geodata-kit-postal — postal code → places and place → postal codes for 124
- * countries (GeoNames postal-code dump, 1.8 million codes). Node.js only.
+ * countries (1.8 million codes). Node.js only.
  *
- * For GB, CA and NL GeoNames publishes the first part of the code only
+ * For GB, CA and NL the data has the first part of the code only
  * ("SW1A", "K1A", "1234"); full codes are matched by that first part.
  */
 import { existsSync, readdirSync } from 'node:fs';

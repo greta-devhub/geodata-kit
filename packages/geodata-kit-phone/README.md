@@ -1,7 +1,7 @@
 # geodata-kit-phone
 
-Parse, validate, classify and format phone numbers of every country, using
-libphonenumber's metadata. Offline, typed, no dependencies, about 0.5 MB.
+Parse, validate, classify and format phone numbers of every country.
+Offline, typed, no dependencies, about 0.5 MB.
 
 ```bash
 npm install geodata-kit-phone
@@ -51,4 +51,5 @@ Install only the parts you need. All packages share one version number and work 
 
 ## License
 
-MIT. Phone metadata from libphonenumber, © The Libphonenumber Authors, Apache-2.0; see `NOTICE`.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

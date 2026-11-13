@@ -1,4 +1,4 @@
-"""Address formats, regions, postal-code rules, formatting and parsing (Google address metadata, GeoNames)."""
+"""Address formats, regions, postal-code rules, formatting and parsing."""
 from __future__ import annotations
 
 import functools
@@ -75,7 +75,7 @@ def is_valid_region(value: str, country: str) -> bool:
 # ─── Postal codes ─────────────────────────────────────────────────────────
 
 def _js_pattern(source: str) -> str:
-    """Google/GeoNames patterns are JavaScript regexes; the subset they use is valid Python too."""
+    """The postal patterns are JavaScript regexes; the subset they use is valid Python too."""
     return source
 
 
@@ -86,8 +86,8 @@ def _patterns(country: str) -> tuple[re.Pattern, ...]:
     result = []
     if postal and postal["pattern"]:
         result.append(re.compile(rf"^(?:{_js_pattern(postal['pattern'])})$", re.I))
-    if postal and postal["geonamesPattern"]:
-        source = postal["geonamesPattern"]
+    if postal and postal["secondaryPattern"]:
+        source = postal["secondaryPattern"]
         inner = source[1:] if source.startswith("^") else source
         inner = inner[:-1] if inner.endswith("$") else inner
         try:
@@ -227,7 +227,7 @@ def _find_postal_code(line: str, country: str) -> tuple[str, int, int] | None:
     postal = _formats()[country]["postal"]
     if not postal:
         return None
-    sources = [s for s in (postal["pattern"], re.sub(r"\$$", "", re.sub(r"^\^", "", postal["geonamesPattern"] or ""))) if s]
+    sources = [s for s in (postal["pattern"], re.sub(r"\$$", "", re.sub(r"^\^", "", postal["secondaryPattern"] or ""))) if s]
     prefixes = "|".join(re.escape(prefix) for prefix in postal["prefixes"])
     for source in sources:
         try:

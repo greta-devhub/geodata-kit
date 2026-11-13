@@ -25,7 +25,7 @@ Both functions are async: the boundaries load on first use.
 | Function | Returns |
 |---|---|
 | `getCountryAt(lat, lng)` | ISO alpha-2 country code, or `null` at sea |
-| `getSubdivisionAt(lat, lng)` | `{ country, iso, code, name }` of the state or province: ISO 3166-2 code, GeoNames code and English name; `null` at sea |
+| `getSubdivisionAt(lat, lng)` | `{ country, iso, code, name }` of the state or province: ISO 3166-2 code, level-1 code and English name; `null` at sea |
 
 ## The geodata-kit family
 
@@ -46,4 +46,5 @@ Install only the parts you need. All packages share one version number and work 
 
 ## License
 
-MIT. Boundaries from Natural Earth (public domain), names from GeoNames (CC BY 4.0); see `NOTICE`.
+MIT. The data comes with its own licences and credits, listed in `NOTICE`.
+Keep `NOTICE` with the data when you redistribute it.

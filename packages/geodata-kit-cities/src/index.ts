@@ -1,16 +1,16 @@
 /**
- * geodata-kit-cities — every GeoNames populated place with 500+ inhabitants
- * (cities500, 237k places) and, with the optional geodata-kit-localities
+ * geodata-kit-cities — every populated place with 500+ inhabitants
+ * (237k places) and, with the optional geodata-kit-localities
  * package, 4.9M more villages, hamlets and city districts.
  *
  * Data loads per country and per tier on first use, so all functions are async.
  *
- * Tiers (GeoNames' own cut-offs; each includes the bigger ones):
+ * Tiers (each includes the bigger ones):
  *   15000  cities with 15,000+ inhabitants or capitals        (34k)
  *    5000  5,000+ or seats of first-level subdivisions        (70k)
  *    1000  1,000+ or seats down to third-level subdivisions   (172k)
  *     500  500+ or seats down to fourth-level subdivisions    (237k, default)
- *   'all' cities500 + localities (needs geodata-kit-localities)
+ *   'all' tier 500 + localities (needs geodata-kit-localities)
  */
 import { cleanText, fold, getCountry, getPrimaryTimezone, normalizeCountryCode, resolveCountry } from 'geodata-kit';
 import { resolveSubdivision, type Subdivision } from 'geodata-kit-subdivisions';
@@ -26,12 +26,12 @@ export interface City {
   name: string;
   asciiName: string;
   country: string;
-  /** GeoNames subdivision codes (level 1–4); see geodata-kit-subdivisions. */
+  /** Subdivision codes (level 1–4); see geodata-kit-subdivisions. */
   admin1: string;
   admin2: string;
   admin3: string;
   admin4: string;
-  /** GeoNames feature code: PPLC capital, PPLA seat of a first-level subdivision, PPL place, PPLX district, … */
+  /** Feature code: PPLC capital, PPLA seat of a first-level subdivision, PPL place, PPLX district, … */
   featureCode: string;
   population: number;
   lat: number;
@@ -328,7 +328,7 @@ function loadIdIndex(): Promise<{ byId: Map<number, string>; wikidata: Record<st
   return idIndex;
 }
 
-/** A city by GeoNames id (cities500 only). */
+/** A city by place id (`geonameId`). */
 export async function getCity(geonameId: number): Promise<City | null> {
   const country = (await loadIdIndex()).byId.get(geonameId);
   if (!country) return null;

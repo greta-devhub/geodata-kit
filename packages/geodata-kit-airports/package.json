@@ -1,16 +1,16 @@
 {
   "name": "geodata-kit-airports",
   "version": "0.2.0",
-  "description": "10,500 airports by IATA or ICAO code, with country, coordinates, timezone and the city they serve. Offline add-on for geodata-kit, built from GeoNames.",
+  "description": "10,500 airports by IATA or ICAO code, with country, coordinates, timezone and the city they serve. Offline add-on for geodata-kit.",
   "keywords": [
     "airports",
     "iata",
     "icao",
     "airport-codes",
-    "geonames",
     "geodata-kit"
   ],
   "license": "MIT",
+  "author": "geodata-kit contributors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/greta-devhub/geodata-kit.git",
@@ -46,12 +46,16 @@
     "data",
     "NOTICE",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "geodata-kit": "^0.2.0"
   },
   "scripts": {
     "build": "tsup"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

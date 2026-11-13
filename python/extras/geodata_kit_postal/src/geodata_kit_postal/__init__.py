@@ -1,4 +1,4 @@
-"""Postal code → places and place → postal codes for 124 countries (GeoNames postal-code dump, CC BY 4.0).
+"""Postal code → places and place → postal codes for 124 countries (licences: see NOTICE).
 
 GB, CA and NL carry the first part of the code only; full codes match by that part.
 """

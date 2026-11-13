@@ -87,7 +87,7 @@ export function getCountry(code: string): Country | null {
 export interface CountryFilter {
   /** Only members of this group (see listGroups), e.g. "eu" or "dach". */
   group?: string;
-  /** GeoNames continent code (EU, AS, …). */
+  /** Continent code (EU, AS, …). */
   continent?: string;
   /** Countries where this language is national (official or de facto). */
   language?: string;
