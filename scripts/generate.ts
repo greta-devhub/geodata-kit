@@ -33,8 +33,9 @@ const STEPS: Step[] = [
   { name: 'localities', run: buildLocalities },
   { name: 'airports', run: buildAirports },
   { name: 'shapes', run: buildShapes },
-  { name: 'address', run: buildAddress },
   { name: 'postal', run: buildPostal },
+  // After postal: the postal rules are checked against the real codes.
+  { name: 'address', run: buildAddress },
   { name: 'phone', run: buildPhone },
   { name: 'tz', run: buildTz },
   { name: 'meta', run: writeMeta },

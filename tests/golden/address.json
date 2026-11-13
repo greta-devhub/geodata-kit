@@ -676,6 +676,1043 @@
     }
    ],
    "expect": []
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "city",
+   "expect": "San Francisco",
+   "note": "country found from state + ZIP"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "region",
+   "expect": "CA",
+   "note": "country found from state + ZIP"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "postalCode",
+   "expect": "94103",
+   "note": "country found from state + ZIP"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "country",
+   "expect": "US",
+   "note": "country found from state + ZIP"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103"
+   ],
+   "path": "lines",
+   "expect": [
+    "1 Market St"
+   ],
+   "note": "country found from state + ZIP"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "city",
+   "expect": "San Francisco"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "region",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St, San Francisco, CA 94103",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "lines",
+   "expect": [
+    "1 Market St"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "San Francisco CA 94103"
+   ],
+   "path": "city",
+   "expect": "San Francisco"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "San Francisco CA 94103"
+   ],
+   "path": "region",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "San Francisco CA 94103"
+   ],
+   "path": "postalCode",
+   "expect": "94103"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "San Francisco CA 94103"
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "San Francisco CA 94103"
+   ],
+   "path": "lines",
+   "expect": []
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco, CA 94103"
+   ],
+   "path": "city",
+   "expect": "San Francisco"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco, CA 94103"
+   ],
+   "path": "region",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco, CA 94103"
+   ],
+   "path": "postalCode",
+   "expect": "94103"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco, CA 94103"
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Market St\nSan Francisco, CA 94103"
+   ],
+   "path": "lines",
+   "expect": [
+    "1 Market St"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Avenue New York NY 10118"
+   ],
+   "path": "city",
+   "expect": "New York",
+   "note": "no separators: the city is found through the postal and city data"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Avenue New York NY 10118"
+   ],
+   "path": "region",
+   "expect": "NY",
+   "note": "no separators: the city is found through the postal and city data"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Avenue New York NY 10118"
+   ],
+   "path": "postalCode",
+   "expect": "10118",
+   "note": "no separators: the city is found through the postal and city data"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Avenue New York NY 10118"
+   ],
+   "path": "country",
+   "expect": "US",
+   "note": "no separators: the city is found through the postal and city data"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Avenue New York NY 10118"
+   ],
+   "path": "lines",
+   "expect": [
+    "350 Fifth Avenue"
+   ],
+   "note": "no separators: the city is found through the postal and city data"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, TX 78701-1234"
+   ],
+   "path": "city",
+   "expect": "Austin"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, TX 78701-1234"
+   ],
+   "path": "region",
+   "expect": "TX"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, TX 78701-1234"
+   ],
+   "path": "postalCode",
+   "expect": "78701-1234"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, TX 78701-1234"
+   ],
+   "path": "country",
+   "expect": "US"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, TX 78701-1234"
+   ],
+   "path": "lines",
+   "expect": [
+    "1 Main St"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, Texas 78701, USA"
+   ],
+   "path": "city",
+   "expect": "Austin",
+   "note": "full state name"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, Texas 78701, USA"
+   ],
+   "path": "region",
+   "expect": "TX",
+   "note": "full state name"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, Texas 78701, USA"
+   ],
+   "path": "postalCode",
+   "expect": "78701",
+   "note": "full state name"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, Texas 78701, USA"
+   ],
+   "path": "country",
+   "expect": "US",
+   "note": "full state name"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "1 Main St, Austin, Texas 78701, USA"
+   ],
+   "path": "lines",
+   "expect": [
+    "1 Main St"
+   ],
+   "note": "full state name"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa, ON K1M 1M4, Canada"
+   ],
+   "path": "city",
+   "expect": "Ottawa"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa, ON K1M 1M4, Canada"
+   ],
+   "path": "region",
+   "expect": "ON"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa, ON K1M 1M4, Canada"
+   ],
+   "path": "postalCode",
+   "expect": "K1M 1M4"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa, ON K1M 1M4, Canada"
+   ],
+   "path": "country",
+   "expect": "CA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa, ON K1M 1M4, Canada"
+   ],
+   "path": "lines",
+   "expect": [
+    "24 Sussex Drive"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa ON K1M 1M4"
+   ],
+   "path": "city",
+   "expect": "Ottawa",
+   "note": "Canada found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa ON K1M 1M4"
+   ],
+   "path": "region",
+   "expect": "ON",
+   "note": "Canada found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa ON K1M 1M4"
+   ],
+   "path": "postalCode",
+   "expect": "K1M 1M4",
+   "note": "Canada found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "24 Sussex Drive, Ottawa ON K1M 1M4"
+   ],
+   "path": "country",
+   "expect": "CA",
+   "note": "Canada found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Ave, New York 10118",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "city",
+   "expect": "New York",
+   "note": "a city that is also a state name stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Ave, New York 10118",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "region",
+   "expect": null,
+   "note": "a city that is also a state name stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Ave, New York 10118",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "postalCode",
+   "expect": "10118",
+   "note": "a city that is also a state name stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "350 Fifth Ave, New York 10118",
+    {
+     "country": "US"
+    }
+   ],
+   "path": "lines",
+   "expect": [
+    "350 Fifth Ave"
+   ],
+   "note": "a city that is also a state name stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, CH-8001 Zürich"
+   ],
+   "path": "city",
+   "expect": "Zürich",
+   "note": "country from the postal prefix"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, CH-8001 Zürich"
+   ],
+   "path": "postalCode",
+   "expect": "8001",
+   "note": "country from the postal prefix"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, CH-8001 Zürich"
+   ],
+   "path": "country",
+   "expect": "CH",
+   "note": "country from the postal prefix"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Bahnhofstrasse 1, CH-8001 Zürich"
+   ],
+   "path": "lines",
+   "expect": [
+    "Bahnhofstrasse 1"
+   ],
+   "note": "country from the postal prefix"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München"
+   ],
+   "path": "city",
+   "expect": "München"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München"
+   ],
+   "path": "postalCode",
+   "expect": "80331"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München"
+   ],
+   "path": "country",
+   "expect": "DE"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, D-80331 München"
+   ],
+   "path": "lines",
+   "expect": [
+    "Hauptstr. 1"
+   ]
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Ringstrasse 1, A-1010 Wien"
+   ],
+   "path": "city",
+   "expect": "Wien"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Ringstrasse 1, A-1010 Wien"
+   ],
+   "path": "postalCode",
+   "expect": "1010"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Ringstrasse 1, A-1010 Wien"
+   ],
+   "path": "country",
+   "expect": "AT"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Rue de la Loi 16, B-1000 Bruxelles"
+   ],
+   "path": "city",
+   "expect": "Bruxelles"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Rue de la Loi 16, B-1000 Bruxelles"
+   ],
+   "path": "postalCode",
+   "expect": "1000"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Rue de la Loi 16, B-1000 Bruxelles"
+   ],
+   "path": "country",
+   "expect": "BE"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Suite B-200, 1 Main St"
+   ],
+   "path": "country",
+   "expect": null,
+   "note": "a prefix without a valid code of that country proves nothing"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Suite B-200, 1 Main St"
+   ],
+   "path": "postalCode",
+   "expect": null,
+   "note": "a prefix without a valid code of that country proves nothing"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Hauptstr. 1, 80331 München"
+   ],
+   "path": "country",
+   "expect": null,
+   "note": "a bare postal code is not enough to know the country"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "80331",
+    "Germany"
+   ],
+   "expect": "80331",
+   "note": "country by name, like formatAddress"
+  },
+  {
+   "fn": "getRequiredAddressFields",
+   "args": [
+    "Germany"
+   ],
+   "expect": [
+    "addressLines",
+    "city",
+    "postalCode"
+   ]
+  },
+  {
+   "fn": "getAddressFormat",
+   "args": [
+    "Deutschland"
+   ],
+   "expect": "postal",
+   "path": "postalLabel"
+  },
+  {
+   "fn": "listRegions",
+   "args": [
+    "United States"
+   ],
+   "expect": 50,
+   "path": "length",
+   "op": "gte"
+  },
+  {
+   "fn": "getPostalCodeRules",
+   "args": [
+    "Germany"
+   ],
+   "expect": [
+    "D-",
+    "DE-"
+   ],
+   "path": "prefixes"
+  },
+  {
+   "fn": "isValidRegion",
+   "args": [
+    "CA",
+    "United States"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "80331",
+    "Atlantis"
+   ],
+   "expect": false,
+   "note": "unknown country"
+  },
+  {
+   "fn": "formatAddress",
+   "args": [
+    {
+     "city": "X",
+     "country": "ZZ"
+    }
+   ],
+   "expect": [],
+   "note": "unknown country gives no lines, not an error"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Rome",
+    "IT"
+   ],
+   "expect": "RM",
+   "path": "key",
+   "note": "English name"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Milan",
+    "IT"
+   ],
+   "expect": "MI",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Roma",
+    "IT"
+   ],
+   "expect": "RM",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Washington, D.C.",
+    "US"
+   ],
+   "expect": "DC",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Washington DC",
+    "US"
+   ],
+   "expect": "DC",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Washington",
+    "US"
+   ],
+   "expect": "WA",
+   "path": "key",
+   "note": "the state, not the capital"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Dublin",
+    "IE"
+   ],
+   "expect": "Co. Dublin",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "County Dublin",
+    "IE"
+   ],
+   "expect": "Co. Dublin",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "State of California",
+    "US"
+   ],
+   "expect": "CA",
+   "path": "key"
+  },
+  {
+   "fn": "resolveRegion",
+   "args": [
+    "Atlantis",
+    "US"
+   ],
+   "expect": null
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "0123 AB",
+    "NL"
+   ],
+   "expect": false,
+   "note": "never starts with 0"
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "1234 AB",
+    "NL"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "011001",
+    "IN"
+   ],
+   "expect": false,
+   "note": "no region's codes start with 0"
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "110001",
+    "IN"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "53013",
+    "ES"
+   ],
+   "expect": false,
+   "note": "provinces are 01 to 52"
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "28001",
+    "ES"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "375010",
+    "AM"
+   ],
+   "expect": false,
+   "note": "old 6-digit form"
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "0010",
+    "AM"
+   ],
+   "expect": true
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "00501",
+    "US"
+   ],
+   "expect": true,
+   "note": "Holtsville, NY: the lowest ZIP"
+  },
+  {
+   "fn": "isValidPostalCode",
+   "args": [
+    "09001",
+    "US"
+   ],
+   "expect": true,
+   "note": "military mail"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "GIR 0AA",
+    "GB"
+   ],
+   "expect": "GIR 0AA"
+  },
+  {
+   "fn": "normalizePostalCode",
+   "args": [
+    "gir0aa",
+    "GB"
+   ],
+   "expect": "GIR 0AA"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Jane Doe\nMain Street 12\nSometown\nCo. Carlow\nA65 F4E2",
+    {
+     "country": "IE"
+    }
+   ],
+   "path": "city",
+   "expect": "Sometown",
+   "note": "region on its own line above the postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Jane Doe\nMain Street 12\nSometown\nCo. Carlow\nA65 F4E2",
+    {
+     "country": "IE"
+    }
+   ],
+   "path": "region",
+   "expect": "Co. Carlow",
+   "note": "region on its own line above the postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Jane Doe\nMain Street 12\nSometown\nCo. Carlow\nA65 F4E2",
+    {
+     "country": "IE"
+    }
+   ],
+   "path": "postalCode",
+   "expect": "A65 F4E2",
+   "note": "region on its own line above the postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Jane Doe\nMain Street 12\nSometown\nCo. Carlow\nA65 F4E2",
+    {
+     "country": "IE"
+    }
+   ],
+   "path": "lines",
+   "expect": [
+    "Jane Doe",
+    "Main Street 12"
+   ],
+   "note": "region on its own line above the postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Main Street 12, Sometown, County Dublin, D02 AF30, Ireland"
+   ],
+   "path": "city",
+   "expect": "Sometown"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Main Street 12, Sometown, County Dublin, D02 AF30, Ireland"
+   ],
+   "path": "region",
+   "expect": "Co. Dublin"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Main Street 12, Sometown, County Dublin, D02 AF30, Ireland"
+   ],
+   "path": "country",
+   "expect": "IE"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma 1, 20121 Milano MI"
+   ],
+   "path": "city",
+   "expect": "Milano",
+   "note": "Italy found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma 1, 20121 Milano MI"
+   ],
+   "path": "region",
+   "expect": "MI",
+   "note": "Italy found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma 1, 20121 Milano MI"
+   ],
+   "path": "postalCode",
+   "expect": "20121",
+   "note": "Italy found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma 1, 20121 Milano MI"
+   ],
+   "path": "country",
+   "expect": "IT",
+   "note": "Italy found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma 1, 20121 Milano MI"
+   ],
+   "path": "lines",
+   "expect": [
+    "Via Roma 1"
+   ],
+   "note": "Italy found from province + postal code"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma, 20121 Milano",
+    {
+     "country": "IT"
+    }
+   ],
+   "path": "city",
+   "expect": "Milano",
+   "note": "a city named like its province stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma, 20121 Milano",
+    {
+     "country": "IT"
+    }
+   ],
+   "path": "region",
+   "expect": null,
+   "note": "a city named like its province stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Via Roma, 20121 Milano",
+    {
+     "country": "IT"
+    }
+   ],
+   "path": "lines",
+   "expect": [
+    "Via Roma"
+   ],
+   "note": "a city named like its province stays the city"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Calle Mayor 1, 28013 Madrid",
+    {
+     "country": "Spain"
+    }
+   ],
+   "path": "city",
+   "expect": "Madrid"
+  },
+  {
+   "fn": "parseAddress",
+   "args": [
+    "Calle Mayor 1, 28013 Madrid",
+    {
+     "country": "Spain"
+    }
+   ],
+   "path": "postalCode",
+   "expect": "28013"
   }
  ]
 }

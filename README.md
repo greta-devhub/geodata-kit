@@ -190,7 +190,7 @@ The generator fails instead of guessing when:
 
 ## Tests
 
-- `tests/golden/*.json`: 873 cases (countries, languages, groups, subdivisions,
+- `tests/golden/*.json`: 985 cases (countries, languages, groups, subdivisions,
   cities, airports and shapes, address, phone, tz) in a neutral format
   `{ fn, args, path, op, expect }`. Run by `tests/golden.test.ts` and
   `python/tests/test_golden.py`. The cases include the country names and
@@ -332,6 +332,17 @@ The first four npm packages were published as 0.1.0 on 2026-11-12; the split int
 - **City names:** alternate names cover the bundled languages, the country's
   own languages and, for cities over 15,000 inhabitants, twelve widely used
   languages in other scripts. A name in any other language is not found.
+- **Postal-code rules:** `scripts/build/address.ts` checks every rule against
+  the real codes in `data/postal` and writes its decisions to
+  `data/reports/address.json`. Region ranges are enforced for AD, AR, AU, ES,
+  IN, JP, KR, MX, UA and US. They are not enforced for AM, BR, IT, RU, TR and
+  UY (some real codes are outside the source's ranges), for NI, SV and TW (no
+  real codes to check against), for CA (only partial codes) and for PH and TH
+  (a region without a range). All other countries have a pattern only, which
+  for many is just a shape (DE, FR: five digits).
+- **Address parsing without a country:** the country is only found from a
+  postal prefix or from a region next to a postal code of its range. An
+  address with a bare postal code needs the `country` option.
 - **Business groups:** they follow common definitions (written in
   `overlays/groups.json`). Teams that count differently can add codes, e.g.
   `expandGroups(['cee', 'AT'])`.
