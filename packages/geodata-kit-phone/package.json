@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-phone",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Parse, validate, classify and format phone numbers for every country. Offline, typed, no dependencies.",
   "keywords": [
     "phone",

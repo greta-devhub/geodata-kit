@@ -1,6 +1,6 @@
 {
   "name": "geodata-kit-cities",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "237,000 cities for every country: find by name in any spelling, parse free-text locations and get the IANA timezone of a city. Offline add-on for geodata-kit.",
   "keywords": [
     "cities",
@@ -52,8 +52,8 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "geodata-kit": "^0.2.0",
-    "geodata-kit-subdivisions": "^0.2.0"
+    "geodata-kit": "^0.2.1",
+    "geodata-kit-subdivisions": "^0.2.1"
   },
   "scripts": {
     "build": "tsup"

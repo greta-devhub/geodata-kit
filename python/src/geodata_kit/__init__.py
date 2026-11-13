@@ -39,5 +39,5 @@ from .subdivisions import (
 )
 from .timezones import canonical_timezone, get_country_timezones, get_primary_timezone, is_timezone, list_timezones
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __all__ = [name for name in dir() if not name.startswith("_")]
