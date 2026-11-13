@@ -4,7 +4,16 @@
   "type": "module",
   "description": "Monorepo for geodata-kit: countries, subdivisions, cities, languages, timezones, address and phone data built from GeoNames, CLDR, IANA tzdata, Wikidata, Natural Earth and libphonenumber.",
   "workspaces": [
-    "packages/*"
+    "packages/geodata-kit",
+    "packages/geodata-kit-subdivisions",
+    "packages/geodata-kit-cities",
+    "packages/geodata-kit-airports",
+    "packages/geodata-kit-shapes",
+    "packages/geodata-kit-address",
+    "packages/geodata-kit-phone",
+    "packages/geodata-kit-localities",
+    "packages/geodata-kit-postal",
+    "packages/geodata-kit-tz"
   ],
   "engines": {
     "node": ">=20"

@@ -1,5 +1,5 @@
 /**
- * geodata-kit/subdivisions — states, provinces, cantons, Länder and the levels
+ * geodata-kit-subdivisions — states, provinces, cantons, Länder and the levels
  * below them. "Subdivision" is the ISO 3166-2 / CLDR term; level 1 is
  * GeoNames' admin1 (Bavaria), level 2 admin2 (Upper Bavaria), level 3 admin3
  * (Landkreis München), level 4 admin4 (Gemeinde Unterhaching).
@@ -8,9 +8,8 @@
  */
 import isoJson from '../../../data/subdivisions/iso.json';
 import level1Json from '../../../data/subdivisions/level1.json';
-import { normalizeCountryCode } from './countries.js';
-import { fold } from './fold.js';
-import { cleanInput } from './internal/util.js';
+import { cleanText, fold, normalizeCountryCode } from 'geodata-kit';
+
 import { SUBDIVISION_LOADERS } from './loaders.generated.js';
 
 export type SubdivisionLevel = 1 | 2 | 3 | 4;
@@ -114,7 +113,7 @@ export function getSubdivisionName(iso: string): string | null {
  */
 export function resolveSubdivision(text: string | null | undefined, country?: string): Subdivision | null {
   if (typeof text !== 'string') return null;
-  const cleaned = cleanInput(text);
+  const cleaned = cleanText(text);
   if (!cleaned) return null;
   const byIso = LEVEL1_BY_ISO.get(cleaned.toUpperCase());
   if (byIso && (!country || byIso.country === normalizeCountryCode(country))) return byIso;
@@ -186,7 +185,7 @@ export async function findSubdivision(
     const level1 = resolveSubdivision(text, code);
     if (level1 || options.level === 1) return level1;
   }
-  const key = fold(cleanInput(text));
+  const key = fold(cleanText(text));
   if (!key) return null;
   const deep = await loadDeep(code);
   if (!deep) return null;

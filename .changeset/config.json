@@ -2,11 +2,27 @@
   "$schema": "https://unpkg.com/@changesets/config@3.0.0/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [["geodata-kit", "geodata-kit-localities", "geodata-kit-postal", "geodata-kit-tz"]],
+  "fixed": [
+    [
+      "geodata-kit",
+      "geodata-kit-subdivisions",
+      "geodata-kit-cities",
+      "geodata-kit-airports",
+      "geodata-kit-shapes",
+      "geodata-kit-address",
+      "geodata-kit-phone",
+      "geodata-kit-localities",
+      "geodata-kit-postal",
+      "geodata-kit-tz"
+    ]
+  ],
   "linked": [],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
   "ignore": [],
-  "privatePackages": { "version": false, "tag": false }
+  "privatePackages": {
+    "version": false,
+    "tag": false
+  }
 }

@@ -6,6 +6,7 @@ export default defineConfig({
   dts: true,
   clean: true,
   target: 'es2020',
+  tsconfig: '../../tsconfig.build.json',
   // import.meta.url in the CommonJS build.
   shims: true,
   outExtension: ({ format }) => ({ js: format === 'cjs' ? '.cjs' : '.js' }),

@@ -2930,6 +2930,22 @@
    "expect": [
     "CH"
    ]
+  },
+  {
+   "fn": "cleanText",
+   "args": [
+    "  Baden​   Württemberg "
+   ],
+   "expect": "Baden Württemberg"
+  },
+  {
+   "fn": "editDistance",
+   "args": [
+    "munchen",
+    "munchn",
+    2
+   ],
+   "expect": 1
   }
  ]
 }

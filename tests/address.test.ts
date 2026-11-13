@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { getPostalCodeRules, normalizePostalCode } from '../packages/geodata-kit/src/address.js';
-import { fold } from '../packages/geodata-kit/src/fold.js';
-import { listCountries } from '../packages/geodata-kit/src/index.js';
-import { foldName } from '../packages/geodata-kit-postal/src/index.js';
+import { fold, listCountries } from 'geodata-kit';
+import { getPostalCodeRules, normalizePostalCode } from 'geodata-kit-address';
+import { foldName } from 'geodata-kit-postal';
 
 describe('postal-code rules', () => {
   it('accepts every example code of every country', () => {

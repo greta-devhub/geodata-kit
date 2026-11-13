@@ -1,41 +1,38 @@
 # geodata-kit
 
-Countries, regions, cities, languages, timezones, addresses and phone numbers,
-offline and typed, with no dependencies.
+Countries for TypeScript and JavaScript: names in 8 languages, free-text
+resolution, search, groups, languages, timezones and currencies. Offline,
+typed, no dependencies, about 1.5 MB.
 
 ```bash
 npm install geodata-kit
 ```
 
 ```ts
-import { resolveCountry, getCountryName, getNationalLanguages } from 'geodata-kit';
-import { resolveCityTimezone } from 'geodata-kit/cities';
+import { resolveCountry, getCountryName, getNationalLanguages, getCountriesInGroup } from 'geodata-kit';
 
 resolveCountry('Deutschland')?.code;                     // 'DE'
 getCountryName('CH', 'fr');                              // 'Suisse'
 getNationalLanguages('CH').map((l) => l.code);           // ['de', 'fr', 'it', 'gsw']
-(await resolveCityTimezone({ city: 'München', country: 'DE' }))?.timezone; // 'Europe/Berlin'
+getCountriesInGroup('dach');                             // ['AT', 'CH', 'DE', 'LI']
 ```
 
-## What's inside
+## The geodata-kit family
 
-| Import | For |
-|---|---|
-| `geodata-kit` | countries, names, search, groups (EU, DACH, …), languages, timezones, currencies |
-| `geodata-kit/subdivisions` | states, provinces, cantons and the levels below |
-| `geodata-kit/cities` | cities, free-text locations, city timezones, nearest city |
-| `geodata-kit/airports` | airports by IATA / ICAO code |
-| `geodata-kit/shapes` | which country or region a coordinate is in |
-| `geodata-kit/address` | address formats, required fields, postal codes |
-| `geodata-kit/phone` | parse, validate and format phone numbers |
+Install only the parts you need. All packages share one version number and work offline.
 
-Optional add-ons:
-
-| Package | Adds |
-|---|---|
-| `geodata-kit-localities` | 4.9 million villages and city districts |
-| `geodata-kit-postal` | postal code → place lookups |
-| `geodata-kit-tz` | exact timezone for any coordinate |
+| Package | For | Size |
+|---|---|---|
+| **`geodata-kit`** (this one) | countries, names, search, groups (EU, DACH, …), languages, timezones, currencies | 1.5 MB |
+| [`geodata-kit-subdivisions`](https://www.npmjs.com/package/geodata-kit-subdivisions) | states, provinces, cantons and the levels below | 24 MB |
+| [`geodata-kit-cities`](https://www.npmjs.com/package/geodata-kit-cities) | 237,000 cities, free-text locations, city timezones | 27 MB |
+| [`geodata-kit-airports`](https://www.npmjs.com/package/geodata-kit-airports) | airports by IATA / ICAO code | 1 MB |
+| [`geodata-kit-shapes`](https://www.npmjs.com/package/geodata-kit-shapes) | which country or region a coordinate is in | 10 MB |
+| [`geodata-kit-address`](https://www.npmjs.com/package/geodata-kit-address) | address formats, required fields, postal-code rules | 0.5 MB |
+| [`geodata-kit-phone`](https://www.npmjs.com/package/geodata-kit-phone) | parse, validate and format phone numbers | 0.5 MB |
+| [`geodata-kit-localities`](https://www.npmjs.com/package/geodata-kit-localities) | 4.9 million villages and city districts (used by geodata-kit-cities) | 83 MB |
+| [`geodata-kit-postal`](https://www.npmjs.com/package/geodata-kit-postal) | postal code → place lookups | 19 MB |
+| [`geodata-kit-tz`](https://www.npmjs.com/package/geodata-kit-tz) | exact timezone for any coordinate | 7.5 MB |
 
 ## Countries
 
@@ -49,7 +46,6 @@ searchCountries('osterr', { locale: 'de' }); // [Österreich] — for country pi
 formatCountry('DE', { withCode: true });   // 'Germany (DE)'
 getCurrency('BG');                         // 'EUR'
 ```
-
 
 ## Groups and regions
 
@@ -78,7 +74,6 @@ resolveLanguage('Deutsch');                // 'de'
 getLanguageName('de', 'fr');               // 'allemand'
 ```
 
-
 ## Timezones
 
 ```ts
@@ -89,71 +84,12 @@ getPrimaryTimezone('US');                  // 'America/New_York'
 canonicalTimezone('Europe/Kiev');          // 'Europe/Kyiv'
 ```
 
-## Subdivisions
-
-```ts
-import { resolveSubdivision, listSubdivisions, findSubdivision } from 'geodata-kit/subdivisions';
-
-resolveSubdivision('Bayern', 'DE')?.iso;   // 'DE-BY'
-listSubdivisions('CH').length;             // 26
-await findSubdivision('Oberbayern', 'DE'); // a level-2 region
-```
-
-## Cities
-
-```ts
-import { findCity, parseLocation, resolveCityTimezone, findNearestCities } from 'geodata-kit/cities';
-
-await findCity('Springfield', { country: 'US', subdivision: 'MO' });
-await parseLocation('San Francisco, CA');  // { city, subdivision: California, country: 'US' }
-await resolveCityTimezone({ city: 'Berlin, Germany' }); // Europe/Berlin
-await findNearestCities(48.137, 11.575, { limit: 1 }); // [Munich]
-```
-
-`resolveCityTimezone` falls back to the region's and then the country's main
-timezone when a place is unknown. City functions are async: each country's
-data loads the first time you use it. Use the `tier` option (15000, 5000,
-1000 or 500 inhabitants) to load fewer cities.
-
-## Airports and coordinates
-
-```ts
-import { getAirportByIata } from 'geodata-kit/airports';
-import { getCountryAt, getSubdivisionAt } from 'geodata-kit/shapes';
-
-await getAirportByIata('MUC');             // Munich International Airport
-await getCountryAt(47.56, 7.59);           // 'CH'
-```
-
-## Addresses and postal codes
-
-```ts
-import { getRequiredAddressFields, normalizePostalCode, formatAddress, parseAddress } from 'geodata-kit/address';
-
-getRequiredAddressFields('US');            // ['addressLines', 'city', 'region', 'postalCode']
-normalizePostalCode('sw1a1aa', 'GB');      // 'SW1A 1AA'
-formatAddress({ line1: 'Hauptstr. 1', postalCode: '80331', city: 'München', country: 'DE' }, { from: 'CH' });
-// ['Hauptstr. 1', '80331 München', 'GERMANY']
-await parseAddress('Hauptstr. 1, D-80331 München, Deutschland');
-// { lines: ['Hauptstr. 1'], postalCode: '80331', city: 'München', country: 'DE', … }
-```
-
-## Phone numbers
-
-```ts
-import { parsePhoneNumber, formatPhoneNumber } from 'geodata-kit/phone';
-
-parsePhoneNumber('089 1234567', 'DE');     // { e164: '+49891234567', type: 'fixed_line', isValid: true, … }
-formatPhoneNumber('+12125550123', 'NATIONAL'); // '(212) 555-0123'
-```
-
 ## API reference
 
-Every function, grouped by import. `code` is an ISO 3166-1 alpha-2 country
-code ("DE"); most functions also accept lower case. Options are optional
-unless shown without `?`.
+`code` is an ISO 3166-1 alpha-2 country code ("DE"); most functions also
+accept lower case. Options are optional unless shown without `?`.
 
-### `geodata-kit` — countries
+### Countries
 
 | Function | Returns |
 |---|---|
@@ -187,9 +123,9 @@ unless shown without `?`.
 | `getPaperSize(code)` | `'A4'` or `'US-Letter'` |
 | `getDrivingSide(code)` | `'left'` or `'right'` |
 | `getFlagEmoji(code)` | `'🇩🇪'` |
-| `fold(text)` | lower case, no accents or punctuation: `'São Paulo'` → `'sao paulo'` |
 
-### `geodata-kit` — groups and regions
+
+### Groups and regions
 
 | Function | Returns |
 |---|---|
@@ -203,7 +139,7 @@ unless shown without `?`.
 | `getContinent(code)` | `{ code, name, slug }` |
 | `getM49Region(code)` | UN region, sub-region, intermediate region, groupings |
 
-### `geodata-kit` — languages
+### Languages
 
 | Function | Returns |
 |---|---|
@@ -219,7 +155,7 @@ unless shown without `?`.
 | `getLanguageName(code, locale?)` | `'allemand'`; locale `'endonym'` for the language's own name |
 | `getLanguageScripts(code)` | `['Cyrl', 'Latn']` |
 
-### `geodata-kit` — timezones
+### Timezones
 
 | Function | Returns |
 |---|---|
@@ -229,90 +165,19 @@ unless shown without `?`.
 | `canonicalTimezone(value)` | current name: `'Europe/Kiev'` → `'Europe/Kyiv'` |
 | `listTimezones()` | all IANA zones |
 
-### `geodata-kit/subdivisions`
+### Text helpers
 
-Level 1 = states, provinces, cantons, Länder; levels 2–4 are the divisions below.
-
-| Function | Returns |
-|---|---|
-| `listSubdivisions(code)` | level-1 subdivisions of a country |
-| `getSubdivision(isoOrKey)` | by ISO 3166-2 code (`'DE-BY'`) or GeoNames key (`'DE.02'`) |
-| `resolveSubdivision(text, code?)` | from a name, local name, abbreviation or ISO code |
-| `isSubdivisionCode(value)` | `true` for a valid ISO 3166-2 code |
-| `getSubdivisionName(iso)` | English name of any ISO 3166-2 code |
-| `loadSubdivisions(code, { level?, parent? })` | async; any level, optionally under a parent |
-| `findSubdivision(text, code, { level? })` | async; by name on any level |
-| `getSubdivisionChain(place)` | async; level 1 down to 4 for a city or other place |
-
-### `geodata-kit/cities` (all async)
-
-`tier`: `15000`, `5000`, `1000` or `500` (default) minimum inhabitants, or
-`'all'` to include `geodata-kit-localities`.
+The same helpers every lookup in the family uses.
 
 | Function | Returns |
 |---|---|
-| `findCity(name, { country, subdivision?, tier? })` | best matching `City` (name, asciiName, country, admin1–4, population, lat, lng, timezone, featureCode, unlocode, wikidataId, alternateNames) |
-| `searchCities(query, { country?, subdivision?, minPopulation?, tier?, limit? })` | cities starting with the query |
-| `listCities({ country, subdivision?, minPopulation?, tier? })` | cities of a country, largest first |
-| `getCity(geonameId)` | by GeoNames id |
-| `getCityByUnlocode(code)` | by UN/LOCODE: `'DEHAM'` |
-| `getPlaceByWikidataId(id)` | by Wikidata id: `'Q64'` |
-| `parseLocation(text, { country?, tier? })` | `{ city, subdivision, country }` from text such as `'Berlin, Germany'` |
-| `resolveCityTimezone({ city?, subdivision?, country? }, { tier? })` | `{ timezone, matchedBy, place }` |
-| `findNearestCities(lat, lng, { country?, tier?, limit?, maxDistanceKm? })` | closest cities with `distanceKm` |
-| `distanceKm(a, b)` | distance between two `{ lat, lng }` points (sync) |
-| `preloadCities(codes, { tier? })` | loads countries in advance |
-| `hasLocalities()` | `true` when `geodata-kit-localities` is installed |
+| `fold(text)` | lower case, no accents or punctuation: `'São Paulo'` → `'sao paulo'` |
+| `cleanText(text)` | trimmed text with normalised Unicode and single spaces |
+| `editDistance(a, b, max)` | number of edits between two strings, `max + 1` when above `max` |
 
-### `geodata-kit/airports` (all async)
-
-| Function | Returns |
-|---|---|
-| `getAirportByIata(code)` | `Airport` (name, iata, icao, country, admin1, lat, lng, timezone, cityId) |
-| `getAirportByIcao(code)` | same, by ICAO code |
-| `searchAirports(query, { country?, limit? })` | by code or name |
-| `listAirports(code)` | airports of a country |
-
-### `geodata-kit/shapes` (all async)
-
-| Function | Returns |
-|---|---|
-| `getCountryAt(lat, lng)` | country code, or `null` at sea |
-| `getSubdivisionAt(lat, lng)` | `{ country, iso, name, subdivision }` |
-
-### `geodata-kit/address`
-
-| Function | Returns |
-|---|---|
-| `getAddressFormat(code)` | lines and fields in envelope order, required and upper-case fields, local labels |
-| `getRequiredAddressFields(code)` | `['addressLines', 'city', 'postalCode', …]` |
-| `listRegions(code)` | regions used in addresses: `{ key, name, iso }` |
-| `resolveRegion(value, code)` | region from a name, key or ISO code |
-| `isValidRegion(value, code)` | `true` / `false` |
-| `getPostalCodeRules(code)` | `{ pattern, layouts, examples, prefixes, label }` or `null` |
-| `normalizePostalCode(value, code)` | canonical code, or `null` if invalid |
-| `isValidPostalCode(value, code)` | `true` / `false` |
-| `formatAddress(address, { from?, includeCountry?, latin? })` | address lines for an envelope |
-| `parseAddress(text, { country? })` | async; `{ lines, postalCode, city, region, country, postalCheck }` |
-
-### `geodata-kit/phone`
-
-| Function | Returns |
-|---|---|
-| `parsePhoneNumber(text, defaultCountry?)` | `PhoneNumber` (e164, country, callingCode, nationalNumber, extension, type, isValid, isPossible) or `null` |
-| `parsePhoneNumbers(text, defaultCountry?)` | all numbers in a text or JSON array |
-| `isValidPhoneNumber(text, defaultCountry?)` | `true` / `false` |
-| `isPossiblePhoneNumber(text, defaultCountry?)` | `true` when the length fits |
-| `getPhoneNumberType(number, defaultCountry?)` | `'mobile'`, `'fixed_line'`, `'toll_free'`, … |
-| `formatPhoneNumber(number, format?, defaultCountry?)` | format `'E164'`, `'INTERNATIONAL'` (default), `'NATIONAL'` or `'RFC3966'` |
-| `getExamplePhoneNumber(code, type?)` | an example number of a type |
-| `listPhoneRegions()` | regions with phone data |
-
-All types (`Country`, `City`, `Subdivision`, `Airport`, `PhoneNumber`, …)
-are exported for TypeScript.
+All types (`Country`, `CountryMatch`, `Group`, `CountryLanguage`, …) are exported for TypeScript.
 
 ## License
 
-MIT. Data from GeoNames (CC BY 4.0), Unicode CLDR, IANA tzdata, Wikidata,
-Natural Earth, libphonenumber and Google's address metadata; see `NOTICE`.
-If you publish data taken from this package, credit GeoNames.
+MIT. Data from GeoNames (CC BY 4.0), Unicode CLDR, IANA tzdata and Wikidata;
+see `NOTICE`. If you publish data taken from this package, credit GeoNames.

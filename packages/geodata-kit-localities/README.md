@@ -1,17 +1,17 @@
 # geodata-kit-localities
 
 Adds 4.9 million villages, hamlets and city districts to
-[geodata-kit](https://www.npmjs.com/package/geodata-kit), so small places
+[geodata-kit-cities](https://www.npmjs.com/package/geodata-kit-cities), so small places
 are found too. Node.js only.
 
 ```bash
-npm install geodata-kit geodata-kit-localities
+npm install geodata-kit-cities geodata-kit-localities
 ```
 
-Once installed, `geodata-kit/cities` uses it automatically:
+Once installed, `geodata-kit-cities` uses it automatically:
 
 ```ts
-import { findCity, resolveCityTimezone } from 'geodata-kit/cities';
+import { findCity, resolveCityTimezone } from 'geodata-kit-cities';
 
 await findCity('Wollbach bei Bad Kissingen', { country: 'DE', tier: 'all' }); // a village
 await findCity('Schwabing', { country: 'DE', tier: 'all' });                  // a Munich district
@@ -26,6 +26,6 @@ await resolveCityTimezone({ city: 'Wollbach bei Bad Kissingen', country: 'DE' })
 | `listLocalityCountries()` | countries with data |
 
 Usually you don't call these: `findCity`, `searchCities`, `parseLocation` and
-`resolveCityTimezone` from `geodata-kit/cities` use them.
+`resolveCityTimezone` from `geodata-kit-cities` use them.
 
 MIT. Data from GeoNames (CC BY 4.0); see `NOTICE`.

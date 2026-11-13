@@ -1,0 +1,57 @@
+{
+  "name": "geodata-kit-address",
+  "version": "0.2.0",
+  "description": "Address formats, required fields, regions and postal-code rules for every country, with address formatting and parsing. Offline add-on for geodata-kit, built from Google address metadata and GeoNames.",
+  "keywords": [
+    "address",
+    "postal-code",
+    "zip-code",
+    "postcode",
+    "address-format",
+    "address-validation",
+    "geodata-kit"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greta-devhub/geodata-kit.git",
+    "directory": "packages/geodata-kit-address"
+  },
+  "homepage": "https://github.com/greta-devhub/geodata-kit/tree/main/packages/geodata-kit-address#readme",
+  "bugs": {
+    "url": "https://github.com/greta-devhub/geodata-kit/issues"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "NOTICE",
+    "LICENSE",
+    "README.md"
+  ],
+  "dependencies": {
+    "geodata-kit": "^0.2.0"
+  },
+  "scripts": {
+    "build": "tsup"
+  }
+}

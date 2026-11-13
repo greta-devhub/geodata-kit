@@ -1,5 +1,5 @@
 /**
- * geodata-kit/address — address formats, required fields, regions and
+ * geodata-kit-address — address formats, required fields, regions and
  * postal-code rules for every country, plus formatting and parsing.
  *
  * Data: Google libaddressinput address metadata (CC BY 4.0) and GeoNames
@@ -7,9 +7,7 @@
  * parseAddress also checks the city against the postal code.
  */
 import formatsJson from '../../../data/address/formats.json';
-import { formatCountry, normalizeCountryCode, resolveCountry } from './countries.js';
-import { fold } from './fold.js';
-import { cleanInput, editDistance } from './internal/util.js';
+import { cleanText, editDistance, fold, formatCountry, normalizeCountryCode, resolveCountry } from 'geodata-kit';
 
 export type AddressField = 'name' | 'organization' | 'addressLines' | 'dependentLocality' | 'city' | 'region' | 'postalCode' | 'sortingCode';
 
@@ -94,9 +92,9 @@ export function listRegions(country: string): Region[] {
 
 /** The region key for a name, key or ISO code: ("California", "US") → "CA". */
 export function resolveRegion(value: string, country: string): Region | null {
-  const key = fold(cleanInput(value));
+  const key = fold(cleanText(value));
   if (!key) return null;
-  const upper = cleanInput(value).toUpperCase();
+  const upper = cleanText(value).toUpperCase();
   return listRegions(country).find((region) => region.key.toUpperCase() === upper || region.iso === upper
     || fold(region.name) === key || (region.latinName && fold(region.latinName) === key)) ?? null;
 }
@@ -180,7 +178,7 @@ export function normalizePostalCode(value: string, country: string): string | nu
   const code = normalizeCountryCode(country);
   const format = code ? FORMATS[code] : undefined;
   if (!code || !format?.postal || typeof value !== 'string') return null;
-  let text = cleanInput(value).toUpperCase().replace(/^〒\s*/, '');
+  let text = cleanText(value).toUpperCase().replace(/^〒\s*/, '');
   for (const prefix of [...format.postal.prefixes].sort((a, b) => b.length - a.length)) {
     if (text.startsWith(prefix) && text.length > prefix.length) { text = text.slice(prefix.length).trim(); break; }
   }
@@ -328,7 +326,7 @@ export async function parseAddress(text: string, options: { country?: string } =
   const result: ParsedAddress = { lines: [], postalCode: null, city: null, region: null, country: null, postalCheck: 'not-checked' };
   if (typeof text !== 'string') return result;
   const multiline = text.includes('\n');
-  let lines = (multiline ? text.split(/\r?\n/) : text.split(/\s*,\s*/)).map(cleanInput).filter(Boolean);
+  let lines = (multiline ? text.split(/\r?\n/) : text.split(/\s*,\s*/)).map(cleanText).filter(Boolean);
   if (!lines.length) return result;
 
   // 1. Country on the last line.
@@ -349,7 +347,7 @@ export async function parseAddress(text: string, options: { country?: string } =
     const found = findPostalCode(lines[index]!, country);
     if (!found) continue;
     result.postalCode = found.code;
-    const rest = cleanInput(`${lines[index]!.slice(0, found.start)} ${lines[index]!.slice(found.end)}`).replace(/^[,\s-]+|[,\s-]+$/g, '');
+    const rest = cleanText(`${lines[index]!.slice(0, found.start)} ${lines[index]!.slice(found.end)}`).replace(/^[,\s-]+|[,\s-]+$/g, '');
     if (rest) {
       lines[index] = rest;
       cityLineIndex = index;

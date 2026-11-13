@@ -13,7 +13,7 @@ await findPlacesByPostalCode('80331', 'DE');               // [{ name: 'München
 await findPostalCodes({ city: 'Unterhaching', country: 'DE' }); // ['82008']
 ```
 
-Installed next to [geodata-kit](https://www.npmjs.com/package/geodata-kit), it
+Installed next to [geodata-kit-address](https://www.npmjs.com/package/geodata-kit-address), it
 also lets `parseAddress` check the city against the postal code and fix typos.
 For the UK, Canada and the Netherlands only the first part of the code is
 known ("SW1A", "K1A", "1234").

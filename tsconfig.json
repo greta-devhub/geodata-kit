@@ -1,17 +1,11 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "types": ["node"]
+    "baseUrl": ".",
+    "paths": {
+      "geodata-kit": ["packages/geodata-kit/src/index.ts"],
+      "geodata-kit-*": ["packages/geodata-kit-*/src/index.ts"]
+    }
   },
   "include": ["scripts", "packages/*/src", "tests", "vitest.config.ts"]
 }
